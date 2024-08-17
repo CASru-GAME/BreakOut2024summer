@@ -6,11 +6,11 @@ namespace App.Main.Datastores
 {
     public class PlayerDatastore : MonoBehaviour
     {
-        public PlayerParameter playerParameter;
+        public PlayerParameter Parameter { get; private set; }
 
         public void InitializePlayer()
         {
-            playerParameter = new PlayerParameter(10, 5.0f);
+            Parameter = new PlayerParameter(10, 5.0f);
         }
 
     }

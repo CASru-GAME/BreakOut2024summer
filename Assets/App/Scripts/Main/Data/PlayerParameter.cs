@@ -5,13 +5,13 @@ using App.Main.Data;
 
 public class PlayerParameter
 {
-    public AttackPoint attackPoint {get;}
-    public PlayerMoveSpeed moveSpeed {get;}
+    public AttackPoint AttackPoint { get; private set; }
+    public PlayerMoveSpeed MoveSpeed { get; private set; }
 
     public PlayerParameter(int attackPointValue, float moveSpeedValue)
     {
-        this.attackPoint = new AttackPoint(attackPointValue);
-        this.moveSpeed = new PlayerMoveSpeed(moveSpeedValue);
+        this.AttackPoint = new AttackPoint(attackPointValue);
+        this.MoveSpeed = new PlayerMoveSpeed(moveSpeedValue);
     }
 
 }

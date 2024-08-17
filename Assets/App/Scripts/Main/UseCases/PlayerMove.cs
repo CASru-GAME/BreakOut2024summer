@@ -22,11 +22,11 @@ namespace App.Main.UseCases
         {
             if(Input.GetKey(KeyCode.A))
             {
-                rb.velocity = new Vector2(-playerDatastore.playerParameter.moveSpeed.Speed, 0);
+                rb.velocity = new Vector2(-playerDatastore.Parameter.MoveSpeed.Speed, 0);
             }
             else if(Input.GetKey(KeyCode.D))
             {
-                rb.velocity = new Vector2(playerDatastore.playerParameter.moveSpeed.Speed, 0);
+                rb.velocity = new Vector2(playerDatastore.Parameter.MoveSpeed.Speed, 0);
             }
             else
             {
