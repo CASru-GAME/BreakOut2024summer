@@ -9,12 +9,11 @@ namespace App.Main.UseCases
     public class PlayerMove : MonoBehaviour
     {
         Rigidbody2D rb;
-        public float speed;
-
+        PlayerDatastore playerDatastore;
         void Start()
         {
-            // シングルトンインスタンスから速度を取得
-            speed = PlayerParameter.Instance.moveSpeed;
+            playerDatastore = GetComponent<PlayerDatastore>();
+            playerDatastore.InitializePlayer();
 
             rb = GetComponent<Rigidbody2D>();
         }
@@ -23,11 +22,11 @@ namespace App.Main.UseCases
         {
             if(Input.GetKey(KeyCode.A))
             {
-                rb.velocity = new Vector2(-speed, 0);
+                rb.velocity = new Vector2(-playerDatastore.playerParameter.moveSpeed.Speed, 0);
             }
             else if(Input.GetKey(KeyCode.D))
             {
-                rb.velocity = new Vector2(speed, 0);
+                rb.velocity = new Vector2(playerDatastore.playerParameter.moveSpeed.Speed, 0);
             }
             else
             {

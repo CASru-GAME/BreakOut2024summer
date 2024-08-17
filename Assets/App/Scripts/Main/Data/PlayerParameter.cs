@@ -1,31 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using App.Main.Data;
 
 
-public class PlayerParameter : MonoBehaviour
+public class PlayerParameter
 {
-    public int attackPoint;
-    public float moveSpeed;
+    public AttackPoint attackPoint {get;}
+    public PlayerMoveSpeed moveSpeed {get;}
 
     public PlayerParameter(int attackPointValue, float moveSpeedValue)
     {
-        this.attackPoint = attackPointValue;
-        this.moveSpeed = moveSpeedValue;
+        this.attackPoint = new AttackPoint(attackPointValue);
+        this.moveSpeed = new PlayerMoveSpeed(moveSpeedValue);
     }
 
-    private static PlayerParameter instance;
-
-    public static PlayerParameter Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                // Provide default values for the constructor parameters
-                instance = new PlayerParameter(10, 5.0f); // Example default values
-            }
-            return instance;
-        }
-    }
 }
