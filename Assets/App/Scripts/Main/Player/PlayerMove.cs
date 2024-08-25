@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using App.Main.Data;
-using App.Main.Datastores;
 
-namespace App.Main.UseCases
+namespace App.Main.Player
 {
     public class PlayerMove : MonoBehaviour
     {

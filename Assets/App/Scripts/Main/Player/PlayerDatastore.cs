@@ -1,8 +1,8 @@
-using App.Main.Data;
 using UnityEngine;
-using System;
+using UnityEngine.TextCore.Text;
+using UnityEngine.UIElements.Experimental;
 
-namespace App.Main.Datastores 
+namespace App.Main.Player
 {
     public class PlayerDatastore : MonoBehaviour
     {
@@ -12,6 +12,5 @@ namespace App.Main.Datastores
         {
             Parameter = new PlayerParameter(10, 5.0f);
         }
-
     }
 }

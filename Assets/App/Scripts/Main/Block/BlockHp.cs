@@ -1,6 +1,6 @@
 using System;
 
-namespace App.Main.Data
+namespace App.Main.Block
 {
     /// <summary>
     /// ゲーム内ブロックのヘルスポイント（HP）を管理する
