@@ -1,6 +1,6 @@
 using System;
 
-namespace App.Main.Data
+namespace App.Main.Player
 {
     public class PlayerMoveSpeed
     {
