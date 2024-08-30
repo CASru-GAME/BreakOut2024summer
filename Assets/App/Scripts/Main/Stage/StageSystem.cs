@@ -4,6 +4,16 @@ namespace App.Main.Stage
 {
     public class StageSystem : MonoBehaviour
     {
+        private enum StageState
+        {
+            Waiting,
+            Playing,
+            GameOver,
+            Clear
+        }
+        private StageState _state = StageState.Waiting;
+
+
         private int _ballCountonStage = 0;
         public int BallCountonStage => _ballCountonStage;
 
@@ -75,10 +85,23 @@ namespace App.Main.Stage
 
         void Start()
         {
+            // ステージの初期化処理
+            _state = StageState.Playing;
         }
 
         void Update()
         {
+            if (_state == StageState.Playing)
+            {
+                if (_ballCountonStage == 0)
+                {
+                    // ゲームオーバー処理
+                }
+                else if (_targetBlockCount == 0)
+                {
+                    // クリア処理
+                }
+            }
         }
     }
 }
