@@ -6,33 +6,36 @@ namespace App.Main.Player
     {
         private readonly int _currentValue;
         public int CurrentValue => _currentValue;
-        private readonly int _maxValue;
-        public int MaxValue => _maxValue;
 
-        private AttackPoint(int CurrentValue, int MaxValue)
+
+        public AttackPoint(int CurrentValue)
         {
             if (CurrentValue < 0)
             {
                 throw new ArgumentException("Value cannot be negative");
             }
-            else if (CurrentValue > MaxValue)
-            {
-                throw new ArgumentException("Value cannot over MaxValue");
-            }
-            this._currentValue = CurrentValue;
-            this._maxValue = MaxValue;
-        }
 
-        public AttackPoint(int value) : this(value, value) { }
+            this._currentValue = CurrentValue;
+        }
 
         public AttackPoint AddCurrentValue(AttackPoint value)
         {
-            return new AttackPoint(_currentValue + value.CurrentValue, _maxValue + value.MaxValue);
+            return new AttackPoint(_currentValue + value.CurrentValue);
         }
 
         public AttackPoint SubtractCurrentValue(AttackPoint value)
         {
-            return new AttackPoint(_currentValue - value.CurrentValue, _maxValue - value.MaxValue);
+            return new AttackPoint(_currentValue - value.CurrentValue);
+        }
+
+        public AttackPoint MultiplyCurrentValue(AttackPoint value)
+        {
+            return new AttackPoint(_currentValue * value.CurrentValue);
+        }
+
+        public AttackPoint DivideCurrentValue(AttackPoint value)
+        {
+            return new AttackPoint(_currentValue / value.CurrentValue);
         }
 
         public void Dump(string message)

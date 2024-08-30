@@ -2,19 +2,18 @@ using UnityEngine;
 
 namespace App.Main.Player
 {
-    public class PlayerMove : MonoBehaviour
+    public class PlayerMove
     {
         Rigidbody2D rb;
         PlayerDatastore playerDatastore;
-        void Start()
+        
+        public PlayerMove(Rigidbody2D rb, PlayerDatastore playerDatastore)
         {
-            playerDatastore = GetComponent<PlayerDatastore>();
-            playerDatastore.InitializePlayer();
-
-            rb = GetComponent<Rigidbody2D>();
+            this.rb = rb;
+            this.playerDatastore = playerDatastore;
         }
 
-        void Update()
+        public void Move()
         {
             if(Input.GetKey(KeyCode.A))
             {

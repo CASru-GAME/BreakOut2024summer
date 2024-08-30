@@ -6,11 +6,11 @@ namespace App.Main.Player
 {
     public class PlayerDatastore : MonoBehaviour
     {
-        public PlayerParameter Parameter { get; private set; }
+        public Parameter Parameter { get; private set; }
 
         public void InitializePlayer()
         {
-            Parameter = new PlayerParameter(10, 5.0f);
+            Parameter = new Parameter(3,1, 5.0f,1,0);  //Parameter(int live,int attackPoint, float moveSpeed, int level , int experiencePoint)のコンストラクタを呼び出す
         }
     }
 }
