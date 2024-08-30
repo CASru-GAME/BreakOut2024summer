@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace App.Main.Stage
@@ -26,61 +27,67 @@ namespace App.Main.Stage
         ///<summary>
         ///ステージシステム上のボールの数を一つ増やす。
         ///</summary>
-        public IncreaseBallCountonStage()
+        public void IncreaseBallCountonStage()
         {
             ++_ballCountonStage;
+            Debug.Log("BallCountonStage: " + _ballCountonStage);
         }
         ///<summary>
         ///ステージシステム上のボールの数を一つ減らす。
         ///</summary>
         ///<exception cref="ArgumentException">ボールの数が0未満になる場合に発生します。</exception>
-        public DecreaseBallCountonStage()
+        public void DecreaseBallCountonStage()
         {
             if (_ballCountonStage <= 0)
             {
                 throw new ArgumentException("Value cannot be negative");
             }
             --_ballCountonStage;
+            Debug.Log("BallCountonStage: " + _ballCountonStage);
         }
 
         ///<summary>
         ///ステージシステム上の通常ブロックの数を一つ増やす。
         ///</summary>
-        public IncreaseNormalBlockCount()
+        public void IncreaseNormalBlockCount()
         {
             ++_normalBlockCount;
+            Debug.Log("NormalBlockCount: " + _normalBlockCount);
         }
         ///<summary>
         ///ステージシステム上の通常ブロックの数を一つ減らす。
         ///</summary>
         ///<exception cref="ArgumentException">通常ブロックの数が0未満になる場合に発生します。</exception>
-        public DecreaseNormalBlockCount()
+        public void DecreaseNormalBlockCount()
         {
             if (_normalBlockCount <= 0)
             {
                 throw new ArgumentException("Value cannot be negative");
             }
             --_normalBlockCount;
+            Debug.Log("NormalBlockCount: " + _normalBlockCount);
         }
 
         ///<summary>
         ///ステージシステム上のターゲットブロックの数を一つ増やす。
         ///</summary>
-        public IncreaseTargetBlockCount()
+        public void IncreaseTargetBlockCount()
         {
             ++_targetBlockCount;
+            Debug.Log("TargetBlockCount: " + _targetBlockCount);
         }
         ///<summary>
         ///ステージシステム上のターゲットブロックの数を一つ減らす。
         ///</summary>
         ///<exception cref="ArgumentException">ターゲットブロックの数が0未満になる場合に発生します。</exception>
-        public DecreaseTargetBlockCount()
+        public void DecreaseTargetBlockCount()
         {
             if (_targetBlockCount <= 0)
             {
                 throw new ArgumentException("Value cannot be negative");
             }
             --_targetBlockCount;
+            Debug.Log("TargetBlockCount: " + _targetBlockCount);
         }
 
         void Start()
