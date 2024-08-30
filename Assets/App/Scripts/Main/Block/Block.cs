@@ -18,7 +18,7 @@ namespace App.Main.Block
         //<summary>
         // ブロックが破壊されたときに通達するために取得する
         //</summary>
-        public void GetStage(GameObject stage)
+        public void SetStage(GameObject stage)
         {
             this.stage = stage;
         }
@@ -31,7 +31,7 @@ namespace App.Main.Block
             BlockHp newBlockHp = new BlockHp(damage.CurrentValue);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
-            if(blockDatastore.Hp.CurrentValue < 0)
+            if(blockDatastore.Hp.CurrentValue < 0) 
             Break();
         }
 

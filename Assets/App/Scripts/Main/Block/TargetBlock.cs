@@ -18,7 +18,7 @@ namespace App.Main.Block
         //<summary>
         // ブロックが破壊されたときに通達するために取得する
         //</summary>
-        public void GetStage(GameObject stage)
+        public void SetStage(GameObject stage)
         {
             this.stage = stage;
         }
