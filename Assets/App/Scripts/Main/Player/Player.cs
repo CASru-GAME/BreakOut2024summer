@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace App.Main.Player
@@ -7,8 +5,8 @@ namespace App.Main.Player
     public class Player : MonoBehaviour
     {
         PlayerDatastore playerDatastore;  //データストアがパラメータを持っている
-        Rigidbody2D rb;
-        PlayerMove playerMove;
+        private Rigidbody2D rb;
+        private PlayerMove playerMove;
         void Start()
         {
             playerDatastore = GetComponent<PlayerDatastore>();
