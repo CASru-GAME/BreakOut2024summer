@@ -69,7 +69,7 @@ namespace App.Main.Ball
         private AttackPoint CalcDamage()
         {
             AttackPoint newAttackPoint = new AttackPoint(0);
-            newAttackPoint = player.GetComponent<PlayerParameter>().AttackPoint;
+            newAttackPoint = player.GetComponent<PlayerDatastore>().Parameter.AttackPoint;
             //パークのダメージも計算する(実装待ち)
 
             return newAttackPoint;
