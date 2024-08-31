@@ -32,7 +32,7 @@ namespace App.Main.Block
             BlockHp newBlockHp = new BlockHp(damage.CurrentValue);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
-            if(blockDatastore.Hp.CurrentValue < 0)
+            if(blockDatastore.Hp.CurrentValue <= 0)
             Break();
         }
 
