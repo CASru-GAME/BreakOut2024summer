@@ -1,5 +1,6 @@
 using UnityEngine;
 using App.Main.Player;
+using App.Main.Stage;
 
 namespace App.Main.Block
 {   //ターゲットのブロック
@@ -7,7 +8,7 @@ namespace App.Main.Block
     {   
         private BlockDataStore blockDatastore;
         [SerializeField] int initialHp;
-        private GameObject stage;
+        private StageSystem stage;
 
         void Start()
         {
@@ -18,7 +19,7 @@ namespace App.Main.Block
         //<summary>
         // ブロックが破壊されたときに通達するために取得する
         //</summary>
-        public void SetStage(GameObject stage)
+        public void SetStage(StageSystem stage)
         {
             this.stage = stage;
         }
@@ -40,7 +41,8 @@ namespace App.Main.Block
         //</summary>
         private void Break()
         {   
-            //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達(未実装)
+            //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達
+            stage.DecreaseTargetBlockCount();
 
             Destroy(gameObject);
         }
