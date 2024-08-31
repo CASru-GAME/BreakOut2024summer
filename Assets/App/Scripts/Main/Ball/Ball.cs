@@ -11,8 +11,8 @@ namespace App.Main.Ball
     {
         //ボールを削除するY座標の限界値
         private readonly float _minY = -5f;
-        private GameObject player;
-        private GameObject stage;
+        private PlayerDatastore playerDatastore;
+        private StageSystem stageSystem;
 
         /// <summary>
         /// デバッグ用．ボールに初速度を与える
@@ -25,10 +25,10 @@ namespace App.Main.Ball
         /// <summary>
         /// 初期化する
         /// </summary>
-        public void Initialize(GameObject player, GameObject stage)
+        public void Initialize(PlayerDatastore playerDatastore, StageSystem stageSystem)
         {
-            this.player = player;
-            this.stage = stage;
+            this.playerDatastore = playerDatastore;
+            this.stageSystem = stageSystem;
         }
 
         private void FixedUpdate()
@@ -46,7 +46,7 @@ namespace App.Main.Ball
         private void Suicide()
         {
             //ボール数を1引く
-            stage.GetComponent<StageSystem>().DecreaseBallCountonStage();
+            stageSystem.DecreaseBallCountonStage();
 
             //gameObjectを削除
             Destroy(gameObject);
@@ -75,7 +75,7 @@ namespace App.Main.Ball
         private AttackPoint CalcDamage()
         {
             AttackPoint newAttackPoint = new AttackPoint(0);
-            newAttackPoint = player.GetComponent<PlayerDatastore>().Parameter.AttackPoint;
+            newAttackPoint = playerDatastore.Parameter.AttackPoint;
             //パークのダメージも計算する(実装待ち)
 
             return newAttackPoint;
