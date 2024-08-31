@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using App.Main.Block;
 using App.Main.Player;
+using App.Main.Stage;
 
 namespace App.Main.Ball
 {
@@ -44,7 +45,8 @@ namespace App.Main.Ball
         /// </summary>
         private void Suicide()
         {
-            //ボール数を1引く(実装待ち)
+            //ボール数を1引く
+            stage.GetComponent<StageSystem>().DecreaseBallCountonStage();
 
             //gameObjectを削除
             Destroy(gameObject);
@@ -58,8 +60,12 @@ namespace App.Main.Ball
             BlockHp blockHp = collider2D.GetComponent<BlockHp>();
             if(blockHp != null)
             {
+                //ダメージ計算
                 AttackPoint damage = CalcDamage();
-                //blockHpのHPを減らす(実装待ち)
+                //AttackPoint -> BlockHpに変換
+                BlockHp BlockDamage = new BlockHp(damage.CurrentValue);
+                //blockHpのHPを減らす
+                blockHp.SubtractCurrentValue(BlockDamage);
             }
         }
 
