@@ -5,11 +5,11 @@ using App.Main.Stage;
 namespace App.Main.Block
 {   //ターゲット以外のブロック
     public class Block : MonoBehaviour, IBlock
-    {   
+    {
         private BlockDataStore blockDatastore;
         [SerializeField] int initialHp;
         private StageSystem stage;
-      
+
         void Start()
         {
             blockDatastore = GetComponent<BlockDataStore>();
@@ -28,23 +28,22 @@ namespace App.Main.Block
         // ダメージを受ける(ボールが呼び出す)
         //</summary>
         public void TakeDamage(AttackPoint damage)
-        {   
+        {
             BlockHp newBlockHp = new BlockHp(damage.CurrentValue);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
-            if(blockDatastore.Hp.CurrentValue < 0) 
-            Break();
+            if (blockDatastore.Hp.CurrentValue <= 0) Break();
         }
 
         //<summary>
         // 破壊されたことを通達する(TakeDamage内で呼び出される)
         //</summary>
         private void Break()
-        {   
+        {
             //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達
             stage.DecreaseNormalBlockCount();
 
             Destroy(gameObject);
         }
-    }  
+    }
 }

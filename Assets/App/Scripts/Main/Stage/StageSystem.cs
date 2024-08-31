@@ -1,5 +1,8 @@
 using System;
 using UnityEngine;
+using App.Main.Block;
+using App.Main.Ball;
+using App.Main.Player;
 
 namespace App.Main.Stage
 {
@@ -14,6 +17,10 @@ namespace App.Main.Stage
         }
         private StageState _state = StageState.Waiting;
 
+        [SerializeField] private PlayerDatastore _player = default;
+        [SerializeField] private GameObject _ballPrefab = default;
+        [SerializeField] private GameObject _normalBlockPrefab = default;
+        [SerializeField] private GameObject _targetBlockPrefab = default;
 
         private int _ballCountonStage = 0;
         public int BallCountonStage => _ballCountonStage;
@@ -90,10 +97,56 @@ namespace App.Main.Stage
             Debug.Log("TargetBlockCount: " + _targetBlockCount);
         }
 
+        ///<summary>
+        ///ボールを生成する
+        ///</summary>
+        ///<param name="position">生成する位置</param>
+        public void CreateBall(Vector3 position)
+        {
+            GameObject ball = Instantiate(_ballPrefab, position, Quaternion.identity);
+            ball.GetComponent<App.Main.Ball.Ball>().Initialize(_player, this);
+            IncreaseBallCountonStage();
+        }
+
+        ///<summary>
+        ///通常ブロックを生成する
+        ///</summary>
+        ///<param name="position">生成する位置</param>
+        public void CreateNormalBlock(Vector3 position)
+        {
+            GameObject normalBlock = Instantiate(_normalBlockPrefab, position, Quaternion.identity);
+            normalBlock.GetComponent<App.Main.Block.Block>().SetStage(this);
+            IncreaseNormalBlockCount();
+        }
+
+        ///<summary>
+        ///ターゲットブロックを生成する
+        ///</summary>
+        ///<param name="position">生成する位置</param>
+        ///<param name="targetBlockData">生成するターゲットブロックのデータ</param>
+        public void CreateTargetBlock(Vector3 position)
+        {
+            GameObject targetBlock = Instantiate(_targetBlockPrefab, position, Quaternion.identity);
+            targetBlock.GetComponent<TargetBlock>().SetStage(this);
+            IncreaseTargetBlockCount();
+        }
+
+        // ステージの初期化処理
+        private void InitializeStage()
+        {
+            _ballCountonStage = 0;
+            _normalBlockCount = 0;
+            _targetBlockCount = 0;
+            CreateBall(new Vector3(0, 0, 0));
+            CreateNormalBlock(new Vector3(1, 1, 0));
+            CreateTargetBlock(new Vector3(-1, 1, 0));
+            _state = StageState.Playing;
+            Debug.Log("_state: " + _state);
+        }
+
         void Start()
         {
-            // ステージの初期化処理
-            _state = StageState.Playing;
+            InitializeStage();
         }
 
         void Update()
@@ -102,13 +155,26 @@ namespace App.Main.Stage
             {
                 if (_ballCountonStage == 0)
                 {
-                    // ゲームオーバー処理
-                    _state = StageState.GameOver;
+                    // 残機を減らす処理
+                    _player.SubtractLive(1);
+                    Debug.Log("Live: " + _player.Parameter.Live.CurrentValue);
+                    if (_player.IsLiveValue(0))
+                    {
+                        // ゲームオーバー処理
+                        _state = StageState.GameOver;
+                        Debug.Log("_state: " + _state);
+                    }
+                    else
+                    {
+                        // ボールを生成する
+                        CreateBall(new Vector3(0, 0, 0));
+                    }
                 }
                 else if (_targetBlockCount == 0)
                 {
                     // クリア処理
                     _state = StageState.Clear;
+                    Debug.Log("_state: " + _state);
                 }
             }
         }

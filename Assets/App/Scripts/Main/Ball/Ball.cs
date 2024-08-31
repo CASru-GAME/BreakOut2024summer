@@ -55,17 +55,13 @@ namespace App.Main.Ball
         /// <summary>
         /// 他のオブジェクトに接触した瞬間に実行する
         /// </summary>
-        private void OnTriggerEnter2D(Collider2D collider2D)
+        private void OnCollisionEnter2D(Collision2D collision2D)
         {
-            BlockHp blockHp = collider2D.GetComponent<BlockHp>();
-            if(blockHp != null)
+            IBlock block = collision2D.gameObject.GetComponent<IBlock>();
+            if(block != null)
             {
                 //ダメージ計算
-                AttackPoint damage = CalcDamage();
-                //AttackPoint -> BlockHpに変換
-                BlockHp BlockDamage = new BlockHp(damage.CurrentValue);
-                //blockHpのHPを減らす
-                blockHp.SubtractCurrentValue(BlockDamage);
+                block.TakeDamage(CalcDamage());
             }
         }
 
@@ -77,7 +73,6 @@ namespace App.Main.Ball
             AttackPoint newAttackPoint = new AttackPoint(0);
             newAttackPoint = playerDatastore.Parameter.AttackPoint;
             //パークのダメージも計算する(実装待ち)
-
             return newAttackPoint;
         }
     }

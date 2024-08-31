@@ -16,5 +16,13 @@ namespace App.Main.Player
             Level = new Level(level);
             ExperiencePoint = new ExperiencePoint(experiencePoint);
         }
+        public void SubtractLive(int value)
+        {
+            Live = Live.SubtractCurrentValue(new Live(value));
+        }
+        public bool IsLiveValue(int value)
+        {
+            return Live.CurrentValue == value;
+        }
     }
 }
