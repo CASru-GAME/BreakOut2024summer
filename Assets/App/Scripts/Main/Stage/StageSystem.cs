@@ -103,10 +103,12 @@ namespace App.Main.Stage
                 if (_ballCountonStage == 0)
                 {
                     // ゲームオーバー処理
+                    _state = StageState.GameOver;
                 }
                 else if (_targetBlockCount == 0)
                 {
                     // クリア処理
+                    _state = StageState.Clear;
                 }
             }
         }
