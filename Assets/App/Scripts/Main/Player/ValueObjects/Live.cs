@@ -81,7 +81,15 @@ namespace App.Main.Player
 
         public Live SubtractMaxValue(Live value)
         {
-            return new Live(this._currentValue, this._maxValue - value.CurrentValue);
+            if(this._currentValue > this._maxValue - value.CurrentValue)
+            {
+                return new Live(this._maxValue - value.CurrentValue, this._maxValue - value.CurrentValue);
+            }
+            else
+            {
+                return new Live(this._currentValue, this._maxValue - value.CurrentValue);
+            }
+            
         }
 
         /// <summary>
