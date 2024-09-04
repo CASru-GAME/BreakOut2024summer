@@ -16,13 +16,93 @@ namespace App.Main.Player
             Level = new Level(level);
             ExperiencePoint = new ExperiencePoint(experiencePoint);
         }
+
+        public void AddLive(int value)
+        {
+            Live = Live.AddCurrentValue(new Live(value));
+        }
+
+        public void AddMaxLive(int value)
+        {
+            Live = Live.AddMaxValue(new Live(value));
+        }
         public void SubtractLive(int value)
         {
             Live = Live.SubtractCurrentValue(new Live(value));
+        }
+
+        public void substracMaxLive(int value)
+        {
+            Live = Live.SubtractMaxValue(new Live(value));
         }
         public bool IsLiveValue(int value)
         {
             return Live.CurrentValue == value;
         }
+
+        public int LiveValue()
+        {
+            return Live.CurrentValue;
+        }
+
+        public void AddAttackPoint(int value)
+        {
+            AttackPoint = AttackPoint.AddCurrentValue(new AttackPoint(value));
+        }
+        public void SubtractAttackPoint(int value)
+        {
+            AttackPoint = AttackPoint.SubtractCurrentValue(new AttackPoint(value));
+        }
+        public void MultiplyAttackPoint(double value)
+        {
+            AttackPoint = AttackPoint.MultiplyCurrentValue(value);
+        }
+        public void DivideAttackPoint(double value)
+        {
+            AttackPoint = AttackPoint.DivideCurrentValue(value);
+        }
+
+        public int AttackPointValue()
+        {
+            return AttackPoint.CurrentValue;
+        }
+
+        public void AddMoveSpeed(float value)
+        {
+            MoveSpeed = MoveSpeed.AddCurrentValue(new MoveSpeed(value));
+        }
+        public void SubtractMoveSpeed(float value)
+        {
+            MoveSpeed = MoveSpeed.SubtractCurrentValue(new MoveSpeed(value));
+        }
+
+        public float MoveSpeedValue()
+        {
+            return MoveSpeed.Speed;
+        }
+
+        public void ReplaceLevel(int value)
+        {
+            Level = new Level(value);
+        }
+
+        public int LevelValue()
+        {
+            return Level.CurrentValue;
+        }
+
+
+        public void AddExperiencePoint(int value)
+        {
+            ExperiencePoint = ExperiencePoint.AddCurrentValue(new ExperiencePoint(value));
+        }
+
+
+        public int ExperiencePointValue()
+        {
+            return ExperiencePoint.CurrentValue;
+        }
+
+
     }
 }

@@ -79,6 +79,11 @@ namespace App.Main.Player
             return new Live(this._currentValue, this._maxValue + value.CurrentValue);
         }
 
+        public Live SubtractMaxValue(Live value)
+        {
+            return new Live(this._currentValue, this._maxValue - value.CurrentValue);
+        }
+
         /// <summary>
         /// 現在の残機の値を減少する
         /// </summary>
