@@ -10,7 +10,7 @@ namespace App.Main.Stage
         ///生成するノーマルブロックの座標のリスト(IDに対応したリスト)を返す。
         ///</summary>
         ///<exception cref="ArgumentException">IDが0未満になる場合に発生します。</exception>
-        public List<Vector2> EnumerationBlockPositions(int id)
+        public List<Vector2> EnumerateBlockPositions(int id)
         {
             if (id <= 0)
             {
