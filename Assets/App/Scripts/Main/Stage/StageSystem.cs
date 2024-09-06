@@ -3,6 +3,7 @@ using UnityEngine;
 using App.Main.Block;
 using App.Main.Ball;
 using App.Main.Player;
+using App.Main.Item;
 
 namespace App.Main.Stage
 {
@@ -17,10 +18,13 @@ namespace App.Main.Stage
         }
         private StageState _state = StageState.Waiting;
 
+        [SerializeField] private ItemTable _itemTable = default;
+
         [SerializeField] private PlayerDatastore _player = default;
         [SerializeField] private GameObject _ballPrefab = default;
         [SerializeField] private GameObject _normalBlockPrefab = default;
         [SerializeField] private GameObject _targetBlockPrefab = default;
+        [SerializeField] private GameObject _itemPrefab = default;
 
         private int _ballCountonStage = 0;
         public int BallCountonStage => _ballCountonStage;
@@ -30,6 +34,8 @@ namespace App.Main.Stage
 
         private int _targetBlockCount = 0;
         public int TargetBlockCount => _targetBlockCount;
+
+
 
         ///<summary>
         ///ステージシステム上のボールの数を一つ増やす。
@@ -106,6 +112,12 @@ namespace App.Main.Stage
             GameObject ball = Instantiate(_ballPrefab, position, Quaternion.identity);
             ball.GetComponent<App.Main.Ball.Ball>().Initialize(_player, this);
             IncreaseBallCountonStage();
+        }
+
+        public void CreateItem(Vector3 position)
+        {
+            GameObject item = Instantiate(_itemPrefab, position, Quaternion.identity);
+            item.GetComponent<App.Main.Item.Item>().Initialized(_itemTable);
         }
 
         ///<summary>

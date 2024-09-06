@@ -1,4 +1,5 @@
 using UnityEngine;
+using App.Main.Item;
 
 namespace App.Main.Player
 {
@@ -8,6 +9,7 @@ namespace App.Main.Player
         private Rigidbody2D rb;
         private PlayerMove playerMove;
         private LevelSystem levelSystem;
+        
         void Start()
         {
             playerDatastore = GetComponent<PlayerDatastore>();
@@ -16,6 +18,17 @@ namespace App.Main.Player
             rb = GetComponent<Rigidbody2D>();
             playerMove = new PlayerMove(rb, playerDatastore);
             levelSystem = new LevelSystem(playerDatastore);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            IItem item = other.gameObject.GetComponent<IItem>();
+            if(item != null)
+            {
+                //ダメージ計算
+                item.GetItem(playerDatastore);
+            }
+            
         }
 
         void Update()
