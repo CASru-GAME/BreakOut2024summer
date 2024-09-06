@@ -64,7 +64,7 @@ namespace App.Main.Player
         /// </summary>
         /// <returns></returns>
 
-        public int LiveValue()
+        public int GetLiveValue()
         {
             return Parameter.LiveValue();
         }
@@ -114,7 +114,7 @@ namespace App.Main.Player
         /// </summary>
         /// <returns></returns>
 
-        public int AttackPointValue()
+        public int GetAttackPointValue()
         {
             return Parameter.AttackPointValue();
         }
@@ -132,7 +132,7 @@ namespace App.Main.Player
         /// <summary>
         /// 経験値を返す
         /// </summary>
-        public int ExperiencePointValue()
+        public int GetExperiencePointValue()
         {
             return Parameter.ExperiencePointValue();
         }
@@ -152,7 +152,7 @@ namespace App.Main.Player
         /// </summary>
         /// <returns></returns>
 
-        public int LevelValue()
+        public int GetLevelValue()
         {
             return Parameter.LevelValue();
         }
@@ -182,7 +182,7 @@ namespace App.Main.Player
         /// </summary>
         /// <returns></returns>
 
-        public float MoveSpeedValue()
+        public float GetMoveSpeedValue()
         {
             return Parameter.MoveSpeedValue();
         }
