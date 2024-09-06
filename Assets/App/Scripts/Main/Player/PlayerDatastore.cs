@@ -11,7 +11,7 @@ namespace App.Main.Player
         /// </summary>
         public void InitializePlayer()
         {
-            Parameter = new Parameter(3, 1, 5.0f, 1, 0);  //Parameter(int live,int attackPoint, float moveSpeed, int level , int experiencePoint)のコンストラクタを呼び出す
+            Parameter = new Parameter(3, 1, 5.0f, 5.0f, 1, 0);  //Parameter(int live, int attackPoint, float ballSpeed, float moveSpeed, int level , int experiencePoint)のコンストラクタを呼び出す
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace App.Main.Player
 
         public int GetLiveValue()
         {
-            return Parameter.LiveValue();
+            return Parameter.GetLiveValue();
         }
 
         /// <summary>
@@ -116,7 +116,37 @@ namespace App.Main.Player
 
         public int GetAttackPointValue()
         {
-            return Parameter.AttackPointValue();
+            return Parameter.GetAttackPointValue();
+        }
+
+        /// <summary>
+        /// ボールの速度を追加する
+        /// </summary>
+        /// <param name="value"></param>
+        
+        public void AddBallSpeed(float value)
+        {
+            Parameter.AddBallSpeed(value);
+        }
+
+        /// <summary>
+        /// ボールの速度を減らす
+        /// </summary>
+        /// <param name="value"></param>
+
+        public void SubtractBallSpeed(float value)
+        {
+            Parameter.SubtractBallSpeed(value);
+        }
+
+        /// <summary>
+        /// ボールの速度を返す
+        /// </summary>
+        /// <returns></returns>
+
+        public float GetBallSpeedValue()
+        {
+            return Parameter.GetBallSpeedValue();
         }
 
         /// <summary>
@@ -134,7 +164,7 @@ namespace App.Main.Player
         /// </summary>
         public int GetExperiencePointValue()
         {
-            return Parameter.ExperiencePointValue();
+            return Parameter.GetExperiencePointValue();
         }
 
         /// <summary>
@@ -154,7 +184,7 @@ namespace App.Main.Player
 
         public int GetLevelValue()
         {
-            return Parameter.LevelValue();
+            return Parameter.GetLevelValue();
         }
 
         /// <summary>
@@ -184,7 +214,7 @@ namespace App.Main.Player
 
         public float GetMoveSpeedValue()
         {
-            return Parameter.MoveSpeedValue();
+            return Parameter.GetMoveSpeedValue();
         }
 
     }

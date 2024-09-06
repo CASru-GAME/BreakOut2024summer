@@ -42,7 +42,7 @@ namespace App.Main.Ball
             }
 
             //速度を一定に保つ
-            rb.velocity = rb.velocity.normalized * playerDatastore.GetMoveSpeedValue();
+            rb.velocity = rb.velocity.normalized * playerDatastore.GetBallSpeedValue();
         }
 
         /// <summary>
