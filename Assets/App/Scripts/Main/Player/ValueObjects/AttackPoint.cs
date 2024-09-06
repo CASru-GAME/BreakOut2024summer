@@ -28,14 +28,30 @@ namespace App.Main.Player
             return new AttackPoint(_currentValue - value.CurrentValue);
         }
 
-        public AttackPoint MultiplyCurrentValue(AttackPoint value)
+        public AttackPoint MultiplyCurrentValue(Double value)
         {
-            return new AttackPoint(_currentValue * value.CurrentValue);
+            if (value == 0)
+            {
+                throw new ArgumentException("Value cannot be zero");
+            }
+            else if (value < 0)
+            {
+                throw new ArgumentException("Value cannot be negative");
+            }
+            return new AttackPoint((int)(_currentValue * value));
         }
 
-        public AttackPoint DivideCurrentValue(AttackPoint value)
+        public AttackPoint DivideCurrentValue(Double value)
         {
-            return new AttackPoint(_currentValue / value.CurrentValue);
+            if (value == 0)
+            {
+                throw new ArgumentException("Value cannot be zero");
+            }
+            else if (value < 0)
+            {
+                throw new ArgumentException("Value cannot be negative");
+            }
+            return new AttackPoint((int)(_currentValue / value));
         }
 
         public void Dump(string message)
