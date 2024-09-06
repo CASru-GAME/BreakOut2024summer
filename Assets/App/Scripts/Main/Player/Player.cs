@@ -7,6 +7,7 @@ namespace App.Main.Player
         PlayerDatastore playerDatastore;  //データストアがパラメータを持っている
         private Rigidbody2D rb;
         private PlayerMove playerMove;
+        private LevelSystem levelSystem;
         void Start()
         {
             playerDatastore = GetComponent<PlayerDatastore>();
@@ -14,6 +15,7 @@ namespace App.Main.Player
 
             rb = GetComponent<Rigidbody2D>();
             playerMove = new PlayerMove(rb, playerDatastore);
+            levelSystem = new LevelSystem(playerDatastore);
         }
 
         void Update()
