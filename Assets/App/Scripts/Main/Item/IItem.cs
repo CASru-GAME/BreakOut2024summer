@@ -4,6 +4,6 @@ namespace App.Main.Item
 {
     public interface IItem
     {   
-        void ActivateItem(PlayerDatastore playerDatastore);
+        void GetItem(PlayerDatastore playerDatastore);
     }
 }
