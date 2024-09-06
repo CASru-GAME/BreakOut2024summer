@@ -31,7 +31,7 @@ namespace App.Main.Player
             Live = Live.SubtractCurrentValue(new Live(value));
         }
 
-        public void substracMaxLive(int value)
+        public void SubtractMaxLive(int value)
         {
             Live = Live.SubtractMaxValue(new Live(value));
         }
