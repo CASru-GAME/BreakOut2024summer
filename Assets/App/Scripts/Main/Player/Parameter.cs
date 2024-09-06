@@ -4,14 +4,16 @@ namespace App.Main.Player
     {
         public Live Live { get; private set; }
         public AttackPoint AttackPoint { get; private set; }
+        public BallSpeed BallSpeed { get; private set; }
         public MoveSpeed MoveSpeed { get; private set; }
         public Level Level { get; private set; }
         public ExperiencePoint ExperiencePoint { get; private set; }
 
-        public Parameter(int live,int attackPoint, float moveSpeed, int level , int experiencePoint)
+        public Parameter(int live, int attackPoint, float ballSpeed, float moveSpeed, int level , int experiencePoint)
         {
             Live = new Live(live);
             AttackPoint = new AttackPoint(attackPoint);
+            BallSpeed = new BallSpeed(ballSpeed);
             MoveSpeed = new MoveSpeed(moveSpeed);
             Level = new Level(level);
             ExperiencePoint = new ExperiencePoint(experiencePoint);
@@ -40,7 +42,7 @@ namespace App.Main.Player
             return Live.CurrentValue == value;
         }
 
-        public int LiveValue()
+        public int GetLiveValue()
         {
             return Live.CurrentValue;
         }
@@ -62,9 +64,23 @@ namespace App.Main.Player
             AttackPoint = AttackPoint.DivideCurrentValue(value);
         }
 
-        public int AttackPointValue()
+        public int GetAttackPointValue()
         {
             return AttackPoint.CurrentValue;
+        }
+
+        public void AddBallSpeed(float value)
+        {
+            BallSpeed = BallSpeed.AddCurrentValue(new BallSpeed(value));
+        }
+        public void SubtractBallSpeed(float value)
+        {
+            BallSpeed = BallSpeed.SubtractCurrentValue(new BallSpeed(value));
+        }
+
+        public float GetBallSpeedValue()
+        {
+            return BallSpeed.Speed;
         }
 
         public void AddMoveSpeed(float value)
@@ -75,8 +91,7 @@ namespace App.Main.Player
         {
             MoveSpeed = MoveSpeed.SubtractCurrentValue(new MoveSpeed(value));
         }
-
-        public float MoveSpeedValue()
+        public float GetMoveSpeedValue()
         {
             return MoveSpeed.Speed;
         }
@@ -86,7 +101,7 @@ namespace App.Main.Player
             Level = new Level(value);
         }
 
-        public int LevelValue()
+        public int GetLevelValue()
         {
             return Level.CurrentValue;
         }
@@ -98,7 +113,7 @@ namespace App.Main.Player
         }
 
 
-        public int ExperiencePointValue()
+        public int GetExperiencePointValue()
         {
             return ExperiencePoint.CurrentValue;
         }

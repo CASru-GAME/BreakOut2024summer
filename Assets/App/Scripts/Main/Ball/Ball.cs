@@ -13,12 +13,14 @@ namespace App.Main.Ball
         private readonly float _minY = -5f;
         private PlayerDatastore playerDatastore;
         private StageSystem stageSystem;
+        private Rigidbody2D rb;
 
         /// <summary>
         /// デバッグ用．ボールに初速度を与える
         /// </summary>
         private void Start()
         {
+            rb = GetComponent<Rigidbody2D>();
             GetComponent<Rigidbody2D>().velocity = new Vector2(-2f, -2f);
         }
 
@@ -38,6 +40,9 @@ namespace App.Main.Ball
             {
                 Suicide();
             }
+
+            //速度を一定に保つ
+            rb.velocity = rb.velocity.normalized * playerDatastore.GetBallSpeedValue();
         }
 
         /// <summary>
