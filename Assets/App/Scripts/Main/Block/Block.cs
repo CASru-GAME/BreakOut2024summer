@@ -1,6 +1,7 @@
 using UnityEngine;
 using App.Main.Player;
 using App.Main.Stage;
+using App.Main.Item;
 
 namespace App.Main.Block
 {   //ターゲット以外のブロック
@@ -42,6 +43,8 @@ namespace App.Main.Block
         {
             //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達
             stage.DecreaseNormalBlockCount();
+
+            stage.CreateItem(transform.position);//デバッグ用
 
             Destroy(gameObject);
         }

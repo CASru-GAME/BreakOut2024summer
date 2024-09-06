@@ -18,7 +18,7 @@ namespace App.Main.Item
 
         void Update() 
         {   
-            if(transform.position.y < _minY) Destroy(gameObject);
+            if(transform.position.y < _minY) Suside();
         }
 
         /// <summary>
@@ -31,12 +31,18 @@ namespace App.Main.Item
             this.itemTable = itemTable;
         }
 
+        private void Suside()
+        {
+            Destroy(gameObject);
+        }
+
         /// <summary>
-        /// ボールと接触したときにボールが呼び出す
+        /// バーと接触したときにバーが呼び出す
         /// </summary>
         public void GetItem(PlayerDatastore playerDatastore)
         {
             itemTable.items[Id].effect(playerDatastore);
+            Suside();
         }
     }
 }
