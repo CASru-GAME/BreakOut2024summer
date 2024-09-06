@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.TextCore.Text;
-using UnityEngine.UIElements.Experimental;
 
 namespace App.Main.Player
 {
@@ -13,7 +11,7 @@ namespace App.Main.Player
         /// </summary>
         public void InitializePlayer()
         {
-            Parameter = new Parameter(3,1, 5.0f,1,0);  //Parameter(int live,int attackPoint, float moveSpeed, int level , int experiencePoint)のコンストラクタを呼び出す
+            Parameter = new Parameter(3, 1, 5.0f, 1, 0);  //Parameter(int live,int attackPoint, float moveSpeed, int level , int experiencePoint)のコンストラクタを呼び出す
         }
 
         /// <summary>
@@ -55,8 +53,7 @@ namespace App.Main.Player
         /// <summary>
         /// 最大残機を減らす
         /// </summary>
-        /// <param name="value"></param>
-
+        /// <param name="value">減らす値</param>
         public void SubtractMaxLive(int value)
         {
             Parameter.SubtractMaxLive(value);
@@ -149,7 +146,7 @@ namespace App.Main.Player
         {
             Parameter.ReplaceLevel(value);
         }
-        
+
         /// <summary>
         /// レベルを返す
         /// </summary>
@@ -189,6 +186,6 @@ namespace App.Main.Player
         {
             return Parameter.MoveSpeedValue();
         }
-        
+
     }
 }
