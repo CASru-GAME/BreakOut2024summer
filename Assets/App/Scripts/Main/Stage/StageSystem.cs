@@ -1,22 +1,15 @@
 using System;
 using UnityEngine;
 using App.Main.Block;
-using App.Main.Ball;
 using App.Main.Player;
+using App.Main.Stage;
+using UnityEngine.UIElements;
+using System.Collections.Generic;
 
 namespace App.Main.Stage
 {
     public class StageSystem : MonoBehaviour
     {
-        private enum StageState
-        {
-            Waiting,
-            Playing,
-            GameOver,
-            Clear
-        }
-        private StageState _state = StageState.Waiting;
-
         [SerializeField] private PlayerDatastore _player = default;
         [SerializeField] private GameObject _ballPrefab = default;
         [SerializeField] private GameObject _normalBlockPrefab = default;
@@ -30,7 +23,9 @@ namespace App.Main.Stage
 
         private int _targetBlockCount = 0;
         public int TargetBlockCount => _targetBlockCount;
-
+        private int _creaedStageNumber = 0;
+        private int _roopStageNumber = 0;
+        private int _currentStageNumberID = 0;
         ///<summary>
         ///ステージシステム上のボールの数を一つ増やす。
         ///</summary>
@@ -132,7 +127,7 @@ namespace App.Main.Stage
         }
 
         // ステージの初期化処理
-        private void InitializeStage()
+        public void InitializeStage(int _stagePatternID)
         {
             _ballCountonStage = 0;
             _normalBlockCount = 0;
@@ -140,43 +135,9 @@ namespace App.Main.Stage
             CreateBall(new Vector3(0, 0, 0));
             CreateNormalBlock(new Vector3(1, 1, 0));
             CreateTargetBlock(new Vector3(-1, 1, 0));
-            _state = StageState.Playing;
-            Debug.Log("_state: " + _state);
         }
-
-        void Start()
+        public void CalculateCurrentStageNumber()
         {
-            InitializeStage();
-        }
-
-        void Update()
-        {
-            if (_state == StageState.Playing)
-            {
-                if (_ballCountonStage == 0)
-                {
-                    // 残機を減らす処理
-                    _player.SubtractLive(1);
-                    Debug.Log("Live: " + _player.Parameter.Live.CurrentValue);
-                    if (_player.IsLiveValue(0))
-                    {
-                        // ゲームオーバー処理
-                        _state = StageState.GameOver;
-                        Debug.Log("_state: " + _state);
-                    }
-                    else
-                    {
-                        // ボールを生成する
-                        CreateBall(new Vector3(0, 0, 0));
-                    }
-                }
-                else if (_targetBlockCount == 0)
-                {
-                    // クリア処理
-                    _state = StageState.Clear;
-                    Debug.Log("_state: " + _state);
-                }
-            }
         }
     }
 }
