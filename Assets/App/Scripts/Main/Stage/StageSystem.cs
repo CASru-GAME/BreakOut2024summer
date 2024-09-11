@@ -15,6 +15,7 @@ namespace App.Main.Stage
         [SerializeField] private GameObject _ballPrefab = default;
         [SerializeField] private GameObject _normalBlockPrefab = default;
         [SerializeField] private GameObject _targetBlockPrefab = default;
+        [SerializeField] private GameObject _itemPrefab = default;
 
         [SerializeField] private int _finalStageNumberID = 5;
 
@@ -29,6 +30,7 @@ namespace App.Main.Stage
         private int _clearedStageCount = 0;
         private int _roopCount = 0;
         private int _currentStageNumberID = 0;
+
         ///<summary>
         ///ステージシステム上のボールの数を一つ増やす。
         ///</summary>
@@ -104,6 +106,12 @@ namespace App.Main.Stage
             GameObject ball = Instantiate(_ballPrefab, position, Quaternion.identity);
             ball.GetComponent<App.Main.Ball.Ball>().Initialize(_player, this);
             IncreaseBallCountonStage();
+        }
+
+        public void CreateItem(Vector3 position)
+        {
+            GameObject item = Instantiate(_itemPrefab, position, Quaternion.identity);
+            item.GetComponent<App.Main.Item.Item>().Initialized(_itemTable);
         }
 
         ///<summary>

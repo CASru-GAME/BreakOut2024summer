@@ -17,11 +17,11 @@ namespace App.Main.Player
         {
             if(Input.GetKey(KeyCode.A))
             {
-                rb.velocity = new Vector2(-playerDatastore.Parameter.MoveSpeed.Speed, 0);
+                rb.velocity = new Vector2(-playerDatastore.GetMoveSpeedValue(), 0);
             }
             else if(Input.GetKey(KeyCode.D))
             {
-                rb.velocity = new Vector2(playerDatastore.Parameter.MoveSpeed.Speed, 0);
+                rb.velocity = new Vector2(playerDatastore.GetMoveSpeedValue(), 0);
             }
             else
             {
