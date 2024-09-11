@@ -14,7 +14,7 @@ namespace App.Main.Stage
         void Start()
         {
             _stageState.SetPlayGame();
-            _stageSystem.InitializeStage(1);
+            _stageSystem.InitializeStage();
             _timer.InitializeTimer(60.0f);
             _timer.StartTimer();
         }
@@ -44,6 +44,7 @@ namespace App.Main.Stage
                     // クリア処理
                     _timer.StopTimer();
                     _stageState.SetClear();
+                    _stageSystem.CountClearedStage();
                 }
             }
         }

@@ -4,7 +4,6 @@ namespace App.Main.Stage
 {
     public class StageStateDatastore : MonoBehaviour
     {
-        [SerializeField] StageSystem _stageSystem;
         public enum StageState
         {
             Waiting,
