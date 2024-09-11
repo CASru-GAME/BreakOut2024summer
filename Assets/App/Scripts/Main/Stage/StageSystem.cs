@@ -3,6 +3,7 @@ using UnityEngine;
 using App.Main.Block;
 using App.Main.Player;
 using App.Main.Stage;
+using App.Main.Item;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -11,6 +12,7 @@ namespace App.Main.Stage
 {
     public class StageSystem : MonoBehaviour
     {
+        [SerializeField] private ItemTable _itemTable = default;
         [SerializeField] private PlayerDatastore _player = default;
         [SerializeField] private GameObject _ballPrefab = default;
         [SerializeField] private GameObject _normalBlockPrefab = default;
