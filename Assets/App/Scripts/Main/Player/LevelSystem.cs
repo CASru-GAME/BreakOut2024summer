@@ -52,7 +52,7 @@ namespace App.Main.Player
 
         private void LevelUp()
         {
-            playerDatastore.ReplaceLevel(playerDatastore.LevelValue() + 1);
+            playerDatastore.ReplaceLevel(playerDatastore.GetLevelValue() + 1);
             // SkillPick(); // 未実装
             // LevelUpEffect(); // 未実装
         }
@@ -65,7 +65,7 @@ namespace App.Main.Player
         public void ReloadLevel()
         {
             //総経験値から現在のレベル計算しそのレベルまでレベルアップする
-            while(CalculateLevel(playerDatastore.ExperiencePointValue()) > playerDatastore.LevelValue())
+            while(CalculateLevel(playerDatastore.GetExperiencePointValue()) > playerDatastore.GetLevelValue())
             {
                 LevelUp();
             }
