@@ -24,7 +24,7 @@ namespace App.Main.Stage
         ///<exception cref="ArgumentException">ステージIDまたは周回回数が0未満になる場合に発生します。</exception>
         public void CreateBlocks(int stageId, int laps)
         {
-            if (laps <= 0)
+            if (stageId <= 0)
             {
                 throw new ArgumentException("stageID cannot be negative");
             }
@@ -57,11 +57,13 @@ namespace App.Main.Stage
                 {
                     if(blockData.IsTarget)
                     {
-                        Instantiate(_targetBlockPrefabList[blockData.Id], blockData.InstancePosition, Quaternion.identity);
+                        var blockInstance = Instantiate(_targetBlockPrefabList[blockData.Id], blockData.InstancePosition, Quaternion.identity);
+                        blockInstance.transform.localScale = new Vector3((_blockMaxX - _blockMinX) / _horizontalBlockCount, (_blockMaxY - _blockMinY) / _verticalBlockCount, 1f);
                     }
                     else
                     {
-                        Instantiate(_normalBlockPrefabList[blockData.Id], blockData.InstancePosition, Quaternion.identity);
+                        var blockInstance = Instantiate(_normalBlockPrefabList[blockData.Id], blockData.InstancePosition, Quaternion.identity);
+                        blockInstance.transform.localScale = new Vector3((_blockMaxX - _blockMinX) / _horizontalBlockCount, (_blockMaxY - _blockMinY) / _verticalBlockCount, 1f);
                     }
                 }
             }

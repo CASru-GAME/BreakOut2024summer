@@ -394,6 +394,9 @@ GameObject:
   - component: {fileID: 1100491251}
   - component: {fileID: 1100491250}
   - component: {fileID: 1100491252}
+  - component: {fileID: 1100491255}
+  - component: {fileID: 1100491254}
+  - component: {fileID: 1100491253}
   m_Layer: 0
   m_Name: Stage
   m_TagString: Untagged
@@ -416,9 +419,8 @@ MonoBehaviour:
   _itemTable: {fileID: 0}
   _player: {fileID: 2144223392}
   _ballPrefab: {fileID: 8641789219075247340, guid: f658b01440e8ddc4eaf4b0d358cbab0e, type: 3}
-  _normalBlockPrefab: {fileID: 7583430496598341935, guid: 6b2c70201d4de0b448b31768b0624ed3, type: 3}
-  _targetBlockPrefab: {fileID: 4484623174473009959, guid: 09ce1db14b4fb9e4d94496f77aa652b8, type: 3}
   _itemPrefab: {fileID: 5348054082285138816, guid: d27aaaff2cd83f24893ac25f5d29aa01, type: 3}
+  _finalStageNumberID: 5
 --- !u!4 &1100491251
 Transform:
   m_ObjectHideFlags: 0
@@ -456,6 +458,46 @@ MonoBehaviour:
   _blockMinY: -2
   _horizontalBlockCount: 6
   _verticalBlockCount: 5
+--- !u!114 &1100491253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100491249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92842952f55cb24ab16dd33504a02d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1100491254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100491249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24318e535293f67499a95a1e6bbb3866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1100491255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100491249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ec818093586f94582c82633820a580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timer: {fileID: 1100491254}
+  _player: {fileID: 2144223392}
+  _stageSystem: {fileID: 1100491250}
+  _stageState: {fileID: 1100491253}
 --- !u!1 &1320524639
 GameObject:
   m_ObjectHideFlags: 0
