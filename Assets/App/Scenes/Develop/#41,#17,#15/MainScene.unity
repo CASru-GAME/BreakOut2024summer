@@ -557,6 +557,7 @@ GameObject:
   - component: {fileID: 1548254338}
   - component: {fileID: 1548254337}
   - component: {fileID: 1548254340}
+  - component: {fileID: 1548254341}
   m_Layer: 0
   m_Name: Stage
   m_TagString: Untagged
@@ -576,12 +577,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9576349761d072d4a98a7e8565a44d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemTable: {fileID: 0}
+  _itemTable: {fileID: 1548254341}
   _player: {fileID: 2114354180}
   _ballPrefab: {fileID: 8641789219075247340, guid: f658b01440e8ddc4eaf4b0d358cbab0e, type: 3}
   _normalBlockPrefab: {fileID: 7583430496598341935, guid: 6b2c70201d4de0b448b31768b0624ed3, type: 3}
   _targetBlockPrefab: {fileID: 4484623174473009959, guid: 09ce1db14b4fb9e4d94496f77aa652b8, type: 3}
-  _itemPrefab: {fileID: 0}
+  _itemPrefab: {fileID: 5348054082285138816, guid: d27aaaff2cd83f24893ac25f5d29aa01, type: 3}
   _finalStageNumberID: 5
 --- !u!4 &1548254336
 Transform:
@@ -648,6 +649,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9059361797135c7449c2eac3b1510d73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1548254341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548254334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28219b23819f3ed4a9f0b8477b5fe030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1792691669
