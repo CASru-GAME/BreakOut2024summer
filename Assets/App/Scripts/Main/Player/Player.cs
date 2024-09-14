@@ -1,5 +1,6 @@
 using UnityEngine;
 using App.Main.Item;
+using App.Main.Player.Park;
 
 namespace App.Main.Player
 {
@@ -8,6 +9,8 @@ namespace App.Main.Player
         PlayerDatastore playerDatastore;  //データストアがパラメータを持っている
         private Rigidbody2D rb;
         private PlayerMove playerMove;
+        private LevelSystem levelSystem;
+        private ParkSystem parkSystem;
         
         
         void Start()
@@ -17,6 +20,8 @@ namespace App.Main.Player
             
             rb = GetComponent<Rigidbody2D>();
             playerMove = new PlayerMove(rb, playerDatastore);
+            levelSystem = new LevelSystem(playerDatastore);
+            parkSystem = new ParkSystem(playerDatastore);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
