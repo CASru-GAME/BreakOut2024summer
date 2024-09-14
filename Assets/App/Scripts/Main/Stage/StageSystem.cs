@@ -116,6 +116,7 @@ namespace App.Main.Stage
             item.GetComponent<App.Main.Item.Item>().Initialized(_itemTable);
         }
 
+<<<<<<< Updated upstream
         ///<summary>
         ///通常ブロックを生成する
         ///</summary>
@@ -144,13 +145,23 @@ namespace App.Main.Stage
         /// </summary>
         /// <param name="_stagePatternID">現在のパターン</param>
         public void InitializeStage()
+=======
+        // ステージの初期化処理
+        private void InitializeStage()
+>>>>>>> Stashed changes
         {
             _ballCountonStage = 0;
             _normalBlockCount = 0;
             _targetBlockCount = 0;
             CreateBall(new Vector3(0, 0, 0));
+<<<<<<< Updated upstream
             CreateNormalBlock(new Vector3(1, 1, 0));
             CreateTargetBlock(new Vector3(-1, 1, 0));
+=======
+            GetComponent<BlockPattern>().CreateBlocks(1,1);
+            _state = StageState.Playing;
+            Debug.Log("_state: " + _state);
+>>>>>>> Stashed changes
         }
 
         /// <summary>
