@@ -12,16 +12,16 @@ namespace App.Main.Player
         private LevelSystem levelSystem;
         private ParkSystem parkSystem;
         
-        
         void Start()
         {
             playerDatastore = GetComponent<PlayerDatastore>();
             playerDatastore.InitializePlayer();
-            
+
             rb = GetComponent<Rigidbody2D>();
             playerMove = new PlayerMove(rb, playerDatastore);
             levelSystem = new LevelSystem(playerDatastore);
-            parkSystem = new ParkSystem(playerDatastore);
+            parkSystem = new ParkSystem();
+
         }
 
         private void OnTriggerEnter2D(Collider2D other)
