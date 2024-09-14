@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using App.Main.Player;
 
@@ -20,7 +19,7 @@ namespace App.Main.Item
         {   
             if(transform.position.y < _minY) Suside();
         }
-
+        
         /// <summary>
         /// 初期化する
         /// </summary>
@@ -29,6 +28,7 @@ namespace App.Main.Item
         public void Initialized(ItemTable itemTable)
         {   
             this.itemTable = itemTable;
+            
         }
 
         private void Suside()
