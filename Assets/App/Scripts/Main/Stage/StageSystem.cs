@@ -1,30 +1,25 @@
 using System;
 using UnityEngine;
 using App.Main.Block;
-using App.Main.Ball;
 using App.Main.Player;
+using App.Main.Stage;
 using App.Main.Item;
+using UnityEngine.UIElements;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 namespace App.Main.Stage
 {
     public class StageSystem : MonoBehaviour
     {
-        private enum StageState
-        {
-            Waiting,
-            Playing,
-            GameOver,
-            Clear
-        }
-        private StageState _state = StageState.Waiting;
-
         [SerializeField] private ItemTable _itemTable = default;
-
         [SerializeField] private PlayerDatastore _player = default;
         [SerializeField] private GameObject _ballPrefab = default;
         [SerializeField] private GameObject _normalBlockPrefab = default;
         [SerializeField] private GameObject _targetBlockPrefab = default;
         [SerializeField] private GameObject _itemPrefab = default;
+
+        [SerializeField] private int _finalStageNumberID = 5;
 
         private int _ballCountonStage = 0;
         public int BallCountonStage => _ballCountonStage;
@@ -34,8 +29,9 @@ namespace App.Main.Stage
 
         private int _targetBlockCount = 0;
         public int TargetBlockCount => _targetBlockCount;
-
-
+        private int _clearedStageCount = 0;
+        private int _roopCount = 0;
+        private int _currentStageNumberID = 0;
 
         ///<summary>
         ///ステージシステム上のボールの数を一つ増やす。
@@ -143,8 +139,11 @@ namespace App.Main.Stage
             IncreaseTargetBlockCount();
         }
 
-        // ステージの初期化処理
-        private void InitializeStage()
+        /// <summary>
+        /// ステージの初期化
+        /// </summary>
+        /// <param name="_stagePatternID">現在のパターン</param>
+        public void InitializeStage()
         {
             _ballCountonStage = 0;
             _normalBlockCount = 0;
@@ -152,43 +151,16 @@ namespace App.Main.Stage
             CreateBall(new Vector3(0, 0, 0));
             CreateNormalBlock(new Vector3(1, 1, 0));
             CreateTargetBlock(new Vector3(-1, 1, 0));
-            _state = StageState.Playing;
-            Debug.Log("_state: " + _state);
         }
 
-        void Start()
+        /// <summary>
+        /// ステージのクリアカウントを増やす。また、それに伴い現在のステージ番号、ループ数を更新する。
+        /// </summary>
+        public void CountClearedStage()
         {
-            InitializeStage();
-        }
-
-        void Update()
-        {
-            if (_state == StageState.Playing)
-            {
-                if (_ballCountonStage == 0)
-                {
-                    // 残機を減らす処理
-                    _player.SubtractLive(1);
-                    Debug.Log("Live: " + _player.Parameter.Live.CurrentValue);
-                    if (_player.IsLiveValue(0))
-                    {
-                        // ゲームオーバー処理
-                        _state = StageState.GameOver;
-                        Debug.Log("_state: " + _state);
-                    }
-                    else
-                    {
-                        // ボールを生成する
-                        CreateBall(new Vector3(0, 0, 0));
-                    }
-                }
-                else if (_targetBlockCount == 0)
-                {
-                    // クリア処理
-                    _state = StageState.Clear;
-                    Debug.Log("_state: " + _state);
-                }
-            }
+            _clearedStageCount++;
+            _roopCount = _clearedStageCount/_finalStageNumberID;
+            _currentStageNumberID = _clearedStageCount%_finalStageNumberID;
         }
     }
 }
