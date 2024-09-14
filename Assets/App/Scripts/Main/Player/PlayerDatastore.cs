@@ -5,6 +5,7 @@ namespace App.Main.Player
     public class PlayerDatastore : MonoBehaviour
     {
         public Parameter Parameter { get; private set; }
+        private LevelSystem levelSystem;
 
         /// <summary>
         /// プレイヤーの初期化
@@ -12,6 +13,7 @@ namespace App.Main.Player
         public void InitializePlayer()
         {
             Parameter = new Parameter(3, 1, 5.0f, 5.0f, 1, 0);  //Parameter(int live, int attackPoint, float ballSpeed, float moveSpeed, int level , int experiencePoint)のコンストラクタを呼び出す
+            levelSystem = new LevelSystem(this);
         }
 
         /// <summary>
@@ -150,17 +152,18 @@ namespace App.Main.Player
         }
 
         /// <summary>
-        /// 経験値を追加する
+        /// 経験値を追加する＆レベルを更新する
         /// </summary>
         /// <param name="value"></param>
 
         public void AddExperiencePoint(int value)
         {
             Parameter.AddExperiencePoint(value);
+            levelSystem.ReloadLevel();
         }
 
         /// <summary>
-        /// 経験値を返す
+        /// トータルの経験値を返す
         /// </summary>
         public int GetExperiencePointValue()
         {
@@ -215,6 +218,25 @@ namespace App.Main.Player
         public float GetMoveSpeedValue()
         {
             return Parameter.GetMoveSpeedValue();
+        }
+
+
+        /// <summary>
+        /// レベルアップに必要な経験値
+        /// </summary>
+        /// <param name="level"></param>
+        public int NeedExp(int level)
+        {
+            return levelSystem.NeedExp(level);
+        }
+
+        /// <summary>
+        /// 現在の経験値
+        /// </summary>
+        /// <param name="exp"></param>
+        public int CurrentExperiencePoint(int exp)
+        {
+            return levelSystem.CurrentExperiencePoint(exp);
         }
 
     }
