@@ -2,19 +2,26 @@ using UnityEngine;
 using App.Main.Player;
 using App.Main.Stage;
 using App.Main.Item;
+using App.Main.Block.Ablity;
 
 namespace App.Main.Block
 {   //ターゲット以外のブロック
     public class Block : MonoBehaviour, IBlock
-    {
+    {   
         private BlockDataStore blockDatastore;
         [SerializeField] int initialHp;
+        [SerializeField] int Id;
         private StageSystem stage;
 
         void Start()
         {
             blockDatastore = GetComponent<BlockDataStore>();
             blockDatastore.InitializeBlock(initialHp);
+        }
+
+        void Update()
+        {
+           
         }
 
         //<summary>
@@ -34,6 +41,12 @@ namespace App.Main.Block
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
             if (blockDatastore.Hp.CurrentValue <= 0) Break();
+        }
+
+        public void Healed(int healAmount)
+        {   
+            BlockHp newBlockHp = new BlockHp(healAmount);
+            blockDatastore.SetHp(blockDatastore.Hp.AddCurrentValue(newBlockHp));
         }
 
         //<summary>

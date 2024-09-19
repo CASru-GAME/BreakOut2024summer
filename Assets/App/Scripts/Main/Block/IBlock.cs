@@ -5,5 +5,6 @@ namespace App.Main.Block
     public interface IBlock
     {   
         void TakeDamage(AttackPoint damage);
+        void Healed(int healAmount);
     }
 }
