@@ -7,7 +7,9 @@ namespace App.Main.Stage
 {
     public class BlockPattern : MonoBehaviour
     {
-        public int TargetBlockCount {get; private set;} = 0;
+        public int TargetBlockCount { get; private set; } = 0;
+        public int NormalBlockCount { get; private set; } = 0;
+        [SerializeField] private StageSystem _stageSystem;
         [SerializeField] private List<GameObject> _normalBlockPrefabList = default;
         [SerializeField] private List<GameObject> _targetBlockPrefabList = default;
         [SerializeField] private float _blockMaxX = 4f;
@@ -16,6 +18,7 @@ namespace App.Main.Stage
         [SerializeField] private float _blockMinY = -2f;
         [SerializeField] private int _horizontalBlockCount = 6;
         [SerializeField] private int _verticalBlockCount = 5;
+
 
 
         ///<summary>
@@ -46,23 +49,27 @@ namespace App.Main.Stage
             InstantiateBlocks(stageBlockPatternData);
 
             //ターゲット数を更新
-            TargetBlockCount = stageBlockPatternData.GetTargetBlockCount();
+            //TargetBlockCount = stageBlockPatternData.GetTargetBlockCount();
         }
 
         private void InstantiateBlocks(StageBlockPatternData stageBlockPatternData)
         {
-            foreach(var blockPatternData in stageBlockPatternData.BlockPatternDataList)
+            foreach (var blockPatternData in stageBlockPatternData.BlockPatternDataList)
             {
-                foreach(var blockData in blockPatternData.BlockDataList)
+                foreach (var blockData in blockPatternData.BlockDataList)
                 {
-                    if(blockData.IsTarget)
+                    if (blockData.IsTarget)
                     {
+                        TargetBlockCount++;
                         var blockInstance = Instantiate(_targetBlockPrefabList[blockData.Id], blockData.InstancePosition, Quaternion.identity);
+                        blockInstance.GetComponent<Block.IBlock>().SetStage(_stageSystem);
                         blockInstance.transform.localScale = new Vector3((_blockMaxX - _blockMinX) / _horizontalBlockCount, (_blockMaxY - _blockMinY) / _verticalBlockCount, 1f);
                     }
                     else
                     {
+                        NormalBlockCount++;
                         var blockInstance = Instantiate(_normalBlockPrefabList[blockData.Id], blockData.InstancePosition, Quaternion.identity);
+                        blockInstance.GetComponent<Block.IBlock>().SetStage(_stageSystem);
                         blockInstance.transform.localScale = new Vector3((_blockMaxX - _blockMinX) / _horizontalBlockCount, (_blockMaxY - _blockMinY) / _verticalBlockCount, 1f);
                     }
                 }
@@ -71,7 +78,7 @@ namespace App.Main.Stage
 
         class StageBlockPatternData
         {
-            public List<BlockPatternData> BlockPatternDataList{get; private set;}
+            public List<BlockPatternData> BlockPatternDataList { get; private set; }
 
             public StageBlockPatternData(List<BlockPatternData> blockPatternDataList)
             {
@@ -87,64 +94,64 @@ namespace App.Main.Stage
                 {
                     areaList.Add(blockPatternData.GetAreaList());
                 }
-                
+
                 //各パターンの全配置パターンをそれぞれ取得
                 var AllPositionList = new List<List<List<(int x, int y)>>>();
                 foreach (var patternArea in areaList)
                 {
                     var PatternList = new List<List<(int x, int y)>>();
-                    for(int i = 0; i < horizontalBlockCount; i++)
+                    for (int i = 0; i < horizontalBlockCount; i++)
                     {
-                        for(int j = 0; j < verticalBlockCount; j++)
+                        for (int j = 0; j < verticalBlockCount; j++)
                         {
                             bool isOutside = false;
-                            foreach(var blockArea in patternArea)
+                            foreach (var blockArea in patternArea)
                             {
-                                if(blockArea.x + i < 0 || blockArea.x + i >= horizontalBlockCount || blockArea.y + j < 0 || blockArea.y + j >= verticalBlockCount)
+                                if (blockArea.x + i < 0 || blockArea.x + i >= horizontalBlockCount || blockArea.y + j < 0 || blockArea.y + j >= verticalBlockCount)
                                 {
                                     isOutside = true;
                                     break;
                                 }
                             }
-                            if(!isOutside)
+                            if (!isOutside)
                             {
                                 var tmpPattern = new List<(int x, int y)>();
-                                foreach(var blockArea in patternArea)
+                                foreach (var blockArea in patternArea)
                                 {
                                     tmpPattern.Add((blockArea.x + i, blockArea.y + j));
                                 }
-                                PatternList.Add(tmpPattern);                                
+                                PatternList.Add(tmpPattern);
                             }
                         }
                     }
                     AllPositionList.Add(PatternList);
                 }
-                
+
                 //バックトラックで座標候補を確定
                 var candidatePositionList = new List<List<List<(int x, int y)>>>();
                 FindPositionPattern(0, new List<List<(int x, int y)>>());
                 void FindPositionPattern(int patternIndex, List<List<(int x, int y)>> decidedPositionList)
                 {
-                    if(patternIndex == BlockPatternDataList.Count)
+                    if (patternIndex == BlockPatternDataList.Count)
                     {
                         candidatePositionList.Add(new List<List<(int x, int y)>>(decidedPositionList));
                         return;
                     }
 
-                    foreach(var positionList in AllPositionList[patternIndex])
+                    foreach (var positionList in AllPositionList[patternIndex])
                     {
                         bool isCovered = false;
-                        foreach(var position in positionList)
+                        foreach (var position in positionList)
                         {
-                            foreach(var decidedPosition in decidedPositionList)
+                            foreach (var decidedPosition in decidedPositionList)
                             {
-                                if(decidedPosition.Contains(position))
+                                if (decidedPosition.Contains(position))
                                 {
                                     isCovered = true;
                                 }
                             }
                         }
-                        if(isCovered)
+                        if (isCovered)
                         {
                             continue;
                         }
@@ -159,16 +166,16 @@ namespace App.Main.Stage
                 List<List<(int x, int y)>> selectedPositionList = candidatePositionList[UnityEngine.Random.Range(0, candidatePositionList.Count)];
 
                 //各ブロックの生成座標を設定
-                for(int i = 0; i < BlockPatternDataList.Count; i++)
+                for (int i = 0; i < BlockPatternDataList.Count; i++)
                 {
-                    for(int j = 0; j < BlockPatternDataList[i].BlockDataList.Count; j++)
+                    for (int j = 0; j < BlockPatternDataList[i].BlockDataList.Count; j++)
                     {
                         BlockPatternDataList[i].BlockDataList[j].InstancePosition = new Vector2
                      (CoordinatePosition(selectedPositionList[i][j].x, blockMaxX, blockMinX, horizontalBlockCount),
                      CoordinatePosition(selectedPositionList[i][j].y, blockMaxY, blockMinY, verticalBlockCount));
                     }
-                }      
-                          
+                }
+
                 float CoordinatePosition(int x, float maxX, float minX, int blockCount)
                 {
                     return (maxX - minX) / blockCount * x + minX;
@@ -182,14 +189,14 @@ namespace App.Main.Stage
                     int changeableBlockCount = 0;
                     foreach (var blockData in blockPatternData.BlockDataList)
                     {
-                        if(blockData.IsChangeable)
+                        if (blockData.IsChangeable)
                         {
                             changeableBlockCount++;
                         }
                     }
 
                     var tmpPatternFlagList = new List<bool>();
-                    for(int i = 0; i < changeableBlockCount; i++)
+                    for (int i = 0; i < changeableBlockCount; i++)
                     {
                         tmpPatternFlagList.Add(i < blockPatternData.TargetBlockCount);
                     }
@@ -198,7 +205,7 @@ namespace App.Main.Stage
 
                     foreach (var blockData in blockPatternData.BlockDataList)
                     {
-                        if(blockData.IsChangeable)
+                        if (blockData.IsChangeable)
                         {
                             blockData.IsTarget = tmpPatternFlagList[0];
                             tmpPatternFlagList.RemoveAt(0);
@@ -302,8 +309,8 @@ namespace App.Main.Stage
 
         class BlockPatternData
         {
-            public int TargetBlockCount{get; private set;}
-            public List<BlockData> BlockDataList{get; private set;}
+            public int TargetBlockCount { get; private set; }
+            public List<BlockData> BlockDataList { get; private set; }
 
             public BlockPatternData(int targetBlockCount, List<BlockData> blockDataList)
             {
@@ -365,13 +372,13 @@ namespace App.Main.Stage
             //ブロックの登録: ブロックID、(ｘ、ｙ)(書き替えない)、ブロックの領域(被らないようにステージが組まれる)、ターゲットになり得るか
             public static BlockData Normal(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)>{(x, y)};
+                var intAreaList = new List<(int x, int y)> { (x, y) };
                 return new BlockData(0, x, y, intAreaList, false);
             }
 
             public static BlockData Normal_Changeable(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)>{(x, y)};
+                var intAreaList = new List<(int x, int y)> { (x, y) };
                 return new BlockData(0, x, y, intAreaList, true);
             }
         }

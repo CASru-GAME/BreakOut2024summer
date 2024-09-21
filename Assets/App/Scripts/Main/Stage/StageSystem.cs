@@ -124,6 +124,8 @@ namespace App.Main.Stage
             _targetBlockCount = 0;
             CreateBall(new Vector3(0, 0, 0));
             GetComponent<BlockPattern>().CreateBlocks(_currentStageNumberID, _roopCount);
+            _targetBlockCount = GetComponent<BlockPattern>().TargetBlockCount;
+            _normalBlockCount = GetComponent<BlockPattern>().NormalBlockCount;
         }
 
         /// <summary>

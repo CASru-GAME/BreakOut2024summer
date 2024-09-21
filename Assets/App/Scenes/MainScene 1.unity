@@ -613,6 +613,7 @@ MonoBehaviour:
   _player: {fileID: 2114354180}
   _stageSystem: {fileID: 1548254335}
   _stageState: {fileID: 1548254338}
+  _timeLimit: 60
 --- !u!114 &1548254338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,6 +650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9059361797135c7449c2eac3b1510d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stageSystem: {fileID: 1548254335}
   _normalBlockPrefabList:
   - {fileID: 7583430496598341935, guid: 6b2c70201d4de0b448b31768b0624ed3, type: 3}
   _targetBlockPrefabList:

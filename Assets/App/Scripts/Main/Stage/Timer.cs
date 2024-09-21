@@ -30,6 +30,7 @@ namespace App.Main.Stage
         public void InitializeTimer(float timeLimit)
         {
             _timeLimit = timeLimit;
+            _remainingTimeLimit = _timeLimit;
         }
         /// <summary>
         /// 制限時間のリセット
@@ -57,7 +58,7 @@ namespace App.Main.Stage
             if ((_remainingTimeLimit > 0)&&(_state == TimerState.Playing))
             {
                 _remainingTimeLimit -= Time.deltaTime;
-                if (_timeLimit <= 0)
+                if (_remainingTimeLimit <= 0)
                 {
                     _state = TimerState.TimeOver;
                     Debug.Log("TimerState: " + _state);
