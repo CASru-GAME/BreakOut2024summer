@@ -7,5 +7,6 @@ namespace App.Main.Block
     {   
         void TakeDamage(AttackPoint damage);
         void SetStage(StageSystem stage);
+        void Healed(int healAmount);
     }
 }
