@@ -15,8 +15,6 @@ namespace App.Main.Stage
         [SerializeField] private ItemTable _itemTable = default;
         [SerializeField] private PlayerDatastore _player = default;
         [SerializeField] private GameObject _ballPrefab = default;
-        [SerializeField] private GameObject _normalBlockPrefab = default;
-        [SerializeField] private GameObject _targetBlockPrefab = default;
         [SerializeField] private GameObject _itemPrefab = default;
 
         [SerializeField] private int _finalStageNumberID = 5;
@@ -30,8 +28,8 @@ namespace App.Main.Stage
         private int _targetBlockCount = 0;
         public int TargetBlockCount => _targetBlockCount;
         private int _clearedStageCount = 0;
-        private int _roopCount = 0;
-        private int _currentStageNumberID = 0;
+        private int _roopCount = 1;
+        private int _currentStageNumberID = 1;
 
         ///<summary>
         ///ステージシステム上のボールの数を一つ増やす。
@@ -116,41 +114,16 @@ namespace App.Main.Stage
             item.GetComponent<App.Main.Item.Item>().Initialized(_itemTable);
         }
 
-        ///<summary>
-        ///通常ブロックを生成する
-        ///</summary>
-        ///<param name="position">生成する位置</param>
-        public void CreateNormalBlock(Vector3 position)
-        {
-            GameObject normalBlock = Instantiate(_normalBlockPrefab, position, Quaternion.identity);
-            normalBlock.GetComponent<App.Main.Block.Block>().SetStage(this);
-            IncreaseNormalBlockCount();
-        }
-
-        ///<summary>
-        ///ターゲットブロックを生成する
-        ///</summary>
-        ///<param name="position">生成する位置</param>
-        ///<param name="targetBlockData">生成するターゲットブロックのデータ</param>
-        public void CreateTargetBlock(Vector3 position)
-        {
-            GameObject targetBlock = Instantiate(_targetBlockPrefab, position, Quaternion.identity);
-            targetBlock.GetComponent<TargetBlock>().SetStage(this);
-            IncreaseTargetBlockCount();
-        }
-
         /// <summary>
         /// ステージの初期化
         /// </summary>
-        /// <param name="_stagePatternID">現在のパターン</param>
         public void InitializeStage()
         {
             _ballCountonStage = 0;
             _normalBlockCount = 0;
             _targetBlockCount = 0;
             CreateBall(new Vector3(0, 0, 0));
-            CreateNormalBlock(new Vector3(1, 1, 0));
-            CreateTargetBlock(new Vector3(-1, 1, 0));
+            GetComponent<BlockPattern>().CreateBlocks(_currentStageNumberID, _roopCount);
         }
 
         /// <summary>
