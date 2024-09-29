@@ -1,11 +1,17 @@
+using App.Main.Item;
 using UnityEngine;
+using App.Main.Player.Perk;
 
 namespace App.Main.Player
 {
     public class PlayerDatastore : MonoBehaviour
     {
         public Parameter Parameter { get; private set; }
+        public ItemList ItemList{ get; private set; }
         private LevelSystem levelSystem;
+        private PerkSystem PerkSystem;
+        [SerializeField] GameObject perkPanelPrefab;
+
 
         /// <summary>
         /// プレイヤーの初期化
@@ -13,7 +19,14 @@ namespace App.Main.Player
         public void InitializePlayer()
         {
             Parameter = new Parameter(3, 1, 5.0f, 5.0f, 1, 0);  //Parameter(int live, int attackPoint, float ballSpeed, float moveSpeed, int level , int experiencePoint)のコンストラクタを呼び出す
+            ItemList = new ItemList();
             levelSystem = new LevelSystem(this);
+            PerkSystem = new PerkSystem(this, perkPanelPrefab); 
+        }
+
+        public void ChoosePerk()
+        {
+            PerkSystem.ChoosePerk();
         }
 
         /// <summary>

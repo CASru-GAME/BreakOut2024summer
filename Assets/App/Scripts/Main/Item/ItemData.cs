@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemData : MonoBehaviour
+public class ItemData
 {
     public int Id{get; private set;}
     public int Weight{get; private set;}
@@ -12,5 +12,4 @@ public class ItemData : MonoBehaviour
         Id = id;
         Weight = weight;
     }
-
 }
