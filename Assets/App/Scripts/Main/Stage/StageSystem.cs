@@ -17,6 +17,7 @@ namespace App.Main.Stage
         [SerializeField] private GameObject _ballPrefab = default;
         [SerializeField] private GameObject _itemPrefab = default;
         [SerializeField] private int _finalStageNumberID = 5;
+        [SerializeField] public GameObject Canvas = default;
         private ItemSystem _itemSystem = default;
         private int _ballCountonStage = 0;
         public int BallCountonStage => _ballCountonStage;
