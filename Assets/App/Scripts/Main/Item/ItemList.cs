@@ -18,7 +18,8 @@ namespace App.Main.Item
         public List<ItemData> ActiveExps= new List<ItemData>()
         {
             new ItemData(1, 1),
-            new ItemData(2, 2),
+            //new ItemData(1, 1),
+            //new ItemData(2, 2),
         };
 
         public ItemData[] AllItems = new ItemData[]

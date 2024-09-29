@@ -58,7 +58,7 @@ namespace App.Main.Block
             stage.DecreaseNormalBlockCount();
 
             stage.CreateItem(transform.position);//デバッグ用
-
+            stage.CreateExpBall(transform.position);//デバッグ用
             Destroy(gameObject);
         }
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7936889506059314116}
   - component: {fileID: 3141174386965312478}
   - component: {fileID: 2092050565972335169}
-  - component: {fileID: 2911539481015348848}
+  - component: {fileID: 912960595838816990}
   m_Layer: 5
   m_Name: PerkPanel
   m_TagString: Untagged
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56096a92306925749ae7c8b41f996f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &2911539481015348848
+--- !u!61 &912960595838816990
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,7 +127,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

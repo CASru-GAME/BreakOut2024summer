@@ -16,9 +16,8 @@ namespace App.Main.Stage
         [SerializeField] private PlayerDatastore _player = default;
         [SerializeField] private GameObject _ballPrefab = default;
         [SerializeField] private GameObject _itemPrefab = default;
-
         [SerializeField] private int _finalStageNumberID = 5;
-
+        private ItemSystem _itemSystem = default;
         private int _ballCountonStage = 0;
         public int BallCountonStage => _ballCountonStage;
 
@@ -110,8 +109,16 @@ namespace App.Main.Stage
 
         public void CreateItem(Vector3 position)
         {
+            _itemSystem = new ItemSystem(_player);
             GameObject item = Instantiate(_itemPrefab, position, Quaternion.identity);
-            //item.GetComponent<App.Main.Item.Item>().Initialized(_itemTable,this,_player);
+            item.GetComponent<App.Main.Item.Item>().Initialized(_itemTable, this, _player, _itemSystem.SelectItem());
+        }
+
+        public void CreateExpBall(Vector3 position)
+        {
+            _itemSystem = new ItemSystem(_player);
+            GameObject item = Instantiate(_itemPrefab, position, Quaternion.identity);
+            item.GetComponent<App.Main.Item.Item>().Initialized(_itemTable, this, _player, _itemSystem.SelectExp());
         }
 
         /// <summary>
@@ -134,8 +141,8 @@ namespace App.Main.Stage
         public void CountClearedStage()
         {
             _clearedStageCount++;
-            _roopCount = _clearedStageCount/_finalStageNumberID;
-            _currentStageNumberID = _clearedStageCount%_finalStageNumberID;
+            _roopCount = _clearedStageCount / _finalStageNumberID;
+            _currentStageNumberID = _clearedStageCount % _finalStageNumberID;
         }
     }
 }
