@@ -8,6 +8,7 @@ namespace App.Main.Block
     {   
         private BlockDataStore blockDatastore;
         [SerializeField] int initialHp;
+        [SerializeField] int Id;
         private StageSystem stage;
 
         void Start()
@@ -35,7 +36,11 @@ namespace App.Main.Block
             if(blockDatastore.Hp.CurrentValue <= 0)
             Break();
         }
-
+        public void Healed(int healAmount)
+        {   
+            BlockHp newBlockHp = new BlockHp(healAmount);
+            blockDatastore.SetHp(blockDatastore.Hp.AddCurrentValue(newBlockHp));
+        }
         //<summary>
         // 破壊されたことを通達する(TakeDamage内で呼び出される)
         //</summary>
