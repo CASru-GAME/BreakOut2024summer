@@ -111,7 +111,7 @@ namespace App.Main.Stage
         public void CreateItem(Vector3 position)
         {
             GameObject item = Instantiate(_itemPrefab, position, Quaternion.identity);
-            item.GetComponent<App.Main.Item.Item>().Initialized(_itemTable);
+            //item.GetComponent<App.Main.Item.Item>().Initialized(_itemTable,this,_player);
         }
 
         /// <summary>
