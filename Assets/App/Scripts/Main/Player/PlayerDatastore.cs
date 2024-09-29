@@ -1,3 +1,4 @@
+using App.Main.Item;
 using UnityEngine;
 
 namespace App.Main.Player
@@ -5,7 +6,9 @@ namespace App.Main.Player
     public class PlayerDatastore : MonoBehaviour
     {
         public Parameter Parameter { get; private set; }
+        public ItemList ItemList{ get; private set; }
         private LevelSystem levelSystem;
+
 
         /// <summary>
         /// プレイヤーの初期化
@@ -13,6 +16,7 @@ namespace App.Main.Player
         public void InitializePlayer()
         {
             Parameter = new Parameter(3, 1, 5.0f, 5.0f, 1, 0);  //Parameter(int live, int attackPoint, float ballSpeed, float moveSpeed, int level , int experiencePoint)のコンストラクタを呼び出す
+            ItemList = new ItemList();
             levelSystem = new LevelSystem(this);
         }
 
