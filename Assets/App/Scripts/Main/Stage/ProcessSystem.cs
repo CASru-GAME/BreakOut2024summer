@@ -10,12 +10,12 @@ namespace App.Main.Stage
         [SerializeField] private PlayerDatastore _player = default;
         [SerializeField] private StageSystem _stageSystem = default;
         [SerializeField] private StageStateDatastore _stageState = default;
-        
+        [SerializeField] private float _timeLimit = 60.0f;
         void Start()
         {
             _stageState.SetPlayGame();
             _stageSystem.InitializeStage();
-            _timer.InitializeTimer(60.0f);
+            _timer.InitializeTimer(_timeLimit);
             _timer.StartTimer();
         }
 
@@ -23,15 +23,20 @@ namespace App.Main.Stage
         {
             if (_stageState.isPlaying())
             {
-                if (_stageSystem.BallCountonStage == 0)
+                if (_timer.State == Timer.TimerState.TimeOver)
+                {
+                    // ゲーム終了処理
+                    _stageState.SetGameFinish();
+                }
+                else if (_stageSystem.BallCountonStage == 0)
                 {
                     // 残機を減らす処理
                     _player.SubtractLive(1);
                     Debug.Log("Live: " + _player.Parameter.Live.CurrentValue);
-                    if (_player.IsLiveValue(0)||(_timer.State == Timer.TimerState.TimeOver))
+                    if (_player.IsLiveValue(0))
                     {
-                        // ゲームオーバー処理
-                        _stageState.SetGameOver();
+                        // ゲーム終了処理
+                        _stageState.SetGameFinish();
                     }
                     else
                     {
@@ -42,10 +47,19 @@ namespace App.Main.Stage
                 else if (_stageSystem.TargetBlockCount == 0)
                 {
                     // クリア処理
-                    _timer.StopTimer();
-                    _stageState.SetClear();
+                    _stageState.SetStageClear();
                     _stageSystem.CountClearedStage();
                 }
+            }
+            else if (_stageState.isGameFinish())
+            {
+                // ゲーム終了処理
+                _timer.StopTimer();
+            }
+            else if (_stageState.isStageClear())
+            {
+                // ステージクリア処理
+                _timer.StopTimer();
             }
         }
     }

@@ -8,9 +8,8 @@ namespace App.Main.Stage
         {
             Waiting,
             Playing,
-            GameOver,
-            StageClear,
-            AllStageClear
+            GameFinish,
+            StageClear
         }
         private StageState _state = StageState.Waiting;
         /// <summary>
@@ -22,17 +21,17 @@ namespace App.Main.Stage
             Debug.Log("State: " + _state);
         }
         /// <summary>
-        /// ゲームの状態をGameOverにセットする
+        /// ゲームの状態をGameFinishにセットする
         /// </summary>
-        public void SetGameOver()
+        public void SetGameFinish()
         {
-            _state = StageState.GameOver;
+            _state = StageState.GameFinish;
             Debug.Log("State: " + _state);
         }
         /// <summary>
         /// ゲームの状態をStageClearにセットする
         /// </summary>
-        public void SetClear()
+        public void SetStageClear()
         {
             _state = StageState.StageClear;
             Debug.Log("State: " + _state);
@@ -46,14 +45,6 @@ namespace App.Main.Stage
             Debug.Log("State: " + _state);
         }
         /// <summary>
-        /// ゲームの状態をAllStageClearにセットする
-        /// </summary>
-        public void SetAllStageClear()
-        {
-            _state = StageState.AllStageClear;
-            Debug.Log("State: " + _state);
-        }
-        /// <summary>
         /// ゲームがPlayingかどうかを返す
         /// </summary>
         public bool isPlaying()
@@ -61,16 +52,16 @@ namespace App.Main.Stage
             return _state == StageState.Playing;
         }
         /// <summary>
-        /// ゲームがGameOverかどうかを返す
+        /// ゲームがGameFinishかどうかを返す
         /// </summary>
-        public bool isGameOver()
+        public bool isGameFinish()
         {
-            return _state == StageState.GameOver;
+            return _state == StageState.GameFinish;
         }
         /// <summary>
         /// ゲームがStageClearかどうかを返す
         /// </summary>
-        public bool isClear()
+        public bool isStageClear()
         {
             return _state == StageState.StageClear;
         }
@@ -80,13 +71,6 @@ namespace App.Main.Stage
         public bool isWaiting()
         {
             return _state == StageState.Waiting;
-        }
-        /// <summary>
-        /// ゲームがAllStageClearかどうかを返す
-        /// </summary>
-        public bool isAllStageClear()
-        {
-            return _state == StageState.AllStageClear;
         }
     }
 }
