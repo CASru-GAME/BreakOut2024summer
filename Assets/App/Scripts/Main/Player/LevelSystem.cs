@@ -53,7 +53,7 @@ namespace App.Main.Player
         private void LevelUp()
         {
             playerDatastore.ReplaceLevel(playerDatastore.GetLevelValue() + 1);
-            // SkillPick(); // 未実装
+            playerDatastore.ChoosePerk();
             // LevelUpEffect(); // 未実装
         }
 
