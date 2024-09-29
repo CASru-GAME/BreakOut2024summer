@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace App.Main.Player.Park
+namespace App.Main.Player.Perk
 {
-    public class DebugPark : IPark
+    public class DebugPerk : IPerk
     {
         private int StackCount = 0;
         public void AddStackCount()
@@ -18,7 +18,7 @@ namespace App.Main.Player.Park
         public void Effect()
         {
             if(StackCount == 0) return;
-            Debug.Log("Hello,Park!" + StackCount);
+            Debug.Log("Hello,Perk!" + StackCount);
         }
     }
 }

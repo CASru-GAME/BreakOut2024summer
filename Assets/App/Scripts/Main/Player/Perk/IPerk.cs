@@ -1,6 +1,6 @@
-namespace App.Main.Player.Park
+namespace App.Main.Player.Perk
 {
-    public interface IPark
+    public interface IPerk
     {
         void AddStackCount();
         int GetStackCount();
