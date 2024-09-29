@@ -29,6 +29,7 @@ namespace App.Main.Player.Perk
             playerDatastore.SubtractAttackPoint(CalculateValue(CurrentStackCount));
             playerDatastore.AddAttackPoint(CalculateValue(StackCount));
             CurrentStackCount = StackCount;
+            Debug.Log("Park: increase attack point x " + StackCount);
         }
 
         private int CalculateValue(int value)

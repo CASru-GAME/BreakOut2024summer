@@ -29,6 +29,7 @@ namespace App.Main.Player.Perk
             playerDatastore.SubtractMoveSpeed(CalculateValue(CurrentStackCount));//前回の効果を取り消す
             playerDatastore.AddMoveSpeed(CalculateValue(StackCount));
             CurrentStackCount = StackCount;
+            Debug.Log("Park: increase move speed x " + StackCount);
         }
 
         private float CalculateValue(int value)

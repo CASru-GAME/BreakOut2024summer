@@ -173,6 +173,7 @@ namespace App.Main.Player
         {
             Parameter.AddExperiencePoint(value);
             levelSystem.ReloadLevel();
+            Debug.Log("Level: " + GetLevelValue());
         }
 
         /// <summary>
