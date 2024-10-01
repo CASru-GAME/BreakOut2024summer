@@ -31,6 +31,7 @@ namespace App.Main.Stage
         {
             _timeLimit = timeLimit;
             _remainingTimeLimit = _timeLimit;
+            _state = TimerState.Waiting;
         }
         /// <summary>
         /// 制限時間のリセット
@@ -38,6 +39,7 @@ namespace App.Main.Stage
         public void ResetTimer()
         {
             _remainingTimeLimit = _timeLimit;
+            _state = TimerState.Waiting;
         }
         /// <summary>
         /// タイマーを開始する

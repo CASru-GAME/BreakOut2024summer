@@ -6,13 +6,17 @@ namespace App.Main.Stage
 {
     public class ProcessSystem : MonoBehaviour
     {
-        [SerializeField] private Timer _timer = default;
+        private Timer _timer = default;
         [SerializeField] private PlayerDatastore _player = default;
-        [SerializeField] private StageSystem _stageSystem = default;
-        [SerializeField] private StageStateDatastore _stageState = default;
+        private StageSystem _stageSystem = default;
+        private StageStateDatastore _stageState = default;
         [SerializeField] private float _timeLimit = 60.0f;
+
         void Start()
         {
+            _timer = GetComponent<Timer>();
+            _stageSystem = GetComponent<StageSystem>();
+            _stageState = GetComponent<StageStateDatastore>();
             _stageState.SetPlayGame();
             _stageSystem.InitializeStage();
             _timer.InitializeTimer(_timeLimit);
@@ -21,6 +25,7 @@ namespace App.Main.Stage
 
         void Update()
         {
+
             if (_stageState.isPlaying())
             {
                 if (_timer.State == Timer.TimerState.TimeOver)
