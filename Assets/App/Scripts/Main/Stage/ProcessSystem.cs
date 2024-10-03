@@ -1,6 +1,7 @@
 using UnityEngine;
 using App.Main.Player;
 using System.Threading;
+using App.Static;
 
 namespace App.Main.Stage
 {
@@ -25,7 +26,6 @@ namespace App.Main.Stage
 
         void Update()
         {
-
             if (_stageState.isPlaying())
             {
                 if (_timer.State == Timer.TimerState.TimeOver)
@@ -66,6 +66,21 @@ namespace App.Main.Stage
                 // ステージクリア処理
                 _timer.StopTimer();
             }
+        }
+
+        private void InitializeGame()
+        {
+
+        }
+
+        private void SyncGameParameter()
+        {
+            _stageSystem.SyncData();
+        }
+
+        private void FetchGameParameter()
+        {
+            _stageSystem.FetchData();
         }
     }
 }

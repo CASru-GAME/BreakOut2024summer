@@ -1,12 +1,8 @@
 using System;
 using UnityEngine;
-using App.Main.Block;
 using App.Main.Player;
-using App.Main.Stage;
 using App.Main.Item;
-using UnityEngine.UIElements;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using App.Static;
 
 namespace App.Main.Stage
 {
@@ -143,6 +139,30 @@ namespace App.Main.Stage
             _clearedStageCount++;
             _roopCount = _clearedStageCount / _finalStageNumberID;
             _currentStageNumberID = _clearedStageCount % _finalStageNumberID;
+        }
+
+        /// <summary>
+        /// 前のステージのクリアカウントを取得する
+        /// </summary>
+        public void SyncData()
+        {
+            for (int i = StatisticsDatastore._totalClearedStage; i < 1; i++)
+            {
+                CountClearedStage();
+            }
+            for (int i = StatisticsDatastore._totalDestroyedTargetBlock; i < 1; i++)
+            {
+                IncreaseTargetBlockCount();
+            }
+        }
+
+        /// <summary>
+        /// 今のステージのクリアカウントを静的データに代入する
+        /// </summary>
+        public void FetchData()
+        {
+            StatisticsDatastore.AssignTotalClearedStage(_clearedStageCount);
+            StatisticsDatastore.AssignTotalDestroyedTargetBlock(_targetBlockCount);
         }
     }
 }

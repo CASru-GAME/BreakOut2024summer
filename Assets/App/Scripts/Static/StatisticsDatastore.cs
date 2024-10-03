@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
@@ -5,34 +6,34 @@ namespace App.Static
 {
     public static class StatisticsDatastore
     {
-        public static int[] _totalAquiredItemNumberList = new int[6] { 0, 0, 0, 0, 0, 0 };
-        public static int _totalAquiredExperiencePoint = 0;
-        public static int _playerLevel = 1;
-        public static int _totalClearedStage = 0;
-        public static int _totalDestroyedTargetBlock = 0;
-
-        ///<summery>
-        /// 獲得したアイテムの数を代入する
-        /// </summery>
-        /// <param name="totalAquiredItemNumberList"></param>
-        ///<remark>
-        /// イテレータをidに対応させている。そのイテレータに対応する要素にアイテムの数を入力したリストを作り、それを代入する。
-        /// </remark>
-        /// <value>
-        /// 6個の要素を持つint型の配列
-        /// </value>
-        public static void AssignTotalAquiredItemNumberList(int[] totalAquiredItemNumberList)
-        {
-            for (int i = 0; i < totalAquiredItemNumberList.Length; i++)
-            {
-                if (totalAquiredItemNumberList[i] < 0)
-                {
-                    UnityEngine.Debug.Log("TotalAquiredItemNumberList: 0より小さい値が入力されました");
-                    return;
-                }
-            }
-            _totalAquiredItemNumberList = totalAquiredItemNumberList;
-        }
+        ///<summary>
+        /// 獲得した経験値
+        /// </summary>
+        public static int _totalAquiredExperiencePoint { get; private set; } = 0;
+        ///<summary>
+        /// プレイヤーレベル
+        /// </summary>
+        public static int _playerLevel { get; private set; } = 1;
+        ///<summary>
+        /// 獲得したパークの数
+        /// </summary>
+        public static int[] _totalAquiredPerkList { get; private set; } = new int[22] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        ///<summary>
+        /// クリアしたステージ数
+        /// </summary>
+        public static int _totalClearedStage { get; private set; } = 0;
+        ///<summary>
+        /// 破壊したターゲットブロック数
+        /// </summary>
+        public static int _totalDestroyedTargetBlock { get; private set; } = 0;
+        ///<summary>
+        /// 残りの制限時間
+        /// </summary>
+        public static int _remainingTimeLimit { get; private set; } = 0;
+        ///<summary>
+        /// 残りの残機
+        /// </summary>
+        public static int _remainingLive { get; private set; } = 0;
 
         /// <summary>
         /// 獲得した経験値を代入する
@@ -63,6 +64,29 @@ namespace App.Static
         }
 
         /// <summary>
+        /// 獲得したパークの数を代入する
+        /// </summary>
+        /// <param name="totalAquiredPerkList"></param>
+        /// <remark>
+        /// イテレータをidに対応させている。そのイテレータに対応する要素に取得したパークの総数を入力したリストを作り、それを代入する。
+        /// </remark>
+        /// <value>
+        /// 22個の要素を持つint型の配列
+        /// </value>
+        public static void AssignTotalAquiredPerkList(int[] totalAquiredPerkList)
+        {
+            for (int i = 0; i < totalAquiredPerkList.Length; i++)
+            {
+                if (totalAquiredPerkList[i] < 0)
+                {
+                    UnityEngine.Debug.Log("TotalAquiredPerkList: 0より小さい値が入力されました");
+                    return;
+                }
+            }
+            _totalAquiredPerkList = totalAquiredPerkList;
+        }
+
+        /// <summary>
         /// クリアしたステージ数を代入する
         /// </summary>
         /// <param name="totalClearedStage"></param>
@@ -88,6 +112,34 @@ namespace App.Static
                 return;
             }
             _totalDestroyedTargetBlock = totalDestroyedTargetBlock;
+        }
+
+        /// <summary>
+        /// 残りの制限時間を代入する
+        /// </summary>
+        /// <param name="remainingTimeLimit"></param>
+        public static void AssignRemainingTimeLimit(int remainingTimeLimit)
+        {
+            if (remainingTimeLimit < 0)
+            {
+                UnityEngine.Debug.Log("RemainingTimeLimit: 0より小さい値が入力されました");
+                return;
+            }
+            _remainingTimeLimit = remainingTimeLimit;
+        }
+
+        /// <summary>
+        /// 残りの残機を代入する
+        /// </summary>
+        /// <param name="remainingLive"></param>
+        public static void AssignRemainingLive(int remainingLive)
+        {
+            if (remainingLive < 0)
+            {
+                UnityEngine.Debug.Log("RemainingLive: 0より小さい値が入力されました");
+                return;
+            }
+            _remainingLive = remainingLive;
         }
     }
 }
