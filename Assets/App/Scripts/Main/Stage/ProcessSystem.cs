@@ -8,10 +8,12 @@ namespace App.Main.Stage
     public class ProcessSystem : MonoBehaviour
     {
         private Timer _timer = default;
-        [SerializeField] private PlayerDatastore _player = default;
         private StageSystem _stageSystem = default;
         private StageStateDatastore _stageState = default;
+        private SceneLoader _sceneLoader = default;
+        [SerializeField] private PlayerDatastore _player = default;
         [SerializeField] private float _timeLimit = 60.0f;
+
 
         /// ゲームの初期化処理
         void Start()
@@ -19,6 +21,7 @@ namespace App.Main.Stage
             _timer = GetComponent<Timer>();
             _stageSystem = GetComponent<StageSystem>();
             _stageState = GetComponent<StageStateDatastore>();
+            _sceneLoader = GetComponent<SceneLoader>();
             InitializeGame();
         }
 
@@ -76,6 +79,7 @@ namespace App.Main.Stage
             _stageState.SetWaiting();
             _timer.StopTimer();
             FetchGameParameter();
+            _sceneLoader.LoadSceneAsyncByName("ResultScene");
         }
 
         // ゲームの状態がステージクリア状態になった際のステージクリア処理
@@ -85,8 +89,9 @@ namespace App.Main.Stage
             _stageSystem.CountClearedStage();
             _timer.StopTimer();
             FetchGameParameter();
+            _sceneLoader.LoadSceneAsyncByName("MainScene");
         }
-        
+
         // どのような状態であっても発動するゲームの初期化処理
         private void InitializeGame()
         {
@@ -108,10 +113,10 @@ namespace App.Main.Stage
             {
                 _timer.InitializeTimer(_timeLimit, StatisticsDatastore._remainingTimeLimit);
             }
-            _player.AddLive(StatisticsDatastore._remainingLive - _player.Parameter.Live.CurrentValue);
-            _player.SubtractLive(_player.Parameter.Live.CurrentValue - StatisticsDatastore._remainingLive);
+            //_player.AddLive(StatisticsDatastore._remainingLive - _player.Parameter.Live.CurrentValue);
+            //_player.SubtractLive(_player.Parameter.Live.CurrentValue - StatisticsDatastore._remainingLive);
         }
-        
+
         /// static←インスタンス
         private void FetchGameParameter()
         {

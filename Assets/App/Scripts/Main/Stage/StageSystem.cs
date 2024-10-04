@@ -138,8 +138,8 @@ namespace App.Main.Stage
         public void CountClearedStage()
         {
             _clearedStageCount++;
-            _roopCount = _clearedStageCount / _finalStageNumberID;
-            _currentStageNumberID = _clearedStageCount % _finalStageNumberID;
+            _roopCount = 1 + _clearedStageCount / _finalStageNumberID;
+            _currentStageNumberID = _clearedStageCount % _finalStageNumberID != 0 ? _clearedStageCount % _finalStageNumberID : _finalStageNumberID;
         }
 
         /// <summary>
@@ -147,13 +147,12 @@ namespace App.Main.Stage
         /// </summary>
         public void SyncData()
         {
-            for (int i = StatisticsDatastore._totalClearedStage; i < 1; i++)
+            for (int i = 0; i < StatisticsDatastore._totalClearedStage; i++)
             {
                 CountClearedStage();
             }
-            for (int i = StatisticsDatastore._totalDestroyedTargetBlock; i < 1; i++)
+            for (int i = 0; i < StatisticsDatastore._totalDestroyedTargetBlock; i++)
             {
-                IncreaseTargetBlockCount();
             }
         }
 
@@ -163,7 +162,6 @@ namespace App.Main.Stage
         public void FetchData()
         {
             StatisticsDatastore.AssignTotalClearedStage(_clearedStageCount);
-            StatisticsDatastore.AssignTotalDestroyedTargetBlock(_targetBlockCount);
         }
     }
 }
