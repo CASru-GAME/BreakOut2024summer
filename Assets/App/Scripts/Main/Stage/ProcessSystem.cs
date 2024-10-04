@@ -78,12 +78,14 @@ namespace App.Main.Stage
         {
             _stageSystem.SyncData();
             _timer.InitializeTimer(_timeLimit, StatisticsDatastore._remainingTimeLimit);
+            _player.AddLive(StatisticsDatastore._remainingLive);
         }
         /// インスタンス→static
         private void FetchGameParameter()
         {
             _stageSystem.FetchData();
             StatisticsDatastore.AssignRemainingTimeLimit(_timer.RemainingTimeLimit);
+            StatisticsDatastore.AssignRemainingLive(_player.Parameter.Live.CurrentValue);
         }
     }
 }
