@@ -19,6 +19,7 @@ namespace App.Main.Player.Perk
         {
             this.PerkId = PerkId;
             this.PerkSystem = PerkSystem;
+
         }
 
         // Update is called once per frame
@@ -33,6 +34,8 @@ namespace App.Main.Player.Perk
                 {
                     Debug.Log(hit.collider.gameObject.name);
                     PerkSystem.GetPerk(PerkId);
+                    PerkSystem.IsPerkChoosing = false;
+                    UnityEngine.Time.timeScale = 1;
                     PerkSystem.SusideAll();
                     
                 }
@@ -41,7 +44,7 @@ namespace App.Main.Player.Perk
 
         public void Suside()
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 }

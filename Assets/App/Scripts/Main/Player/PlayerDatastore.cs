@@ -1,6 +1,7 @@
 using App.Main.Item;
 using UnityEngine;
 using App.Main.Player.Perk;
+using System.Collections;
 
 namespace App.Main.Player
 {
@@ -26,7 +27,7 @@ namespace App.Main.Player
 
         public void ChoosePerk()
         {
-            PerkSystem.ChoosePerk();
+            StartCoroutine(PerkSystem.ChoosePerk());
         }
 
         /// <summary>
@@ -164,6 +165,11 @@ namespace App.Main.Player
             return Parameter.GetBallSpeedValue();
         }
 
+        IEnumerator WaitPerkChoose()
+        {
+            yield return new WaitUntil(() => PerkSystem.IsPerkChoosing == false);
+        }
+
         /// <summary>
         /// 経験値を追加する＆レベルを更新する
         /// </summary>
@@ -171,8 +177,13 @@ namespace App.Main.Player
 
         public void AddExperiencePoint(int value)
         {
-            Parameter.AddExperiencePoint(value);
-            levelSystem.ReloadLevel();
+            for(int i = 0; i < value; i++)
+            {
+                Parameter.AddExperiencePoint(1);
+                levelSystem.ReloadLevel();
+                StartCoroutine(WaitPerkChoose());
+            }
+            
             Debug.Log("Level: " + GetLevelValue());
         }
 
