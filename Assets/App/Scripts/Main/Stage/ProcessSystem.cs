@@ -54,7 +54,7 @@ namespace App.Main.Stage
                 // ターゲットブロックがすべてなくなったら
                 else if (_stageSystem.TargetBlockCount == 0)
                 {
-                    // クリア処理
+                    // ステージクリア処理
                     _stageState.SetStageClear();
                 }
             }
@@ -96,7 +96,6 @@ namespace App.Main.Stage
             _timer.StartTimer();
         }
 
-
         /// インスタンス←static
         private void LoadGameParameter()
         {
@@ -112,6 +111,7 @@ namespace App.Main.Stage
             _player.AddLive(StatisticsDatastore._remainingLive - _player.Parameter.Live.CurrentValue);
             _player.SubtractLive(_player.Parameter.Live.CurrentValue - StatisticsDatastore._remainingLive);
         }
+        
         /// static←インスタンス
         private void FetchGameParameter()
         {

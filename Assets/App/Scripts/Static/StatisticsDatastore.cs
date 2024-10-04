@@ -141,5 +141,19 @@ namespace App.Static
             }
             _remainingLive = remainingLive;
         }
+
+        /// <summary>
+        /// 全ての統計データをリセットする
+        /// </summary>
+        public static void ResetAllStatisticsData()
+        {
+            _totalAquiredExperiencePoint = 0;
+            _playerLevel = 1;
+            _totalAquiredPerkList = new int[22] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            _totalClearedStage = 0;
+            _totalDestroyedTargetBlock = 0;
+            _remainingTimeLimit = 0;
+            _remainingLive = 0;
+        }
     }
 }
