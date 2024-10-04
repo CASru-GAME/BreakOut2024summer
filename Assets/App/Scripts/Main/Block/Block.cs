@@ -3,22 +3,22 @@ using App.Main.Player;
 using App.Main.Stage;
 using App.Main.Item;
 using App.Main.Block.Ablity;
-using App.Main.Effects;
 
 namespace App.Main.Block
 {   //ターゲット以外のブロック
     public class Block : MonoBehaviour, IBlock
     {   
-        private BlockDataStore blockDatastore;
+        private BlockDatastore blockDatastore;
+        private BlockAnimation blockAnimation;
         [SerializeField] int initialHp;
         [SerializeField] int Id;
-        [SerializeField] GameObject DamageEffect;
         private StageSystem stage;
 
         void Start()
         {
-            blockDatastore = GetComponent<BlockDataStore>();
+            blockDatastore = GetComponent<BlockDatastore>();
             blockDatastore.InitializeBlock(initialHp);
+            blockAnimation = GetComponent<BlockAnimation>();
         }
 
         //<summary>
@@ -37,15 +37,9 @@ namespace App.Main.Block
             BlockHp newBlockHp = new BlockHp(damage.CurrentValue);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
-            CreateDamageEffect(damage.CurrentValue - blockDatastore.Hp.CurrentValue);
+            blockAnimation.CreateDamageEffect(damage.CurrentValue - blockDatastore.Hp.CurrentValue, stage);
 
             if (blockDatastore.Hp.CurrentValue <= 0) Break();
-        }
-
-        private void CreateDamageEffect(int damageValue)
-        {
-            var newDamageEffect = Instantiate(DamageEffect, transform.position, Quaternion.identity);
-            newDamageEffect.GetComponent<DamageEffect>().Initialize(damageValue, stage.Canvas);
         }
 
         public void Healed(int healAmount)
@@ -61,6 +55,8 @@ namespace App.Main.Block
         {
             //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達
             stage.DecreaseNormalBlockCount();
+
+            blockAnimation.Break();
 
             stage.CreateItem(transform.position);//デバッグ用
             stage.CreateExpBall(transform.position);//デバッグ用

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 241e60ac65ec6d2479d179533f01494a
+guid: 9b4d4045e098b914fbdcf32efd91f8fc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ball_EXP_test_0
+      name: etc_1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e79f56a6edc1e5448a7ee8cd03fa3bb8
-      internalID: 1241648384
+      spriteID: 63c08511d9bbc6742a4288e27001b8ce
+      internalID: 1986017574
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ball_EXP_test_1
+      name: etc_1_1
       rect:
         serializedVersion: 2
         x: 16
@@ -132,8 +132,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a19baad7da810fd42ad6bfa01627bfa0
-      internalID: 1992291196
+      spriteID: fab3f8b7c80fec749aa5e12e96cab6e6
+      internalID: -564722197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: etc_1_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfb4a001bcf8cbc44a33b6e95fcf333c
+      internalID: -814401739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: etc_1_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e964c00ef6e8c89449007f2920fb10bd
+      internalID: -42693425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: etc_1_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a764ceb5e9839024ea98cc7230d28e29
+      internalID: 1431490281
       vertices: []
       indices: 
       edges: []
@@ -149,8 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ball_EXP_test_0: 1241648384
-      Ball_EXP_test_1: 1992291196
+      etc_1_0: 1986017574
+      etc_1_1: -564722197
+      etc_1_2: -814401739
+      etc_1_3: -42693425
+      etc_1_4: 1431490281
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
