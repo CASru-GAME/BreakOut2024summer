@@ -73,14 +73,17 @@ namespace App.Main.Stage
 
         }
 
+        /// static→インスタンス
         private void SyncGameParameter()
         {
             _stageSystem.SyncData();
+            _timer.InitializeTimer(_timeLimit, StatisticsDatastore._remainingTimeLimit);
         }
-
+        /// インスタンス→static
         private void FetchGameParameter()
         {
             _stageSystem.FetchData();
+            StatisticsDatastore.AssignRemainingTimeLimit(_timer.RemainingTimeLimit);
         }
     }
 }

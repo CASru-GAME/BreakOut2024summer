@@ -29,7 +29,7 @@ namespace App.Static
         ///<summary>
         /// 残りの制限時間
         /// </summary>
-        public static int _remainingTimeLimit { get; private set; } = 0;
+        public static float _remainingTimeLimit { get; private set; } = 0;
         ///<summary>
         /// 残りの残機
         /// </summary>
@@ -118,7 +118,7 @@ namespace App.Static
         /// 残りの制限時間を代入する
         /// </summary>
         /// <param name="remainingTimeLimit"></param>
-        public static void AssignRemainingTimeLimit(int remainingTimeLimit)
+        public static void AssignRemainingTimeLimit(float remainingTimeLimit)
         {
             if (remainingTimeLimit < 0)
             {
