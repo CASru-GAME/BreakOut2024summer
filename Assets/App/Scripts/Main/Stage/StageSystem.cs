@@ -23,6 +23,7 @@ namespace App.Main.Stage
         private int _targetBlockCount = 0;
         public int TargetBlockCount => _targetBlockCount;
         private int _clearedStageCount = 0;
+        public int ClearedStageCount => _clearedStageCount;
         private int _roopCount = 1;
         private int _currentStageNumberID = 1;
 

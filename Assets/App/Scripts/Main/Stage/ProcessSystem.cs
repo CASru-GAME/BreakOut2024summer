@@ -13,31 +13,33 @@ namespace App.Main.Stage
         private StageStateDatastore _stageState = default;
         [SerializeField] private float _timeLimit = 60.0f;
 
+        /// ゲームの初期化処理
         void Start()
         {
             _timer = GetComponent<Timer>();
             _stageSystem = GetComponent<StageSystem>();
             _stageState = GetComponent<StageStateDatastore>();
-            _stageState.SetPlayGame();
-            _stageSystem.InitializeStage();
-            _timer.InitializeTimer(_timeLimit);
-            _timer.StartTimer();
+            InitializeGame();
         }
 
+        /// ゲームの更新処理
         void Update()
         {
             if (_stageState.isPlaying())
             {
+                //　時間切れになったら
                 if (_timer.State == Timer.TimerState.TimeOver)
                 {
                     // ゲーム終了処理
                     _stageState.SetGameFinish();
                 }
+                //画面上のボールがなくなったら
                 else if (_stageSystem.BallCountonStage == 0)
                 {
                     // 残機を減らす処理
                     _player.SubtractLive(1);
                     Debug.Log("Live: " + _player.Parameter.Live.CurrentValue);
+                    // 残機が0になったら
                     if (_player.IsLiveValue(0))
                     {
                         // ゲーム終了処理
@@ -49,38 +51,68 @@ namespace App.Main.Stage
                         _stageSystem.CreateBall(new Vector3(0, 0, 0));
                     }
                 }
+                // ターゲットブロックがすべてなくなったら
                 else if (_stageSystem.TargetBlockCount == 0)
                 {
                     // クリア処理
                     _stageState.SetStageClear();
-                    _stageSystem.CountClearedStage();
                 }
             }
             else if (_stageState.isGameFinish())
             {
                 // ゲーム終了処理
-                _timer.StopTimer();
+                ConductGameFinishProcess();
             }
             else if (_stageState.isStageClear())
             {
                 // ステージクリア処理
-                _timer.StopTimer();
+                ConductStageClearProcess();
             }
         }
 
+        // ゲームの状態がゲーム終了状態になった際のゲーム終了処理
+        private void ConductGameFinishProcess()
+        {
+            _stageState.SetWaiting();
+            _timer.StopTimer();
+            FetchGameParameter();
+        }
+
+        // ゲームの状態がステージクリア状態になった際のステージクリア処理
+        private void ConductStageClearProcess()
+        {
+            _stageState.SetWaiting();
+            _stageSystem.CountClearedStage();
+            _timer.StopTimer();
+            FetchGameParameter();
+        }
+        
+        // どのような状態であっても発動するゲームの初期化処理
         private void InitializeGame()
         {
-
+            LoadGameParameter();
+            _stageSystem.InitializeStage();
+            _stageState.SetPlayGame();
+            _timer.StartTimer();
         }
 
-        /// static→インスタンス
-        private void SyncGameParameter()
+
+        /// インスタンス←static
+        private void LoadGameParameter()
         {
             _stageSystem.SyncData();
-            _timer.InitializeTimer(_timeLimit, StatisticsDatastore._remainingTimeLimit);
-            _player.AddLive(StatisticsDatastore._remainingLive);
+            if (_stageSystem.ClearedStageCount == 0)
+            {
+                _timer.InitializeTimer(_timeLimit);
+            }
+            else
+            {
+                _timer.InitializeTimer(_timeLimit, StatisticsDatastore._remainingTimeLimit);
+            }
+            _player.AddLive(StatisticsDatastore._remainingLive - _player.Parameter.Live.CurrentValue);
+            _player.SubtractLive(_player.Parameter.Live.CurrentValue - StatisticsDatastore._remainingLive);
         }
-        /// インスタンス→static
+        /// static←インスタンス
         private void FetchGameParameter()
         {
             _stageSystem.FetchData();
