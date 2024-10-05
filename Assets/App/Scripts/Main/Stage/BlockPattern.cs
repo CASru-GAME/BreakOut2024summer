@@ -47,9 +47,6 @@ namespace App.Main.Stage
 
             //生成
             InstantiateBlocks(stageBlockPatternData);
-
-            //ターゲット数を更新
-            //TargetBlockCount = stageBlockPatternData.GetTargetBlockCount();
         }
 
         private void InstantiateBlocks(StageBlockPatternData stageBlockPatternData)
@@ -124,17 +121,33 @@ namespace App.Main.Stage
                             }
                         }
                     }
+
+                    //パターンの順番をランダムにする
+                    PatternList = PatternList.OrderBy(a => Guid.NewGuid()).ToList();
                     AllPositionList.Add(PatternList);
                 }
 
                 //バックトラックで座標候補を確定
-                var candidatePositionList = new List<List<List<(int x, int y)>>>();
+                var selectedPositionList = new List<List<(int x, int y)>>();
+                int attemptCount = 0, maxAttemptCount = 1000;
                 FindPositionPattern(0, new List<List<(int x, int y)>>());
                 void FindPositionPattern(int patternIndex, List<List<(int x, int y)>> decidedPositionList)
                 {
+                    //再帰回数が多すぎる場合の処理
+                    if(attemptCount > maxAttemptCount)
+                    {
+                        Debug.Log("Too Many Attempts!!!!!!!!!!!!!!!!!");
+                        return;
+                    }
+
+                    if (selectedPositionList.Count >= 1)
+                    {
+                        return;
+                    }
+
                     if (patternIndex == BlockPatternDataList.Count)
                     {
-                        candidatePositionList.Add(new List<List<(int x, int y)>>(decidedPositionList));
+                        selectedPositionList = new List<List<(int x, int y)>>(decidedPositionList);
                         return;
                     }
 
@@ -160,10 +173,6 @@ namespace App.Main.Stage
                         decidedPositionList.RemoveAt(decidedPositionList.Count - 1);
                     }
                 }
-
-                //座標候補から1種類抽出
-                UnityEngine.Random.InitState(DateTime.Now.Millisecond);
-                List<List<(int x, int y)>> selectedPositionList = candidatePositionList[UnityEngine.Random.Range(0, candidatePositionList.Count)];
 
                 //各ブロックの生成座標を設定
                 for (int i = 0; i < BlockPatternDataList.Count; i++)
@@ -261,6 +270,7 @@ namespace App.Main.Stage
             public static StageBlockPatternData Stage1_1stLap()
             {
                 return new StageBlockPatternData(new List<BlockPatternData>{
+                    BlockPatternData.Vertical_3_Changeable(),
                     BlockPatternData.Vertical_3_Changeable(),
                     BlockPatternData.Vertical_3_Changeable()});
             }

@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHp: 1
+  Id: 0
+  DamageEffect: {fileID: 3125810737970945919, guid: 69424b6138335054db210228b558d3cc, type: 3}
 --- !u!114 &6864989809349075267
 MonoBehaviour:
   m_ObjectHideFlags: 0

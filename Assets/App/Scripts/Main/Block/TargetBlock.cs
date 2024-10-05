@@ -1,6 +1,7 @@
 using UnityEngine;
 using App.Main.Player;
 using App.Main.Stage;
+using App.Main.Effects;
 
 namespace App.Main.Block
 {   //ターゲットのブロック
@@ -9,6 +10,7 @@ namespace App.Main.Block
         private BlockDataStore blockDatastore;
         [SerializeField] int initialHp;
         [SerializeField] int Id;
+        [SerializeField] GameObject DamageEffect;
         private StageSystem stage;
 
         void Start()
@@ -33,9 +35,18 @@ namespace App.Main.Block
             BlockHp newBlockHp = new BlockHp(damage.CurrentValue);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
+            CreateDamageEffect(damage.CurrentValue - blockDatastore.Hp.CurrentValue);
+
             if(blockDatastore.Hp.CurrentValue <= 0)
             Break();
         }
+
+        private void CreateDamageEffect(int damageValue)
+        {
+            var newDamageEffect = Instantiate(DamageEffect, transform.position, Quaternion.identity);
+            newDamageEffect.GetComponent<DamageEffect>().Initialize(damageValue, stage.Canvas);
+        }
+
         public void Healed(int healAmount)
         {   
             BlockHp newBlockHp = new BlockHp(healAmount);
