@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace App.Main.Block
 {
-    public class BlockDataStore : MonoBehaviour
+    public class BlockDatastore : MonoBehaviour
     {   
         public BlockHp Hp { get; private set; }
 

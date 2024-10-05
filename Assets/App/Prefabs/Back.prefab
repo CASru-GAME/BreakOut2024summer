@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 4069011065000865502}
   - component: {fileID: 4315841252610101729}
   - component: {fileID: 4039009756719930488}
-  - component: {fileID: 8314235325778631327}
   m_Layer: 0
-  m_Name: Cat
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,12 +74,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1227133925, guid: 716fd412dd0770e479d6e12e13b8ebb9, type: 3}
+  m_Sprite: {fileID: 1791802422, guid: 100369cbf6cc46c44a35b73ae3ac9848, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -96,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 5744082711352651307}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 14c911e4c046ab0498e4eac56e343e88, type: 2}
+  m_Controller: {fileID: 9100000, guid: a24efe1855e46c84ea14c0814c297ee4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -107,15 +106,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8314235325778631327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5744082711352651307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5706ea54bea363540bf21a7a07f862b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

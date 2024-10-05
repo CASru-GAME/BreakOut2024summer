@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace App.Main.Cat
+namespace App.Main.Block
 {
-    public class CatSuicide : MonoBehaviour
+    public class BlockDestroyedAnimationSuicide : MonoBehaviour
     {
         private void Start()
         {
@@ -12,7 +12,7 @@ namespace App.Main.Cat
 
             IEnumerator Suicide()
             {
-                yield return new WaitForSeconds(1.5f);
+                yield return new WaitForSeconds(1f);
                 Destroy(gameObject);
             }
         }
