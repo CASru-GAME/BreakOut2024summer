@@ -23,7 +23,7 @@ namespace App.Main.Stage
             _stageState = GetComponent<StageStateDatastore>();
             _sceneLoader = GetComponent<SceneLoader>();
             InitializeGame();
-            Debug.Log("_____________________________: " + _stageSystem.CurrentStageNumberID + " :_____________________________");
+            Debug.Log("_____________________________: CurrentStageNumberID = " + _stageSystem.CurrentStageNumberID + " :_____________________________");
         }
 
         /// ゲームの更新処理
@@ -124,6 +124,16 @@ namespace App.Main.Stage
             _stageSystem.FetchData();
             StatisticsDatastore.AssignRemainingTimeLimit(_timer.RemainingTimeLimit);
             StatisticsDatastore.AssignRemainingLive(_player.Parameter.Live.CurrentValue);
+        }
+
+        /// <summary>
+        /// 現在のステージが開始されてからの経過時間を取得する
+        /// </summary>
+        /// <returns>現在のステージが開始されてからの経過時間</returns>
+        public float GetTime_afterCurrentStageStarted()
+        {
+            if (_stageSystem.CurrentStageNumberID == 1) return _timeLimit - _timer.RemainingTimeLimit;
+            return StatisticsDatastore._remainingTimeLimit - _timer.RemainingTimeLimit;
         }
     }
 }
