@@ -23,6 +23,7 @@ namespace App.Main.Stage
             _stageState = GetComponent<StageStateDatastore>();
             _sceneLoader = GetComponent<SceneLoader>();
             InitializeGame();
+            Debug.Log("_____________________________: " + _stageSystem.CurrentStageNumberID + " :_____________________________");
         }
 
         /// ゲームの更新処理
