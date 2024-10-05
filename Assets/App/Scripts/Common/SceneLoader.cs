@@ -2,25 +2,31 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class SceneLoader : MonoBehaviour
+namespace App.Common
 {
     /// <summary>
-    /// 指定されたシーンを非同期で読み込みます。
+    /// シーンの読み込みを行うクラス
     /// </summary>
-    /// <param name="sceneName">読み込むシーンの名前</param>
-    public void LoadSceneAsyncByName(string sceneName)
+    public class SceneLoader : MonoBehaviour
     {
-        StartCoroutine(LoadSceneAsync(sceneName));
-    }
-
-    private IEnumerator LoadSceneAsync(string sceneName)
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-
-        // シーンの読み込みが完了するまで待機
-        while (!asyncLoad.isDone)
+        /// <summary>
+        /// 指定されたシーンを非同期で読み込みます。
+        /// </summary>
+        /// <param name="sceneName">読み込むシーンの名前</param>
+        public void LoadSceneAsyncByName(string sceneName)
         {
-            yield return null;
+            StartCoroutine(LoadSceneAsync(sceneName));
+        }
+
+        private IEnumerator LoadSceneAsync(string sceneName)
+        {
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+            // シーンの読み込みが完了するまで待機
+            while (!asyncLoad.isDone)
+            {
+                yield return null;
+            }
         }
     }
 }
