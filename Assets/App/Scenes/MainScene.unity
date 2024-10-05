@@ -682,7 +682,7 @@ MonoBehaviour:
   _player: {fileID: 2114354180}
   _ballPrefab: {fileID: 8641789219075247340, guid: f658b01440e8ddc4eaf4b0d358cbab0e, type: 3}
   _itemPrefab: {fileID: 5348054082285138816, guid: d27aaaff2cd83f24893ac25f5d29aa01, type: 3}
-  _finalStageNumberID: 5
+  _finalStageNumberID: 15
   Canvas: {fileID: 1161616164}
 --- !u!4 &1548254336
 Transform:
