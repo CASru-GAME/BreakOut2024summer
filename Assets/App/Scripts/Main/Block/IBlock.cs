@@ -5,7 +5,7 @@ namespace App.Main.Block
 {
     public interface IBlock
     {   
-        void TakeDamage(AttackPoint damage);
+        void TakeDamage(int damage);
         void SetStage(StageSystem stage);
         void Healed(int healAmount);
     }

@@ -10,8 +10,13 @@ namespace App.Main.Player
         public Parameter Parameter { get; private set; }
         public ItemList ItemList{ get; private set; }
         private LevelSystem levelSystem;
-        private PerkSystem PerkSystem;
+        public PerkSystem PerkSystem;
+        private ComboSystem ComboSystem;
         [SerializeField] GameObject perkPanelPrefab;
+
+        private void FixedUpdate() {
+            ComboSystem.AddComboResetCount();
+        }
 
 
         /// <summary>
@@ -19,10 +24,11 @@ namespace App.Main.Player
         /// </summary>
         public void InitializePlayer()
         {
-            Parameter = new Parameter(3, 1, 5.0f, 5.0f, 1, 0);  //Parameter(int live, int attackPoint, float ballSpeed, float moveSpeed, int level , int experiencePoint)のコンストラクタを呼び出す
+            Parameter = new Parameter(3, 3, 5.0f, 5.0f, 1, 0);  //Parameter(int live, int attackPoint, float ballSpeed, float moveSpeed, int level , int experiencePoint)のコンストラクタを呼び出す
             ItemList = new ItemList();
             levelSystem = new LevelSystem(this);
             PerkSystem = new PerkSystem(this, perkPanelPrefab); 
+            ComboSystem = new ComboSystem(this);
         }
 
         public void ChoosePerk()
@@ -83,6 +89,11 @@ namespace App.Main.Player
         public int GetLiveValue()
         {
             return Parameter.GetLiveValue();
+        }
+
+        public int GetMaxLiveValue()
+        {
+            return Parameter.GetMaxLiveValue();
         }
 
         /// <summary>
@@ -262,6 +273,21 @@ namespace App.Main.Player
         public int CurrentExperiencePoint(int exp)
         {
             return levelSystem.CurrentExperiencePoint(exp);
+        }
+
+        public void AddComboCount()
+        {
+            Parameter.AddComboCount();
+        }
+
+        public int GetComboCount()
+        {
+            return Parameter.GetComboCount();
+        }
+
+        public void ResetComboCount()
+        {
+            Parameter.ResetComboCount();
         }
 
     }

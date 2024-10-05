@@ -8,7 +8,7 @@ namespace App.Main.Player.Perk
 {
     public class PerkSystem
     {
-        PerkList PerkList;
+        public PerkList PerkList;
         int AmountPerk;
 
         private List<int> RandomPerkList = new List<int>();
@@ -103,6 +103,23 @@ namespace App.Main.Player.Perk
         public void GetPerk(int PerkId)
         {
             PerkList.GetPerk(PerkId);
+
+        }
+
+        private void EffectWhenAcquiredPerk(int PerkId)
+        {
+            if(PerkId == 1)
+            {
+                PerkList.AllPerkList[1].Effect();
+            }
+            if(PerkId == 2)
+            {
+                PerkList.AllPerkList[2].Effect();
+            }
+            if(PerkId == 4)
+            {
+                PerkList.AllPerkList[4].Effect();
+            }
         }
 
         /// <summary>
