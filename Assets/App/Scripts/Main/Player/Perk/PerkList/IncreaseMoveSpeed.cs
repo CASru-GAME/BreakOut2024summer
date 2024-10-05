@@ -5,6 +5,7 @@ namespace App.Main.Player.Perk
 {
     public class IncreaseMoveSpeed : IPerk
     {
+        private int id = 2;
         private int StackCount = 0;
         private int CurrentStackCount = 0;
         private PlayerDatastore playerDatastore;
@@ -35,6 +36,16 @@ namespace App.Main.Player.Perk
         private float CalculateValue(int value)
         {
             return 0.5f+0.5f*(float)value;
+        }
+
+        public int GetId()
+        {
+            return id;
+        }
+
+        public int AttackEffect()
+        {
+            return 0;
         }
     }
 }

@@ -73,12 +73,27 @@ namespace App.Main.Ball
         /// <summary>
         /// ブロックに与えるダメージを計算する
         /// </summary>
-        private AttackPoint CalcDamage()
+        private int CalcDamage()
         {
-            AttackPoint newAttackPoint = new AttackPoint(0);
-            newAttackPoint = playerDatastore.Parameter.AttackPoint;
+            int damage = playerDatastore.GetAttackPointValue();
+            damage += CalculateComboDamage();
+            CaluculatePerkDamage(damage);
+
+
             //パークのダメージも計算する(実装待ち)
-            return newAttackPoint;
+            return damage;
+        }
+
+        private int CalculateComboDamage()
+        {
+            return (int)(playerDatastore.GetComboCount()*0.25);
+        }
+
+        private int CaluculatePerkDamage(int damage)
+        {
+            damage *= playerDatastore.PerkSystem.PerkList.AllPerkList[3].AttackEffect();
+            damage *= playerDatastore.PerkSystem.PerkList.AllPerkList[4].AttackEffect();
+            return damage;
         }
     }
 }

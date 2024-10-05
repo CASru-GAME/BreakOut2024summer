@@ -5,6 +5,7 @@ namespace App.Main.Player.Perk
 {
     public class Strength : IPerk
     {
+        private int id = 1;
         private int StackCount = 0;
         private int CurrentStackCount = 0;
         private PlayerDatastore playerDatastore;
@@ -25,7 +26,7 @@ namespace App.Main.Player.Perk
 
         public void Effect()
         {
-            if(StackCount == 0) return;
+            if (StackCount == 0) return;
             playerDatastore.SubtractAttackPoint(CalculateValue(CurrentStackCount));
             playerDatastore.AddAttackPoint(CalculateValue(StackCount));
             CurrentStackCount = StackCount;
@@ -34,7 +35,17 @@ namespace App.Main.Player.Perk
 
         private int CalculateValue(int value)
         {
-            return 2+3*value;
+            return 2 + 3 * value;
+        }
+
+        public int GetId()
+        {
+            return id;
+        }
+
+        public int AttackEffect()
+        {
+            return 0;
         }
     }
 }
