@@ -1,12 +1,8 @@
 using System;
 using UnityEngine;
-using App.Main.Block;
 using App.Main.Player;
-using App.Main.Stage;
 using App.Main.Item;
-using UnityEngine.UIElements;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using App.Static;
 
 namespace App.Main.Stage
 {
@@ -28,6 +24,7 @@ namespace App.Main.Stage
         private int _targetBlockCount = 0;
         public int TargetBlockCount => _targetBlockCount;
         private int _clearedStageCount = 0;
+        public int ClearedStageCount => _clearedStageCount;
         private int _roopCount = 1;
         private int _currentStageNumberID = 1;
 
@@ -142,8 +139,30 @@ namespace App.Main.Stage
         public void CountClearedStage()
         {
             _clearedStageCount++;
-            _roopCount = _clearedStageCount / _finalStageNumberID;
-            _currentStageNumberID = _clearedStageCount % _finalStageNumberID;
+            _roopCount = 1 + _clearedStageCount / _finalStageNumberID;
+            _currentStageNumberID = _clearedStageCount % _finalStageNumberID != 0 ? _clearedStageCount % _finalStageNumberID : _finalStageNumberID;
+        }
+
+        /// <summary>
+        /// 前のステージのクリアカウントを取得する
+        /// </summary>
+        public void SyncData()
+        {
+            for (int i = 0; i < StatisticsDatastore._totalClearedStage; i++)
+            {
+                CountClearedStage();
+            }
+            for (int i = 0; i < StatisticsDatastore._totalDestroyedTargetBlock; i++)
+            {
+            }
+        }
+
+        /// <summary>
+        /// 今のステージのクリアカウントを静的データに代入する
+        /// </summary>
+        public void FetchData()
+        {
+            StatisticsDatastore.AssignTotalClearedStage(_clearedStageCount);
         }
     }
 }

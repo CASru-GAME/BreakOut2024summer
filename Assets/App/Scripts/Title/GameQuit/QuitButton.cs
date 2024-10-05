@@ -7,7 +7,7 @@ namespace App.Title.GameQuit
         public void ButtonClick()
         {
 #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #else
             Application.Quit();
 #endif
