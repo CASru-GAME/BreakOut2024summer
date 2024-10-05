@@ -27,6 +27,7 @@ namespace App.Main.Stage
         public int ClearedStageCount => _clearedStageCount;
         private int _roopCount = 1;
         private int _currentStageNumberID = 1;
+        public int CurrentStageNumberID => _currentStageNumberID;
 
         ///<summary>
         ///ステージシステム上のボールの数を一つ増やす。
@@ -139,8 +140,8 @@ namespace App.Main.Stage
         public void CountClearedStage()
         {
             _clearedStageCount++;
-            _roopCount = 1 + _clearedStageCount / _finalStageNumberID;
-            _currentStageNumberID = _clearedStageCount % _finalStageNumberID != 0 ? _clearedStageCount % _finalStageNumberID : _finalStageNumberID;
+            _roopCount = 1 + (_clearedStageCount / _finalStageNumberID);
+            _currentStageNumberID = _clearedStageCount % _finalStageNumberID + 1;
         }
 
         /// <summary>
