@@ -13,7 +13,7 @@ namespace App.Main.Stage
         private SceneLoader _sceneLoader = default;
         [SerializeField] private PlayerDatastore _player = default;
         [SerializeField] private float _timeLimit = 60.0f;
-
+        
 
         /// ゲームの初期化処理
         void Start()
@@ -125,5 +125,7 @@ namespace App.Main.Stage
             StatisticsDatastore.AssignRemainingTimeLimit(_timer.RemainingTimeLimit);
             StatisticsDatastore.AssignRemainingLive(_player.Parameter.Live.CurrentValue);
         }
+
+        public void CurrentStageTime
     }
 }
