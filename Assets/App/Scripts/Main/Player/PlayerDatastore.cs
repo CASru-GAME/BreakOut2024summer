@@ -1,6 +1,7 @@
 using App.Main.Item;
 using UnityEngine;
 using App.Main.Player.Perk;
+using App.Main.Stage;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,6 +17,7 @@ namespace App.Main.Player
         [SerializeField] GameObject perkPanelPrefab;
         [SerializeField] private Canvas perkCanvas;
         [SerializeField] private List<GameObject> perkPanelList;
+        [SerializeField] private ProcessSystem processSystem;
 
         private void FixedUpdate() {
             ComboSystem.AddComboResetCount();
@@ -31,7 +33,7 @@ namespace App.Main.Player
             ItemList = new ItemList();
             levelSystem = new LevelSystem(this);
             //PerkSystem = new PerkSystem(this, perkPanelPrefab); 
-            PerkSystem = new PerkSystem(this, perkCanvas, perkPanelList);
+            PerkSystem = new PerkSystem(this, perkCanvas, perkPanelList, processSystem);
             ComboSystem = new ComboSystem(this);
             perkCanvas.enabled = false;
         }
@@ -293,6 +295,12 @@ namespace App.Main.Player
         public void ResetComboCount()
         {
             Parameter.ResetComboCount();
+        }
+
+        public void LoadLevelAndExperiencePoint(int level, int experiencePoint)
+        {
+            Parameter.ReplaceLevel(level);
+            Parameter.AddExperiencePoint(experiencePoint);
         }
     }
 }
