@@ -205,5 +205,5 @@ MonoBehaviour:
   destroyedAnimationPrefab: {fileID: 5744082711352651307, guid: 0256bc764ca869d4a8a068906decde55, type: 3}
   damageColor:
     serializedVersion: 2
-    rgba: 0
+    rgba: 4294967295
   damageEffect: {fileID: 3125810737970945919, guid: 476bbcdbf27665c409286f0cc22a1fad, type: 3}

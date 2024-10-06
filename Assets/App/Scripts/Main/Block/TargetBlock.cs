@@ -34,12 +34,12 @@ namespace App.Main.Block
         //<summary>
         // ダメージを受ける(ボールが呼び出す)
         //</summary>
-        public void TakeDamage(AttackPoint damage)
+        public void TakeDamage(int damage)
         {   
-            BlockHp newBlockHp = new BlockHp(damage.CurrentValue);
+            BlockHp newBlockHp = new BlockHp(damage);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
-            blockAnimation.CreateDamageEffect(damage.CurrentValue - blockDatastore.Hp.CurrentValue, stage);
+            blockAnimation.CreateDamageEffect(damage, stage);
 
             if(blockDatastore.Hp.CurrentValue <= 0)
             Break();

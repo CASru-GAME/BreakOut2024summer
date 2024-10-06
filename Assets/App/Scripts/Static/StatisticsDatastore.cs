@@ -17,7 +17,11 @@ namespace App.Static
         ///<summary>
         /// 獲得したパークの数
         /// </summary>
-        public static int[] _totalAquiredPerkList { get; private set; } = new int[22] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        public static int[,] _totalAquiredPerkList { get; private set; } = new int[22, 2] { 
+            { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, 
+            { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, 
+            { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } 
+        };
         ///<summary>
         /// クリアしたステージ数
         /// </summary>
@@ -73,11 +77,11 @@ namespace App.Static
         /// <value>
         /// 22個の要素を持つint型の配列
         /// </value>
-        public static void AssignTotalAquiredPerkList(int[] totalAquiredPerkList)
+        public static void AssignTotalAquiredPerkList(int[,] totalAquiredPerkList)
         {
-            for (int i = 0; i < totalAquiredPerkList.Length; i++)
+            for (int i = 0; i < totalAquiredPerkList.GetLength(0); i++)
             {
-                if (totalAquiredPerkList[i] < 0)
+                if (totalAquiredPerkList[i, 0] < 0)
                 {
                     UnityEngine.Debug.Log("TotalAquiredPerkList: 0より小さい値が入力されました");
                     return;
@@ -149,7 +153,11 @@ namespace App.Static
         {
             _totalAquiredExperiencePoint = 0;
             _playerLevel = 1;
-            _totalAquiredPerkList = new int[22] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            _totalAquiredPerkList = new int[22, 2] {
+                {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0},
+                {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0},
+                {0, 0}, {0, 0}
+            };
             _totalClearedStage = 0;
             _totalDestroyedTargetBlock = 0;
             _remainingTimeLimit = 0;

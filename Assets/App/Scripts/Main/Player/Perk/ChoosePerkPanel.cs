@@ -9,21 +9,14 @@ namespace App.Main.Player.Perk
     {
         private int PerkId = 0;
         private PerkSystem PerkSystem;
-       
-        void Start()
-        {
-
-        }
 
         public void Initialize(int PerkId, PerkSystem PerkSystem)
         {
             this.PerkId = PerkId;
             this.PerkSystem = PerkSystem;
-
         }
 
-        // Update is called once per frame
-        void Update()
+        /*void Update()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
@@ -34,17 +27,21 @@ namespace App.Main.Player.Perk
                 {
                     Debug.Log(hit.collider.gameObject.name);
                     PerkSystem.GetPerk(PerkId);
-                    PerkSystem.IsPerkChoosing = false;
-                    UnityEngine.Time.timeScale = 1;
                     PerkSystem.SusideAll();
                     
                 }
             }
+        }*/
+
+        public void OnClick()
+        {
+            PerkSystem.GetPerk(PerkId);
+            PerkSystem.SuicideAll();
         }
 
         public void Suside()
         {
-            this.gameObject.SetActive(false);
+            Destroy(this.gameObject);
         }
     }
 }
