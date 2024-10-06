@@ -39,7 +39,7 @@ namespace App.Main.Block
             BlockHp newBlockHp = new BlockHp(damage);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
-            blockAnimation.CreateDamageEffect(damage - blockDatastore.Hp.CurrentValue, stage);
+            blockAnimation.CreateDamageEffect(damage, stage);
 
             if(blockDatastore.Hp.CurrentValue <= 0)
             Break();

@@ -1,4 +1,5 @@
 using App.Main.Player;
+using App.Main.Stage;
 using System;
 using System.Collections.Generic;
 using System.Collections;
@@ -13,6 +14,7 @@ namespace App.Main.Player.Perk
         int AmountPerk;
 
         private List<int> RandomPerkList = new List<int>();
+        private ProcessSystem ProcessSystem;
         /*private GameObject PerkPanelPrefab;
         private GameObject PerkPanel1;
         private GameObject PerkPanel2;
@@ -25,6 +27,7 @@ namespace App.Main.Player.Perk
         private Canvas perkCanvas;
         private List<GameObject> perkPanelList;
         private PlayerDatastore playerDatastore;
+        private ProcessSystem processSystem;
 
         /*public PerkSystem(PlayerDatastore playerDatastore, GameObject PerkPanelPrefab)
         {
@@ -53,9 +56,10 @@ namespace App.Main.Player.Perk
             ) as GameObject;
             PerkPanel3.SetActive(false);
         }*/
-        public PerkSystem(PlayerDatastore playerDatastore, Canvas perkCanvas, List<GameObject> perkPanelList)
+        public PerkSystem(PlayerDatastore playerDatastore, Canvas perkCanvas, List<GameObject> perkPanelList, ProcessSystem processSystem)
         {
-            PerkList = new PerkList(playerDatastore);
+            this.processSystem = processSystem;
+            PerkList = new PerkList(playerDatastore, processSystem);
             AmountPerk = PerkList.AmountPerk;
             this.playerDatastore = playerDatastore;
             this.perkCanvas = perkCanvas;
@@ -125,21 +129,18 @@ namespace App.Main.Player.Perk
         public void GetPerk(int PerkId)
         {
             PerkList.GetPerk(PerkId);
+            EffectWhenAcquiredPerk(PerkId);
         }
 
         private void EffectWhenAcquiredPerk(int PerkId)
         {
-            if(PerkId == 1)
-            {
-                PerkList.AllPerkList[1].Effect();
-            }
             if(PerkId == 2)
             {
-                PerkList.AllPerkList[2].Effect();
+                UsePerkEffects(2);
             }
             if(PerkId == 4)
             {
-                PerkList.AllPerkList[4].Effect();
+                UsePerkEffects(4);
             }
         }
 

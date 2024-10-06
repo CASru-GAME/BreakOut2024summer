@@ -938,6 +938,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkPanelPrefab: {fileID: 3371350509416652022, guid: 23f42257c609ecf4796c24458416372f, type: 3}
+  perkCanvas: {fileID: 1161616167}
+  perkPanelList: []
 --- !u!114 &2114354181
 MonoBehaviour:
   m_ObjectHideFlags: 0
