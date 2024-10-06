@@ -2,6 +2,7 @@ using App.Main.Item;
 using UnityEngine;
 using App.Main.Player.Perk;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace App.Main.Player
 {
@@ -13,6 +14,8 @@ namespace App.Main.Player
         public PerkSystem PerkSystem;
         private ComboSystem ComboSystem;
         [SerializeField] GameObject perkPanelPrefab;
+        [SerializeField] private Canvas perkCanvas;
+        [SerializeField] private List<GameObject> perkPanelList;
 
         private void FixedUpdate() {
             ComboSystem.AddComboResetCount();
@@ -27,8 +30,10 @@ namespace App.Main.Player
             Parameter = new Parameter(3, 3, 5.0f, 5.0f, 1, 0);  //Parameter(int live, int attackPoint, float ballSpeed, float moveSpeed, int level , int experiencePoint)のコンストラクタを呼び出す
             ItemList = new ItemList();
             levelSystem = new LevelSystem(this);
-            PerkSystem = new PerkSystem(this, perkPanelPrefab); 
+            //PerkSystem = new PerkSystem(this, perkPanelPrefab); 
+            PerkSystem = new PerkSystem(this, perkCanvas, perkPanelList);
             ComboSystem = new ComboSystem(this);
+            perkCanvas.enabled = false;
         }
 
         public void ChoosePerk()
@@ -289,6 +294,5 @@ namespace App.Main.Player
         {
             Parameter.ResetComboCount();
         }
-
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using System.Linq;
 
 namespace App.Main.Player.Perk
 {
@@ -12,15 +13,20 @@ namespace App.Main.Player.Perk
         int AmountPerk;
 
         private List<int> RandomPerkList = new List<int>();
-        private GameObject PerkPanelPrefab;
+        /*private GameObject PerkPanelPrefab;
         private GameObject PerkPanel1;
         private GameObject PerkPanel2;
         private GameObject PerkPanel3;
+        */
         private System.Random random = new System.Random(); // Move Random instance to class level
 
         public bool IsPerkChoosing = false;
 
-        public PerkSystem(PlayerDatastore playerDatastore, GameObject PerkPanelPrefab)
+        private Canvas perkCanvas;
+        private List<GameObject> perkPanelList;
+        private PlayerDatastore playerDatastore;
+
+        /*public PerkSystem(PlayerDatastore playerDatastore, GameObject PerkPanelPrefab)
         {
             PerkList = new PerkList(playerDatastore);
             AmountPerk = PerkList.AmountPerk;
@@ -46,19 +52,29 @@ namespace App.Main.Player.Perk
                 Quaternion.identity
             ) as GameObject;
             PerkPanel3.SetActive(false);
+        }*/
+        public PerkSystem(PlayerDatastore playerDatastore, Canvas perkCanvas, List<GameObject> perkPanelList)
+        {
+            PerkList = new PerkList(playerDatastore);
+            AmountPerk = PerkList.AmountPerk;
+            this.playerDatastore = playerDatastore;
+            this.perkCanvas = perkCanvas;
+            this.perkPanelList = perkPanelList;
         }
 
         private void ChoseRandomPerk()
         {
             RandomPerkList.Clear();
             // AllPerkListからランダムで重複なしでPerkを3つ選択する
-            while (RandomPerkList.Count < 3)
+            var PerkIDList = new List<int>();
+            for (int i = 0; i < AmountPerk; i++)
             {
-                int PerkId = random.Next(0, AmountPerk);
-                if (!RandomPerkList.Contains(PerkId))
-                {
-                    RandomPerkList.Add(PerkId);
-                }
+                PerkIDList.Add(i);
+            }
+            PerkIDList = PerkIDList.OrderBy(a => Guid.NewGuid()).ToList();
+            for(int i = 0; i < 3; i++)
+            {
+                RandomPerkList.Add(PerkIDList[i]);
             }
         }
 
@@ -67,12 +83,16 @@ namespace App.Main.Player.Perk
         private void CreatePerkPanel()
         {
             // 3つのPerkを画面に表示する
-            PerkPanel1.GetComponent<ChoosePerkPanel>().Initialize(RandomPerkList[0], this);
+            /*PerkPanel1.GetComponent<ChoosePerkPanel>().Initialize(RandomPerkList[0], this);
             PerkPanel2.GetComponent<ChoosePerkPanel>().Initialize(RandomPerkList[1], this);
             PerkPanel3.GetComponent<ChoosePerkPanel>().Initialize(RandomPerkList[2], this);
             PerkPanel1.SetActive(true);
             PerkPanel2.SetActive(true);
-            PerkPanel3.SetActive(true);
+            PerkPanel3.SetActive(true);*/
+            for(int i = 0; i < 3; i++)
+            {
+                perkPanelList[i].GetComponent<ChoosePerkPanel>().Initialize(RandomPerkList[i], this);
+            }
         }
 
 
@@ -82,7 +102,7 @@ namespace App.Main.Player.Perk
         /// </summary>
         public IEnumerator ChoosePerk()
         {
-            
+            perkCanvas.enabled = true;
             UnityEngine.Debug.Log("ChoosePerk");
             IsPerkChoosing = true;
             UnityEngine.Time.timeScale = 0;
@@ -93,17 +113,18 @@ namespace App.Main.Player.Perk
             
         }
 
-        public void SusideAll()
+        public void SuicideAll()
         {
-            PerkPanel1.GetComponent<ChoosePerkPanel>().Suside();
+            /*PerkPanel1.GetComponent<ChoosePerkPanel>().Suside();
             PerkPanel2.GetComponent<ChoosePerkPanel>().Suside();
-            PerkPanel3.GetComponent<ChoosePerkPanel>().Suside();
+            PerkPanel3.GetComponent<ChoosePerkPanel>().Suside();*/
+            perkCanvas.enabled = false;
+            UnityEngine.Time.timeScale = 1;
         }
 
         public void GetPerk(int PerkId)
         {
             PerkList.GetPerk(PerkId);
-
         }
 
         private void EffectWhenAcquiredPerk(int PerkId)
