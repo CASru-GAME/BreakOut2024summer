@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using App.Main.Effects;
 using App.Main.Stage;
 
@@ -49,6 +50,7 @@ namespace App.Main.Block
         {
             var newDamageEffect = Instantiate(damageEffect, transform.position, Quaternion.identity);
             newDamageEffect.GetComponent<DamageEffect>().Initialize(damageValue, stage.Canvas);
+            newDamageEffect.GetComponent<DamageEffect>().GetComponent<Text>().color = damageColor;
         }
     }
 }

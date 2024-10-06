@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353592aa6802ecf418452bde63c4c343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHp: 10
+  initialHp: 1
   Id: 0
 --- !u!114 &5767369045069367308
 MonoBehaviour:
@@ -205,5 +205,5 @@ MonoBehaviour:
   destroyedAnimationPrefab: {fileID: 5744082711352651307, guid: 0256bc764ca869d4a8a068906decde55, type: 3}
   damageColor:
     serializedVersion: 2
-    rgba: 0
+    rgba: 4294967295
   damageEffect: {fileID: 3125810737970945919, guid: 476bbcdbf27665c409286f0cc22a1fad, type: 3}
