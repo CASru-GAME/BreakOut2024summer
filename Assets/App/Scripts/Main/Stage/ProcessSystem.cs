@@ -41,6 +41,9 @@ namespace App.Main.Stage
             Debug.Log("_____________________________: Static → TotalDestroyedTargetBlockCount = " + _stageSystem.GetTotalDestroyedTargetBlockCount() + " :_____________________________");
             Debug.Log("_____________________________: Static → RemainingTimeLimit = " + _timer.RemainingTimeLimit + " :_____________________________");
             Debug.Log("_____________________________: Static → RemainingLive = " + _player.Parameter.GetLiveValue() + " :_____________________________");
+            Debug.Log("_____________________________: Static → TotalAquiredExperiencePoint = " + _player.GetExperiencePointValue() + " :_____________________________");
+            Debug.Log("_____________________________: Static → PlayerLevel = " + _player.GetLevelValue() + " :_____________________________");
+            Debug.Log("_____________________________: Static → TotalAquiredPerkList = " + _player.PerkSystem.PerkList.GetOwnedPerkList() + " :_____________________________");
         }
 
         /// ゲームの更新処理
@@ -142,6 +145,8 @@ namespace App.Main.Stage
                     _player.SubtractLive(_player.Parameter.GetLiveValue() - StatisticsDatastore._remainingLive);
                 }
             }
+            _player.LoadLevelAndExperiencePoint(StatisticsDatastore._playerLevel, StatisticsDatastore._totalAquiredExperiencePoint);
+            _player.PerkSystem.PerkList.LoadPerkList(StatisticsDatastore._totalAquiredPerkList);
         }
 
         /// static←インスタンス
@@ -150,6 +155,9 @@ namespace App.Main.Stage
             _stageSystem.FetchData();
             StatisticsDatastore.AssignRemainingTimeLimit(_timer.RemainingTimeLimit);
             StatisticsDatastore.AssignRemainingLive(_player.Parameter.GetLiveValue());
+            StatisticsDatastore.AssignTotalAquiredExperiencePoint(_player.GetExperiencePointValue());
+            StatisticsDatastore.AssignPlayerLevel(_player.GetLevelValue());
+            StatisticsDatastore.AssignTotalAquiredPerkList(_player.PerkSystem.PerkList.GetOwnedPerkList());
         }
 
         /// <summary>

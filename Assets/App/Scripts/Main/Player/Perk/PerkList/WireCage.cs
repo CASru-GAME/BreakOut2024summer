@@ -28,12 +28,12 @@ namespace App.Main.Player.Perk
         {
             if (StackCount == 0) return;
             //確率で猫が逃げ出す
-            
+
         }
 
         private int CalculateProbability(int value)
         {
-            return (1-1/(value+1))*5;
+            return (1 - 1 / (value + 1)) * 5;
         }
 
 
@@ -42,10 +42,12 @@ namespace App.Main.Player.Perk
             return id;
         }
 
+        //動かないので一旦コメントアウト
         public int AttackEffect()
         {
-            if (StackCount == 0) return;
-            return (int)((1-1/(value+1))*15);
+            //     if (StackCount == 0) return;
+            //     return (int)((1-1/(value+1))*15);
+            return 0;
         }
     }
 }
