@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using App.Static;
 
 namespace App.Common
 {
@@ -16,6 +17,15 @@ namespace App.Common
         public void LoadSceneAsyncByName(string sceneName)
         {
             StartCoroutine(LoadSceneAsync(sceneName));
+        }
+
+        /// <summary>
+        /// メインゲームを最初から読み込みます。
+        /// </summary>
+        public void LoadMainGamefromBegining()
+        {
+            StatisticsDatastore.ResetAllStatisticsData();
+            StartCoroutine(LoadSceneAsync("MainGame"));
         }
 
         private IEnumerator LoadSceneAsync(string sceneName)
