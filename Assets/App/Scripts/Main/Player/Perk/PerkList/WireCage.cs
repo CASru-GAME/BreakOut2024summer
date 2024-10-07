@@ -3,14 +3,14 @@ using App.Main.Player;
 
 namespace App.Main.Player.Perk
 {
-    public class Strength : IPerk
+    public class WireCage : IPerk
     {
         private int id = 1;
         private int StackCount = 0;
         private int CurrentStackCount = 0;
         private PlayerDatastore playerDatastore;
 
-        public Strength(PlayerDatastore playerDatastore)
+        public WireCage(PlayerDatastore playerDatastore)
         {
             this.playerDatastore = playerDatastore;
         }
@@ -27,16 +27,15 @@ namespace App.Main.Player.Perk
         public void Effect()
         {
             if (StackCount == 0) return;
-            playerDatastore.SubtractAttackPoint(CalculateValue(CurrentStackCount));
-            playerDatastore.AddAttackPoint(CalculateValue(StackCount));
-            CurrentStackCount = StackCount;
-            Debug.Log("Park: increase attack point x " + StackCount);
+            //確率で猫が逃げ出す
+            
         }
 
-        private int CalculateValue(int value)
+        private int CalculateProbability(int value)
         {
-            return 2 + 3 * value;
+            return (1-1/(value+1))*5;
         }
+
 
         public int GetId()
         {
@@ -45,7 +44,8 @@ namespace App.Main.Player.Perk
 
         public int AttackEffect()
         {
-            return 0;
+            if (StackCount == 0) return;
+            return (int)((1-1/(value+1))*15);
         }
     }
 }

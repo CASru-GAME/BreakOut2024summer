@@ -1,5 +1,6 @@
 using UnityEngine;
 using App.Main.Player;
+using App.Main.Stage;
 
 namespace App.Main.Player.Perk
 {
@@ -8,10 +9,12 @@ namespace App.Main.Player.Perk
         private int Id = 3;
         private int StackCount = 0;
         private PlayerDatastore playerDatastore;
+        private ProcessSystem ProcessSystem;
 
-        public LateBloomer(PlayerDatastore playerDatastore)
+        public LateBloomer(PlayerDatastore playerDatastore, ProcessSystem processSystem)
         {
             this.playerDatastore = playerDatastore;
+            this.ProcessSystem = processSystem;
         }
         public void AddStackCount()
         {
@@ -25,21 +28,19 @@ namespace App.Main.Player.Perk
 
         public void Effect()
         {
-            if(StackCount == 0) return;
-            CalculateValue(StackCount);
-            // ステージが始まってからの時間を取得し適当な処理をする（未完）
-            // BlockのtakeDamageのところにこの関数を含め、ダメージ増加系のパークを呼び出す処理を追加する
+            // ここには何も書かない
         }
 
-        private int CalculateValue(int value)
+        private int CalculateValue(int value, float time)
         {
-            return 1+(int)(0.2*value);
+            
+            return (int)((1-1/(value+1))*time*0.5);
         }
 
         public int AttackEffect()
         {
             if(StackCount == 0) return 0;
-            return CalculateValue(StackCount);
+            return CalculateValue(StackCount, ProcessSystem.GetTime_afterCurrentStageStarted());
         }
 
         public int GetId()

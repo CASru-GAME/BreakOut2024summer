@@ -91,7 +91,7 @@ namespace App.Main.Ball
 
         private int CaluculatePerkDamage(int damage)
         {
-            damage *= playerDatastore.PerkSystem.PerkList.AllPerkList[3].AttackEffect();
+            damage += playerDatastore.PerkSystem.PerkList.AllPerkList[3].AttackEffect();
             damage *= playerDatastore.PerkSystem.PerkList.AllPerkList[4].AttackEffect();
             return damage;
         }
