@@ -6,12 +6,12 @@ namespace App.Main.Stage
 {
     public class Pose : MonoBehaviour
     {
-        [SerializeField] private Canvas poseCanvas;
+        [SerializeField] private Canvas _poseCanvas;
         private bool isPosing = false, isInputting = false;
         
         private void Start()
         {
-            poseCanvas.enabled = false;
+            _poseCanvas.enabled = false;
         }
         
         private void Update()
@@ -41,14 +41,14 @@ namespace App.Main.Stage
         private void Open()
         {
             isPosing = true;
-            poseCanvas.enabled = true;
+            _poseCanvas.enabled = true;
             Time.timeScale = 0;
         }
 
         private void Close()
         {
             isPosing = false;
-            poseCanvas.enabled = false;
+            _poseCanvas.enabled = false;
             Time.timeScale = 1;
         }
 

@@ -199,11 +199,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85aaf18959d779244b965e1f06526c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normal: {fileID: 1186924280, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
-  damaged: {fileID: -1976190806, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
-  destroyedAnimatorController: {fileID: 9100000, guid: ae881987f717ce746bd4a5b182a79eac, type: 2}
-  destroyedAnimationPrefab: {fileID: 5744082711352651307, guid: 0256bc764ca869d4a8a068906decde55, type: 3}
-  damageColor:
+  _normal: {fileID: 1186924280, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
+  _damaged: {fileID: -1976190806, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
+  _destroyedAnimatorController: {fileID: 9100000, guid: ae881987f717ce746bd4a5b182a79eac, type: 2}
+  _destroyedAnimationPrefab: {fileID: 5744082711352651307, guid: 0256bc764ca869d4a8a068906decde55, type: 3}
+  _damageColor:
     serializedVersion: 2
     rgba: 4294967295
-  damageEffect: {fileID: 3125810737970945919, guid: 476bbcdbf27665c409286f0cc22a1fad, type: 3}
+  _damageEffect: {fileID: 3125810737970945919, guid: 476bbcdbf27665c409286f0cc22a1fad, type: 3}

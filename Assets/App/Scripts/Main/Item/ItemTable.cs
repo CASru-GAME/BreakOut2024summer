@@ -126,6 +126,16 @@ namespace App.Main.Item
             });
         }
 
+        public List<(int id, float time)> GetTimeList()
+        {
+            return new List<(int id, float time)>()
+            {
+                (14, catchBallItem.GetRemainingTime()),
+                (15, addAttackPointItem.GetRemainingTime()),
+                (16, addMoveSpeedItem.GetRemainingTime()),
+            };
+        }
+
         public class ItemEffect
         {        
             public UnityAction<StageSystem,PlayerDatastore> effect;
@@ -241,6 +251,14 @@ namespace App.Main.Item
                     IsActive = false;
                 }
             }
+            public float GetRemainingTime()
+            {
+                if(currentDuration <= 0f)
+                {
+                    return 0f;
+                }
+                return duration - currentDuration;
+            }
         }
     }
 
@@ -276,6 +294,14 @@ namespace App.Main.Item
                 IsActive = false;
             }
         }
+        public float GetRemainingTime()
+        {
+            if(currentDuration <= 0f)
+            {
+                return 0f;
+            }
+            return duration - currentDuration;
+        }
     }
     class AddMoveSpeedItem
     {     
@@ -308,6 +334,14 @@ namespace App.Main.Item
                 ResetMoveSpeed();
                 IsActive = false;
             }
+        }
+        public float GetRemainingTime()
+        {
+            if(currentDuration <= 0f)
+            {
+                return 0f;
+            }
+            return duration - currentDuration;
         }
     }
 }
