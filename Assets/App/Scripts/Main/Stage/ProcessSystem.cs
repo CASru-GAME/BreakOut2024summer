@@ -169,5 +169,10 @@ namespace App.Main.Stage
             if (_stageSystem.CurrentStageNumberID == 1) return _timeLimit - _timer.RemainingTimeLimit;
             return StatisticsDatastore._remainingTimeLimit - _timer.RemainingTimeLimit;
         }
+
+        public float GetRemainingTimerLimit()
+        {
+            return _timer.RemainingTimeLimit;
+        }
     }
 }

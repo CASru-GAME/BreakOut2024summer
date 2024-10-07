@@ -4,51 +4,83 @@ using UnityEngine;
 using UnityEngine.UI;
 using App.Main.Player;
 using App.Static;
+using App.Main.Item;
 
 namespace App.Main.Stage
 {
     public class StageAnimation : MonoBehaviour
     {
-        [SerializeField] private GameObject back_Wall;
-        [SerializeField] private GameObject back_Game;
-        [SerializeField] private List<Sprite> back_Wall_SpriteList;
-        [SerializeField] private List<RuntimeAnimatorController> back_Game_AnimatorControllerList;
-        [SerializeField] private Text stageText;
-        [SerializeField] private PlayerDatastore playerDatastore = default;
+        [SerializeField] private GameObject _back_Wall;
+        [SerializeField] private GameObject _back_Game;
+        [SerializeField] private List<Sprite> _back_Wall_SpriteList;
+        [SerializeField] private List<RuntimeAnimatorController> _back_Game_AnimatorControllerList;
+        [SerializeField] private Text _stageText;
+        [SerializeField] private Text _timeText;
+        [SerializeField] private PlayerDatastore _playerDatastore = default;
         private int latestHP;
         private List<GameObject> heartPrefabList = new List<GameObject>();
-        [SerializeField] private GameObject heartPrefab;
-        [SerializeField] private GameObject heartPos;
-        [SerializeField] private GameObject heartBreakEffectPrefab;
-        [SerializeField] private Canvas canvas_Main;
+        [SerializeField] private GameObject _heartPrefab;
+        [SerializeField] private GameObject _heartPos;
+        [SerializeField] private GameObject _heartBreakEffectPrefab;
+        [SerializeField] private Canvas _canvas_Main;
+        [SerializeField] private ProcessSystem _processSystem;
+        [SerializeField] private ItemTable _itemTable;
+        [SerializeField] private List<Sprite> _itemSpriteList = new List<Sprite>();
+        [SerializeField] private List<int> _UseItemIdList = new List<int>();
+        [SerializeField] private GameObject _itemPanelPrefab;
+        [SerializeField] private GameObject _itemGaugePrefab;
+        [SerializeField] private GameObject _itemPanelPos;
+        private List<(int id, GameObject panelPrefab, GameObject gaugePrefab)> _itemList = new List<(int id, GameObject panelPrefab, GameObject gaugePrefab)>();
+        private List<(int id, GameObject panelPrefab, GameObject gaugePrefab)> itemShowList = new List<(int id, GameObject panelPrefab, GameObject gaugePrefab)>();
+        private List<Vector3> _itemPanelPosList = new List<Vector3>();
 
         private void Start()
         {
             int stageId = GetComponent<StageSystem>().CurrentStageNumberID;
-            back_Wall.GetComponent<SpriteRenderer>().sprite = back_Wall_SpriteList[stageId - 1];
-            back_Game.GetComponent<Animator>().runtimeAnimatorController = back_Game_AnimatorControllerList[stageId - 1];
-            stageText.text = "このステージ  " + stageId;
+            _back_Wall.GetComponent<SpriteRenderer>().sprite = _back_Wall_SpriteList[stageId - 1];
+            _back_Game.GetComponent<Animator>().runtimeAnimatorController = _back_Game_AnimatorControllerList[stageId - 1];
+            _stageText.text = "このステージ  " + stageId;
+            CreatePanels();
         }
 
         private void CreateHearts()
         {
-            if(playerDatastore.Parameter == null)
+            if(_playerDatastore.Parameter == null)
             {
                 return;
             }
 
             latestHP = StatisticsDatastore._remainingLive;
-            for(int i = 0; i < playerDatastore.Parameter.Live.MaxValue; i++)
+            for(int i = 0; i < _playerDatastore.Parameter.Live.MaxValue; i++)
             {
-                var newHeartPrefab = Instantiate(heartPrefab, heartPos.transform.position, Quaternion.identity);
-                newHeartPrefab.transform.SetParent(canvas_Main.transform);
-                newHeartPrefab.transform.localScale = heartPos.transform.localScale;
-                newHeartPrefab.transform.localPosition += new Vector3(heartPos.transform.localScale.x * heartPos.GetComponent<RectTransform>().sizeDelta.x * i, 0.0f, 0.0f);
+                var newHeartPrefab = Instantiate(_heartPrefab, _heartPos.transform.position, Quaternion.identity);
+                newHeartPrefab.transform.SetParent(_canvas_Main.transform);
+                newHeartPrefab.transform.localScale = _heartPos.transform.localScale;
+                newHeartPrefab.transform.localPosition += new Vector3(_heartPos.transform.localScale.x * _heartPos.GetComponent<RectTransform>().sizeDelta.x * i, 0.0f, 0.0f);
                 heartPrefabList.Add(newHeartPrefab);
                 if(i >= latestHP)
                 {
                     newHeartPrefab.SetActive(false);
                 }
+            }
+        }
+
+        private void CreatePanels()
+        {
+            for(int i = 0; i < _itemSpriteList.Count; i++)
+            {
+                _itemPanelPosList.Add(_itemPanelPos.transform.localPosition + new Vector3(_itemPanelPos.transform.localScale.x * _itemPanelPos.GetComponent<RectTransform>().sizeDelta.x * i, 0.0f, 0.0f));
+                var newItemPanel = Instantiate(_itemPanelPrefab, _itemPanelPos.transform.position, Quaternion.identity);
+                newItemPanel.transform.SetParent(_canvas_Main.transform);
+                newItemPanel.transform.localScale = _itemPanelPos.transform.localScale;
+                newItemPanel.GetComponent<Image>().sprite = _itemSpriteList[i];
+                newItemPanel.SetActive(false);
+                var newGaugePrefab = Instantiate(_itemGaugePrefab, _itemPanelPos.transform.position, Quaternion.identity);
+                newGaugePrefab.transform.SetParent(_canvas_Main.transform);
+                newGaugePrefab.transform.localScale = _itemPanelPos.transform.localScale;
+                newGaugePrefab.GetComponent<Image>().sprite = _itemSpriteList[i];
+                newGaugePrefab.SetActive(false);
+                _itemList.Add((_UseItemIdList[i], newItemPanel, newGaugePrefab));
             }
         }
 
@@ -60,15 +92,22 @@ namespace App.Main.Stage
                 return;
             }
 
-            int currentHP = playerDatastore.Parameter.Live.CurrentValue;
+            UpdateHearts();
+            UpdateTime();
+            UpdateItems();
+        }
+
+        private void UpdateHearts()
+        {
+            int currentHP = _playerDatastore.Parameter.Live.CurrentValue;
             if(latestHP > currentHP)
             {
                 for(int i = currentHP; i < latestHP; i++)
                 {
                     heartPrefabList[i].SetActive(false);
-                    var newHeartBreakEffectPrefab = Instantiate(heartBreakEffectPrefab, heartPrefabList[i].transform.position, Quaternion.identity);
-                    newHeartBreakEffectPrefab.transform.SetParent(canvas_Main.transform);
-                    newHeartBreakEffectPrefab.transform.localScale = heartPos.transform.localScale;
+                    var newHeartBreakEffectPrefab = Instantiate(_heartBreakEffectPrefab, heartPrefabList[i].transform.position, Quaternion.identity);
+                    newHeartBreakEffectPrefab.transform.SetParent(_canvas_Main.transform);
+                    newHeartBreakEffectPrefab.transform.localScale = _heartPos.transform.localScale;
                 }
             }
             else if(latestHP < currentHP)
@@ -79,6 +118,61 @@ namespace App.Main.Stage
                 }
             }
             latestHP = currentHP;
+        }
+
+        private void UpdateTime()
+        {
+            _timeText.text = "のこりじかん  " + (int)_processSystem.GetRemainingTimerLimit() + "  びょう";
+        }
+
+        private void UpdateItems()
+        {
+            //(ID,パネル,ゲージ)のリストA、(ID,表示パネル,ゲージ)のリストBを用意しておく
+            
+            
+            //(ID,時間)のリストをItemTableから取得
+            var itemTimeTable = _itemTable.GetTimeList();
+
+            //(ID,時間)から[パネルの表示，非表示を選択]，[ゲージのサイズを変更]，[Bに追加するorBから削除する]を実行
+            for(int i = 0; i < itemTimeTable.Count; i++)
+            {
+                Debug.Log(itemTimeTable[i].time);
+                for(int j = 0; j < _itemList.Count; j++)
+                {
+                    if(itemTimeTable[i].id == _itemList[j].id)
+                    {
+                        if(itemTimeTable[i].time > 0f)
+                        {
+                            _itemList[j].panelPrefab.SetActive(true);
+                            _itemList[j].gaugePrefab.SetActive(true);
+                            _itemList[j].gaugePrefab.GetComponent<Image>().fillAmount = itemTimeTable[i].time / 20f;
+                            if(!itemShowList.Contains(_itemList[j]))
+                            {
+                                itemShowList.Add(_itemList[j]);
+                            }
+                        }
+                        else
+                        {
+                            _itemList[j].panelPrefab.SetActive(false);
+                            _itemList[j].gaugePrefab.SetActive(false);
+                            for(int k = 0; k < itemShowList.Count; k++)
+                            {
+                                if(itemShowList[k].id == _itemList[j].id)
+                                {
+                                    itemShowList.RemoveAt(k);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            //Bを順番に移動させる
+            for(int i = 0; i < itemShowList.Count; i++)
+            {
+                itemShowList[i].panelPrefab.transform.localPosition = _itemPanelPosList[i];
+                itemShowList[i].gaugePrefab.transform.localPosition = _itemPanelPosList[i];
+            }
         }
     }
 }
