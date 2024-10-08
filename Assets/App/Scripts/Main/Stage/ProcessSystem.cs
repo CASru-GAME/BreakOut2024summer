@@ -49,6 +49,7 @@ namespace App.Main.Stage
         /// ゲームの更新処理
         void Update()
         {
+            if(_stageState == null) return;
             if (_stageState.isPlaying())
             {
                 //　時間切れになったら
@@ -172,6 +173,7 @@ namespace App.Main.Stage
 
         public float GetRemainingTimerLimit()
         {
+            if(_timer == null) return -1f;
             return _timer.RemainingTimeLimit;
         }
     }

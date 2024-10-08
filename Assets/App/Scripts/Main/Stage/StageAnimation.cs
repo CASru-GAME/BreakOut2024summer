@@ -122,6 +122,10 @@ namespace App.Main.Stage
 
         private void UpdateTime()
         {
+            if(_processSystem.GetRemainingTimerLimit() < 0f)
+            {
+                return;
+            }
             _timeText.text = "のこりじかん  " + (int)_processSystem.GetRemainingTimerLimit() + "  びょう";
         }
 
@@ -136,7 +140,6 @@ namespace App.Main.Stage
             //(ID,時間)から[パネルの表示，非表示を選択]，[ゲージのサイズを変更]，[Bに追加するorBから削除する]を実行
             for(int i = 0; i < itemTimeTable.Count; i++)
             {
-                Debug.Log(itemTimeTable[i].time);
                 for(int j = 0; j < _itemList.Count; j++)
                 {
                     if(itemTimeTable[i].id == _itemList[j].id)
