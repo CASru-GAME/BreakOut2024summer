@@ -76,10 +76,10 @@ namespace App.Main.Player
         /// <param name="value"></param>
         public void AddMaxLive(int value)
         {
-            /*if(PerkSystem.PerkList.AllPerkList[22].GetStackCount() > 0)
+            if(PerkSystem.PerkList.AllPerkList[22].GetStackCount() > 0)
             {
                 return;
-            }*/
+            }
             Parameter.AddMaxLive(value);
         }
 
@@ -199,7 +199,7 @@ namespace App.Main.Player
 
         public void AddExperiencePoint(int value)
         {
-            value = (int)(value*PerkSystem.PerkList.AllPerkList[6].FloatEffect());//経験値を増やすパークの効果を適用
+            value = (int)(value*PerkSystem.PerkList.AllPerkList[18].FloatEffect());//経験値を増やすパークの効果を適用
             for(int i = 0; i < value; i++)
             {
                 Parameter.AddExperiencePoint(1);

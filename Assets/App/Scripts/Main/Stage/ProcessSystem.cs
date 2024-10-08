@@ -81,6 +81,7 @@ namespace App.Main.Stage
                 {
                     // ステージクリア処理
                     _stageState.SetStageClear();
+                    PerkEffect();
                 }
             }
             else if (_stageState.isGameFinish())
@@ -97,11 +98,11 @@ namespace App.Main.Stage
 
         private void PerkEffect()
         {
-            if(_player.PerkSystem.PerkList.AllPerkList[6].IntEffect() == 0)
+            if(_player.PerkSystem.PerkList.AllPerkList[11].IntEffect() == 0)
             {
                 return;
             }
-            if(_player.PerkSystem.PerkList.AllPerkList[6].IntEffect() == 1)
+            if(_player.PerkSystem.PerkList.AllPerkList[11].IntEffect() == 1)
             {
                 _player.AddLive(1);
             }
