@@ -122,10 +122,6 @@ namespace App.Main.Stage
 
         private void UpdateTime()
         {
-            if(_processSystem.GetRemainingTimerLimit() < 0f)
-            {
-                return;
-            }
             _timeText.text = "のこりじかん  " + (int)_processSystem.GetRemainingTimerLimit() + "  びょう";
         }
 
