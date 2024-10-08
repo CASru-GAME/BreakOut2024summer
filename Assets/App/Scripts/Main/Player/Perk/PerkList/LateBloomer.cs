@@ -6,7 +6,7 @@ namespace App.Main.Player.Perk
 {
     public class LateBloomer : IPerk
     {
-        private int Id = 3;
+        private int id = 2;
         private int StackCount = 0;
         private PlayerDatastore playerDatastore;
         private ProcessSystem ProcessSystem;
@@ -50,7 +50,7 @@ namespace App.Main.Player.Perk
 
         public int GetId()
         {
-            return Id;
+            return id;
         }
     }
 }

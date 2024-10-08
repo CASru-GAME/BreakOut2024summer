@@ -5,7 +5,7 @@ namespace App.Main.Player.Perk
 {
     public class LastStand : IPerk
     {
-        private int Id = 4;
+        private int id = 22;
         private int StackCount = 0;
         private PlayerDatastore playerDatastore;
 
@@ -51,7 +51,7 @@ namespace App.Main.Player.Perk
 
         public int GetId()
         {
-            return Id;
+            return id;
         }
     }
 }
