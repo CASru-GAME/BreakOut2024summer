@@ -23,6 +23,7 @@ namespace App.Main.Stage
 
         private int _targetBlockCount = 0;
         public int TargetBlockCount => _targetBlockCount;
+        private int _totalDestroyedTargetBlockCount =0;
         private int _clearedStageCount = 0;
         public int ClearedStageCount => _clearedStageCount;
         private int _roopCount = 1;
@@ -35,7 +36,6 @@ namespace App.Main.Stage
         public void IncreaseBallCountonStage()
         {
             ++_ballCountonStage;
-            Debug.Log("BallCountonStage: " + _ballCountonStage);
         }
         ///<summary>
         ///ステージシステム上のボールの数を一つ減らす。
@@ -48,7 +48,6 @@ namespace App.Main.Stage
                 throw new ArgumentException("Value cannot be negative");
             }
             --_ballCountonStage;
-            Debug.Log("BallCountonStage: " + _ballCountonStage);
         }
 
         ///<summary>
@@ -57,7 +56,6 @@ namespace App.Main.Stage
         public void IncreaseNormalBlockCount()
         {
             ++_normalBlockCount;
-            Debug.Log("NormalBlockCount: " + _normalBlockCount);
         }
         ///<summary>
         ///ステージシステム上の通常ブロックの数を一つ減らす。
@@ -70,7 +68,6 @@ namespace App.Main.Stage
                 throw new ArgumentException("Value cannot be negative");
             }
             --_normalBlockCount;
-            Debug.Log("NormalBlockCount: " + _normalBlockCount);
         }
 
         ///<summary>
@@ -79,12 +76,15 @@ namespace App.Main.Stage
         public void IncreaseTargetBlockCount()
         {
             ++_targetBlockCount;
-            Debug.Log("TargetBlockCount: " + _targetBlockCount);
         }
+
         ///<summary>
         ///ステージシステム上のターゲットブロックの数を一つ減らす。
         ///</summary>
         ///<exception cref="ArgumentException">ターゲットブロックの数が0未満になる場合に発生します。</exception>
+        ///<remark>
+        ///同時に、破壊されたターゲットブロックの数を一つ増やす。
+        ///</remark>
         public void DecreaseTargetBlockCount()
         {
             if (_targetBlockCount <= 0)
@@ -92,7 +92,16 @@ namespace App.Main.Stage
                 throw new ArgumentException("Value cannot be negative");
             }
             --_targetBlockCount;
-            Debug.Log("TargetBlockCount: " + _targetBlockCount);
+            ++_totalDestroyedTargetBlockCount;
+        }
+
+        ///<summary>
+        ///ステージシステム上の破壊されたターゲットブロックの数を取得する。
+        /// <returns>破壊されたターゲットブロックの数</returns>
+        /// </summary>
+        public int GetTotalDestroyedTargetBlockCount()
+        {
+            return _totalDestroyedTargetBlockCount;
         }
 
         ///<summary>
@@ -155,6 +164,7 @@ namespace App.Main.Stage
             }
             for (int i = 0; i < StatisticsDatastore._totalDestroyedTargetBlock; i++)
             {
+                _totalDestroyedTargetBlockCount++;
             }
         }
 
@@ -164,6 +174,7 @@ namespace App.Main.Stage
         public void FetchData()
         {
             StatisticsDatastore.AssignTotalClearedStage(_clearedStageCount);
+            StatisticsDatastore.AssignTotalDestroyedTargetBlock(_totalDestroyedTargetBlockCount);
         }
     }
 }

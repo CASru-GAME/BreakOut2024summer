@@ -2,6 +2,8 @@ using UnityEngine;
 using App.Main.Player;
 using App.Static;
 using App.Common;
+using System;
+using System.Collections;
 
 namespace App.Main.Stage
 {
@@ -18,12 +20,30 @@ namespace App.Main.Stage
         /// ゲームの初期化処理
         void Start()
         {
+            StartCoroutine(DelayedStart());
+        }
+
+        /// <summary>
+        /// 遅延実行される初期化処理
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator DelayedStart()
+        {
+            yield return new WaitForSeconds(0.001f); // 1秒の遅延
+
             _timer = GetComponent<Timer>();
             _stageSystem = GetComponent<StageSystem>();
             _stageState = GetComponent<StageStateDatastore>();
             _sceneLoader = GetComponent<SceneLoader>();
             InitializeGame();
             Debug.Log("_____________________________: CurrentStageNumberID = " + _stageSystem.CurrentStageNumberID + " :_____________________________");
+            Debug.Log("_____________________________: Static → ClearedStageCount = " + _stageSystem.ClearedStageCount + " :_____________________________");
+            Debug.Log("_____________________________: Static → TotalDestroyedTargetBlockCount = " + _stageSystem.GetTotalDestroyedTargetBlockCount() + " :_____________________________");
+            Debug.Log("_____________________________: Static → RemainingTimeLimit = " + _timer.RemainingTimeLimit + " :_____________________________");
+            Debug.Log("_____________________________: Static → RemainingLive = " + _player.Parameter.GetLiveValue() + " :_____________________________");
+            Debug.Log("_____________________________: Static → TotalAquiredExperiencePoint = " + _player.GetExperiencePointValue() + " :_____________________________");
+            Debug.Log("_____________________________: Static → PlayerLevel = " + _player.GetLevelValue() + " :_____________________________");
+            Debug.Log("_____________________________: Static → TotalAquiredPerkList = " + _player.PerkSystem.PerkList.GetOwnedPerkList() + " :_____________________________");
         }
 
         /// ゲームの更新処理
@@ -105,7 +125,9 @@ namespace App.Main.Stage
         /// インスタンス←static
         private void LoadGameParameter()
         {
+            // クリアしたステージ数と破壊した総ターゲットブロック数のロード
             _stageSystem.SyncData();
+            // 残りタイムリミットのロード
             if (_stageSystem.ClearedStageCount == 0)
             {
                 _timer.InitializeTimer(_timeLimit);
@@ -113,9 +135,18 @@ namespace App.Main.Stage
             else
             {
                 _timer.InitializeTimer(_timeLimit, StatisticsDatastore._remainingTimeLimit);
+                // 残り残機のロード
+                if (StatisticsDatastore._remainingLive > _player.Parameter.GetLiveValue())
+                {
+                    _player.AddLive(StatisticsDatastore._remainingLive - _player.Parameter.GetLiveValue());
+                }
+                else if (StatisticsDatastore._remainingLive < _player.Parameter.GetLiveValue())
+                {
+                    _player.SubtractLive(_player.Parameter.GetLiveValue() - StatisticsDatastore._remainingLive);
+                }
             }
-            //_player.AddLive(StatisticsDatastore._remainingLive - _player.Parameter.Live.CurrentValue);
-            //_player.SubtractLive(_player.Parameter.Live.CurrentValue - StatisticsDatastore._remainingLive);
+            _player.LoadLevelAndExperiencePoint(StatisticsDatastore._playerLevel, StatisticsDatastore._totalAquiredExperiencePoint);
+            _player.PerkSystem.PerkList.LoadPerkList(StatisticsDatastore._totalAquiredPerkList);
         }
 
         /// static←インスタンス
@@ -123,7 +154,10 @@ namespace App.Main.Stage
         {
             _stageSystem.FetchData();
             StatisticsDatastore.AssignRemainingTimeLimit(_timer.RemainingTimeLimit);
-            StatisticsDatastore.AssignRemainingLive(_player.Parameter.Live.CurrentValue);
+            StatisticsDatastore.AssignRemainingLive(_player.Parameter.GetLiveValue());
+            StatisticsDatastore.AssignTotalAquiredExperiencePoint(_player.GetExperiencePointValue());
+            StatisticsDatastore.AssignPlayerLevel(_player.GetLevelValue());
+            StatisticsDatastore.AssignTotalAquiredPerkList(_player.PerkSystem.PerkList.GetOwnedPerkList());
         }
 
         /// <summary>
@@ -134,6 +168,11 @@ namespace App.Main.Stage
         {
             if (_stageSystem.CurrentStageNumberID == 1) return _timeLimit - _timer.RemainingTimeLimit;
             return StatisticsDatastore._remainingTimeLimit - _timer.RemainingTimeLimit;
+        }
+
+        public float GetRemainingTimerLimit()
+        {
+            return _timer.RemainingTimeLimit;
         }
     }
 }

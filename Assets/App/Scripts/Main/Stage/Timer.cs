@@ -81,7 +81,6 @@ namespace App.Main.Stage
                 if (_remainingTimeLimit <= 0)
                 {
                     _state = TimerState.TimeOver;
-                    Debug.Log("TimerState: " + _state);
                     _remainingTimeLimit = 0;
                 }
             }

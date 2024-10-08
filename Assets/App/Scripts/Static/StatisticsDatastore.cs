@@ -81,9 +81,9 @@ namespace App.Static
         {
             for (int i = 0; i < totalAquiredPerkList.GetLength(0); i++)
             {
-                if (totalAquiredPerkList[i, 0] < 0)
+                if (totalAquiredPerkList[i, 0] < -1)
                 {
-                    UnityEngine.Debug.Log("TotalAquiredPerkList: 0より小さい値が入力されました");
+                    UnityEngine.Debug.Log("TotalAquiredPerkList: -1より小さい値が入力されました");
                     return;
                 }
             }

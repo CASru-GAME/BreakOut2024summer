@@ -9,48 +9,48 @@ namespace App.Main.Block
 {
     public class BlockAnimation : MonoBehaviour
     {
-        private BlockDatastore blockDatastore;
-        [SerializeField] private Sprite normal;
-        [SerializeField] private Sprite damaged;
-        [SerializeField] private RuntimeAnimatorController destroyedAnimatorController;
-        [SerializeField] private GameObject destroyedAnimationPrefab;
-        [SerializeField] private Color32 damageColor;
-        [SerializeField] private GameObject damageEffect;
+        private BlockDatastore _blockDatastore;
+        [SerializeField] private Sprite _normal;
+        [SerializeField] private Sprite _damaged;
+        [SerializeField] private RuntimeAnimatorController _destroyedAnimatorController;
+        [SerializeField] private GameObject _destroyedAnimationPrefab;
+        [SerializeField] private Color32 _damageColor;
+        [SerializeField] private GameObject _damageEffect;
 
         public void Start()
         {
-            blockDatastore = GetComponent<BlockDatastore>();
+            _blockDatastore = GetComponent<BlockDatastore>();
         }
 
         public void FixedUpdate()
         {
-            if(blockDatastore.Hp == null)
+            if(_blockDatastore.Hp == null)
             {
                 return;
             }
 
-            if(blockDatastore.Hp.CurrentValue > blockDatastore.Hp.MaxValue / 2)
+            if(_blockDatastore.Hp.CurrentValue > _blockDatastore.Hp.MaxValue / 2)
             {
-                GetComponent<SpriteRenderer>().sprite = normal;
+                GetComponent<SpriteRenderer>().sprite = _normal;
             }
             else
             {
-                GetComponent<SpriteRenderer>().sprite = damaged;
+                GetComponent<SpriteRenderer>().sprite = _damaged;
             }
         }
 
         public void Break()
         {
-            var newDestroyedAnimationPrefab = Instantiate(destroyedAnimationPrefab, transform.position, Quaternion.identity);
+            var newDestroyedAnimationPrefab = Instantiate(_destroyedAnimationPrefab, transform.position, Quaternion.identity);
             newDestroyedAnimationPrefab.transform.localScale = transform.localScale;
-            newDestroyedAnimationPrefab.GetComponent<Animator>().runtimeAnimatorController = destroyedAnimatorController;
+            newDestroyedAnimationPrefab.GetComponent<Animator>().runtimeAnimatorController = _destroyedAnimatorController;
         }
 
         public void CreateDamageEffect(int damageValue, StageSystem stage)
         {
-            var newDamageEffect = Instantiate(damageEffect, transform.position, Quaternion.identity);
+            var newDamageEffect = Instantiate(_damageEffect, transform.position, Quaternion.identity);
             newDamageEffect.GetComponent<DamageEffect>().Initialize(damageValue, stage.Canvas);
-            newDamageEffect.GetComponent<DamageEffect>().GetComponent<Text>().color = damageColor;
+            newDamageEffect.GetComponent<DamageEffect>().GetComponent<Text>().color = _damageColor;
         }
     }
 }

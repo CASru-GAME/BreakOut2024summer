@@ -27,12 +27,12 @@ namespace App.Main.Player.Perk
         {
             if (StackCount == 0) return;
             //確率で猫が逃げ出す
-            
+
         }
 
         private int CalculateProbability(int value)
         {
-            return (1-1/(value+1))*5;
+            return (1 - 1 / (value + 1)) * 5;
         }
 
 
