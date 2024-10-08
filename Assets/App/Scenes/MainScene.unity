@@ -3203,7 +3203,7 @@ MonoBehaviour:
   - {fileID: 38760142}
   - {fileID: 1966173403}
   - {fileID: 1413580917}
-  processSystem: {fileID: 0}
+  processSystem: {fileID: 1144816100}
 --- !u!61 &1349900335
 BoxCollider2D:
   m_ObjectHideFlags: 0
