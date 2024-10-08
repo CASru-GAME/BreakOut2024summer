@@ -94,14 +94,14 @@ namespace App.Main.Ball
 
         private int CaluculatePerkDamage(int damage)
         {
-            damage += playerDatastore.PerkSystem.PerkList.AllPerkList[3].IntEffect();
-            damage *= playerDatastore.PerkSystem.PerkList.AllPerkList[4].IntEffect();
+            damage += playerDatastore.PerkSystem.PerkList.AllPerkList[2].IntEffect();
+            damage *= playerDatastore.PerkSystem.PerkList.AllPerkList[22].IntEffect();
             return damage;
         }
 
         private int CalculatePoisonStack()
         {
-            return playerDatastore.PerkSystem.PerkList.AllPerkList[5].IntEffect();
+            return playerDatastore.PerkSystem.PerkList.AllPerkList[6].IntEffect();
         }
     }
 }

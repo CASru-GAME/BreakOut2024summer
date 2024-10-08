@@ -135,17 +135,17 @@ namespace App.Main.Player.Perk
 
         private void EffectWhenAcquiredPerk(int PerkId)
         {
-            if(PerkId == 2)
-            {
-                UsePerkEffects(2);
-            }
             if(PerkId == 4)
             {
                 UsePerkEffects(4);
             }
-            if(PerkId == 8)
+            if(PerkId == 5)
             {
-                UsePerkEffects(8);
+                UsePerkEffects(5);
+            }
+            if(PerkId == 22)
+            {
+                UsePerkEffects(22);
             }
         }
 
