@@ -1,11 +1,18 @@
 using UnityEngine;
+using App.Main.Player;
 
 namespace App.Main.Player.Perk
 {
-    public class DebugPerk : IPerk
+    public class Amaryllis : IPerk
     {
-        private int id = 0;
+        private int id = 1;
         private int StackCount = 0;
+        private PlayerDatastore playerDatastore;
+
+        public Amaryllis(PlayerDatastore playerDatastore)
+        {
+            this.playerDatastore = playerDatastore;
+        }
         public void AddStackCount()
         {
             StackCount++;
@@ -18,9 +25,11 @@ namespace App.Main.Player.Perk
 
         public void Effect()
         {
-            if(StackCount == 0) return;
-            Debug.Log("Hello,Perk!" + StackCount);
+            return;
+
+            
         }
+
 
         public int GetId()
         {
@@ -29,7 +38,8 @@ namespace App.Main.Player.Perk
 
         public int IntEffect()
         {
-            return 0;
+            if (StackCount == 0) return 0;
+            return (int)(1+3*StackCount);
         }
 
         public float FloatEffect()

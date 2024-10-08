@@ -14,6 +14,7 @@ namespace App.Main.Block
         [SerializeField] int initialHp;
         [SerializeField] int Id;
         private StageSystem stage;
+        private int PoisonStack = 0;
 
         void Start()
         {
@@ -21,6 +22,13 @@ namespace App.Main.Block
             blockDatastore.InitializeBlock(initialHp);
             blockAnimation = GetComponent<BlockAnimation>();
             createCat = GetComponent<CreateCat>();
+        }
+
+        private void FixedUpdate() {
+            if (PoisonStack > 0) {
+                TakePoisonDamage(PoisonStack);
+            }
+            
         }
 
         //<summary>
@@ -62,6 +70,22 @@ namespace App.Main.Block
             createCat.Create(transform.position, transform.localScale);
 
             Destroy(gameObject);
+        }
+
+        public void TakePoisonDamage(int poisonStack)
+        {
+            TakeDamage(poisonStack);
+            RemovePoisonStack();
+        }
+
+        public void AddPoisonStack(int stack)
+        {
+            PoisonStack += stack;
+        }
+
+        public void RemovePoisonStack()
+        {
+            PoisonStack--;
         }
     }  
 }

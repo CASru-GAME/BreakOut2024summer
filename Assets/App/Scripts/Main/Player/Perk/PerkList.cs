@@ -19,9 +19,13 @@ namespace App.Main.Player.Perk
             {
                 new DebugPerk(),//ID:0
                 new WireCage(playerDatastore),//ID:1
-                new IncreaseMoveSpeed(playerDatastore),//ID:2
+                new IncreaseBallSpeed(playerDatastore),//ID:2
                 new LateBloomer(playerDatastore,processSystem),//ID:3
                 new LastStand(playerDatastore),//ID:4
+                new Amaryllis(playerDatastore),//ID:5
+                new ManekiCat(playerDatastore),//ID:6
+                new Matatabi(playerDatastore),//ID:7
+                
             };
             AmountPerk = AllPerkList.Length;
         }

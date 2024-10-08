@@ -37,10 +37,15 @@ namespace App.Main.Player.Perk
             return (int)((1-1/(value+1))*time*0.5);
         }
 
-        public int AttackEffect()
+        public int IntEffect()
         {
             if(StackCount == 0) return 0;
             return CalculateValue(StackCount, ProcessSystem.GetTime_afterCurrentStageStarted());
+        }
+
+        public float FloatEffect()
+        {
+            return 0;
         }
 
         public int GetId()

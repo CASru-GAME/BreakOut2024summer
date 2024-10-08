@@ -1,11 +1,18 @@
 using UnityEngine;
+using App.Main.Player;
 
 namespace App.Main.Player.Perk
 {
-    public class DebugPerk : IPerk
+    public class ManekiCat : IPerk
     {
-        private int id = 0;
+        private int id = 1;
         private int StackCount = 0;
+        private PlayerDatastore playerDatastore;
+
+        public ManekiCat(PlayerDatastore playerDatastore)
+        {
+            this.playerDatastore = playerDatastore;
+        }
         public void AddStackCount()
         {
             StackCount++;
@@ -18,9 +25,12 @@ namespace App.Main.Player.Perk
 
         public void Effect()
         {
-            if(StackCount == 0) return;
-            Debug.Log("Hello,Perk!" + StackCount);
+            if (StackCount == 0) return;
+
+
+            
         }
+
 
         public int GetId()
         {
@@ -34,7 +44,8 @@ namespace App.Main.Player.Perk
 
         public float FloatEffect()
         {
-            return 0;
+            if (StackCount == 0) return 0;
+            return (float)(1+0.125*StackCount);
         }
     }
 }

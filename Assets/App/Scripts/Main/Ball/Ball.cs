@@ -14,14 +14,16 @@ namespace App.Main.Ball
         private PlayerDatastore playerDatastore;
         private StageSystem stageSystem;
         private Rigidbody2D rb;
+        private float BallSpeed;
 
         /// <summary>
         /// デバッグ用．ボールに初速度を与える
         /// </summary>
         private void Start()
         {
+            BallSpeed = playerDatastore.GetBallSpeedValue();
             rb = GetComponent<Rigidbody2D>();
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-2f, -2f);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(BallSpeed, BallSpeed);
         }
 
         /// <summary>
@@ -67,6 +69,7 @@ namespace App.Main.Ball
             {
                 //ダメージ計算
                 block.TakeDamage(CalcDamage());
+                //IBlockをいじる許可が出たらここに状態異常付与の関数を書く
             }
         }
 
@@ -91,9 +94,14 @@ namespace App.Main.Ball
 
         private int CaluculatePerkDamage(int damage)
         {
-            damage += playerDatastore.PerkSystem.PerkList.AllPerkList[3].AttackEffect();
-            damage *= playerDatastore.PerkSystem.PerkList.AllPerkList[4].AttackEffect();
+            damage += playerDatastore.PerkSystem.PerkList.AllPerkList[3].IntEffect();
+            damage *= playerDatastore.PerkSystem.PerkList.AllPerkList[4].IntEffect();
             return damage;
+        }
+
+        private int CalculatePoisonStack()
+        {
+            return playerDatastore.PerkSystem.PerkList.AllPerkList[5].IntEffect();
         }
     }
 }

@@ -195,6 +195,7 @@ namespace App.Main.Player
 
         public void AddExperiencePoint(int value)
         {
+            value = (int)(value*PerkSystem.PerkList.AllPerkList[6].FloatEffect());//経験値を増やすパークの効果を適用
             for(int i = 0; i < value; i++)
             {
                 Parameter.AddExperiencePoint(1);

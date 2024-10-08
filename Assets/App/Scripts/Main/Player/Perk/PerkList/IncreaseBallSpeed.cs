@@ -3,14 +3,14 @@ using App.Main.Player;
 
 namespace App.Main.Player.Perk
 {
-    public class IncreaseMoveSpeed : IPerk
+    public class IncreaseBallSpeed : IPerk
     {
         private int id = 2;
         private int StackCount = 0;
         private int CurrentStackCount = 0;
         private PlayerDatastore playerDatastore;
 
-        public IncreaseMoveSpeed(PlayerDatastore playerDatastore)
+        public IncreaseBallSpeed(PlayerDatastore playerDatastore)
         {
             this.playerDatastore = playerDatastore;
         }
@@ -27,8 +27,8 @@ namespace App.Main.Player.Perk
         public void Effect()
         {
             if(StackCount == 0) return;
-            playerDatastore.SubtractMoveSpeed(CalculateValue(CurrentStackCount));//前回の効果を取り消す
-            playerDatastore.AddMoveSpeed(CalculateValue(StackCount));
+            playerDatastore.AddBallSpeed(CalculateValue(CurrentStackCount));//前回の効果を取り消す
+            playerDatastore.SubtractBallSpeed(CalculateValue(StackCount));
             CurrentStackCount = StackCount;
             Debug.Log("Park: increase move speed x " + StackCount);
         }
@@ -43,7 +43,12 @@ namespace App.Main.Player.Perk
             return id;
         }
 
-        public int AttackEffect()
+        public int IntEffect()
+        {
+            return 0;
+        }
+
+        public float FloatEffect()
         {
             return 0;
         }
