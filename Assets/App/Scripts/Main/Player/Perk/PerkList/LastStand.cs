@@ -37,10 +37,16 @@ namespace App.Main.Player.Perk
             return 1+value;
         }
 
-        public int AttackEffect()
+        public int IntEffect()
         {
             if(StackCount == 0) return 0;
             return CalculateValue(StackCount);
+        }
+
+
+        public float FloatEffect()
+        {
+            return 0;
         }
 
         public int GetId()

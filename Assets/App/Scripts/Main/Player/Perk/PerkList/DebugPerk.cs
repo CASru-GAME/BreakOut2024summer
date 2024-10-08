@@ -27,7 +27,12 @@ namespace App.Main.Player.Perk
             return id;
         }
 
-        public int AttackEffect()
+        public int IntEffect()
+        {
+            return 0;
+        }
+
+        public float FloatEffect()
         {
             return 0;
         }

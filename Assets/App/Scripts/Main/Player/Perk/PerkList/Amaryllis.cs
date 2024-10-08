@@ -3,13 +3,13 @@ using App.Main.Player;
 
 namespace App.Main.Player.Perk
 {
-    public class WireCage : IPerk
+    public class Amaryllis : IPerk
     {
         private int id = 1;
         private int StackCount = 0;
         private PlayerDatastore playerDatastore;
 
-        public WireCage(PlayerDatastore playerDatastore)
+        public Amaryllis(PlayerDatastore playerDatastore)
         {
             this.playerDatastore = playerDatastore;
         }
@@ -25,14 +25,9 @@ namespace App.Main.Player.Perk
 
         public void Effect()
         {
-            if (StackCount == 0) return;
-            //確率で猫が逃げ出す
-            
-        }
+            return;
 
-        private int CalculateProbability(int value)
-        {
-            return (1-1/(value+1))*5;
+            
         }
 
 
@@ -44,7 +39,7 @@ namespace App.Main.Player.Perk
         public int IntEffect()
         {
             if (StackCount == 0) return 0;
-            return (int)((1-1/(StackCount+1))*15);
+            return (int)(1+3*StackCount);
         }
 
         public float FloatEffect()
