@@ -138,10 +138,19 @@ namespace App.Main.Stage
             _normalBlockCount = 0;
             _targetBlockCount = 0;
             CreateBall(new Vector3(0, 0, 0));
+            //PerkEffect();
             GetComponent<BlockPattern>().CreateBlocks(_currentStageNumberID, _roopCount);
             _targetBlockCount = GetComponent<BlockPattern>().TargetBlockCount;
             _normalBlockCount = GetComponent<BlockPattern>().NormalBlockCount;
         }
+
+        /*private void PerkEffect()
+        {
+            for(int i = 0; i < _player.PerkSystem.PerkList.AllPerkList[9].IntEffect(); i++)
+            {
+                CreateBall(new Vector3(0.2f*i, 0, 0));
+            }
+        }*/ //いったんコメントアウト
 
         /// <summary>
         /// ステージのクリアカウントを増やす。また、それに伴い現在のステージ番号、ループ数を更新する。

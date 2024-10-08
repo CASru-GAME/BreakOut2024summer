@@ -76,6 +76,10 @@ namespace App.Main.Player
         /// <param name="value"></param>
         public void AddMaxLive(int value)
         {
+            /*if(PerkSystem.PerkList.AllPerkList[22].GetStackCount() > 0)
+            {
+                return;
+            }*/
             Parameter.AddMaxLive(value);
         }
 
