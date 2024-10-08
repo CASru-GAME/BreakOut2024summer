@@ -12,7 +12,7 @@ namespace App.Main.Stage
         [SerializeField] private PlayerDatastore _player = default;
         [SerializeField] private GameObject _ballPrefab = default;
         [SerializeField] private GameObject _itemPrefab = default;
-        [SerializeField] private int _finalStageNumberID = 5;
+        [SerializeField] private int _finalStageNumberID = 15;
         [SerializeField] public GameObject Canvas = default;
         private ItemSystem _itemSystem = default;
         private int _ballCountonStage = 0;
@@ -23,13 +23,14 @@ namespace App.Main.Stage
 
         private int _targetBlockCount = 0;
         public int TargetBlockCount => _targetBlockCount;
-        private int _totalDestroyedTargetBlockCount =0;
+        private int _totalDestroyedTargetBlockCount = 0;
         private int _clearedStageCount = 0;
         public int ClearedStageCount => _clearedStageCount;
         private int _roopCount = 1;
         public int RoopCount => _roopCount;
         private int _currentStageNumberID = 1;
         public int CurrentStageNumberID => _currentStageNumberID;
+        private int _currentWorldNumberID = 1;
 
         ///<summary>
         ///ステージシステム上のボールの数を一つ増やす。
@@ -145,13 +146,14 @@ namespace App.Main.Stage
         }
 
         /// <summary>
-        /// ステージのクリアカウントを増やす。また、それに伴い現在のステージ番号、ループ数を更新する。
+        /// ステージのクリアカウントを増やす。また、それに伴い現在のステージ番号、ループ数、ワールドIDを更新する。
         /// </summary>
         public void CountClearedStage()
         {
             _clearedStageCount++;
-            _roopCount = 1 + (_clearedStageCount / _finalStageNumberID);
+            _roopCount = _clearedStageCount / _finalStageNumberID + 1;
             _currentStageNumberID = _clearedStageCount % _finalStageNumberID + 1;
+            _currentWorldNumberID = _currentStageNumberID / 3 + (2 / 3);
         }
 
         /// <summary>
