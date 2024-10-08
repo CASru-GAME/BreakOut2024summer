@@ -95,6 +95,19 @@ namespace App.Main.Stage
             }
         }
 
+        private void PerkEffect()
+        {
+            if(_player.PerkSystem.PerkList.AllPerkList[6].IntEffect() == 0)
+            {
+                return;
+            }
+            if(_player.PerkSystem.PerkList.AllPerkList[6].IntEffect() == 1)
+            {
+                _player.AddLive(1);
+            }
+
+        }
+
         // ゲームの状態がゲーム終了状態になった際のゲーム終了処理
         private void ConductGameFinishProcess()
         {

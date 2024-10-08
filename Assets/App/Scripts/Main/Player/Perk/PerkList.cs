@@ -25,6 +25,7 @@ namespace App.Main.Player.Perk
                 new Amaryllis(playerDatastore),//ID:5
                 new ManekiCat(playerDatastore),//ID:6
                 new Matatabi(playerDatastore),//ID:7
+
                 
             };
             AmountPerk = AllPerkList.Length;
