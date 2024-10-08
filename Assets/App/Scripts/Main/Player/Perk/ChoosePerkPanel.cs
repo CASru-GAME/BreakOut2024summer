@@ -9,29 +9,33 @@ namespace App.Main.Player.Perk
     {
         private int PerkId = 0;
         private PerkSystem PerkSystem;
+        [SerializeField] private GameObject perkIconPanelPos;
+        [SerializeField] private GameObject perkIconPanelPrefab;
+        [SerializeField] private Canvas canvas_Perk;
 
-        public void Initialize(int PerkId, PerkSystem PerkSystem)
+        //デバッグ用
+        [SerializeField] private int debugPerkId;
+        //
+
+        public void Initialize(int perkId, PerkSystem perkSystem)
         {
-            this.PerkId = PerkId;
-            this.PerkSystem = PerkSystem;
+            this.PerkId = perkId;
+            this.PerkSystem = perkSystem;
+
+            //デバッグ用
+            if(debugPerkId != 0) this.PerkId = debugPerkId;
+            //
+
+            CreatePerkIconPanel();
         }
 
-        /*void Update()
+        private void CreatePerkIconPanel()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
-            if (hit.collider != null && hit.collider.gameObject == gameObject)
-            {
-                
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Debug.Log(hit.collider.gameObject.name);
-                    PerkSystem.GetPerk(PerkId);
-                    PerkSystem.SusideAll();
-                    
-                }
-            }
-        }*/
+            GameObject newPerkPanelPrefab = Instantiate(perkIconPanelPrefab, perkIconPanelPos.transform.position, Quaternion.identity);
+            newPerkPanelPrefab.transform.SetParent(perkIconPanelPos.transform);
+            newPerkPanelPrefab.transform.localScale = perkIconPanelPos.transform.localScale;
+            newPerkPanelPrefab.GetComponent<PerkIconPanel>().Initialize(PerkId);
+        }
 
         public void OnClick()
         {

@@ -5,7 +5,7 @@ namespace App.Main.Player.Perk
 {
     public class IncreaseBallSpeed : IPerk
     {
-        private int id = 2;
+        private int id = 4;
         private int StackCount = 0;
         private int CurrentStackCount = 0;
         private PlayerDatastore playerDatastore;

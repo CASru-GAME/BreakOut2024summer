@@ -5,7 +5,7 @@ namespace App.Main.Player.Perk
 {
     public class Matatabi : IPerk
     {
-        private int id = 1;
+        private int id = 3;
         private int StackCount = 0;
         private PlayerDatastore playerDatastore;
 
