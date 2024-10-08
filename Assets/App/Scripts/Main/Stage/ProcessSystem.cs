@@ -29,12 +29,14 @@ namespace App.Main.Stage
         /// <returns></returns>
         private IEnumerator DelayedStart()
         {
-            yield return new WaitForSeconds(0.001f); // 1秒の遅延
-
             _timer = GetComponent<Timer>();
             _stageSystem = GetComponent<StageSystem>();
             _stageState = GetComponent<StageStateDatastore>();
             _sceneLoader = GetComponent<SceneLoader>();
+
+            Time.timeScale = 1;
+            yield return new WaitForSeconds(0.001f); // 1秒の遅延
+
             InitializeGame();
             Debug.Log("_____________________________: CurrentStageNumberID = " + _stageSystem.CurrentStageNumberID + " :_____________________________");
             Debug.Log("_____________________________: Static → ClearedStageCount = " + _stageSystem.ClearedStageCount + " :_____________________________");
@@ -49,7 +51,7 @@ namespace App.Main.Stage
         /// ゲームの更新処理
         void Update()
         {
-            if(_stageState == null) return;
+            if (_stageState == null) return;
             if (_stageState.isPlaying())
             {
                 //　時間切れになったら
@@ -173,8 +175,26 @@ namespace App.Main.Stage
 
         public float GetRemainingTimerLimit()
         {
-            if(_timer == null) return -1f;
+            if (_timer == null) return -1f;
             return _timer.RemainingTimeLimit;
+        }
+
+        public int GetCurrentStageNumberID()
+        {
+            if (_stageSystem == null) return -1;
+            return _stageSystem.CurrentStageNumberID;
+        }
+
+        public int GetCurrentWorldNumberID()
+        {
+            if (_stageSystem == null) return -1;
+            return _stageSystem.CurrentWorldNumberID;
+        }
+
+        public bool IsPlaying()
+        {
+            if (_stageState == null) return false;
+            return _stageState.isPlaying();
         }
     }
 }

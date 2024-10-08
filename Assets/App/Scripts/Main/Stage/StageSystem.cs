@@ -31,6 +31,7 @@ namespace App.Main.Stage
         private int _currentStageNumberID = 1;
         public int CurrentStageNumberID => _currentStageNumberID;
         private int _currentWorldNumberID = 1;
+        public int CurrentWorldNumberID => _currentWorldNumberID;
 
         ///<summary>
         ///ステージシステム上のボールの数を一つ増やす。
