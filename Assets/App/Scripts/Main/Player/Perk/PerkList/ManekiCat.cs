@@ -5,7 +5,7 @@ namespace App.Main.Player.Perk
 {
     public class ManekiCat : IPerk
     {
-        private int id = 1;
+        private int id = 18;
         private int StackCount = 0;
         private PlayerDatastore playerDatastore;
 
