@@ -12,7 +12,7 @@ public class SquareMoveBlock : MonoBehaviour, IBlockAblity
     }
     public enum AxisState
     {
-         X,
+        X,
         Y,
     }
 
@@ -57,12 +57,13 @@ public class SquareMoveBlock : MonoBehaviour, IBlockAblity
                     _axisState = AxisState.X;
                     transform.position = new Vector2(transform.position.x,_initialPostion.y + _verticalRange);
                     rb.velocity = new Vector2(0f,0f);
+                    _moveState = MoveState.ReturnJourney;
                 }
             }
                 
-            if(transform.position.x == _initialPostion.x + _horizontalRange && transform.position.y == _initialPostion.y + _verticalRange)
+            if(transform.position.x == _initialPostion.x + _horizontalRange && transform.position.y >= _initialPostion.y + _verticalRange)
             {
-                _moveState = MoveState.ReturnJourney;
+                
             }
         }
         else
@@ -85,12 +86,13 @@ public class SquareMoveBlock : MonoBehaviour, IBlockAblity
                     _axisState = AxisState.X;
                     transform.position = new Vector2(transform.position.x,_initialPostion.y);
                     rb.velocity = new Vector2(0f,0f);
+                    _moveState = MoveState.Outbound;
                 }
             }
                 
             if(transform.position.x == _initialPostion.x && transform.position.y == _initialPostion.y)
             {
-                _moveState = MoveState.Outbound;
+                
             }
         }
     }

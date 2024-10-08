@@ -16,7 +16,7 @@ namespace App.Main.Stage
         [SerializeField] private PlayerDatastore _player = default;
         [SerializeField] private GameObject _ballPrefab = default;
         [SerializeField] private GameObject _itemPrefab = default;
-        [SerializeField] private int _finalStageNumberID = 5;
+        [SerializeField] private int _finalStageNumberID = 15;
         [SerializeField] public GameObject Canvas = default;
         private ItemSystem _itemSystem = default;
         private int _ballCountonStage = 0;
@@ -29,7 +29,7 @@ namespace App.Main.Stage
         public int TargetBlockCount => _targetBlockCount;
         private int _clearedStageCount = 0;
         private int _roopCount = 1;
-        private int _currentStageNumberID = 1;
+        private int _currentStageNumberID = 15;
 
         ///<summary>
         ///ステージシステム上のボールの数を一つ増やす。
@@ -130,7 +130,7 @@ namespace App.Main.Stage
             _ballCountonStage = 0;
             _normalBlockCount = 0;
             _targetBlockCount = 0;
-            CreateBall(new Vector3(0, 0, 0));
+            CreateBall(new Vector3(0, -3, 0));
             GetComponent<BlockPattern>().CreateBlocks(_currentStageNumberID, _roopCount);
             _targetBlockCount = GetComponent<BlockPattern>().TargetBlockCount;
             _normalBlockCount = GetComponent<BlockPattern>().NormalBlockCount;
