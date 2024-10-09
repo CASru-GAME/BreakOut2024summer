@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using App.Main.Player;
 using App.Main.Stage;
 using App.Main.Item;
@@ -13,11 +14,12 @@ namespace App.Main.Block
         private BlockDatastore blockDatastore;
         private BlockAnimation blockAnimation;
         private CreateCat createCat;
-        private PlayerDatastore playerDatastore; // PlayerDatastore フィールドを追加
+        private PlayerDatastore playerDatastore;
         [SerializeField] int initialHp;
         [SerializeField] int Id;
         private StageSystem stage;
         private int PoisonStack = 0;
+        private int WeaknessPoint = 0;
 
         void Start()
         {
@@ -25,14 +27,14 @@ namespace App.Main.Block
             blockDatastore.InitializeBlock(initialHp);
             blockAnimation = GetComponent<BlockAnimation>();
             createCat = GetComponent<CreateCat>();
-            playerDatastore = FindObjectOfType<PlayerDatastore>(); // PlayerDatastore を初期化
+            playerDatastore = FindObjectOfType<PlayerDatastore>();
             //　findしたくないので、引数で渡したい
         }
 
         private void FixedUpdate() {
-            if (PoisonStack > 0) {
-                TakePoisonDamage(PoisonStack);
-            }
+            
+            StartCoroutine(TakePoisonDamage());
+            StartCoroutine(RemoveWeaknessPoint());
         }
 
         //<summary>
@@ -50,6 +52,8 @@ namespace App.Main.Block
         {
             BlockHp newBlockHp = new BlockHp(damage);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
+
+            if(WeaknessPoint > 0) damage *= 2;
 
             blockAnimation.CreateDamageEffect(damage, stage);
 
@@ -81,10 +85,13 @@ namespace App.Main.Block
             Destroy(gameObject);
         }
 
-        public void TakePoisonDamage(int poisonStack)
+        public IEnumerator TakePoisonDamage()
         {
-            TakeDamage(poisonStack);
-            RemovePoisonStack();
+            if (PoisonStack > 0) {
+                TakeDamage(PoisonStack);
+                RemovePoisonStack();
+                yield return new WaitForSeconds(1);
+            }
         }
 
         public void AddPoisonStack(int stack)
@@ -95,6 +102,15 @@ namespace App.Main.Block
         public void RemovePoisonStack()
         {
             PoisonStack--;
+        }
+
+        public IEnumerator RemoveWeaknessPoint()
+        {
+            if (WeaknessPoint > 0)
+            {
+                WeaknessPoint--;
+            }
+            yield return new WaitForSeconds(1);
         }
     }
 }
