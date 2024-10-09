@@ -81,9 +81,6 @@ namespace App.Main.Ball
             int damage = playerDatastore.GetAttackPointValue();
             damage += CalculateComboDamage();
             CaluculatePerkDamage(damage);
-
-
-            //パークのダメージも計算する(実装待ち)
             return damage;
         }
 
@@ -102,6 +99,11 @@ namespace App.Main.Ball
         private int CalculatePoisonStack()
         {
             return playerDatastore.PerkSystem.PerkList.AllPerkList[5].IntEffect();
+        }
+
+        private int CalculateWeaknessStack()
+        {
+            return playerDatastore.PerkSystem.PerkList.AllPerkList[6].IntEffect();
         }
     }
 }
