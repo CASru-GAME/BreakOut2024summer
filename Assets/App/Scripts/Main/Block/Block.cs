@@ -33,7 +33,7 @@ namespace App.Main.Block
 
         private void FixedUpdate() {
             
-            StartCoroutine(TakePoisonDamage(PoisonStack));
+            StartCoroutine(TakePoisonDamage());
             StartCoroutine(RemoveWeaknessPoint());
         }
 
