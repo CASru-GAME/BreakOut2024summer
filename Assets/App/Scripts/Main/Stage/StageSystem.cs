@@ -29,7 +29,7 @@ namespace App.Main.Stage
         public int TargetBlockCount => _targetBlockCount;
         private int _clearedStageCount = 0;
         private int _roopCount = 1;
-        private int _currentStageNumberID = 8;
+        private int _currentStageNumberID = 13;
 
         ///<summary>
         ///ステージシステム上のボールの数を一つ増やす。

@@ -468,8 +468,8 @@ namespace App.Main.Stage
             public static StageBlockPatternData Stage4_1stLap()
             {
                 return new StageBlockPatternData(new List<BlockPatternData>{
-                    BlockPatternData._1_HorizontalMove_Horizontal_3_Vertical_2_Normal_Changeable(0,4),
                     BlockPatternData._1_HorizontalMove_Horizontal_3_Vertical_2_Normal_Changeable(0,0),
+                    BlockPatternData.Horizontal_4_Normal(0,0),
                     BlockPatternData._1_VerticalMove_Vertical_3_Normal_Changeable(5,5),
                     BlockPatternData.Horizontal_10_Normal(2),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,2),
@@ -494,7 +494,7 @@ namespace App.Main.Stage
                 return new StageBlockPatternData(new List<BlockPatternData>{
                     BlockPatternData._1_DiagonalMove_Changeable(0,5),
                     BlockPatternData.Horizontal_2_Vertical_2_Normal_1_SquareMove_Changeable(6,2),
-                    BlockPatternData.Horizontal_4_Hard_Chageable(0,1),
+                    BlockPatternData.Horizontal_4_Normal(0,1),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,1),
                     BlockPatternData.Horizontal_10_Normal(6),
                     BlockPatternData.Surroundings_3_3_Normal_Changeable(0,0),
@@ -549,9 +549,7 @@ namespace App.Main.Stage
                     BlockPatternData._1_VerticalMove_Vertical_3_Normal_Changeable(0,0),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,1),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,1),
-                    BlockPatternData._1_DiagonalMove_Changeable(0,0),
-                    BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,1),
-                    BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,1)});
+                    BlockPatternData._1_DiagonalMove_Changeable(0,0)});
             }
             
             public static StageBlockPatternData Stage7_2ndLap()
@@ -574,10 +572,8 @@ namespace App.Main.Stage
                     BlockPatternData._1_VerticalMoveHeal_Changeable_2_3_Normal(0,0),
                     BlockPatternData._1_Heal_Surroundings_3_3_Normal_Changeable(0,0),
                     BlockPatternData.Horizontal_2_Vertical_2_Normal_1_SquareMove_Changeable(0,0),
-                    BlockPatternData.Horizontal_10_Normal_Changeable(1,2),
-                    BlockPatternData.Horizontal_10_Normal_Changeable(1,2),
-                    BlockPatternData.Horizontal_4_Normal_Changeable(0,2),
-                    BlockPatternData.Vertical_4_Normal_Changeable(0,1),
+                    BlockPatternData.Horizontal_10_Normal_Changeable(1,0),
+                    BlockPatternData.Horizontal_10_Normal_Changeable(1,0),
                     BlockPatternData.Vertical_4_Normal_Changeable(0,1)});
             }
             public static StageBlockPatternData Stage8_2ndLap()
@@ -596,13 +592,11 @@ namespace App.Main.Stage
             public static StageBlockPatternData Stage9_1stLap()
             {
                 return new StageBlockPatternData(new List<BlockPatternData>{
-                    BlockPatternData.Heal_Surroundings_5_5_Hard_Changeable(0,5),
+                    BlockPatternData.Heal_Surroundings_5_5_Hard_Changeable(0,6),
                     BlockPatternData.Horizontal_3_Normal_1_HorizontalMoveHeal_Changeable(0,2),
                     BlockPatternData._1_DiagonalMove_Changeable(0,0),
-                    BlockPatternData.Horizontal_4_Normal_Changeable(0,1),
-                    BlockPatternData.Horizontal_4_Normal(0,1),
-                    BlockPatternData.Horizontal_4_Normal(0,1),
-                    BlockPatternData.Vertical_4_Normal_Changeable(0,0),
+                    BlockPatternData.Horizontal_4_Normal(0,0),
+                    BlockPatternData.Horizontal_4_Normal(0,0),
                     BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0)});
             }
             public static StageBlockPatternData Stage9_2ndLap()
@@ -621,11 +615,12 @@ namespace App.Main.Stage
             public static StageBlockPatternData Stage10_1stLap()
             {
                 return new StageBlockPatternData(new List<BlockPatternData>{
-                    BlockPatternData.Horizontal_10_Normal_Changeable(1,6),
                     BlockPatternData.Horizontal_10_Normal_Changeable(2,6),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,6),
                     BlockPatternData.Horizontal_2_Vertical_3_Normal(0,3),
                     BlockPatternData.Horizontal_2_Vertical_3_Normal(0,3),
+                    BlockPatternData.Vertical_4_Normal_Changeable(0,0),
+                    BlockPatternData.Horizontal_10_Hard(5)
                     });
             }
             public static StageBlockPatternData Stage10_2ndLap()
