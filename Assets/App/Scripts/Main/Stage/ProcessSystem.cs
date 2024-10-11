@@ -83,6 +83,7 @@ namespace App.Main.Stage
                 {
                     // ステージクリア処理
                     _stageState.SetStageClear();
+                    PerkEffect();
                 }
             }
             else if (_stageState.isGameFinish())
@@ -95,6 +96,19 @@ namespace App.Main.Stage
                 // ステージクリア処理
                 ConductStageClearProcess();
             }
+        }
+
+        private void PerkEffect()
+        {
+            if(_player.PerkSystem.PerkList.AllPerkList[11].IntEffect() == 0)
+            {
+                return;
+            }
+            if(_player.PerkSystem.PerkList.AllPerkList[11].IntEffect() == 1)
+            {
+                _player.AddLive(1);
+            }
+
         }
 
         // ゲームの状態がゲーム終了状態になった際のゲーム終了処理

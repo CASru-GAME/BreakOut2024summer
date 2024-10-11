@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using App.Main.Player;
 using App.Main.Stage;
 using App.Main.Effects;
@@ -26,7 +27,7 @@ namespace App.Main.Block
 
         private void FixedUpdate() {
             if (PoisonStack > 0) {
-                TakePoisonDamage(PoisonStack);
+                StartCoroutine(TakePoisonDamage(PoisonStack));
             }
             
         }
@@ -72,10 +73,11 @@ namespace App.Main.Block
             Destroy(gameObject);
         }
 
-        public void TakePoisonDamage(int poisonStack)
+        public IEnumerator TakePoisonDamage(int poisonStack)
         {
             TakeDamage(poisonStack);
             RemovePoisonStack();
+            yield return new WaitForSeconds(1);
         }
 
         public void AddPoisonStack(int stack)

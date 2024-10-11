@@ -71,9 +71,9 @@ namespace App.Main.Player.Perk
             RandomPerkList.Clear();
             // AllPerkListからランダムで重複なしでPerkを3つ選択する
             var PerkIDList = new List<int>();
-            for (int i = 0; i < AmountPerk; i++)
+            for (int i = 1; i < AmountPerk; i++)
             {
-                PerkIDList.Add(i);
+                PerkIDList.Add(i-1);
             }
             PerkIDList = PerkIDList.OrderBy(a => Guid.NewGuid()).ToList();
             for(int i = 0; i < 3; i++)
@@ -130,17 +130,22 @@ namespace App.Main.Player.Perk
         {
             PerkList.GetPerk(PerkId);
             EffectWhenAcquiredPerk(PerkId);
+            Debug.Log("PerkId: " + PerkId);
         }
 
         private void EffectWhenAcquiredPerk(int PerkId)
         {
-            if(PerkId == 2)
-            {
-                UsePerkEffects(2);
-            }
             if(PerkId == 4)
             {
                 UsePerkEffects(4);
+            }
+            if(PerkId == 5)
+            {
+                UsePerkEffects(5);
+            }
+            if(PerkId == 22)
+            {
+                UsePerkEffects(22);
             }
         }
 

@@ -3,13 +3,13 @@ using App.Main.Player;
 
 namespace App.Main.Player.Perk
 {
-    public class ManekiCat : IPerk
+    public class FamilyPhoto : IPerk
     {
-        private int id = 18;
+        private int id = 11;
         private int StackCount = 0;
         private PlayerDatastore playerDatastore;
 
-        public ManekiCat(PlayerDatastore playerDatastore)
+        public FamilyPhoto(PlayerDatastore playerDatastore)
         {
             this.playerDatastore = playerDatastore;
         }
@@ -25,11 +25,9 @@ namespace App.Main.Player.Perk
 
         public void Effect()
         {
-            if (StackCount == 0) return;
-
-
-            
+            return;
         }
+
 
 
         public int GetId()
@@ -37,14 +35,24 @@ namespace App.Main.Player.Perk
             return id;
         }
 
+        private int CaluculateProbability()
+        {
+            return (int)((1 - 1 / (StackCount + 1)) * 60);
+        }
+
         public int IntEffect()
         {
+            int number = Random.Range(1, 100);
+            if (number <= CaluculateProbability())
+            {
+                return 1;
+            }
             return 0;
         }
 
         public float FloatEffect()
         {
-            return (float)(1+0.125*StackCount);
+            return 0;
         }
     }
 }

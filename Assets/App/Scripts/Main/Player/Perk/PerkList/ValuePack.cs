@@ -3,13 +3,13 @@ using App.Main.Player;
 
 namespace App.Main.Player.Perk
 {
-    public class ManekiCat : IPerk
+    public class ValuePack : IPerk
     {
-        private int id = 18;
+        private int id = 10;
         private int StackCount = 0;
         private PlayerDatastore playerDatastore;
 
-        public ManekiCat(PlayerDatastore playerDatastore)
+        public ValuePack(PlayerDatastore playerDatastore)
         {
             this.playerDatastore = playerDatastore;
         }
@@ -25,8 +25,7 @@ namespace App.Main.Player.Perk
 
         public void Effect()
         {
-            if (StackCount == 0) return;
-
+            return;
 
             
         }
@@ -39,12 +38,12 @@ namespace App.Main.Player.Perk
 
         public int IntEffect()
         {
-            return 0;
+            return StackCount;
         }
 
         public float FloatEffect()
         {
-            return (float)(1+0.125*StackCount);
+            return 0;
         }
     }
 }
