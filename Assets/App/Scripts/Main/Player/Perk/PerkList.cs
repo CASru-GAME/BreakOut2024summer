@@ -19,14 +19,27 @@ namespace App.Main.Player.Perk
             {
                 new DebugPerk(),//ID:0
                 new WireCage(playerDatastore),//ID:1
-                new IncreaseBallSpeed(playerDatastore),//ID:2
-                new LateBloomer(playerDatastore,processSystem),//ID:3
-                new LastStand(playerDatastore),//ID:4
-                new Amaryllis(playerDatastore),//ID:5
-                new ManekiCat(playerDatastore),//ID:6
-                new Matatabi(playerDatastore),//ID:7
-
-                
+                new LateBloomer(playerDatastore, processSystem),//ID:2
+                new Matatabi(playerDatastore),//ID:3
+                new IncreaseBallSpeed(playerDatastore),//ID:4
+                new OptionParts(playerDatastore),//ID:5
+                new Amaryllis(playerDatastore),//ID:6
+                new DebugPerk(),//ID:7
+                new DebugPerk(),//ID:8
+                new DebugPerk(),//ID:9
+                new ValuePack(playerDatastore),//ID:10
+                new FamilyPhoto(playerDatastore),//ID:11
+                new DebugPerk(),//ID:12
+                new DebugPerk(),//ID:13
+                new DebugPerk(),//ID:14
+                new DebugPerk(),//ID:15
+                new DebugPerk(),//ID:16
+                new DebugPerk(),//ID:17
+                new ManekiCat(playerDatastore),//ID:18
+                new DebugPerk(),//ID:19
+                new DebugPerk(),//ID:20
+                new DebugPerk(),//ID:21
+                new LastStand(playerDatastore)//ID:22
             };
             AmountPerk = AllPerkList.Length;
         }
