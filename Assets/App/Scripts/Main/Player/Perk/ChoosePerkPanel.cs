@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using App.ScriptableObjects;
+using UnityEngine.UI;
 
 
 namespace App.Main.Player.Perk
@@ -9,9 +11,12 @@ namespace App.Main.Player.Perk
     {
         private int PerkId = 0;
         private PerkSystem PerkSystem;
-        [SerializeField] private GameObject perkIconPanelPos;
-        [SerializeField] private GameObject perkIconPanelPrefab;
-        [SerializeField] private Canvas canvas_Perk;
+        [SerializeField] private Image _perkIconPanel;
+        [SerializeField] private SpriteData _spriteData;
+        [SerializeField] private Text _PerkNameText;
+        [SerializeField] private Text _PerkExplanationText;
+        [SerializeField] private TextData _textData;
+
 
         //デバッグ用
         [SerializeField] private int debugPerkId;
@@ -26,15 +31,24 @@ namespace App.Main.Player.Perk
             if(debugPerkId != 0) this.PerkId = debugPerkId;
             //
 
-            CreatePerkIconPanel();
+            SetPerkIconPanel();
+            SetPerkNameText();
+            SetPerkExplanationText();
         }
 
-        private void CreatePerkIconPanel()
+        private void SetPerkIconPanel()
         {
-            GameObject newPerkPanelPrefab = Instantiate(perkIconPanelPrefab, perkIconPanelPos.transform.position, Quaternion.identity);
-            newPerkPanelPrefab.transform.SetParent(perkIconPanelPos.transform);
-            newPerkPanelPrefab.transform.localScale = perkIconPanelPos.transform.localScale;
-            newPerkPanelPrefab.GetComponent<PerkIconPanel>().Initialize(PerkId);
+            _perkIconPanel.sprite = _spriteData.GetPerkSprite(PerkId);
+        }
+
+        private void SetPerkNameText()
+        {
+            _PerkNameText.text = _textData.GetPerkName(PerkId);
+        }
+
+        private void SetPerkExplanationText()
+        {
+            _PerkExplanationText.text = _textData.GetPerkExplanation(PerkId);
         }
 
         public void OnClick()
