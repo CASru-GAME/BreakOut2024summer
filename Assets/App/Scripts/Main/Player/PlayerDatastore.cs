@@ -14,7 +14,6 @@ namespace App.Main.Player
         private LevelSystem levelSystem;
         public PerkSystem PerkSystem;
         private ComboSystem ComboSystem;
-        [SerializeField] GameObject perkPanelPrefab;
         [SerializeField] private Canvas perkCanvas;
         [SerializeField] private List<GameObject> perkPanelList;
         [SerializeField] private ProcessSystem processSystem;
