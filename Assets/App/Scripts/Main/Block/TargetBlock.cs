@@ -12,10 +12,12 @@ namespace App.Main.Block
         private BlockDatastore blockDatastore;
         private BlockAnimation blockAnimation;
         private CreateCat createCat;
+        private PlayerDatastore playerDatastore;
         [SerializeField] int initialHp;
         [SerializeField] int Id;
-        private StageSystem stage;
+        private StageSystem stageSystem;
         private int PoisonStack = 0;
+        private bool isPoisoned = false;
 
         void Start()
         {
@@ -23,11 +25,14 @@ namespace App.Main.Block
             blockDatastore.InitializeBlock(initialHp);
             blockAnimation = GetComponent<BlockAnimation>();
             createCat = GetComponent<CreateCat>();
+            playerDatastore = FindObjectOfType<PlayerDatastore>();
+            //　findしたくないので、引数で渡したい
         }
 
         private void FixedUpdate() {
-            if (PoisonStack > 0) {
+            if (PoisonStack > 0 && isPoisoned == false) {
                 StartCoroutine(TakePoisonDamage(PoisonStack));
+                isPoisoned = true;
             }
             
         }
@@ -35,9 +40,9 @@ namespace App.Main.Block
         //<summary>
         // ブロックが破壊されたときに通達するために取得する
         //</summary>
-        public void SetStage(StageSystem stage)
+        public void SetStage(StageSystem stageSystem)
         {
-            this.stage = stage;
+            this.stageSystem = stageSystem;
         }
 
         //<summary>
@@ -48,7 +53,7 @@ namespace App.Main.Block
             BlockHp newBlockHp = new BlockHp(damage);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
-            blockAnimation.CreateDamageEffect(damage, stage);
+            blockAnimation.CreateDamageEffect(damage, stageSystem);
 
             if(blockDatastore.Hp.CurrentValue <= 0)
             Break();
@@ -65,10 +70,16 @@ namespace App.Main.Block
         private void Break()
         {   
             //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達
-            stage.DecreaseTargetBlockCount();
+            stageSystem.DecreaseTargetBlockCount();
 
             blockAnimation.Break();
             createCat.Create(transform.position, transform.localScale);
+
+            if(playerDatastore.PerkSystem.PerkList.AllPerkList[21].IntEffect() == 1)
+            {
+                stageSystem.IncreaseTotalCat();
+                createCat.Create(transform.position + new Vector3(0f, 0.3f, 0f), transform.localScale);
+            }
 
             Destroy(gameObject);
         }
@@ -78,6 +89,7 @@ namespace App.Main.Block
             TakeDamage(poisonStack);
             RemovePoisonStack();
             yield return new WaitForSeconds(1);
+            isPoisoned = false;
         }
 
         public void AddPoisonStack(int stack)

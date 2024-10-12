@@ -38,7 +38,7 @@ namespace App.Main.Player.Perk
                 new ManekiCat(playerDatastore),//ID:18
                 new DebugPerk(),//ID:19
                 new DebugPerk(),//ID:20
-                new DebugPerk(),//ID:21
+                new Amulet(playerDatastore),//ID:21
                 new LastStand(playerDatastore)//ID:22
             };
             AmountPerk = AllPerkList.Length;
