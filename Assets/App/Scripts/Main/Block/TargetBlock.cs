@@ -84,15 +84,15 @@ namespace App.Main.Block
                 blockAnimation.Break();
                 createCat.Create(transform.position, transform.localScale);
 
-            if (playerDatastore.PerkSystem.PerkList.AllPerkList[13].IntEffect() == 1)
-            {
-                stageSystem.CreateBall(transform.position);
-            }
-            if(playerDatastore.PerkSystem.PerkList.AllPerkList[21].IntEffect() == 1)
-            {
-                stageSystem.IncreaseTotalCat();
-                createCat.Create(transform.position + new Vector3(0f, 0.3f, 0f), transform.localScale);
-            }
+                if (playerDatastore.PerkSystem.PerkList.AllPerkList[13].IntEffect() == 1)
+                {
+                    stageSystem.CreateBall(transform.position);
+                }
+                if (playerDatastore.PerkSystem.PerkList.AllPerkList[21].IntEffect() == 1)
+                {
+                    stageSystem.IncreaseTotalCat();
+                    createCat.Create(transform.position + new Vector3(0f, 0.3f, 0f), transform.localScale);
+                }
             }
             Destroy(gameObject);
         }
