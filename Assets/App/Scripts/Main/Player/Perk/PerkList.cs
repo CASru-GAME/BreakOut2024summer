@@ -33,7 +33,7 @@ namespace App.Main.Player.Perk
                 new DebugPerk(),//ID:13
                 new DebugPerk(),//ID:14
                 new DebugPerk(),//ID:15
-                new DebugPerk(),//ID:16
+                new WatermelonSeeds(playerDatastore),//ID:16
                 new DebugPerk(),//ID:17
                 new ManekiCat(playerDatastore),//ID:18
                 new DebugPerk(),//ID:19
