@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5183831082332913390}
   - component: {fileID: 3701481796967595053}
   - component: {fileID: 15411866717957220}
+  - component: {fileID: 996343353346044896}
   m_Layer: 0
   m_Name: RightScreenOffHorizontalMoveBlock
   m_TagString: Untagged
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 395359716, guid: 9812fa1479c84554298376bcf309fd52, type: 3}
+  m_Sprite: {fileID: 2004428381, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +104,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHp: 5
   Id: 7
-  DamageEffect: {fileID: 3125810737970945919, guid: 476bbcdbf27665c409286f0cc22a1fad, type: 3}
 --- !u!114 &5801674815588569115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,3 +203,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &996343353346044896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8741922495981591096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85aaf18959d779244b965e1f06526c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normal: {fileID: 2004428381, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
+  _damaged: {fileID: 966232688, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
+  _destroyedAnimatorController: {fileID: 9100000, guid: 03404d59d31aca846907bc97428249f3, type: 2}
+  _destroyedAnimationPrefab: {fileID: 5744082711352651307, guid: 0256bc764ca869d4a8a068906decde55, type: 3}
+  _damageColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  _damageEffect: {fileID: 3125810737970945919, guid: 476bbcdbf27665c409286f0cc22a1fad, type: 3}

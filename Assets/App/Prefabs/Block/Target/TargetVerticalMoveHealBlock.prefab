@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 5109474705715694319}
   - component: {fileID: 4719601551496518650}
   - component: {fileID: 305702701656776934}
+  - component: {fileID: 475540978449105145}
   m_Layer: 0
   m_Name: TargetVerticalMoveHealBlock
   m_TagString: Untagged
@@ -171,7 +172,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1558328910, guid: 9812fa1479c84554298376bcf309fd52, type: 3}
+  m_Sprite: {fileID: 2076457566, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
   m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -196,7 +197,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHp: 5
   Id: 11
-  DamageEffect: {fileID: 3125810737970945919, guid: 69424b6138335054db210228b558d3cc, type: 3}
 --- !u!114 &3340068013590731986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +211,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _verticalRange: 0.675
   _speed: 1
-  _fall: {fileID: 4023168750849994644, guid: 137a07fbeaa00bc43b791480af7aa988, type: 3}
 --- !u!114 &5109474705715694319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,3 +295,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &475540978449105145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6598970287209325743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85aaf18959d779244b965e1f06526c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normal: {fileID: 2076457566, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
+  _damaged: {fileID: 77029752, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
+  _destroyedAnimatorController: {fileID: 9100000, guid: 03404d59d31aca846907bc97428249f3, type: 2}
+  _destroyedAnimationPrefab: {fileID: 5744082711352651307, guid: 0256bc764ca869d4a8a068906decde55, type: 3}
+  _damageColor:
+    serializedVersion: 2
+    rgba: 4283124735
+  _damageEffect: {fileID: 3125810737970945919, guid: 476bbcdbf27665c409286f0cc22a1fad, type: 3}

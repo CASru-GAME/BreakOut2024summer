@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 958720616003508593}
   - component: {fileID: 4670015319979942623}
   - component: {fileID: 3368925016064767947}
+  - component: {fileID: -511824397263788377}
   m_Layer: 0
   m_Name: TargetHealBlock
   m_TagString: Untagged
@@ -79,8 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1558328910, guid: 9812fa1479c84554298376bcf309fd52, type: 3}
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 2076457566, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -104,7 +105,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHp: 6
   Id: 9
-  DamageEffect: {fileID: 3125810737970945919, guid: 69424b6138335054db210228b558d3cc, type: 3}
 --- !u!114 &958720616003508593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +189,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-511824397263788377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3251323559205306160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85aaf18959d779244b965e1f06526c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normal: {fileID: 2076457566, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
+  _damaged: {fileID: 77029752, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
+  _destroyedAnimatorController: {fileID: 9100000, guid: 03404d59d31aca846907bc97428249f3, type: 2}
+  _destroyedAnimationPrefab: {fileID: 5744082711352651307, guid: 0256bc764ca869d4a8a068906decde55, type: 3}
+  _damageColor:
+    serializedVersion: 2
+    rgba: 4283124735
+  _damageEffect: {fileID: 3125810737970945919, guid: 476bbcdbf27665c409286f0cc22a1fad, type: 3}
 --- !u!1 &3784593169817612484
 GameObject:
   m_ObjectHideFlags: 0
