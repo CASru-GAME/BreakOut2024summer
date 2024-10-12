@@ -1,24 +1,40 @@
 using UnityEngine;
+using System.Collections;
 using App.Main.Player;
 using App.Main.Stage;
 using App.Main.Item;
 using App.Main.Block.Ablity;
-using App.Main.Effects;
+using App.Main.Cat;
 
 namespace App.Main.Block
-{   //ターゲット以外のブロック
+{   
+    //ターゲット以外のブロック
     public class Block : MonoBehaviour, IBlock
     {   
-        private BlockDataStore blockDatastore;
+        private BlockDatastore blockDatastore;
+        private BlockAnimation blockAnimation;
+        private CreateCat createCat;
+        private PlayerDatastore playerDatastore;
         [SerializeField] int initialHp;
         [SerializeField] int Id;
-        [SerializeField] GameObject DamageEffect;
         private StageSystem stage;
+        private int PoisonStack = 0;
+        private int WeaknessPoint = 0;
 
         void Start()
         {
-            blockDatastore = GetComponent<BlockDataStore>();
+            blockDatastore = GetComponent<BlockDatastore>();
             blockDatastore.InitializeBlock(initialHp);
+            blockAnimation = GetComponent<BlockAnimation>();
+            createCat = GetComponent<CreateCat>();
+            playerDatastore = FindObjectOfType<PlayerDatastore>();
+            //　findしたくないので、引数で渡したい
+        }
+
+        private void FixedUpdate() {
+            
+            StartCoroutine(TakePoisonDamage());
+            StartCoroutine(RemoveWeaknessPoint());
         }
 
 
@@ -34,20 +50,16 @@ namespace App.Main.Block
         //<summary>
         // ダメージを受ける(ボールが呼び出す)
         //</summary>
-        public void TakeDamage(AttackPoint damage)
+        public void TakeDamage(int damage)
         {
-            BlockHp newBlockHp = new BlockHp(damage.CurrentValue);
+            BlockHp newBlockHp = new BlockHp(damage);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
-            CreateDamageEffect(damage.CurrentValue - blockDatastore.Hp.CurrentValue);
+            if(WeaknessPoint > 0) damage *= 2;
+
+            blockAnimation.CreateDamageEffect(damage, stage);
 
             if (blockDatastore.Hp.CurrentValue <= 0) Break();
-        }
-
-        private void CreateDamageEffect(int damageValue)
-        {
-            var newDamageEffect = Instantiate(DamageEffect, transform.position, Quaternion.identity);
-            newDamageEffect.GetComponent<DamageEffect>().Initialize(damageValue, stage.Canvas);
         }
 
         public void Healed(int healAmount)
@@ -66,9 +78,43 @@ namespace App.Main.Block
             //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達
             stage.DecreaseNormalBlockCount();
 
-            stage.CreateItem(transform.position);//デバッグ用
-            stage.CreateExpBall(transform.position);//デバッグ用
+            blockAnimation.Break();
+
+            stage.CreateItem(transform.position); //デバッグ用
+            stage.CreateExpBall(transform.position); //デバッグ用
+            if (playerDatastore.PerkSystem.PerkList.AllPerkList[3].IntEffect() == 1)
+            {
+                createCat.Create(transform.position, transform.localScale);
+            }
             Destroy(gameObject);
+        }
+
+        public IEnumerator TakePoisonDamage()
+        {
+            if (PoisonStack > 0) {
+                TakeDamage(PoisonStack);
+                RemovePoisonStack();
+                yield return new WaitForSeconds(1);
+            }
+        }
+
+        public void AddPoisonStack(int stack)
+        {
+            PoisonStack += stack;
+        }
+
+        public void RemovePoisonStack()
+        {
+            PoisonStack--;
+        }
+
+        public IEnumerator RemoveWeaknessPoint()
+        {
+            if (WeaknessPoint > 0)
+            {
+                WeaknessPoint--;
+            }
+            yield return new WaitForSeconds(1);
         }
     }
 }

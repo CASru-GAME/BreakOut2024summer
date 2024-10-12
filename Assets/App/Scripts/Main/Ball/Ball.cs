@@ -14,14 +14,16 @@ namespace App.Main.Ball
         private PlayerDatastore playerDatastore;
         private StageSystem stageSystem;
         private Rigidbody2D rb;
+        private float BallSpeed;
 
         /// <summary>
         /// デバッグ用．ボールに初速度を与える
         /// </summary>
         private void Start()
         {
+            BallSpeed = playerDatastore.GetBallSpeedValue();
             rb = GetComponent<Rigidbody2D>();
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-2f, -2f);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(BallSpeed, BallSpeed);
         }
 
         /// <summary>
@@ -67,18 +69,41 @@ namespace App.Main.Ball
             {
                 //ダメージ計算
                 block.TakeDamage(CalcDamage());
+                //IBlockをいじる許可が出たらここに状態異常付与の関数を書く
             }
         }
 
         /// <summary>
         /// ブロックに与えるダメージを計算する
         /// </summary>
-        private AttackPoint CalcDamage()
+        private int CalcDamage()
         {
-            AttackPoint newAttackPoint = new AttackPoint(0);
-            newAttackPoint = playerDatastore.Parameter.AttackPoint;
-            //パークのダメージも計算する(実装待ち)
-            return newAttackPoint;
+            int damage = playerDatastore.GetAttackPointValue();
+            damage += CalculateComboDamage();
+            CaluculatePerkDamage(damage);
+            return damage;
+        }
+
+        private int CalculateComboDamage()
+        {
+            return (int)(playerDatastore.GetComboCount()*0.25);
+        }
+
+        private int CaluculatePerkDamage(int damage)
+        {
+            damage += playerDatastore.PerkSystem.PerkList.AllPerkList[2].IntEffect();
+            damage *= playerDatastore.PerkSystem.PerkList.AllPerkList[22].IntEffect();
+            return damage;
+        }
+
+        private int CalculatePoisonStack()
+        {
+            return playerDatastore.PerkSystem.PerkList.AllPerkList[6].IntEffect();
+        }
+
+        private int CalculateWeaknessStack()
+        {
+            return playerDatastore.PerkSystem.PerkList.AllPerkList[6].IntEffect();
         }
     }
 }

@@ -9,6 +9,8 @@ namespace App.Main.Player
         public Level Level { get; private set; }
         public ExperiencePoint ExperiencePoint { get; private set; }
 
+        public ComboCount ComboCount { get; private set; }
+
         public Parameter(int live, int attackPoint, float ballSpeed, float moveSpeed, int level , int experiencePoint)
         {
             Live = new Live(live);
@@ -17,6 +19,7 @@ namespace App.Main.Player
             MoveSpeed = new MoveSpeed(moveSpeed);
             Level = new Level(level);
             ExperiencePoint = new ExperiencePoint(experiencePoint);
+            ComboCount = new ComboCount(0);
         }
 
         public void AddLive(int value)
@@ -45,6 +48,11 @@ namespace App.Main.Player
         public int GetLiveValue()
         {
             return Live.CurrentValue;
+        }
+
+        public int GetMaxLiveValue()
+        {
+            return Live.MaxValue;
         }
 
         public void AddAttackPoint(int value)
@@ -116,6 +124,21 @@ namespace App.Main.Player
         public int GetExperiencePointValue()
         {
             return ExperiencePoint.CurrentValue;
+        }
+
+        public void AddComboCount()
+        {
+            ComboCount = ComboCount.AddCurrentValue(new ComboCount(1));
+        }
+
+        public void ResetComboCount()
+        {
+            ComboCount = ComboCount.ResetCurrentValue();
+        }
+
+        public int GetComboCount()
+        {
+            return ComboCount.CurrentValue;
         }
 
 

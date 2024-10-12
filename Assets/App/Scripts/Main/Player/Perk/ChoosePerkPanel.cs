@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using App.ScriptableObjects;
+using UnityEngine.UI;
 
 
 namespace App.Main.Player.Perk
@@ -9,34 +11,50 @@ namespace App.Main.Player.Perk
     {
         private int PerkId = 0;
         private PerkSystem PerkSystem;
-       
-        void Start()
-        {
+        [SerializeField] private Image _perkIconPanel;
+        [SerializeField] private SpriteData _spriteData;
+        [SerializeField] private Text _PerkNameText;
+        [SerializeField] private Text _PerkExplanationText;
+        [SerializeField] private TextData _textData;
 
+
+        //デバッグ用
+        [SerializeField] private int debugPerkId;
+        //
+
+        public void Initialize(int perkId, PerkSystem perkSystem)
+        {
+            this.PerkId = perkId;
+            this.PerkSystem = perkSystem;
+
+            //デバッグ用
+            if(debugPerkId != 0) this.PerkId = debugPerkId;
+            //
+
+            SetPerkIconPanel();
+            SetPerkNameText();
+            SetPerkExplanationText();
         }
 
-        public void Initialize(int PerkId, PerkSystem PerkSystem)
+        private void SetPerkIconPanel()
         {
-            this.PerkId = PerkId;
-            this.PerkSystem = PerkSystem;
+            _perkIconPanel.sprite = _spriteData.GetPerkSprite(PerkId);
         }
 
-        // Update is called once per frame
-        void Update()
+        private void SetPerkNameText()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
-            if (hit.collider != null && hit.collider.gameObject == gameObject)
-            {
-                
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Debug.Log(hit.collider.gameObject.name);
-                    PerkSystem.GetPerk(PerkId);
-                    PerkSystem.SusideAll();
-                    
-                }
-            }
+            _PerkNameText.text = _textData.GetPerkName(PerkId);
+        }
+
+        private void SetPerkExplanationText()
+        {
+            _PerkExplanationText.text = _textData.GetPerkExplanation(PerkId);
+        }
+
+        public void OnClick()
+        {
+            PerkSystem.GetPerk(PerkId);
+            PerkSystem.SuicideAll();
         }
 
         public void Suside()

@@ -18,7 +18,6 @@ namespace App.Main.Stage
         public void SetPlayGame()
         {
             _state = StageState.Playing;
-            Debug.Log("State: " + _state);
         }
         /// <summary>
         /// ゲームの状態をGameFinishにセットする
@@ -26,7 +25,6 @@ namespace App.Main.Stage
         public void SetGameFinish()
         {
             _state = StageState.GameFinish;
-            Debug.Log("State: " + _state);
         }
         /// <summary>
         /// ゲームの状態をStageClearにセットする
@@ -34,7 +32,6 @@ namespace App.Main.Stage
         public void SetStageClear()
         {
             _state = StageState.StageClear;
-            Debug.Log("State: " + _state);
         }
         /// <summary>
         /// ゲームの状態をWaitingにセットする
@@ -42,7 +39,6 @@ namespace App.Main.Stage
         public void SetWaiting()
         {
             _state = StageState.Waiting;
-            Debug.Log("State: " + _state);
         }
         /// <summary>
         /// ゲームがPlayingかどうかを返す

@@ -12,9 +12,9 @@ namespace App.Main.Player
 
         public BallSpeed(float speed)
         {
-            if (speed < 0)
+            if (speed == 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(speed), "Speed cannot be negative");
+                throw new ArgumentOutOfRangeException(nameof(speed), "Speed cannot be zero");
             }
 
             _speed = speed;

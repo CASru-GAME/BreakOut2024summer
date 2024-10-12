@@ -5,5 +5,8 @@ namespace App.Main.Player.Perk
         void AddStackCount();
         int GetStackCount();
         void Effect();
+        int GetId();
+        int IntEffect();
+        float FloatEffect();
     }
 }
