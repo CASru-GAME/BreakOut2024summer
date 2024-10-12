@@ -37,6 +37,8 @@ namespace App.Main.Block
             StartCoroutine(RemoveWeaknessPoint());
         }
 
+
+
         //<summary>
         // ブロックが破壊されたときに通達するために取得する
         //</summary>
@@ -61,10 +63,12 @@ namespace App.Main.Block
         }
 
         public void Healed(int healAmount)
-        {   
+        {  
+            Debug.Log("Heal");
             BlockHp newBlockHp = new BlockHp(healAmount);
             blockDatastore.SetHp(blockDatastore.Hp.AddCurrentValue(newBlockHp));
         }
+
 
         //<summary>
         // 破壊されたことを通達する(TakeDamage内で呼び出される)

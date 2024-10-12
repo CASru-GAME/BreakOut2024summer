@@ -75,7 +75,7 @@ namespace App.Main.Stage
                     else
                     {
                         // ボールを生成する
-                        _stageSystem.CreateBall(new Vector3(0, 0, 0));
+                        _stageSystem.CreateBall(new Vector3(0, -3, 0));
                     }
                 }
                 // ターゲットブロックがすべてなくなったら
