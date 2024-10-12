@@ -79,7 +79,7 @@ namespace App.Main.Ball
         /// </summary>
         private int CalcDamage()
         {
-            int damage = playerDatastore.GetAttackPointValue();
+            int damage = playerDatastore.GetAttackPointValue() + playerDatastore.PerkSystem.PerkList.AllPerkList[12].IntEffect();
             damage += CalculateComboDamage();
             CaluculatePerkDamage(damage);
             return damage;
