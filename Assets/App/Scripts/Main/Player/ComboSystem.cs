@@ -7,6 +7,7 @@ namespace App.Main.Player
     {
         private PlayerDatastore playerDatastore;
         public int ComboResetCount = 0;
+        public int MaxComboCount = 300;
 
         public ComboSystem(PlayerDatastore playerDatastore)
         {
@@ -21,9 +22,16 @@ namespace App.Main.Player
 
         private void ResetCombo()
         {
-            if(ComboResetCount >= 300) playerDatastore.ResetComboCount();
-        }
+            if(ComboResetCount >= MaxComboCount)
+            {
+                playerDatastore.ResetComboCount();
+                ComboResetCount = 0;
+            }
+        }      
 
-        
+        public void ResetComboResetCount()
+        {
+            ComboResetCount = 0;
+        }  
     }
 }

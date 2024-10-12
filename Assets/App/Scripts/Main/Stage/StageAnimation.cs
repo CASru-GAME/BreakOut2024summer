@@ -14,9 +14,17 @@ namespace App.Main.Stage
         [SerializeField] private GameObject _back_Wall;
         [SerializeField] private GameObject _back_Game;
         [SerializeField] private List<RuntimeAnimatorController> _back_Game_AnimatorControllerList;
-        [SerializeField] private Text _stageText;
-        [SerializeField] private Text _timeText;
-        [SerializeField] private PlayerDatastore _playerDatastore = default;
+        [SerializeField] private Text stageText;
+        [SerializeField] private Text catText;
+        private string _catDefaultText;
+        [SerializeField] private Text timeText;
+        private string _timeDefaultText;
+        [SerializeField] private Text comboText;
+        [SerializeField] private Text comboGaugeText;
+        private string _comboDefaultText;
+        [SerializeField] private RectMask2D comboTextMask;
+
+        [SerializeField] private PlayerDatastore _playerDatastore;
         private int latestHP;
         private List<GameObject> heartPrefabList = new List<GameObject>();
         [SerializeField] private GameObject _heartPrefab;
@@ -33,13 +41,17 @@ namespace App.Main.Stage
         private List<(int id, GameObject panelPrefab, GameObject gaugePrefab)> itemShowList = new List<(int id, GameObject panelPrefab, GameObject gaugePrefab)>();
         private List<Vector3> _itemPanelPosList = new List<Vector3>();
         [SerializeField] private SpriteData _spriteData;
+        [SerializeField] private StageSystem _stageSystem;
 
         private void Start()
         {
             int stageId = GetComponent<StageSystem>().CurrentStageNumberID;
             _back_Wall.GetComponent<SpriteRenderer>().sprite = _spriteData.GetBackWallSprite(stageId);
             _back_Game.GetComponent<Animator>().runtimeAnimatorController = _back_Game_AnimatorControllerList[stageId - 1];
-            _stageText.text = "このステージ  " + stageId;
+            stageText.text = string.Format(stageText.text, stageId);
+            _catDefaultText = catText.text;
+            _timeDefaultText = timeText.text;
+            _comboDefaultText = comboText.text;
             CreatePanels();
         }
 
@@ -93,8 +105,10 @@ namespace App.Main.Stage
             }
 
             UpdateHearts();
+            UpdateCat();
             UpdateTime();
             UpdateItems();
+            UpdateCombo();
         }
 
         private void UpdateHearts()
@@ -120,9 +134,13 @@ namespace App.Main.Stage
             latestHP = currentHP;
         }
 
+        private void UpdateCat()
+        {
+            catText.text = string.Format(_catDefaultText, _stageSystem.GetTotalCat());
+        }
         private void UpdateTime()
         {
-            _timeText.text = "のこりじかん  " + (int)_processSystem.GetRemainingTimerLimit() + "  びょう";
+            timeText.text = string.Format(_timeDefaultText, (int)_processSystem.GetRemainingTimerLimit());
         }
 
         private void UpdateItems()
@@ -165,6 +183,21 @@ namespace App.Main.Stage
             {
                 itemShowList[i].panelPrefab.transform.localPosition = _itemPanelPosList[i];
                 itemShowList[i].gaugePrefab.transform.localPosition = _itemPanelPosList[i];
+            }
+        }
+
+        private void UpdateCombo()
+        {
+            comboText.text = string.Format(_comboDefaultText, _playerDatastore.GetComboCount());
+            comboGaugeText.text = comboText.text;
+            if(_playerDatastore.GetComboCount() == 0)
+            {
+                comboTextMask.padding = new Vector4(0.0f, 0.0f, 0.0f, comboTextMask.transform.localScale.y * comboTextMask.GetComponent<RectTransform>().sizeDelta.y);
+            }
+            else
+            {
+                comboTextMask.padding = new Vector4(0.0f, 0.0f, 0.0f, comboTextMask.transform.localScale.y * comboTextMask.GetComponent<RectTransform>().sizeDelta.y
+                * ((float)_playerDatastore.GetComboResetCount() / _playerDatastore.GetMaxComboResetCount()));
             }
         }
     }

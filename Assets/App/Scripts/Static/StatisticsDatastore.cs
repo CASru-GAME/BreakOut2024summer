@@ -17,19 +17,19 @@ namespace App.Static
         ///<summary>
         /// 獲得したパークの数
         /// </summary>
-        public static int[,] _totalAquiredPerkList { get; private set; } = new int[22, 2] { 
+        public static int[,] _totalAquiredPerkList { get; private set; } = new int[23, 2] { 
             { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, 
             { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, 
-            { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } 
+            { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } 
         };
         ///<summary>
         /// クリアしたステージ数
         /// </summary>
         public static int _totalClearedStage { get; private set; } = 0;
         ///<summary>
-        /// 破壊したターゲットブロック数
+        /// 助けた猫の数
         /// </summary>
-        public static int _totalDestroyedTargetBlock { get; private set; } = 0;
+        public static int _totalCat { get; private set; } = 0;
         ///<summary>
         /// 残りの制限時間
         /// </summary>
@@ -105,17 +105,17 @@ namespace App.Static
         }
 
         /// <summary>
-        /// 破壊したターゲットブロック数を代入する
+        /// 助けた猫の数を代入する
         /// </summary>
-        /// <param name="totalDestroyedTargetBlock"></param>
-        public static void AssignTotalDestroyedTargetBlock(int totalDestroyedTargetBlock)
+        /// <param name="totalCat"></param>
+        public static void AssignTotalCat(int totalCat)
         {
-            if (totalDestroyedTargetBlock < 0)
+            if (totalCat < 0)
             {
-                UnityEngine.Debug.Log("TotalDestroyedTargetBlock: 0より小さい値が入力されました");
+                UnityEngine.Debug.Log("TotalCat: 0より小さい値が入力されました");
                 return;
             }
-            _totalDestroyedTargetBlock = totalDestroyedTargetBlock;
+            _totalCat = totalCat;
         }
 
         /// <summary>
@@ -153,13 +153,13 @@ namespace App.Static
         {
             _totalAquiredExperiencePoint = 0;
             _playerLevel = 1;
-            _totalAquiredPerkList = new int[22, 2] {
+            _totalAquiredPerkList = new int[23, 2] {
                 {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0},
                 {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0},
-                {0, 0}, {0, 0}
+                {0, 0}, {0, 0}, {0, 0}
             };
             _totalClearedStage = 0;
-            _totalDestroyedTargetBlock = 0;
+            _totalCat = 0;
             _remainingTimeLimit = 0;
             _remainingLive = 0;
         }
