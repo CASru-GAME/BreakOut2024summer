@@ -29,8 +29,8 @@ namespace App.Main.Player.Perk
                 new LotteryTicket(playerDatastore),//ID:9
                 new ValuePack(playerDatastore),//ID:10
                 new FamilyPhoto(playerDatastore),//ID:11
-                new DebugPerk(),//ID:12
-                new DebugPerk(),//ID:13
+                new Dumbbell(playerDatastore),//ID:12
+                new Pot(playerDatastore),//ID:13
                 new DebugPerk(),//ID:14
                 new DebugPerk(),//ID:15
                 new WatermelonSeeds(playerDatastore),//ID:16

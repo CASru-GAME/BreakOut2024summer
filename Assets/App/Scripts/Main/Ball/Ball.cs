@@ -99,6 +99,8 @@ namespace App.Main.Ball
         {
             int damage = playerDatastore.GetAttackPointValue();
             damage += (int)(playerDatastore.PerkSystem.PerkList.AllPerkList[19].FloatEffect() * 10);
+            damage += playerDatastore.PerkSystem.PerkList.AllPerkList[12].IntEffect();
+
             damage += CalculateComboDamage();
             CaluculatePerkDamage(damage);
             return damage;
