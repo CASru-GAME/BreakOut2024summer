@@ -11,13 +11,12 @@ GameObject:
   - component: {fileID: 667349438750808397}
   - component: {fileID: 1185117257982161084}
   - component: {fileID: 7303859771917315604}
-  - component: {fileID: 6420514641534990403}
   - component: {fileID: 1337786111433559081}
   - component: {fileID: 7954476983051154948}
   - component: {fileID: 8099614189175641488}
   - component: {fileID: 4610041525927331377}
   m_Layer: 0
-  m_Name: TargetDiagonalBlock
+  m_Name: TargetBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,22 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHp: 3
-  Id: 3
---- !u!114 &6420514641534990403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5561954787144987651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c150d2ac731a0cf449f944ea6ad07559, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _horizontalRange: 0.9
-  _verticalRange: 0.45
-  _speed: 2
+  Id: 0
 --- !u!114 &1337786111433559081
 MonoBehaviour:
   m_ObjectHideFlags: 0
