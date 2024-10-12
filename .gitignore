@@ -73,3 +73,9 @@ crashlytics-build.properties
 
 # フォント
 /Assets/App/Fonts/*
+
+# BGM
+/Assets/App/Audio/BGM/*
+
+# SE
+/Assets/App/Audio/SE/*

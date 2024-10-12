@@ -25,7 +25,7 @@ namespace App.Common
         public void LoadMainGamefromBegining()
         {
             StatisticsDatastore.ResetAllStatisticsData();
-            StartCoroutine(LoadSceneAsync("MainGame"));
+            StartCoroutine(LoadSceneAsync("MainScene"));
         }
 
         private IEnumerator LoadSceneAsync(string sceneName)
