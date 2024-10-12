@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 8195545043770624252}
   - component: {fileID: 6624659006724443993}
   - component: {fileID: 1670819082882622891}
+  - component: {fileID: -3093787323336235515}
+  - component: {fileID: -258710007410442512}
   m_Layer: 0
   m_Name: TargetRightScreenOffHorizontalMoveBlock
   m_TagString: Untagged
@@ -78,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1558328910, guid: 9812fa1479c84554298376bcf309fd52, type: 3}
+  m_Sprite: {fileID: -1321147483, guid: 9f463d20dd14cc34188e64a34538e1ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +105,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHp: 5
   Id: 7
-  DamageEffect: {fileID: 3125810737970945919, guid: 69424b6138335054db210228b558d3cc, type: 3}
 --- !u!114 &4938116771118053030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,3 +204,41 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-3093787323336235515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134178932430688210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85aaf18959d779244b965e1f06526c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normal: {fileID: -1321147483, guid: 9f463d20dd14cc34188e64a34538e1ad, type: 3}
+  _damaged: {fileID: -693719525, guid: 9f463d20dd14cc34188e64a34538e1ad, type: 3}
+  _destroyedAnimatorController: {fileID: 9100000, guid: 486e4c76d4604a143859676aa5a8dc67, type: 2}
+  _destroyedAnimationPrefab: {fileID: 5744082711352651307, guid: 0256bc764ca869d4a8a068906decde55, type: 3}
+  _damageColor:
+    serializedVersion: 2
+    rgba: 4283124735
+  _damageEffect: {fileID: 3125810737970945919, guid: 476bbcdbf27665c409286f0cc22a1fad, type: 3}
+--- !u!114 &-258710007410442512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134178932430688210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd35d6d44e63af747aad8e831b630349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _catPrefab: {fileID: 5744082711352651307, guid: b5236f428eea1304a97570ad84d272eb, type: 3}
+  _catAnimatorController:
+  - {fileID: 9100000, guid: e51197f1c9fec0341bd6b11f15ce0c55, type: 2}
+  - {fileID: 9100000, guid: e51197f1c9fec0341bd6b11f15ce0c55, type: 2}
+  - {fileID: 9100000, guid: b8ce177f25298734baa430259e85c721, type: 2}
+  - {fileID: 9100000, guid: 14c911e4c046ab0498e4eac56e343e88, type: 2}
