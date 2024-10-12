@@ -23,7 +23,8 @@ namespace App.Main.Stage
 
         private int _targetBlockCount = 0;
         public int TargetBlockCount => _targetBlockCount;
-        private int _totalDestroyedTargetBlockCount = 0;
+        private int _totalCat =0;
+        public int TotalCat => _totalCat;
         private int _clearedStageCount = 0;
         public int ClearedStageCount => _clearedStageCount;
         private int _roopCount = 1;
@@ -86,7 +87,7 @@ namespace App.Main.Stage
         ///</summary>
         ///<exception cref="ArgumentException">ターゲットブロックの数が0未満になる場合に発生します。</exception>
         ///<remark>
-        ///同時に、破壊されたターゲットブロックの数を一つ増やす。
+        ///同時に、助けた猫の数を一つ増やす。
         ///</remark>
         public void DecreaseTargetBlockCount()
         {
@@ -95,16 +96,24 @@ namespace App.Main.Stage
                 throw new ArgumentException("Value cannot be negative");
             }
             --_targetBlockCount;
-            ++_totalDestroyedTargetBlockCount;
+            IncreaseTotalCat();
         }
 
         ///<summary>
-        ///ステージシステム上の破壊されたターゲットブロックの数を取得する。
-        /// <returns>破壊されたターゲットブロックの数</returns>
+        ///ステージシステム上の助けた猫の数を取得する。
+        /// <returns>助けた猫の数</returns>
         /// </summary>
-        public int GetTotalDestroyedTargetBlockCount()
+        public int GetTotalCat()
         {
-            return _totalDestroyedTargetBlockCount;
+            return _totalCat;
+        }
+
+        ///<summary>
+        ///ステージシステム上の助けた猫の数を1増やす。
+        /// </summary>
+        public void IncreaseTotalCat()
+        {
+            _totalCat++;
         }
 
         ///<summary>
@@ -175,9 +184,9 @@ namespace App.Main.Stage
             {
                 CountClearedStage();
             }
-            for (int i = 0; i < StatisticsDatastore._totalDestroyedTargetBlock; i++)
+            for (int i = 0; i < StatisticsDatastore._totalCat; i++)
             {
-                _totalDestroyedTargetBlockCount++;
+                _totalCat++;
             }
         }
 
@@ -187,7 +196,7 @@ namespace App.Main.Stage
         public void FetchData()
         {
             StatisticsDatastore.AssignTotalClearedStage(_clearedStageCount);
-            StatisticsDatastore.AssignTotalDestroyedTargetBlock(_totalDestroyedTargetBlockCount);
+            StatisticsDatastore.AssignTotalCat(_totalCat);
         }
     }
 }

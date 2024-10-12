@@ -290,11 +290,22 @@ namespace App.Main.Player
         public void AddComboCount()
         {
             Parameter.AddComboCount();
+            ComboSystem.ResetComboResetCount();
         }
 
         public int GetComboCount()
         {
             return Parameter.GetComboCount();
+        }
+
+        public int GetComboResetCount()
+        {
+            return ComboSystem.ComboResetCount;
+        }
+
+        public int GetMaxComboResetCount()
+        {
+            return ComboSystem.MaxComboCount;
         }
 
         public void ResetComboCount()

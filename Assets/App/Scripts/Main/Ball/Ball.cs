@@ -69,6 +69,7 @@ namespace App.Main.Ball
             {
                 //ダメージ計算
                 block.TakeDamage(CalcDamage());
+                playerDatastore.AddComboCount();
                 //IBlockをいじる許可が出たらここに状態異常付与の関数を書く
             }
         }

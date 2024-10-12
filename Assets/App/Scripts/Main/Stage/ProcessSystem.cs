@@ -40,7 +40,7 @@ namespace App.Main.Stage
             InitializeGame();
             Debug.Log("_____________________________: CurrentStageNumberID = " + _stageSystem.CurrentStageNumberID + " :_____________________________");
             Debug.Log("_____________________________: Static → ClearedStageCount = " + _stageSystem.ClearedStageCount + " :_____________________________");
-            Debug.Log("_____________________________: Static → TotalDestroyedTargetBlockCount = " + _stageSystem.GetTotalDestroyedTargetBlockCount() + " :_____________________________");
+            Debug.Log("_____________________________: Static → TotalDestroyedTargetBlockCount = " + _stageSystem.GetTotalCat() + " :_____________________________");
             Debug.Log("_____________________________: Static → RemainingTimeLimit = " + _timer.RemainingTimeLimit + " :_____________________________");
             Debug.Log("_____________________________: Static → RemainingLive = " + _player.Parameter.GetLiveValue() + " :_____________________________");
             Debug.Log("_____________________________: Static → TotalAquiredExperiencePoint = " + _player.GetExperiencePointValue() + " :_____________________________");
@@ -142,7 +142,7 @@ namespace App.Main.Stage
         /// インスタンス←static
         private void LoadGameParameter()
         {
-            // クリアしたステージ数と破壊した総ターゲットブロック数のロード
+            // クリアしたステージ数と助けた猫の総数のロード
             _stageSystem.SyncData();
             // 残りタイムリミットのロード
             if (_stageSystem.ClearedStageCount == 0)
