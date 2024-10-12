@@ -15,6 +15,7 @@ namespace App.Main.Ball
         private StageSystem stageSystem;
         private Rigidbody2D rb;
         private float BallSpeed;
+        private bool isFireworks = false;
 
         /// <summary>
         /// デバッグ用．ボールに初速度を与える
@@ -45,6 +46,12 @@ namespace App.Main.Ball
 
             //速度を一定に保つ
             rb.velocity = rb.velocity.normalized * playerDatastore.GetBallSpeedValue();
+
+            if(playerDatastore.PerkSystem.PerkList.AllPerkList[19].IntEffect() == 1 && isFireworks == false)
+            {
+                isFireworks = true;
+                StartCoroutine(Burning());
+            }
         }
 
         /// <summary>
@@ -57,6 +64,17 @@ namespace App.Main.Ball
 
             //gameObjectを削除
             Destroy(gameObject);
+        }
+
+        private IEnumerator Burning()
+        {
+            float lifeTime = playerDatastore.PerkSystem.PerkList.AllPerkList[19].FloatEffect() * 30;
+            while(lifeTime > 0)
+            {
+                yield return new WaitForSeconds(0.1f);
+                lifeTime -= 0.1f;
+            }
+            Suicide();
         }
 
         /// <summary>
@@ -80,6 +98,7 @@ namespace App.Main.Ball
         private int CalcDamage()
         {
             int damage = playerDatastore.GetAttackPointValue();
+            damage += (int)(playerDatastore.PerkSystem.PerkList.AllPerkList[19].FloatEffect() * 10);
             damage += CalculateComboDamage();
             CaluculatePerkDamage(damage);
             return damage;
