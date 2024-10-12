@@ -80,6 +80,7 @@ namespace App.Main.Item
             {
                 stageSystem.CreateBall(new Vector3(0f,0f,0f));
                 stageSystem.IncreaseBallCountonStage();
+                perkEffect(stageSystem,playerDatastore);
                 Debug.Log("Item:CreateBall");
             });
             items[12] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
@@ -134,6 +135,15 @@ namespace App.Main.Item
                 (15, addAttackPointItem.GetRemainingTime()),
                 (16, addMoveSpeedItem.GetRemainingTime()),
             };
+        }
+
+        private void perkEffect(StageSystem stageSystem,PlayerDatastore playerDatastore)
+        {
+            if(playerDatastore.PerkSystem.PerkList.AllPerkList[9].IntEffect() == 1)
+            {
+                stageSystem.CreateBall(new Vector3(0f,0f,0f));
+                stageSystem.IncreaseBallCountonStage();
+            }
         }
 
         public class ItemEffect
