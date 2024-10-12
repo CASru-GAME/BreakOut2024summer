@@ -14,7 +14,9 @@ namespace App.Main.Ball
         private PlayerDatastore playerDatastore;
         private StageSystem stageSystem;
         private Rigidbody2D rb;
+        private Collider2d collider;
         private float BallSpeed;
+        private int PathThroughCount = 0;
 
         /// <summary>
         /// デバッグ用．ボールに初速度を与える
@@ -23,7 +25,9 @@ namespace App.Main.Ball
         {
             BallSpeed = playerDatastore.GetBallSpeedValue();
             rb = GetComponent<Rigidbody2D>();
+            collider = GetComponent<Collider2D>();
             GetComponent<Rigidbody2D>().velocity = new Vector2(BallSpeed, BallSpeed);
+            playerDatastore.PerkSystem.PerkList.AllPerkList[8].Effect();
         }
 
         /// <summary>
@@ -71,7 +75,16 @@ namespace App.Main.Ball
                 block.TakeDamage(CalcDamage());
                 playerDatastore.AddComboCount();
                 //IBlockをいじる許可が出たらここに状態異常付与の関数を書く
+                if(PathThroughCount > 0)
+                {
+                    collider.isTriger = true;
+                }
+
             }
+        }
+
+        private void OnCollisionExit2D(Collision2D other) {
+            collider.isTriger = false;
         }
 
         /// <summary>
