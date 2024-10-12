@@ -961,13 +961,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dced3ebfa61dab948b715744a4a1b215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perkPanelPrefab: {fileID: 3371350509416652022, guid: 23f42257c609ecf4796c24458416372f, type: 3}
   perkCanvas: {fileID: 355014978}
   perkPanelList:
   - {fileID: 1492290902}
   - {fileID: 1333864904}
   - {fileID: 883568429}
-  processSystem: {fileID: 0}
+  processSystem: {fileID: 1402157160}
 --- !u!61 &516407657
 BoxCollider2D:
   m_ObjectHideFlags: 0

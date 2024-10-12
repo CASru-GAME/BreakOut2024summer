@@ -293,8 +293,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _normal: {fileID: 1186924280, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
   _damaged: {fileID: -1976190806, guid: 6d07280b3d157004e9a0197f01687920, type: 3}
-  _destroyedAnimatorController: {fileID: 9100000, guid: 5438c423e8fc27449b87ec616b7c7987, type: 2}
-  _destroyedAnimationPrefab: {fileID: 3125810737970945919, guid: 476bbcdbf27665c409286f0cc22a1fad, type: 3}
+  _destroyedAnimatorController: {fileID: 9100000, guid: ae881987f717ce746bd4a5b182a79eac, type: 2}
+  _destroyedAnimationPrefab: {fileID: 5744082711352651307, guid: 0256bc764ca869d4a8a068906decde55, type: 3}
   _damageColor:
     serializedVersion: 2
     rgba: 4294967295
