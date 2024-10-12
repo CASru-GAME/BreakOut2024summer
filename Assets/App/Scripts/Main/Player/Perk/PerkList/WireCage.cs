@@ -32,7 +32,7 @@ namespace App.Main.Player.Perk
 
         private int CalculateProbability(int value)
         {
-            return (1 - 1 / (value + 1)) * 5;
+            return (1 - 1 / (value + 1)) * 100;
         }
 
 
@@ -49,7 +49,9 @@ namespace App.Main.Player.Perk
 
         public float FloatEffect()
         {
-            return 0;
+            float flag = 0;
+            if (Random.Range(0, 100) < CalculateProbability(StackCount)) flag = 1;
+            return flag;
         }
     }
 }
