@@ -55,8 +55,8 @@ namespace App.Main.Player.Perk
 
         public int[,] GetOwnedPerkList()
         {
-            int[,] value = new int[22, 2];
-            for (int i = 0; i < 22; i++)
+            int[,] value = new int[23, 2];
+            for (int i = 0; i < 23; i++)
             {
                 for (int j = 0; j < 2; j++)
                 {

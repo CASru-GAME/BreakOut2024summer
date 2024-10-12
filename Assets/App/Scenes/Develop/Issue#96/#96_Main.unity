@@ -242,6 +242,7 @@ GameObject:
   - component: {fileID: 29873691}
   - component: {fileID: 29873692}
   - component: {fileID: 29873693}
+  - component: {fileID: 29873694}
   m_Layer: 5
   m_Name: PerkIconPanel_3
   m_TagString: Untagged
@@ -306,6 +307,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &29873694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29873690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2509804}
+  m_EffectDistance: {x: 0, y: -5}
+  m_UseGraphicAlpha: 0
 --- !u!1 &66114414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,6 +1104,85 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2509804}
   m_EffectDistance: {x: 0, y: -3}
   m_UseGraphicAlpha: 0
+--- !u!1 &338816297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 338816298}
+  - component: {fileID: 338816302}
+  - component: {fileID: 338816301}
+  m_Layer: 5
+  m_Name: ComboGaugeText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &338816298
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338816297}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 367588986}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000015258789, y: -1.9998341}
+  m_SizeDelta: {x: 2400, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &338816301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338816297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_FontSize: 150
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "\u30B3\u30F3\u30DC  {0}"
+--- !u!222 &338816302
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338816297}
+  m_CullTransparentMesh: 1
 --- !u!1 &340286793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,6 +1312,97 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!1 &367588985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 367588986}
+  - component: {fileID: 367588989}
+  - component: {fileID: 367588988}
+  - component: {fileID: 367588987}
+  m_Layer: 5
+  m_Name: ComboGaugeMask
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &367588986
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367588985}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.10000801, y: 0.10000801, z: 1.00008}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 338816298}
+  m_Father: {fileID: 1161616168}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 136, y: 10.2}
+  m_SizeDelta: {x: 2400, y: 153}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &367588987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367588985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
+--- !u!114 &367588988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367588985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 708021174, guid: 3bf25a1d7973a2b4383be57d963fa6d6, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &367588989
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367588985}
+  m_CullTransparentMesh: 1
 --- !u!1 &475858041
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,7 +2372,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u3053\u306E\u30B9\u30C6\u30FC\u30B8  1"
+  m_Text: "\u3053\u306E\u30B9\u30C6\u30FC\u30B8  {0}"
 --- !u!222 &776601532
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2516,7 +2702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.58431375, g: 0.3019608, b: 0.5254902, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2524,7 +2710,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -2536,7 +2722,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u30B3\u30F3\u30DC  0"
+  m_Text: "\u30B3\u30F3\u30DC  {0}"
 --- !u!222 &985667756
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2722,7 +2908,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u306E\u3053\u308A\u3058\u304B\u3093  0  \u3073\u3087\u3046"
+  m_Text: "\u306E\u3053\u308A\u3058\u304B\u3093  {0}  \u3073\u3087\u3046"
 --- !u!222 &1031657018
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3151,6 +3337,7 @@ RectTransform:
   - {fileID: 719322601}
   - {fileID: 796185663}
   - {fileID: 985667752}
+  - {fileID: 367588986}
   - {fileID: 1651386661}
   - {fileID: 1449933031}
   - {fileID: 2083353374}
@@ -4042,8 +4229,12 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 50e4ddd333b007a4a94f824a218d9d9d, type: 2}
   - {fileID: 9100000, guid: 455e178dd21a5244787427f0076d4961, type: 2}
   - {fileID: 9100000, guid: d19953a58fbcac34a937d0b24511870d, type: 2}
-  _stageText: {fileID: 776601531}
-  _timeText: {fileID: 1031657017}
+  stageText: {fileID: 776601531}
+  catText: {fileID: 1994977857}
+  timeText: {fileID: 1031657017}
+  comboText: {fileID: 985667755}
+  comboGaugeText: {fileID: 338816301}
+  comboTextMask: {fileID: 367588987}
   _playerDatastore: {fileID: 2114354180}
   _heartPrefab: {fileID: 639110031616178592, guid: 7032efb482b1a054eb8c86d9ac0e9169, type: 3}
   _heartPos: {fileID: 796185662}
@@ -4056,6 +4247,7 @@ MonoBehaviour:
   _itemGaugePrefab: {fileID: 5506391923996798905, guid: 6be690dc723789b42ba827e4fd8507b8, type: 3}
   _itemPanelPos: {fileID: 1449933030}
   _spriteData: {fileID: 11400000, guid: 2f7c86000dec9b34a85fd8eb746f8703, type: 2}
+  _stageSystem: {fileID: 1548254335}
 --- !u!114 &1548254343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4788,6 +4980,7 @@ GameObject:
   - component: {fileID: 1931432421}
   - component: {fileID: 1931432422}
   - component: {fileID: 1931432423}
+  - component: {fileID: 1931432424}
   m_Layer: 5
   m_Name: PerkIconPanel_2
   m_TagString: Untagged
@@ -4852,6 +5045,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1931432424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931432420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2509804}
+  m_EffectDistance: {x: 0, y: -5}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1955784490
 GameObject:
   m_ObjectHideFlags: 0
@@ -5100,7 +5308,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: x 0
+  m_Text: x {0}
 --- !u!222 &1994977858
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5231,6 +5439,7 @@ GameObject:
   - component: {fileID: 2017284724}
   - component: {fileID: 2017284727}
   - component: {fileID: 2017284728}
+  - component: {fileID: 2017284729}
   m_Layer: 5
   m_Name: PerkIconPanel_1
   m_TagString: Untagged
@@ -5295,6 +5504,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2017284729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017284723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2509804}
+  m_EffectDistance: {x: 0, y: -5}
+  m_UseGraphicAlpha: 0
 --- !u!1 &2019127548
 GameObject:
   m_ObjectHideFlags: 0
