@@ -17,9 +17,10 @@ namespace App.Main.Block
         private PlayerDatastore playerDatastore;
         [SerializeField] int initialHp;
         [SerializeField] int Id;
-        private StageSystem stage;
+        private StageSystem stageSystem;
         private int PoisonStack = 0;
         private int WeaknessPoint = 0;
+        private bool isPoisoned = false;
 
         void Start()
         {
@@ -33,7 +34,10 @@ namespace App.Main.Block
 
         private void FixedUpdate() {
             
-            StartCoroutine(TakePoisonDamage());
+            if (PoisonStack > 0 && isPoisoned == false) {
+                StartCoroutine(TakePoisonDamage());
+                isPoisoned = true;
+            }
             StartCoroutine(RemoveWeaknessPoint());
         }
 
@@ -42,9 +46,9 @@ namespace App.Main.Block
         //<summary>
         // ブロックが破壊されたときに通達するために取得する
         //</summary>
-        public void SetStage(StageSystem stage)
+        public void SetStage(StageSystem stageSystem)
         {
-            this.stage = stage;
+            this.stageSystem = stageSystem;
         }
 
         //<summary>
@@ -57,7 +61,7 @@ namespace App.Main.Block
 
             if(WeaknessPoint > 0) damage *= 2;
 
-            blockAnimation.CreateDamageEffect(damage, stage);
+            blockAnimation.CreateDamageEffect(damage, stageSystem);
 
             if (blockDatastore.Hp.CurrentValue <= 0) Break();
         }
@@ -76,12 +80,12 @@ namespace App.Main.Block
         private void Break()
         {
             //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達
-            stage.DecreaseNormalBlockCount();
+            stageSystem.DecreaseNormalBlockCount();
 
             blockAnimation.Break();
 
-            stage.CreateItem(transform.position); //デバッグ用
-            stage.CreateExpBall(transform.position); //デバッグ用
+            stageSystem.CreateItem(transform.position); //デバッグ用
+            stageSystem.CreateExpBall(transform.position); //デバッグ用
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[3].IntEffect() == 1)
             {
                 createCat.Create(transform.position, transform.localScale);
@@ -91,11 +95,10 @@ namespace App.Main.Block
 
         public IEnumerator TakePoisonDamage()
         {
-            if (PoisonStack > 0) {
-                TakeDamage(PoisonStack);
-                RemovePoisonStack();
-                yield return new WaitForSeconds(1);
-            }
+            TakeDamage(PoisonStack);
+            RemovePoisonStack();
+            yield return new WaitForSeconds(1);
+            isPoisoned = false;
         }
 
         public void AddPoisonStack(int stack)
