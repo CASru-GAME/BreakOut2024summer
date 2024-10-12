@@ -90,6 +90,10 @@ namespace App.Main.Block
             {
                 createCat.Create(transform.position, transform.localScale);
             }
+            if (playerDatastore.PerkSystem.PerkList.AllPerkList[13].IntEffect() == 1)
+            {
+                stageSystem.CreateBall(transform.position);
+            }
             Destroy(gameObject);
         }
 
