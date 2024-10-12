@@ -8,7 +8,7 @@ using App.Main.Cat;
 namespace App.Main.Block
 {   //ターゲットのブロック
     public class TargetBlock : MonoBehaviour, IBlock
-    {   
+    {
         private BlockDatastore blockDatastore;
         private BlockAnimation blockAnimation;
         private CreateCat createCat;
@@ -29,12 +29,14 @@ namespace App.Main.Block
             //　findしたくないので、引数で渡したい
         }
 
-        private void FixedUpdate() {
-            if (PoisonStack > 0 && isPoisoned == false) {
+        private void FixedUpdate()
+        {
+            if (PoisonStack > 0 && isPoisoned == false)
+            {
                 StartCoroutine(TakePoisonDamage(PoisonStack));
                 isPoisoned = true;
             }
-            
+
         }
 
         //<summary>
@@ -49,18 +51,18 @@ namespace App.Main.Block
         // ダメージを受ける(ボールが呼び出す)
         //</summary>
         public void TakeDamage(int damage)
-        {   
+        {
             BlockHp newBlockHp = new BlockHp(damage);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
             blockAnimation.CreateDamageEffect(damage, stageSystem);
 
-            if(blockDatastore.Hp.CurrentValue <= 0)
-            Break();
+            if (blockDatastore.Hp.CurrentValue <= 0)
+                Break();
         }
 
         public void Healed(int healAmount)
-        {   
+        {
             BlockHp newBlockHp = new BlockHp(healAmount);
             blockDatastore.SetHp(blockDatastore.Hp.AddCurrentValue(newBlockHp));
         }
@@ -68,19 +70,26 @@ namespace App.Main.Block
         // 破壊されたことを通達する(TakeDamage内で呼び出される)
         //</summary>
         private void Break()
-        {   
-            //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達
-            stageSystem.DecreaseTargetBlockCount();
-
-            blockAnimation.Break();
-            createCat.Create(transform.position, transform.localScale);
-
-            if(playerDatastore.PerkSystem.PerkList.AllPerkList[21].IntEffect() == 1)
+        {
+            //ワイヤーケージのパークがある場合、猫が増えずにブロック破壊の処理を行う。
+            if (playerDatastore.PerkSystem.PerkList.AllPerkList[1].FloatEffect() == 1)
             {
-                stageSystem.IncreaseTotalCat();
-                createCat.Create(transform.position + new Vector3(0f, 0.3f, 0f), transform.localScale);
+                stageSystem.DecreaseTargetBlockCountWithoutIncreaseTotalCat();
             }
+            else
+            {
+                //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達
+                stageSystem.DecreaseTargetBlockCount();
 
+                blockAnimation.Break();
+                createCat.Create(transform.position, transform.localScale);
+
+                if (playerDatastore.PerkSystem.PerkList.AllPerkList[21].IntEffect() == 1)
+                {
+                    stageSystem.IncreaseTotalCat();
+                    createCat.Create(transform.position + new Vector3(0f, 0.3f, 0f), transform.localScale);
+                }
+            }
             Destroy(gameObject);
         }
 
@@ -101,5 +110,5 @@ namespace App.Main.Block
         {
             PoisonStack--;
         }
-    }  
+    }
 }
