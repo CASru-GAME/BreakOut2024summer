@@ -33,7 +33,7 @@ namespace App.Main.Item
         };
         public List<ItemData> ActiveItems= new List<ItemData>()
         {
-            new ItemData(14, 2),
+            new ItemData(12, 2),
         };  
         public List<ItemData> OwnedItems = new List<ItemData>();
     }
