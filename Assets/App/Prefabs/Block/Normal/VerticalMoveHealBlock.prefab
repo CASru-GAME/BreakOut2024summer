@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 8794390385365136132}
   - component: {fileID: 5699730012614433684}
   - component: {fileID: 2692277085398475410}
+  - component: {fileID: 3018879861351241270}
   m_Layer: 0
   m_Name: VerticalMoveHealBlock
   m_TagString: Untagged
@@ -172,8 +173,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 395359716, guid: 9812fa1479c84554298376bcf309fd52, type: 3}
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: -207945706, guid: 9f463d20dd14cc34188e64a34538e1ad, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -197,7 +198,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHp: 5
   Id: 11
-  DamageEffect: {fileID: 3125810737970945919, guid: 476bbcdbf27665c409286f0cc22a1fad, type: 3}
 --- !u!114 &880486667673382197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,3 +310,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _verticalRange: 0.9
   _speed: 1.5
+--- !u!114 &3018879861351241270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8259311492659144066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85aaf18959d779244b965e1f06526c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normal: {fileID: -207945706, guid: 9f463d20dd14cc34188e64a34538e1ad, type: 3}
+  _damaged: {fileID: 781306604, guid: 9f463d20dd14cc34188e64a34538e1ad, type: 3}
+  _destroyedAnimatorController: {fileID: 9100000, guid: 6c83701af0e6421409faaeffe68c9bc4, type: 2}
+  _destroyedAnimationPrefab: {fileID: 5744082711352651307, guid: 0256bc764ca869d4a8a068906decde55, type: 3}
+  _damageColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  _damageEffect: {fileID: 3125810737970945919, guid: 476bbcdbf27665c409286f0cc22a1fad, type: 3}

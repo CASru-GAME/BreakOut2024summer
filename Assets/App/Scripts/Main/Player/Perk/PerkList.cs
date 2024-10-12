@@ -24,9 +24,9 @@ namespace App.Main.Player.Perk
                 new IncreaseBallSpeed(playerDatastore),//ID:4
                 new OptionParts(playerDatastore),//ID:5
                 new Amaryllis(playerDatastore),//ID:6
-                new DebugPerk(),//ID:7
+                new Konjac(playerDatastore),//ID:7
                 new DebugPerk(),//ID:8
-                new DebugPerk(),//ID:9
+                new LotteryTicket(playerDatastore),//ID:9
                 new ValuePack(playerDatastore),//ID:10
                 new FamilyPhoto(playerDatastore),//ID:11
                 new DebugPerk(),//ID:12
