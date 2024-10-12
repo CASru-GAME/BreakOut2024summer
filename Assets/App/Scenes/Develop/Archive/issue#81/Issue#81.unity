@@ -769,7 +769,6 @@ MonoBehaviour:
   - {fileID: 2792112197604620302, guid: 8ed77a1172b49c04b88dddd339486059, type: 3}
   - {fileID: 759959900863361552, guid: 91e3bc573f17d1445b40c6c0a09a6d53, type: 3}
   - {fileID: 4090547420612356970, guid: ec788e859ac399545a8d58b0eba5cf99, type: 3}
-  - {fileID: 7736024897987382713, guid: 8ea387c80cbdd2e44b005bd6a4032a74, type: 3}
   _targetBlockPrefabList:
   - {fileID: 4484623174473009959, guid: 09ce1db14b4fb9e4d94496f77aa652b8, type: 3}
   - {fileID: 3597604322243408191, guid: b58f8d07bc03f5d489c72d93569018ac, type: 3}
