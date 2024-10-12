@@ -13,6 +13,7 @@ namespace App.Common.Audio
         private AudioSource _audioSource;
         [SerializeField] private AudioClip[] _worldBGMList = default;
         [SerializeField] private ProcessSystem _processSystem = default;
+        bool Initialized = false;
 
         private void Start()
         {
@@ -23,7 +24,7 @@ namespace App.Common.Audio
         {
             _audioSource = GetComponent<AudioSource>();
 
-            yield return new WaitForSeconds(0.002f);
+            yield return new WaitForSeconds(0.01f);
 
             if (_worldBGMList.GetLength(0) == 0) yield break;
 
@@ -31,13 +32,17 @@ namespace App.Common.Audio
             _audioSource.loop = true;
             _audioSource.volume = 1;
             _audioSource.Play();
+            Debug.Log("BGMStarted");
+            Initialized = true;
         }
 
         private void Update()
         {
+            if (!Initialized) return;
+
             if (_worldBGMList.GetLength(0) == 0) return;
 
-            if (_processSystem.IsPlaying() && _audioSource.isPlaying)
+            if (_processSystem.IsPlaying() && !_audioSource.isPlaying)
             {
                 _audioSource.Play();
                 return;
