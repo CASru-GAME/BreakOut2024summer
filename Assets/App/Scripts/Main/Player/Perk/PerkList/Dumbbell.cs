@@ -1,15 +1,16 @@
 using UnityEngine;
 using App.Main.Player;
+using System;
 
 namespace App.Main.Player.Perk
 {
-    public class WireCage : IPerk
+    public class Dumbbell : IPerk
     {
-        private int id = 1;
+        private int id = 12;
         private int StackCount = 0;
         private PlayerDatastore playerDatastore;
 
-        public WireCage(PlayerDatastore playerDatastore)
+        public Dumbbell(PlayerDatastore playerDatastore)
         {
             this.playerDatastore = playerDatastore;
         }
@@ -25,16 +26,8 @@ namespace App.Main.Player.Perk
 
         public void Effect()
         {
-            if (StackCount == 0) return;
-            //確率で猫が逃げ出す
-
+            return;
         }
-
-        private int CalculateProbability(int value)
-        {
-            return (1 - 1 / (value + 1)) * 100;
-        }
-
 
         public int GetId()
         {
@@ -43,15 +36,12 @@ namespace App.Main.Player.Perk
 
         public int IntEffect()
         {
-            if (StackCount == 0) return 0;
-            return (int)((1-1/(StackCount+1))*15);
+            return Math.Min(playerDatastore.GetComboCount(), StackCount * 3);
         }
 
         public float FloatEffect()
         {
-            float flag = 0;
-            if (Random.Range(0, 100) < CalculateProbability(StackCount)) flag = 1;
-            return flag;
+            return 0;
         }
     }
 }

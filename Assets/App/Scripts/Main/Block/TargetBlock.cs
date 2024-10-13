@@ -8,14 +8,16 @@ using App.Main.Cat;
 namespace App.Main.Block
 {   //ターゲットのブロック
     public class TargetBlock : MonoBehaviour, IBlock
-    {   
+    {
         private BlockDatastore blockDatastore;
         private BlockAnimation blockAnimation;
         private CreateCat createCat;
+        private PlayerDatastore playerDatastore;
         [SerializeField] int initialHp;
         [SerializeField] int Id;
-        private StageSystem stage;
+        private StageSystem stageSystem;
         private int PoisonStack = 0;
+        private bool isPoisoned = false;
 
         void Start()
         {
@@ -23,39 +25,44 @@ namespace App.Main.Block
             blockDatastore.InitializeBlock(initialHp);
             blockAnimation = GetComponent<BlockAnimation>();
             createCat = GetComponent<CreateCat>();
+            playerDatastore = FindObjectOfType<PlayerDatastore>();
+            //　findしたくないので、引数で渡したい
         }
 
-        private void FixedUpdate() {
-            if (PoisonStack > 0) {
+        private void FixedUpdate()
+        {
+            if (PoisonStack > 0 && isPoisoned == false)
+            {
                 StartCoroutine(TakePoisonDamage(PoisonStack));
+                isPoisoned = true;
             }
-            
+
         }
 
         //<summary>
         // ブロックが破壊されたときに通達するために取得する
         //</summary>
-        public void SetStage(StageSystem stage)
+        public void SetStage(StageSystem stageSystem)
         {
-            this.stage = stage;
+            this.stageSystem = stageSystem;
         }
 
         //<summary>
         // ダメージを受ける(ボールが呼び出す)
         //</summary>
         public void TakeDamage(int damage)
-        {   
+        {
             BlockHp newBlockHp = new BlockHp(damage);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
-            blockAnimation.CreateDamageEffect(damage, stage);
+            blockAnimation.CreateDamageEffect(damage, stageSystem);
 
-            if(blockDatastore.Hp.CurrentValue <= 0)
-            Break();
+            if (blockDatastore.Hp.CurrentValue <= 0)
+                Break();
         }
 
         public void Healed(int healAmount)
-        {   
+        {
             BlockHp newBlockHp = new BlockHp(healAmount);
             blockDatastore.SetHp(blockDatastore.Hp.AddCurrentValue(newBlockHp));
         }
@@ -63,13 +70,30 @@ namespace App.Main.Block
         // 破壊されたことを通達する(TakeDamage内で呼び出される)
         //</summary>
         private void Break()
-        {   
-            //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達
-            stage.DecreaseTargetBlockCount();
+        {
+            //ワイヤーケージのパークがある場合、猫が増えずにブロック破壊の処理を行う。
+            if (playerDatastore.PerkSystem.PerkList.AllPerkList[1].FloatEffect() == 1)
+            {
+                stageSystem.DecreaseTargetBlockCountWithoutIncreaseTotalCat();
+            }
+            else
+            {
+                //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達
+                stageSystem.DecreaseTargetBlockCount();
 
-            blockAnimation.Break();
-            createCat.Create(transform.position, transform.localScale);
+                blockAnimation.Break();
+                createCat.Create(transform.position, transform.localScale);
 
+                if (playerDatastore.PerkSystem.PerkList.AllPerkList[13].IntEffect() == 1)
+                {
+                    stageSystem.CreateBall(transform.position);
+                }
+                if (playerDatastore.PerkSystem.PerkList.AllPerkList[21].IntEffect() == 1)
+                {
+                    stageSystem.IncreaseTotalCat();
+                    createCat.Create(transform.position + new Vector3(0f, 0.3f, 0f), transform.localScale);
+                }
+            }
             Destroy(gameObject);
         }
 
@@ -78,6 +102,7 @@ namespace App.Main.Block
             TakeDamage(poisonStack);
             RemovePoisonStack();
             yield return new WaitForSeconds(1);
+            isPoisoned = false;
         }
 
         public void AddPoisonStack(int stack)
@@ -89,5 +114,5 @@ namespace App.Main.Block
         {
             PoisonStack--;
         }
-    }  
+    }
 }
