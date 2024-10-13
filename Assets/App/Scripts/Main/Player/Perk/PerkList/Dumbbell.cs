@@ -1,15 +1,16 @@
 using UnityEngine;
 using App.Main.Player;
+using System;
 
 namespace App.Main.Player.Perk
 {
-    public class FamilyPhoto : IPerk
+    public class Dumbbell : IPerk
     {
-        private int id = 11;
+        private int id = 12;
         private int StackCount = 0;
         private PlayerDatastore playerDatastore;
 
-        public FamilyPhoto(PlayerDatastore playerDatastore)
+        public Dumbbell(PlayerDatastore playerDatastore)
         {
             this.playerDatastore = playerDatastore;
         }
@@ -28,26 +29,14 @@ namespace App.Main.Player.Perk
             return;
         }
 
-
-
         public int GetId()
         {
             return id;
         }
 
-        private int CaluculateProbability()
-        {
-            return (int)((1 - 1 / (StackCount + 1)) * 60);
-        }
-
         public int IntEffect()
         {
-            int number = Random.Range(0, 100);
-            if (number < CaluculateProbability())
-            {
-                return 1;
-            }
-            return 0;
+            return Math.Min(playerDatastore.GetComboCount(), StackCount * 3);
         }
 
         public float FloatEffect()

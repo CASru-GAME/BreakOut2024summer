@@ -3,13 +3,13 @@ using App.Main.Player;
 
 namespace App.Main.Player.Perk
 {
-    public class FamilyPhoto : IPerk
+    public class Fireworks : IPerk
     {
-        private int id = 11;
+        private int id = 19;
         private int StackCount = 0;
         private PlayerDatastore playerDatastore;
 
-        public FamilyPhoto(PlayerDatastore playerDatastore)
+        public Fireworks(PlayerDatastore playerDatastore)
         {
             this.playerDatastore = playerDatastore;
         }
@@ -35,24 +35,15 @@ namespace App.Main.Player.Perk
             return id;
         }
 
-        private int CaluculateProbability()
-        {
-            return (int)((1 - 1 / (StackCount + 1)) * 60);
-        }
-
         public int IntEffect()
         {
-            int number = Random.Range(0, 100);
-            if (number < CaluculateProbability())
-            {
-                return 1;
-            }
-            return 0;
+            if(StackCount == 0) return 0;
+            return 1;
         }
 
         public float FloatEffect()
         {
-            return 0;
+            return 1f - 1f / (StackCount + 1f);
         }
     }
 }
