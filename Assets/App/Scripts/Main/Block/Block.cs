@@ -88,6 +88,7 @@ namespace App.Main.Block
             stageSystem.CreateExpBall(transform.position); //デバッグ用
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[3].IntEffect() == 1)
             {
+                stageSystem.IncreaseTotalCat();
                 createCat.Create(transform.position, transform.localScale);
             }
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[13].IntEffect() == 1)
