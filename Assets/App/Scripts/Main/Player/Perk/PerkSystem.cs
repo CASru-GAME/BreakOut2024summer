@@ -15,11 +15,7 @@ namespace App.Main.Player.Perk
 
         private List<int> RandomPerkList = new List<int>();
         private ProcessSystem ProcessSystem;
-        /*private GameObject PerkPanelPrefab;
-        private GameObject PerkPanel1;
-        private GameObject PerkPanel2;
-        private GameObject PerkPanel3;
-        */
+
         private System.Random random = new System.Random(); // Move Random instance to class level
 
         public bool IsPerkChoosing = false;
@@ -29,33 +25,6 @@ namespace App.Main.Player.Perk
         private PlayerDatastore playerDatastore;
         private ProcessSystem processSystem;
 
-        /*public PerkSystem(PlayerDatastore playerDatastore, GameObject PerkPanelPrefab)
-        {
-            PerkList = new PerkList(playerDatastore);
-            AmountPerk = PerkList.AmountPerk;
-            this.PerkPanelPrefab = PerkPanelPrefab;
-
-            PerkPanel1 = UnityEngine.Object.Instantiate(
-                PerkPanelPrefab,
-                new Vector3(-5, 0, 0),
-                Quaternion.identity
-            ) as GameObject;
-            PerkPanel1.SetActive(false);
-
-            PerkPanel2 = UnityEngine.Object.Instantiate(
-                PerkPanelPrefab,
-                new Vector3(0, 0, 0),
-                Quaternion.identity
-            ) as GameObject;
-            PerkPanel2.SetActive(false);
-
-            PerkPanel3 = UnityEngine.Object.Instantiate(
-                PerkPanelPrefab,
-                new Vector3(5, 0, 0),
-                Quaternion.identity
-            ) as GameObject;
-            PerkPanel3.SetActive(false);
-        }*/
         public PerkSystem(PlayerDatastore playerDatastore, Canvas perkCanvas, List<GameObject> perkPanelList, ProcessSystem processSystem)
         {
             this.processSystem = processSystem;
@@ -87,12 +56,6 @@ namespace App.Main.Player.Perk
         private void CreatePerkPanel()
         {
             // 3つのPerkを画面に表示する
-            /*PerkPanel1.GetComponent<ChoosePerkPanel>().Initialize(RandomPerkList[0], this);
-            PerkPanel2.GetComponent<ChoosePerkPanel>().Initialize(RandomPerkList[1], this);
-            PerkPanel3.GetComponent<ChoosePerkPanel>().Initialize(RandomPerkList[2], this);
-            PerkPanel1.SetActive(true);
-            PerkPanel2.SetActive(true);
-            PerkPanel3.SetActive(true);*/
             for(int i = 0; i < 3; i++)
             {
                 perkPanelList[i].GetComponent<ChoosePerkPanel>().Initialize(RandomPerkList[i], this);
@@ -119,9 +82,7 @@ namespace App.Main.Player.Perk
 
         public void SuicideAll()
         {
-            /*PerkPanel1.GetComponent<ChoosePerkPanel>().Suside();
-            PerkPanel2.GetComponent<ChoosePerkPanel>().Suside();
-            PerkPanel3.GetComponent<ChoosePerkPanel>().Suside();*/
+
             perkCanvas.enabled = false;
             UnityEngine.Time.timeScale = 1;
         }
