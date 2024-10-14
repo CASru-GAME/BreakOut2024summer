@@ -11,7 +11,7 @@ namespace App.Main.Ball
     {
         //ボールを削除するY座標の限界値
         private readonly float _minY = -5f;
-        private PlayerDatastore playerDatastore;
+        public PlayerDatastore playerDatastore;
         private StageSystem stageSystem;
         private Rigidbody2D rb;
         private float BallSpeed;
@@ -30,7 +30,6 @@ namespace App.Main.Ball
             rb = GetComponent<Rigidbody2D>();
             GetComponent<Rigidbody2D>().velocity = new Vector2(BallSpeed, BallSpeed);
             PathThroughCount = 10*playerDatastore.PerkSystem.PerkList.AllPerkList[8].IntEffect();
-            Trigger = transform.GetChild(0).gameObject;
         }
 
         /// <summary>
@@ -117,13 +116,15 @@ namespace App.Main.Ball
             //ダメージ計算
             block.TakeDamage(CalcDamage());
             playerDatastore.AddComboCount();
-            //IBlockをいじる許可が出たらここに状態異常付与の関数を書く
+            
+            block.AddPoisonStack(CalculatePoisonStack());
+            block.AddWeaknessPoint(CalculateWeaknessStack());
         }
 
         /// <summary>
         /// ブロックに与えるダメージを計算する
         /// </summary>
-        private int CalcDamage()
+        public int CalcDamage()
         {
             int damage = playerDatastore.GetAttackPointValue();
             damage += (int)(playerDatastore.PerkSystem.PerkList.AllPerkList[19].FloatEffect() * 10);
