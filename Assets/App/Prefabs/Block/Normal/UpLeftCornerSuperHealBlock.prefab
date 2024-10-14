@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4910634777365318377}
   - component: {fileID: 7656757536930182310}
   - component: {fileID: 2260454621085126075}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UpLeftCornerSuperHealBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 7364979070249438318}
   - component: {fileID: 3604500611499792932}
   - component: {fileID: 9019378502705311669}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Heal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

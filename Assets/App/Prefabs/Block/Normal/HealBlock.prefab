@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1467388954204384978}
   - component: {fileID: -3850281174733760819}
   - component: {fileID: -6245319583631685543}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HealBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 3189052385482754976}
   - component: {fileID: 2213710574270675864}
   - component: {fileID: 2042146885954427232}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Heal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 8478257060957459544}
   - component: {fileID: 72728105043037814}
   - component: {fileID: 3554439684886649257}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

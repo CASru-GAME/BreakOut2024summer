@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2100419948697407045}
   - component: {fileID: 5839415985121222661}
   - component: {fileID: 4174173464454655671}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Heal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 5699730012614433684}
   - component: {fileID: 2692277085398475410}
   - component: {fileID: 3018879861351241270}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: VerticalMoveHealBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

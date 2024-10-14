@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1092523873317384421}
   - component: {fileID: 2508177019321668821}
   - component: {fileID: 792367156532962393}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4302327718113056615}
   - component: {fileID: 4884591582600504771}
   - component: {fileID: 7973220881254369573}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HardBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

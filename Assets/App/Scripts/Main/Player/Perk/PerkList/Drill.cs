@@ -36,7 +36,7 @@ namespace App.Main.Player.Perk
 
         public int IntEffect()
         {
-            return StackCount;
+            return 5*StackCount;
         }
 
         public float FloatEffect()

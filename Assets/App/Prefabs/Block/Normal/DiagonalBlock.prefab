@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5513507357505638778}
   - component: {fileID: 2983484906928161220}
   - component: {fileID: 3144702441286581908}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DiagonalBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
