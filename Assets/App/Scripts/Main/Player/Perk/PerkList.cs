@@ -25,7 +25,7 @@ namespace App.Main.Player.Perk
                 new OptionParts(playerDatastore),//ID:5
                 new Amaryllis(playerDatastore),//ID:6
                 new Konjac(playerDatastore),//ID:7
-                new DebugPerk(),//ID:8
+                new Drill(playerDatastore),//ID:8
                 new LotteryTicket(playerDatastore),//ID:9
                 new ValuePack(playerDatastore),//ID:10
                 new FamilyPhoto(playerDatastore),//ID:11

@@ -16,6 +16,9 @@ namespace App.Main.Ball
         private float BallSpeed;
         [SerializeField] private GameObject invisibleBall_forYellowSubmarine;
         private bool isFireworks = false;
+        [SerializeField]private int PathThroughCount = 0;
+        [SerializeField]private GameObject Trigger;
+        public bool isPathThrough = false;
 
         /// <summary>
         /// デバッグ用．ボールに初速度を与える
@@ -25,6 +28,8 @@ namespace App.Main.Ball
             BallSpeed = playerDatastore.GetBallSpeedValue();
             rb = GetComponent<Rigidbody2D>();
             GetComponent<Rigidbody2D>().velocity = new Vector2(BallSpeed, BallSpeed);
+            PathThroughCount = 10*playerDatastore.PerkSystem.PerkList.AllPerkList[8].IntEffect();
+            Trigger = transform.GetChild(0).gameObject;
         }
 
         /// <summary>
@@ -43,6 +48,14 @@ namespace App.Main.Ball
             {
                 Suicide();
             }
+            if(PathThroughCount > 0)
+            {
+                isPathThrough = true;
+                this.gameObject.layer = 8;
+                Trigger.SetActive(true);
+            }
+
+            
 
             //速度を一定に保つ
             rb.velocity = rb.velocity.normalized * playerDatastore.GetBallSpeedValue();
@@ -83,12 +96,9 @@ namespace App.Main.Ball
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
             IBlock block = collision2D.gameObject.GetComponent<IBlock>();
-            if (block != null)
+            if(block != null && !isPathThrough)
             {
-                //ダメージ計算
-                block.TakeDamage(CalcDamage());
-                playerDatastore.AddComboCount();
-                //IBlockをいじる許可が出たらここに状態異常付与の関数を書く
+                AttackHandling(block);
 
                 //黄色い潜水艦の効果
                 //透明な丸を作り、ブロックとの衝突判定を取得し、ブロックのtakeDamageを呼び出す。
@@ -99,6 +109,14 @@ namespace App.Main.Ball
                     collision_detector.GetComponent<CollisionDetector_forYellowSubmarine>().SetDamage(playerDatastore.PerkSystem.PerkList.AllPerkList[14].GetStackCount(), CalcDamage());
                 }
             }
+        }
+
+        public void AttackHandling(IBlock block)
+        {
+            //ダメージ計算
+            block.TakeDamage(CalcDamage());
+            playerDatastore.AddComboCount();
+            //IBlockをいじる許可が出たらここに状態異常付与の関数を書く
         }
 
         /// <summary>
@@ -137,5 +155,17 @@ namespace App.Main.Ball
         {
             return playerDatastore.PerkSystem.PerkList.AllPerkList[6].IntEffect();
         }
+
+        public void DecreasePathThroughCount()
+        {
+            PathThroughCount--;
+            if(PathThroughCount <= 0)
+            {
+                isPathThrough = false;
+                this.gameObject.layer = 6;
+                Trigger.SetActive(false);
+            }
+        }
+
     }
 }
