@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using App.Main.Block;
 using App.Main.Player;
 using App.Main.Stage;
+using Unity.Mathematics;
 
 namespace App.Main.Ball
 {
@@ -15,6 +14,7 @@ namespace App.Main.Ball
         private StageSystem stageSystem;
         private Rigidbody2D rb;
         private float BallSpeed;
+        [SerializeField] private GameObject invisibleBall_forYellowSubmarine;
         private bool isFireworks = false;
 
         /// <summary>
@@ -83,12 +83,21 @@ namespace App.Main.Ball
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
             IBlock block = collision2D.gameObject.GetComponent<IBlock>();
-            if(block != null)
+            if (block != null)
             {
                 //ダメージ計算
                 block.TakeDamage(CalcDamage());
                 playerDatastore.AddComboCount();
                 //IBlockをいじる許可が出たらここに状態異常付与の関数を書く
+
+                //黄色い潜水艦の効果
+                //透明な丸を作り、ブロックとの衝突判定を取得し、ブロックのtakeDamageを呼び出す。
+                //透明な丸は処理が終わると消える
+                if (playerDatastore.PerkSystem.PerkList.AllPerkList[14].FloatEffect() == 1)
+                {
+                    GameObject collision_detector = Instantiate(invisibleBall_forYellowSubmarine, collision2D.transform.position, quaternion.identity);
+                    collision_detector.GetComponent<CollisionDetector_forYellowSubmarine>().SetDamage(playerDatastore.PerkSystem.PerkList.AllPerkList[14].GetStackCount(), CalcDamage());
+                }
             }
         }
 
@@ -108,7 +117,7 @@ namespace App.Main.Ball
 
         private int CalculateComboDamage()
         {
-            return (int)(playerDatastore.GetComboCount()*0.25);
+            return (int)(playerDatastore.GetComboCount() * 0.25);
         }
 
         private int CaluculatePerkDamage(int damage)
