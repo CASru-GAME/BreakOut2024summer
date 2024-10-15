@@ -21,10 +21,10 @@ namespace App.Main.Item
         public ItemSystem(PlayerDatastore playerDatastore)
         {   
             ItemList = playerDatastore.ItemList;
-            for(int i = 0; i < ItemList.ActiveItems.Count; i++)
+            for(int i = 0; i < ItemList.AllItems.Count; i++)
             {   
                 _allExpWeight += ItemList.ActiveExps[i].Weight;
-                _allItemWeight += ItemList.ActiveItems[i].Weight; 
+                _allItemWeight += ItemList.AllItems[i].Weight; 
             }
         }
 
@@ -86,11 +86,11 @@ namespace App.Main.Item
                 throw new ArgumentException(" Value cannot be greater than _allWeight");
             }
           
-            for(int i = 0; i < ItemList.ActiveItems.Count; i++)
+            for(int i = 0; i < ItemList.AllItems.Count; i++)
             {
-                rm -= ItemList.ActiveItems[i].Weight;
+                rm -= ItemList.AllItems[i].Weight;
 
-                if(rm <= 0) return ItemList.ActiveItems[i].Id;
+                if(rm <= 0) return ItemList.AllItems[i].Id;
             }
             
             return 0;

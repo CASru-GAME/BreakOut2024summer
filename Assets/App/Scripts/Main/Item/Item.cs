@@ -1,6 +1,7 @@
 using UnityEngine;
 using App.Main.Player;
 using App.Main.Stage;
+using App.ScriptableObjects;
 
 namespace App.Main.Item
 {
@@ -11,12 +12,9 @@ namespace App.Main.Item
         [SerializeField] int Id;
         ItemTable itemTable;
         private readonly float _minY = -5f;
-        private readonly float _speed = -2f;
-
-        void Start()
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, _speed);
-        }
+        private readonly float _expSpeed = -2f;
+        private readonly float _itemSpeed = -3f;
+        [SerializeField] private SpriteData _spriteData;
 
         void Update() 
         {   
@@ -34,6 +32,14 @@ namespace App.Main.Item
             this.stageSystem = stageSystem;
             this.playerDatastore = playerDatastore;
             Id = id;
+            GetComponent<SpriteRenderer>().sprite = _spriteData.GetItemSprite(id);
+            SetSpeed();
+        }
+
+        private void SetSpeed()
+        {
+            if(Id <= 10) GetComponent<Rigidbody2D>().velocity = new Vector2(0, _expSpeed);
+            else GetComponent<Rigidbody2D>().velocity = new Vector2(0, _itemSpeed);
         }
 
         private void Suside()

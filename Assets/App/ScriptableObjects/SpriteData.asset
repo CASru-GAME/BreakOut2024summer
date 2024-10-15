@@ -49,3 +49,4 @@ MonoBehaviour:
   - {fileID: 516125581, guid: ece98ddc5ed66fd4fa1251dc85937b4b, type: 3}
   - {fileID: 1471758903, guid: ece98ddc5ed66fd4fa1251dc85937b4b, type: 3}
   - {fileID: -880607033, guid: ece98ddc5ed66fd4fa1251dc85937b4b, type: 3}
+  _ExpSprite: {fileID: -564722197, guid: 9b4d4045e098b914fbdcf32efd91f8fc, type: 3}
