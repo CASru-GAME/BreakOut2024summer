@@ -111,7 +111,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2418657781671327941}
@@ -137,7 +137,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f0a4f844bfe1f2a499d60f90081f2436, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -158,11 +158,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 1986017574, guid: 9b4d4045e098b914fbdcf32efd91f8fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 980483d7a6edac6458081dc96e5fd85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invisibleBall_forYellowSubmarine: {fileID: 1966382267313284638, guid: a89984c5a484e5543b65284908d2e8ef, type: 3}
+  PathThroughCount: 0
   Trigger: {fileID: 0}
   isPathThrough: 0
-  invisibleBall_forYellowSubmarine: {fileID: 1966382267313284638, guid: a89984c5a484e5543b65284908d2e8ef, type: 3}

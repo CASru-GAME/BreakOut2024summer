@@ -79,7 +79,6 @@ namespace App.Main.Item
             items[11] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
                 stageSystem.CreateBall(new Vector3(0f,0f,0f));
-                stageSystem.IncreaseBallCountonStage();
                 perkEffect(stageSystem,playerDatastore);
                 Debug.Log("Item:CreateBall");
             });
@@ -93,7 +92,6 @@ namespace App.Main.Item
                 if(!playerDatastore.ItemList.OwnedItems.Contains(playerDatastore.ItemList.AllItems[2]))
                 {   
                     playerDatastore.ItemList.OwnedItems.Add(playerDatastore.ItemList.AllItems[2]);
-                    //playerDatastore.gameObject.transform.localScale += new Vector3(playerDatastore.gameObject.transform.localScale.x * 0.2f,0f,0f); 
                     playerDatastore.gameObject.GetComponent<CapsuleCollider2D>().size += new Vector2(playerDatastore.gameObject.GetComponent<CapsuleCollider2D>().size.x * 0.2f, 0f);
                     playerDatastore.gameObject.GetComponent<SpriteRenderer>().size += new Vector2(playerDatastore.gameObject.GetComponent<SpriteRenderer>().size.x * 0.2f, 0f);
                 }
@@ -166,7 +164,7 @@ namespace App.Main.Item
 
                 if(catchBallItem.BallList.Count >= 1)
                 {
-                    catchBallItem.KeepBall();
+                    catchBallItem.KeepBall(this.gameObject);
                     catchBallItem.ReleaseBall();
 
                     if(Input.GetMouseButton(0))
@@ -227,9 +225,9 @@ namespace App.Main.Item
                     xPositionDiffence = BallList[0].transform.position.x - transform.position.x;
                 }
             }
-            public void KeepBall()
+            public void KeepBall(GameObject player)
             {   
-                BallList[0].transform.position = new Vector3(transform.position.x + xPositionDiffence,transform.position.y + transform.localScale.y / 2 + BallList[0].transform.localScale.y / 2,0f);
+                BallList[0].transform.position = new Vector3(transform.position.x + xPositionDiffence,transform.position.y + transform.localScale.y / 2 * player.GetComponent<SpriteRenderer>().size.y + BallList[0].transform.localScale.y / 2,0f);
             }
             public Vector3 DecideSpeedVector()
             {
@@ -304,6 +302,7 @@ namespace App.Main.Item
                 currentDuration = 0f;
                 ResetAttackPoint();
                 IsActive = false;
+                playerDatastore.ItemList.OwnedItems.Remove(playerDatastore.ItemList.AllItems[4]);
             }
         }
         public float GetRemainingTime()
@@ -345,6 +344,7 @@ namespace App.Main.Item
                 currentDuration = 0f;
                 ResetMoveSpeed();
                 IsActive = false;
+                playerDatastore.ItemList.OwnedItems.Remove(playerDatastore.ItemList.AllItems[5]);
             }
         }
         public float GetRemainingTime()
