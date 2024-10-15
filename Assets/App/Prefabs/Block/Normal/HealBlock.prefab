@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 3112488842748700269}
   - component: {fileID: 1056405878683040127}
   - component: {fileID: 1467388954204384978}
-  - component: {fileID: -3850281174733760819}
   - component: {fileID: -6245319583631685543}
   m_Layer: 7
   m_Name: HealBlock
@@ -190,19 +189,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-3850281174733760819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259204330475482773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de7fde614fdab24fb0c1c7cff3c92d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fallingSpeed: 0.00005
 --- !u!114 &-6245319583631685543
 MonoBehaviour:
   m_ObjectHideFlags: 0

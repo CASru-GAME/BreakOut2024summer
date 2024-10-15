@@ -118,9 +118,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _axisState: 0
-  _horizontalRange: 1.35
-  _verticalRange: 0.675
-  _speed: 2
+  _horizontalRange: 1.4
+  _verticalRange: 1.4
+  _speed: 0.8
 --- !u!114 &3954273913078305170
 MonoBehaviour:
   m_ObjectHideFlags: 0

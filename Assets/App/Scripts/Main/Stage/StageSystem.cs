@@ -27,11 +27,11 @@ namespace App.Main.Stage
         public int TotalCat => _totalCat;
         private int _clearedStageCount = 0;
         public int ClearedStageCount => _clearedStageCount;
-        private int _roopCount = 1;
+        private int _roopCount = 2;
         public int RoopCount => _roopCount;
-        private int _currentStageNumberID = 1;
+        private int _currentStageNumberID = 15;
         public int CurrentStageNumberID => _currentStageNumberID;
-        private int _currentWorldNumberID = 1;
+        private int _currentWorldNumberID = 5;
         public int CurrentWorldNumberID => _currentWorldNumberID;
 
         ///<summary>
@@ -169,6 +169,7 @@ namespace App.Main.Stage
             CreateBall(new Vector3(0, 0, 0));
             PerkEffect();
             GetComponent<BlockPattern>().CreateBlocks(_currentStageNumberID, _roopCount);
+            GetComponent<HoleWall>().CreateHole(_currentStageNumberID);
             _targetBlockCount = GetComponent<BlockPattern>().TargetBlockCount;
             _normalBlockCount = GetComponent<BlockPattern>().NormalBlockCount;
         }
