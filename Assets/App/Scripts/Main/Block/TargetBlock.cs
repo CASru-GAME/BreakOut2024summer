@@ -17,6 +17,7 @@ namespace App.Main.Block
         [SerializeField] int Id;
         private StageSystem stageSystem;
         private int PoisonStack = 0;
+        private int WeaknessPoint = 0;
         private bool isPoisoned = false;
 
         void Start()
@@ -36,7 +37,6 @@ namespace App.Main.Block
                 StartCoroutine(TakePoisonDamage(PoisonStack));
                 isPoisoned = true;
             }
-
         }
 
         //<summary>
@@ -52,6 +52,7 @@ namespace App.Main.Block
         //</summary>
         public void TakeDamage(int damage)
         {
+            if(WeaknessPoint > 0) damage *= 2;
             BlockHp newBlockHp = new BlockHp(damage);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
@@ -113,6 +114,20 @@ namespace App.Main.Block
         public void RemovePoisonStack()
         {
             PoisonStack--;
+        }
+
+        public void AddWeaknessPoint(int point)
+        {
+            WeaknessPoint += point;
+        }
+
+        public IEnumerator RemoveWeaknessPoint()
+        {
+            if (WeaknessPoint > 0)
+            {
+                WeaknessPoint--;
+            }
+            yield return new WaitForSeconds(1);
         }
     }
 }

@@ -56,10 +56,9 @@ namespace App.Main.Block
         //</summary>
         public void TakeDamage(int damage)
         {
+            if(WeaknessPoint > 0) damage *= 2;
             BlockHp newBlockHp = new BlockHp(damage);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
-
-            if(WeaknessPoint > 0) damage *= 2;
 
             blockAnimation.CreateDamageEffect(damage, stageSystem);
 
@@ -114,6 +113,11 @@ namespace App.Main.Block
         public void RemovePoisonStack()
         {
             PoisonStack--;
+        }
+
+        public void AddWeaknessPoint(int point)
+        {
+            WeaknessPoint += point;
         }
 
         public IEnumerator RemoveWeaknessPoint()
