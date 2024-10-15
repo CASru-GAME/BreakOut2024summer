@@ -29,6 +29,7 @@ namespace App.Main.Player.Perk
             while(playerDatastore.GetMaxLiveValue() != 1)
             {
                 playerDatastore.SubtractMaxLive(1);
+                Debug.Log("LastStand" + playerDatastore.GetMaxLiveValue());
             }
         }
 
@@ -39,7 +40,6 @@ namespace App.Main.Player.Perk
 
         public int IntEffect()
         {
-            if(StackCount == 0) return 0;
             return CalculateValue(StackCount);
         }
 

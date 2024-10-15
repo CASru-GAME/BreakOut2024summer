@@ -142,6 +142,10 @@ namespace App.Main.Stage
 
         public void CreateItem(Vector3 position)
         {
+            //50%の確率でアイテムを生成
+            UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
+            if (UnityEngine.Random.Range(0, 100) >= 50) return;
+
             _itemSystem = new ItemSystem(_player);
             GameObject item = Instantiate(_itemPrefab, position, Quaternion.identity);
             item.GetComponent<App.Main.Item.Item>().Initialized(_itemTable, this, _player, _itemSystem.SelectItem());

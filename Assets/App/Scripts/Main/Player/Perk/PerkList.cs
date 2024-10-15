@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using App.Main.Player;
 using App.Main.Stage;
 
@@ -86,21 +87,16 @@ namespace App.Main.Player.Perk
                 {
                     for (int j = 0; j < value[i, 0]; j++)
                     {
-                        AllPerkList[j].AddStackCount();
+                        AllPerkList[i].AddStackCount();
+                        Debug.Log("PerkID:" + i + " StackCount:" + AllPerkList[i].GetStackCount());
                     }
-                    //　OwnedPerkListに取得順で戻す
-
-                    for(int j = 0; j < AllPerkList.Length; j++)
+                    // OwnedPerkListに取得順で戻す
+                    if (value[i, 1] != -1)
                     {
-                        if(value[i, 1] == j)
-                        {
-                            OwnedPerkList.Add(AllPerkList[i]);
-                        }
+                        OwnedPerkList.Add(AllPerkList[i]);
                     }
                 }
             }
-
-
         }
     }
 }

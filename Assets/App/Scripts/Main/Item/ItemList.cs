@@ -18,22 +18,27 @@ namespace App.Main.Item
         public List<ItemData> ActiveExps= new List<ItemData>()
         {
             new ItemData(1, 1),
-            //new ItemData(1, 1),
-            //new ItemData(2, 2),
+            new ItemData(1, 1),
+            new ItemData(1, 1),
+            new ItemData(1, 1),
+            new ItemData(1, 1),
+            new ItemData(1, 1),
         };
 
-        public ItemData[] AllItems = new ItemData[]
+        public List<ItemData> AllItems = new List<ItemData>()
         {
-            new ItemData(11, 1),
-            new ItemData(12, 2),
-            new ItemData(13, 3),    
-            new ItemData(14, 2),
-            new ItemData(15, 2),
-            new ItemData(16, 2),
+            new ItemData(11, 6),
+            new ItemData(12, 1),
+            new ItemData(13, 4),    
+            new ItemData(14, 4),
+            new ItemData(15, 4),
+            new ItemData(16, 4),
         };
-        public List<ItemData> ActiveItems= new List<ItemData>()
+        public List<ItemData> ActiveItems = new List<ItemData>()
         {
-            new ItemData(12, 2),
+            new ItemData(11, 6),
+            new ItemData(12, 1),
+            new ItemData(13, 4),
         };  
         public List<ItemData> OwnedItems = new List<ItemData>();
     }
