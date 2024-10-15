@@ -17,7 +17,7 @@ namespace App.Main.Block
         private PlayerDatastore playerDatastore;
         [SerializeField] int initialHp;
         [SerializeField] int Id;
-        private StageSystem stage;
+        public StageSystem stage{ get; set; }
         private int PoisonStack = 0;
         private int WeaknessPoint = 0;
 

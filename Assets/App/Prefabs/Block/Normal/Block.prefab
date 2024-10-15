@@ -195,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHp: 2
   Id: 0
+  blockFall: {fileID: 8667439782199052310}
 --- !u!114 &5767369045069367308
 MonoBehaviour:
   m_ObjectHideFlags: 0

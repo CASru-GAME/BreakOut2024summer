@@ -19,7 +19,7 @@ namespace App.Main.Block
         public void Initialized(GameObject Block)
         {
             initialPostion = transform.position;
-            _fallingSpeed = 0.00016f;
+            _fallingSpeed = 0.00035f;
             _block = Block;
         }
         

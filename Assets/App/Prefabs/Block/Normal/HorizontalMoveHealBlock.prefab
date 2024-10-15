@@ -117,8 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d6b675d6ae914488328a01bde8cef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _horizontalRange: 1.35
-  _speed: 1.6
+  _horizontalRange: 0.525
+  _speed: 0.8
   _fallPrefab: {fileID: 4689426119730051843, guid: e1b8281d249e8a34f94daa89214cd867, type: 3}
 --- !u!114 &4376963748277075925
 MonoBehaviour:

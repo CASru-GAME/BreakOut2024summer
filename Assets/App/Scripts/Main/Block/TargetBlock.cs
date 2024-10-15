@@ -14,7 +14,7 @@ namespace App.Main.Block
         private CreateCat createCat;
         [SerializeField] int initialHp;
         [SerializeField] int Id;
-        private StageSystem stage;
+        public StageSystem stage{ get; set; }
         private int PoisonStack = 0;
 
         void Start()

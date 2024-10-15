@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using App.Main.Stage;
 using UnityEngine;
 
 namespace App.Main.Block
@@ -7,19 +8,20 @@ namespace App.Main.Block
     public class BlockFall : MonoBehaviour,IFall
     {   
         [SerializeField] private float _fallingSpeed;
+        public StageSystem stageSystem{ get; private set; }
         List<IFall> HitBlockList = new List<IFall>();
         
 
         void Start()
         {
-            _fallingSpeed = 0.00016f;       
+            _fallingSpeed = 0.00035f;       
         }
 
         void Update()
-        {
-            //Fall();
+        {   
+            if(transform.parent.GetComponent<IBlock>().stage.CurrentWorldNumberID == 4)
+            Fall();
         }
-
         
         public void Fall()
         {   
