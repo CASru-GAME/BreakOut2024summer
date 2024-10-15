@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 using App.Main.Block;
 using App.Main.Player;
 using App.Main.Stage;
+using Unity.Mathematics;
 
 namespace App.Main.Ball
 {
@@ -15,6 +15,11 @@ namespace App.Main.Ball
         private StageSystem stageSystem;
         private Rigidbody2D rb;
         private float BallSpeed;
+        [SerializeField] private GameObject invisibleBall_forYellowSubmarine;
+        private bool isFireworks = false;
+        [SerializeField]private int PathThroughCount = 0;
+        [SerializeField]private GameObject Trigger;
+        public bool isPathThrough = false;
 
         /// <summary>
         /// デバッグ用．ボールに初速度を与える
@@ -24,6 +29,8 @@ namespace App.Main.Ball
             BallSpeed = playerDatastore.GetBallSpeedValue();
             rb = GetComponent<Rigidbody2D>();
             GetComponent<Rigidbody2D>().velocity = new Vector2(BallSpeed, BallSpeed);
+            PathThroughCount = 10*playerDatastore.PerkSystem.PerkList.AllPerkList[8].IntEffect();
+            Trigger = transform.GetChild(0).gameObject;
         }
 
         /// <summary>
@@ -42,9 +49,23 @@ namespace App.Main.Ball
             {
                 Suicide();
             }
+            if(PathThroughCount > 0)
+            {
+                isPathThrough = true;
+                this.gameObject.layer = 8;
+                Trigger.SetActive(true);
+            }
+
+            
 
             //速度を一定に保つ
             rb.velocity = rb.velocity.normalized * playerDatastore.GetBallSpeedValue();
+
+            if(playerDatastore.PerkSystem.PerkList.AllPerkList[19].IntEffect() == 1 && isFireworks == false)
+            {
+                isFireworks = true;
+                StartCoroutine(Burning());
+            }
         }
 
         /// <summary>
@@ -59,19 +80,44 @@ namespace App.Main.Ball
             Destroy(gameObject);
         }
 
+        private IEnumerator Burning()
+        {
+            float lifeTime = playerDatastore.PerkSystem.PerkList.AllPerkList[19].FloatEffect() * 30;
+            while(lifeTime > 0)
+            {
+                yield return new WaitForSeconds(0.1f);
+                lifeTime -= 0.1f;
+            }
+            Suicide();
+        }
+
         /// <summary>
         /// 他のオブジェクトに接触した瞬間に実行する
         /// </summary>
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
             IBlock block = collision2D.gameObject.GetComponent<IBlock>();
-            if(block != null)
+            if(block != null && !isPathThrough)
             {
-                //ダメージ計算
-                block.TakeDamage(CalcDamage());
-                playerDatastore.AddComboCount();
-                //IBlockをいじる許可が出たらここに状態異常付与の関数を書く
+                AttackHandling(block);
+
+                //黄色い潜水艦の効果
+                //透明な丸を作り、ブロックとの衝突判定を取得し、ブロックのtakeDamageを呼び出す。
+                //透明な丸は処理が終わると消える
+                if (playerDatastore.PerkSystem.PerkList.AllPerkList[14].FloatEffect() == 1)
+                {
+                    GameObject collision_detector = Instantiate(invisibleBall_forYellowSubmarine, collision2D.transform.position, quaternion.identity);
+                    collision_detector.GetComponent<CollisionDetector_forYellowSubmarine>().SetDamage(playerDatastore.PerkSystem.PerkList.AllPerkList[14].GetStackCount(), CalcDamage());
+                }
             }
+        }
+
+        public void AttackHandling(IBlock block)
+        {
+            //ダメージ計算
+            block.TakeDamage(CalcDamage());
+            playerDatastore.AddComboCount();
+            //IBlockをいじる許可が出たらここに状態異常付与の関数を書く
         }
 
         /// <summary>
@@ -80,6 +126,9 @@ namespace App.Main.Ball
         private int CalcDamage()
         {
             int damage = playerDatastore.GetAttackPointValue();
+            damage += (int)(playerDatastore.PerkSystem.PerkList.AllPerkList[19].FloatEffect() * 10);
+            damage += playerDatastore.PerkSystem.PerkList.AllPerkList[12].IntEffect();
+
             damage += CalculateComboDamage();
             CaluculatePerkDamage(damage);
             return damage;
@@ -87,12 +136,13 @@ namespace App.Main.Ball
 
         private int CalculateComboDamage()
         {
-            return (int)(playerDatastore.GetComboCount()*0.25);
+            return (int)(playerDatastore.GetComboCount() * 0.25);
         }
 
         private int CaluculatePerkDamage(int damage)
         {
             damage += playerDatastore.PerkSystem.PerkList.AllPerkList[2].IntEffect();
+            damage += playerDatastore.PerkSystem.PerkList.AllPerkList[1].IntEffect();
             damage *= playerDatastore.PerkSystem.PerkList.AllPerkList[22].IntEffect();
             return damage;
         }
@@ -106,5 +156,17 @@ namespace App.Main.Ball
         {
             return playerDatastore.PerkSystem.PerkList.AllPerkList[6].IntEffect();
         }
+
+        public void DecreasePathThroughCount()
+        {
+            PathThroughCount--;
+            if(PathThroughCount <= 0)
+            {
+                isPathThrough = false;
+                this.gameObject.layer = 6;
+                Trigger.SetActive(false);
+            }
+        }
+
     }
 }

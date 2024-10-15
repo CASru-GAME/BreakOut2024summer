@@ -42,8 +42,8 @@ namespace App.Main.Player.Perk
 
         public int IntEffect()
         {
-            int number = Random.Range(1, 100);
-            if (number <= CaluculateProbability())
+            int number = Random.Range(0, 100);
+            if (number < CaluculateProbability())
             {
                 return 1;
             }

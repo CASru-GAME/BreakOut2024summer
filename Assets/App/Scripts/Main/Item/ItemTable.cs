@@ -93,7 +93,9 @@ namespace App.Main.Item
                 if(!playerDatastore.ItemList.OwnedItems.Contains(playerDatastore.ItemList.AllItems[2]))
                 {   
                     playerDatastore.ItemList.OwnedItems.Add(playerDatastore.ItemList.AllItems[2]);
-                    playerDatastore.gameObject.transform.localScale += new Vector3(playerDatastore.gameObject.transform.localScale.x * 0.2f,0f,0f); 
+                    //playerDatastore.gameObject.transform.localScale += new Vector3(playerDatastore.gameObject.transform.localScale.x * 0.2f,0f,0f); 
+                    playerDatastore.gameObject.GetComponent<CapsuleCollider2D>().size += new Vector2(playerDatastore.gameObject.GetComponent<CapsuleCollider2D>().size.x * 0.2f, 0f);
+                    playerDatastore.gameObject.GetComponent<SpriteRenderer>().size += new Vector2(playerDatastore.gameObject.GetComponent<SpriteRenderer>().size.x * 0.2f, 0f);
                 }
                 Debug.Log("Item:EnlargeBar");
             });

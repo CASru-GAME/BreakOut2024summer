@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1670819082882622891}
   - component: {fileID: -3093787323336235515}
   - component: {fileID: -258710007410442512}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TargetRightScreenOffHorizontalMoveBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

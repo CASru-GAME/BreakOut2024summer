@@ -23,7 +23,7 @@ namespace App.Main.Stage
 
         private int _targetBlockCount = 0;
         public int TargetBlockCount => _targetBlockCount;
-        private int _totalCat =0;
+        private int _totalCat = 0;
         public int TotalCat => _totalCat;
         private int _clearedStageCount = 0;
         public int ClearedStageCount => _clearedStageCount;
@@ -100,6 +100,19 @@ namespace App.Main.Stage
         }
 
         ///<summary>
+        ///ステージシステム上のターゲットブロックの数を助けた猫の数を増やすことなく一つ減らす。
+        ///</summary>
+        ///<exception cref="ArgumentException">ターゲットブロックの数が0未満になる場合に発生します。</exception>
+        public void DecreaseTargetBlockCountWithoutIncreaseTotalCat()
+        {
+            if (_targetBlockCount <= 0)
+            {
+                throw new ArgumentException("Value cannot be negative");
+            }
+            --_targetBlockCount;
+        }
+
+        ///<summary>
         ///ステージシステム上の助けた猫の数を取得する。
         /// <returns>助けた猫の数</returns>
         /// </summary>
@@ -159,9 +172,9 @@ namespace App.Main.Stage
 
         private void PerkEffect()
         {
-            for(int i = 0; i < _player.PerkSystem.PerkList.AllPerkList[10].IntEffect(); i++)
+            for (int i = 0; i < _player.PerkSystem.PerkList.AllPerkList[10].IntEffect(); i++)
             {
-                CreateBall(new Vector3(0.2f*i, 0, 0));
+                CreateBall(new Vector3(0.2f * i, 0, 0));
             }
         }
 

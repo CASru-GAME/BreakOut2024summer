@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 224303863437264739}
   - component: {fileID: -8173436330819565492}
   - component: {fileID: 2953247987275219393}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: VerticalMoveBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

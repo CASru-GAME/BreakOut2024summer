@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1550233626125636915}
   - component: {fileID: 3507555679387379993}
   - component: {fileID: 6328372483515085678}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HorizontalMoveHealBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 5635276760839217956}
   - component: {fileID: 1707926653177040148}
   - component: {fileID: 202478295010353066}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Heal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

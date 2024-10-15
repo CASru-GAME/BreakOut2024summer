@@ -25,20 +25,20 @@ namespace App.Main.Player.Perk
                 new OptionParts(playerDatastore),//ID:5
                 new Amaryllis(playerDatastore),//ID:6
                 new Konjac(playerDatastore),//ID:7
-                new DebugPerk(),//ID:8
+                new Drill(playerDatastore),//ID:8
                 new LotteryTicket(playerDatastore),//ID:9
                 new ValuePack(playerDatastore),//ID:10
                 new FamilyPhoto(playerDatastore),//ID:11
-                new DebugPerk(),//ID:12
-                new DebugPerk(),//ID:13
+                new Dumbbell(playerDatastore),//ID:12
+                new Pot(playerDatastore),//ID:13
                 new DebugPerk(),//ID:14
                 new DebugPerk(),//ID:15
-                new DebugPerk(),//ID:16
+                new WatermelonSeeds(playerDatastore),//ID:16
                 new DebugPerk(),//ID:17
                 new ManekiCat(playerDatastore),//ID:18
-                new DebugPerk(),//ID:19
+                new Fireworks(playerDatastore),//ID:19
                 new DebugPerk(),//ID:20
-                new DebugPerk(),//ID:21
+                new Amulet(playerDatastore),//ID:21
                 new LastStand(playerDatastore)//ID:22
             };
             AmountPerk = AllPerkList.Length;
