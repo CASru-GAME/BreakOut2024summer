@@ -24,7 +24,7 @@ namespace App.Main.Block.Ablity
             rb = GetComponent<Rigidbody2D>();
             _initialPostion = transform.position;
 
-            if(GetComponent<IBlock>().stage.CurrentWorldNumberID == 4)
+            if(GetComponent<IBlock>().stageSystem.CurrentWorldNumberID == 4)
             {
                 fall = Instantiate(_fallPrefab,transform.position,quaternion.identity);
                 fall.transform.localScale = transform.localScale;
