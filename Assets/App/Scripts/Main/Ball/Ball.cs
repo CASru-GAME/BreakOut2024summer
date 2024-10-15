@@ -130,7 +130,7 @@ namespace App.Main.Ball
             damage += playerDatastore.PerkSystem.PerkList.AllPerkList[12].IntEffect();
 
             damage += CalculateComboDamage();
-            CaluculatePerkDamage(damage);
+            damage = CaluculatePerkDamage(damage);
             return damage;
         }
 
