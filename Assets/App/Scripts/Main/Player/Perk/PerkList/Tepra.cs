@@ -6,7 +6,7 @@ namespace App.Main.Player.Perk
 {
     public class Tepra : IPerk
     {
-        private int id = 15;
+        private int id = 20;
         private int StackCount = 0;
         private PlayerDatastore playerDatastore;
 
