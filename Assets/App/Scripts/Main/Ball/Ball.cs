@@ -4,6 +4,7 @@ using App.Main.Block;
 using App.Main.Player;
 using App.Main.Stage;
 using Unity.Mathematics;
+using System;
 
 namespace App.Main.Ball
 {
@@ -17,8 +18,8 @@ namespace App.Main.Ball
         private float BallSpeed;
         [SerializeField] private GameObject invisibleBall_forYellowSubmarine;
         private bool isFireworks = false;
-        [SerializeField]private int PathThroughCount = 0;
-        [SerializeField]private GameObject Trigger;
+        [SerializeField] private int PathThroughCount = 0;
+        [SerializeField] private GameObject Trigger;
         public bool isPathThrough = false;
 
         /// <summary>
@@ -29,7 +30,7 @@ namespace App.Main.Ball
             BallSpeed = playerDatastore.GetBallSpeedValue();
             rb = GetComponent<Rigidbody2D>();
             GetComponent<Rigidbody2D>().velocity = new Vector2(BallSpeed, BallSpeed);
-            PathThroughCount = 10*playerDatastore.PerkSystem.PerkList.AllPerkList[8].IntEffect();
+            PathThroughCount = 10 * playerDatastore.PerkSystem.PerkList.AllPerkList[8].IntEffect();
         }
 
         /// <summary>
@@ -48,19 +49,19 @@ namespace App.Main.Ball
             {
                 Suicide();
             }
-            if(PathThroughCount > 0)
+            if (PathThroughCount > 0)
             {
                 isPathThrough = true;
                 this.gameObject.layer = 8;
                 Trigger.SetActive(true);
             }
 
-            
+
 
             //速度を一定に保つ
             rb.velocity = rb.velocity.normalized * playerDatastore.GetBallSpeedValue();
 
-            if(playerDatastore.PerkSystem.PerkList.AllPerkList[19].IntEffect() == 1 && isFireworks == false)
+            if (playerDatastore.PerkSystem.PerkList.AllPerkList[19].IntEffect() == 1 && isFireworks == false)
             {
                 isFireworks = true;
                 StartCoroutine(Burning());
@@ -82,7 +83,7 @@ namespace App.Main.Ball
         private IEnumerator Burning()
         {
             float lifeTime = playerDatastore.PerkSystem.PerkList.AllPerkList[19].FloatEffect() * 30;
-            while(lifeTime > 0)
+            while (lifeTime > 0)
             {
                 yield return new WaitForSeconds(0.1f);
                 lifeTime -= 0.1f;
@@ -96,7 +97,7 @@ namespace App.Main.Ball
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
             IBlock block = collision2D.gameObject.GetComponent<IBlock>();
-            if(block != null && !isPathThrough)
+            if (block != null && !isPathThrough)
             {
                 AttackHandling(block);
 
@@ -111,12 +112,20 @@ namespace App.Main.Ball
             }
         }
 
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if ((rb.velocity.normalized == Vector2.down) || (rb.velocity.normalized == Vector2.up) || (rb.velocity.normalized == Vector2.left) || (rb.velocity.normalized == Vector2.right))
+            {
+                rb.velocity = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-30, 30)) * rb.velocity;
+            }
+        }
+
         public void AttackHandling(IBlock block)
         {
             //ダメージ計算
             block.TakeDamage(CalcDamage());
             playerDatastore.AddComboCount();
-            
+
             block.AddPoisonStack(CalculatePoisonStack());
             block.AddWeaknessPoint(CalculateWeaknessStack());
         }
@@ -161,7 +170,7 @@ namespace App.Main.Ball
         public void DecreasePathThroughCount()
         {
             PathThroughCount--;
-            if(PathThroughCount <= 0)
+            if (PathThroughCount <= 0)
             {
                 isPathThrough = false;
                 this.gameObject.layer = 6;
