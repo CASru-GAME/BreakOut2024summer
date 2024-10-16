@@ -146,7 +146,7 @@ namespace App.Main.Stage
         {
             //通常、30%の確率でアイテムを生成
             UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
-            ItemDontDropRate = 100 - ItemDropRate - _player.PerkSystem.PerkList.AllPerkList[20].IntEffect();
+            ItemDontDropRate = 100 - (int)(ItemDropRate * _player.PerkSystem.PerkList.AllPerkList[20].FloatEffect());
             if (UnityEngine.Random.Range(0, 100) <= ItemDontDropRate) return;
 
             _itemSystem = new ItemSystem(_player);

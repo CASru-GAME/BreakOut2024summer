@@ -36,12 +36,12 @@ namespace App.Main.Player.Perk
 
         public int IntEffect()
         {
-            return (int)(1-1/(StackCount+1))*40;
+            return 0;
         }
 
         public float FloatEffect()
         {
-            return 0;
+            return (float)(1-1/(StackCount+1))*2;
         }
     }
 }
