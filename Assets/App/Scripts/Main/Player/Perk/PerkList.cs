@@ -32,8 +32,8 @@ namespace App.Main.Player.Perk
                 new FamilyPhoto(playerDatastore),//ID:11
                 new Dumbbell(playerDatastore),//ID:12
                 new Pot(playerDatastore),//ID:13
-                new DebugPerk(),//ID:14
-                new DebugPerk(),//ID:15
+                new YellowSubmarine(playerDatastore),//ID:14
+                new TenchiMuyo(playerDatastore),//ID:15
                 new WatermelonSeeds(playerDatastore),//ID:16
                 new DebugPerk(),//ID:17
                 new ManekiCat(playerDatastore),//ID:18
