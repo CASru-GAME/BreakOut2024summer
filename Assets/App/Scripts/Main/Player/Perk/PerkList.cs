@@ -38,7 +38,7 @@ namespace App.Main.Player.Perk
                 new DebugPerk(),//ID:17
                 new ManekiCat(playerDatastore),//ID:18
                 new Fireworks(playerDatastore),//ID:19
-                new DebugPerk(),//ID:20
+                new Tepra(playerDatastore),//ID:20
                 new Amulet(playerDatastore),//ID:21
                 new LastStand(playerDatastore)//ID:22
             };

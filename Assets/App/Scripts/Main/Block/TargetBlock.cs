@@ -112,6 +112,7 @@ namespace App.Main.Block
         public void AddPoisonStack(int stack)
         {
             PoisonStack += stack;
+            if(playerDatastore.PerkSystem.PerkList.AllPerkList[20].IntEffect() == 1) PoisonStack += stack;
         }
 
         public void RemovePoisonStack()
@@ -122,6 +123,7 @@ namespace App.Main.Block
         public void AddWeaknessPoint(int point)
         {
             WeaknessPoint += point;
+            if(playerDatastore.PerkSystem.PerkList.AllPerkList[20].IntEffect() == 1) WeaknessPoint += point;
         }
 
         public IEnumerator RemoveWeaknessPoint()
