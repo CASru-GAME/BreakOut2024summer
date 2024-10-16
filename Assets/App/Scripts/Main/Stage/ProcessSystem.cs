@@ -100,11 +100,11 @@ namespace App.Main.Stage
 
         private void PerkEffect()
         {
-            if(_player.PerkSystem.PerkList.AllPerkList[11].IntEffect() == 0)
+            if (_player.PerkSystem.PerkList.AllPerkList[11].IntEffect() == 0)
             {
                 return;
             }
-            if(_player.PerkSystem.PerkList.AllPerkList[11].IntEffect() == 1)
+            if (_player.PerkSystem.PerkList.AllPerkList[11].IntEffect() == 1)
             {
                 _player.AddLive(1);
             }
@@ -161,6 +161,15 @@ namespace App.Main.Stage
                 {
                     _player.SubtractLive(_player.Parameter.GetLiveValue() - StatisticsDatastore._remainingLive);
                 }
+                // 最大残機のロード
+                if (StatisticsDatastore._maxLive > _player.Parameter.GetMaxLiveValue())
+                {
+                    _player.AddMaxLive(StatisticsDatastore._maxLive - _player.Parameter.GetMaxLiveValue());
+                }
+                else if (StatisticsDatastore._maxLive < _player.Parameter.GetMaxLiveValue())
+                {
+                    _player.SubtractMaxLive(_player.Parameter.GetMaxLiveValue() - StatisticsDatastore._maxLive);
+                }
             }
             _player.LoadLevelAndExperiencePoint(StatisticsDatastore._playerLevel, StatisticsDatastore._totalAquiredExperiencePoint);
             _player.PerkSystem.PerkList.LoadPerkList(StatisticsDatastore._totalAquiredPerkList);
@@ -172,6 +181,7 @@ namespace App.Main.Stage
             _stageSystem.FetchData();
             StatisticsDatastore.AssignRemainingTimeLimit(_timer.RemainingTimeLimit);
             StatisticsDatastore.AssignRemainingLive(_player.Parameter.GetLiveValue());
+            StatisticsDatastore.AssignMaxLive(_player.Parameter.GetMaxLiveValue());
             StatisticsDatastore.AssignTotalAquiredExperiencePoint(_player.GetExperiencePointValue());
             StatisticsDatastore.AssignPlayerLevel(_player.GetLevelValue());
             StatisticsDatastore.AssignTotalAquiredPerkList(_player.PerkSystem.PerkList.GetOwnedPerkList());
