@@ -114,6 +114,7 @@ namespace App.Main.Block
         public void RemovePoisonStack()
         {
             PoisonStack -= (float)1/playerDatastore.PerkSystem.PerkList.AllPerkList[15].IntEffect();
+            if(PoisonStack < 0) PoisonStack = 0;
         }
 
         public void AddWeaknessPoint(int point)
