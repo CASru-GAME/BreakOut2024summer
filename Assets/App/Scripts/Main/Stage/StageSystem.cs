@@ -33,6 +33,8 @@ namespace App.Main.Stage
         public int CurrentStageNumberID => _currentStageNumberID;
         private int _currentWorldNumberID = 1;
         public int CurrentWorldNumberID => _currentWorldNumberID;
+        private int ItemDontDropRate = 70;
+        private int ItemDropRate = 30;
 
         ///<summary>
         ///ステージシステム上のボールの数を一つ増やす。
@@ -142,9 +144,10 @@ namespace App.Main.Stage
 
         public void CreateItem(Vector3 position)
         {
-            //50%の確率でアイテムを生成
+            //通常、30%の確率でアイテムを生成
             UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
-            if (UnityEngine.Random.Range(0, 100) >= 50) return;
+            ItemDontDropRate = 100 - (int)(ItemDropRate * _player.PerkSystem.PerkList.AllPerkList[20].FloatEffect());
+            if (UnityEngine.Random.Range(0, 100) <= ItemDontDropRate) return;
 
             _itemSystem = new ItemSystem(_player);
             GameObject item = Instantiate(_itemPrefab, position, Quaternion.identity);

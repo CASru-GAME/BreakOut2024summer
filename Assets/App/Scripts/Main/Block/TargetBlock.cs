@@ -19,6 +19,7 @@ namespace App.Main.Block
         private int PoisonStack = 0;
         private int WeaknessPoint = 0;
         private bool isPoisoned = false;
+        private bool isBroke = false;
 
         void Start()
         {
@@ -72,6 +73,7 @@ namespace App.Main.Block
         //</summary>
         private void Break()
         {
+            if (isBroke) return;
             //ワイヤーケージのパークがある場合、猫が増えずにブロック破壊の処理を行う。
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[1].FloatEffect() == 1)
             {
@@ -95,6 +97,7 @@ namespace App.Main.Block
                     createCat.Create(transform.position + new Vector3(0f, 0.3f, 0f), transform.localScale);
                 }
             }
+            isBroke = true;
             Destroy(gameObject);
         }
 

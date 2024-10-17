@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using UnityEditor;
 
 namespace App.Static
 {
@@ -39,6 +40,10 @@ namespace App.Static
         /// 残りの残機
         /// </summary>
         public static int _remainingLive { get; private set; } = 0;
+        ///<summary>
+        /// 最大の残機
+        /// </summary>
+        public static int _maxLive { get; private set; } = 3;
 
         /// <summary>
         /// 獲得した経験値を代入する
@@ -146,6 +151,22 @@ namespace App.Static
             }
             _remainingLive = remainingLive;
         }
+
+        /// <summary>
+        /// 最大の残機を代入する
+        /// </summary>
+        /// <param name="maxLive"></param>
+        public static void AssignMaxLive(int maxLive)
+        {
+            if (maxLive < 0)
+            {
+                UnityEngine.Debug.Log("MaxLive: 0より小さい値が入力されました");
+                return;
+            }
+            _maxLive = maxLive;
+        }
+
+        
 
         /// <summary>
         /// 全ての統計データをリセットする
