@@ -49,7 +49,7 @@ namespace App.Main.Block
         //</summary>
         public void SetStage(StageSystem stageSystem)
         {
-            this.stageSystem = stageSystem;
+            this.StageSystem = stageSystem;
         }
 
         //<summary>
@@ -61,7 +61,7 @@ namespace App.Main.Block
             BlockHp newBlockHp = new BlockHp(damage);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
-            blockAnimation.CreateDamageEffect(damage, stageSystem);
+            blockAnimation.CreateDamageEffect(damage, StageSystem);
 
             if (blockDatastore.Hp.CurrentValue <= 0) Break();
         }
@@ -80,20 +80,20 @@ namespace App.Main.Block
         private void Break()
         {
             //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達
-            stageSystem.DecreaseNormalBlockCount();
+            StageSystem.DecreaseNormalBlockCount();
 
             blockAnimation.Break();
 
-            stageSystem.CreateItem(transform.position); //デバッグ用
-            stageSystem.CreateExpBall(transform.position); //デバッグ用
+            StageSystem.CreateItem(transform.position); //デバッグ用
+            StageSystem.CreateExpBall(transform.position); //デバッグ用
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[3].IntEffect() == 1)
             {
-                stageSystem.IncreaseTotalCat();
+                StageSystem.IncreaseTotalCat();
                 createCat.Create(transform.position, transform.localScale);
             }
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[13].IntEffect() == 1)
             {
-                stageSystem.CreateBall(transform.position);
+                StageSystem.CreateBall(transform.position);
             }
             Destroy(gameObject);
         }

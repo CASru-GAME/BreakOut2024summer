@@ -46,7 +46,7 @@ namespace App.Main.Block
         //</summary>
         public void SetStage(StageSystem stageSystem)
         {
-            this.stageSystem = stageSystem;
+            this.StageSystem = stageSystem;
         }
 
         //<summary>
@@ -58,7 +58,7 @@ namespace App.Main.Block
             BlockHp newBlockHp = new BlockHp(damage);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
-            blockAnimation.CreateDamageEffect(damage, stageSystem);
+            blockAnimation.CreateDamageEffect(damage, StageSystem);
 
             if (blockDatastore.Hp.CurrentValue <= 0)
                 Break();
@@ -78,23 +78,23 @@ namespace App.Main.Block
             //ワイヤーケージのパークがある場合、猫が増えずにブロック破壊の処理を行う。
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[1].FloatEffect() == 1)
             {
-                stageSystem.DecreaseTargetBlockCountWithoutIncreaseTotalCat();
+                StageSystem.DecreaseTargetBlockCountWithoutIncreaseTotalCat();
             }
             else
             {
                 //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達
-                stageSystem.DecreaseTargetBlockCount();
+                StageSystem.DecreaseTargetBlockCount();
 
                 blockAnimation.Break();
                 createCat.Create(transform.position, transform.localScale);
 
                 if (playerDatastore.PerkSystem.PerkList.AllPerkList[13].IntEffect() == 1)
                 {
-                    stageSystem.CreateBall(transform.position);
+                    StageSystem.CreateBall(transform.position);
                 }
                 if (playerDatastore.PerkSystem.PerkList.AllPerkList[21].IntEffect() == 1)
                 {
-                    stageSystem.IncreaseTotalCat();
+                    StageSystem.IncreaseTotalCat();
                     createCat.Create(transform.position + new Vector3(0f, 0.3f, 0f), transform.localScale);
                 }
             }
