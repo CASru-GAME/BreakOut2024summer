@@ -6,6 +6,8 @@ using App.Main.Player;
 using App.Static;
 using App.Main.Item;
 using App.ScriptableObjects;
+using App.Main.Player.Perk;
+using App.Common;
 
 namespace App.Main.Stage
 {
@@ -22,7 +24,7 @@ namespace App.Main.Stage
         [SerializeField] private Text comboText;
         [SerializeField] private Text comboGaugeText;
         private string _comboDefaultText;
-        [SerializeField] private RectMask2D comboTextMask;
+        [SerializeField] private RectMask2D comboGaugeMask;
 
         [SerializeField] private PlayerDatastore _playerDatastore;
         private int latestHP;
@@ -31,28 +33,42 @@ namespace App.Main.Stage
         [SerializeField] private GameObject _heartPos;
         [SerializeField] private GameObject _heartBreakEffectPrefab;
         [SerializeField] private Canvas _canvas_Main;
+        [SerializeField] private Canvas _canvas_Perk;
         [SerializeField] private ProcessSystem _processSystem;
         [SerializeField] private ItemTable _itemTable;
         [SerializeField] private List<int> _UseItemIdList = new List<int>();
         [SerializeField] private GameObject _itemPanelPrefab;
         [SerializeField] private GameObject _itemGaugePrefab;
         [SerializeField] private GameObject _itemPanelPos;
+        [SerializeField] private RectMask2D perkGaugeMask;
         private List<(int id, GameObject panelPrefab, GameObject gaugePrefab)> _itemList = new List<(int id, GameObject panelPrefab, GameObject gaugePrefab)>();
         private List<(int id, GameObject panelPrefab, GameObject gaugePrefab)> itemShowList = new List<(int id, GameObject panelPrefab, GameObject gaugePrefab)>();
         private List<Vector3> _itemPanelPosList = new List<Vector3>();
+        [SerializeField] private GameObject _ownedPerkPanelPrefab;
+        [SerializeField] private GameObject _ownedPerkPanelPos;
+        [SerializeField] private GameObject _ownedPerkPanel_ShowPos;
+        [SerializeField] private GameObject _ownedPerkPanelTextPrefab;
+        [SerializeField] private GameObject _ownedPerkPanelTextPos;
+        [SerializeField] private GameObject _ownedPerkPanelText_ShowPos;
+        [SerializeField] private GameObject perkListPanel;
+        private List<(int id, GameObject panelPrefab, GameObject textPrefab, GameObject Panel_ShowPrefab, GameObject text_ShowPrefab)> ownedPerkPanelList = new List<(int id, GameObject panelPrefab, GameObject textPrefab, GameObject Panel_ShowPrefab, GameObject text_ShowPrefab)>();
+        private string _ownedPerkPanelDefaultText;
+        private List<(int id, int stackCount)> ownedPerkIntList = new List<(int id, int stackCount)>();
         [SerializeField] private SpriteData _spriteData;
         [SerializeField] private StageSystem _stageSystem;
 
         private void Start()
         {
+            int worldId = GetComponent<StageSystem>().CurrentWorldNumberID;
             int stageId = GetComponent<StageSystem>().CurrentStageNumberID;
-            _back_Wall.GetComponent<SpriteRenderer>().sprite = _spriteData.GetBackWallSprite(stageId);
-            _back_Game.GetComponent<Animator>().runtimeAnimatorController = _back_Game_AnimatorControllerList[stageId - 1];
+            _back_Wall.GetComponent<SpriteRenderer>().sprite = _spriteData.GetBackWallSprite(worldId);
+            _back_Game.GetComponent<Animator>().runtimeAnimatorController = _back_Game_AnimatorControllerList[worldId - 1];
             stageText.text = string.Format(stageText.text, stageId);
             _catDefaultText = catText.text;
             _timeDefaultText = timeText.text;
             _comboDefaultText = comboText.text;
-            CreatePanels();
+            _ownedPerkPanelDefaultText = _ownedPerkPanelTextPrefab.GetComponent<Text>().text;
+            CreateItemPanels();
         }
 
         private void CreateHearts()
@@ -77,23 +93,75 @@ namespace App.Main.Stage
             }
         }
 
-        private void CreatePanels()
+        private void CreateItemPanels()
         {
             for(int i = 0; i < _UseItemIdList.Count; i++)
             {
                 _itemPanelPosList.Add(_itemPanelPos.transform.localPosition + new Vector3(_itemPanelPos.transform.localScale.x * _itemPanelPos.GetComponent<RectTransform>().sizeDelta.x * i, 0.0f, 0.0f));
-                var newItemPanel = Instantiate(_itemPanelPrefab, _itemPanelPos.transform.position, Quaternion.identity);
-                newItemPanel.transform.SetParent(_canvas_Main.transform);
-                newItemPanel.transform.localScale = _itemPanelPos.transform.localScale;
-                newItemPanel.GetComponent<Image>().sprite = _spriteData.GetUseItemSprite(i);
-                newItemPanel.SetActive(false);
+                var newItemPanelPrefab = Instantiate(_itemPanelPrefab, _itemPanelPos.transform.position, Quaternion.identity);
+                newItemPanelPrefab.transform.SetParent(_canvas_Main.transform);
+                newItemPanelPrefab.transform.localScale = _itemPanelPos.transform.localScale;
+                newItemPanelPrefab.GetComponent<Image>().sprite = _spriteData.GetUseItemSprite(i);
+                newItemPanelPrefab.SetActive(false);
                 var newGaugePrefab = Instantiate(_itemGaugePrefab, _itemPanelPos.transform.position, Quaternion.identity);
                 newGaugePrefab.transform.SetParent(_canvas_Main.transform);
                 newGaugePrefab.transform.localScale = _itemPanelPos.transform.localScale;
                 newGaugePrefab.GetComponent<Image>().sprite = _spriteData.GetUseItemSprite(i);
                 newGaugePrefab.SetActive(false);
-                _itemList.Add((_UseItemIdList[i], newItemPanel, newGaugePrefab));
+                _itemList.Add((_UseItemIdList[i], newItemPanelPrefab, newGaugePrefab));
             }
+        }
+
+        private void CreateOwnedPerkPanels()
+        {
+            if(_playerDatastore.Parameter == null)
+            {
+                return;
+            }
+
+            for(int i = 0; i < _playerDatastore.PerkSystem.PerkList.AllPerkList.Length - 1; i++)
+            {
+                var newOwnedPerkPanelPrefab = Instantiate(_ownedPerkPanelPrefab, _ownedPerkPanelPos.transform.position, Quaternion.identity);
+                newOwnedPerkPanelPrefab.transform.SetParent(_canvas_Main.transform);
+                newOwnedPerkPanelPrefab.transform.localScale = _ownedPerkPanelPos.transform.localScale;
+                newOwnedPerkPanelPrefab.transform.localPosition += 
+                new Vector3(_ownedPerkPanelPos.transform.localScale.x * _ownedPerkPanelPos.GetComponent<RectTransform>().sizeDelta.x * (i % 7),
+                -_ownedPerkPanelPos.transform.localScale.y * _ownedPerkPanelPos.GetComponent<RectTransform>().sizeDelta.y * (i / 7), 0.0f);
+                newOwnedPerkPanelPrefab.SetActive(false);
+                var newOwnedPerkPanelTextPrefab = Instantiate(_ownedPerkPanelTextPrefab, _ownedPerkPanelTextPos.transform.position, Quaternion.identity);
+                newOwnedPerkPanelTextPrefab.transform.SetParent(_canvas_Main.transform);
+                newOwnedPerkPanelTextPrefab.transform.localScale = _ownedPerkPanelTextPos.transform.localScale;
+                newOwnedPerkPanelTextPrefab.transform.localPosition += 
+                new Vector3(_ownedPerkPanelPos.transform.localScale.x * _ownedPerkPanelPos.GetComponent<RectTransform>().sizeDelta.x * (i % 7),
+                -_ownedPerkPanelPos.transform.localScale.y * _ownedPerkPanelPos.GetComponent<RectTransform>().sizeDelta.y * (i / 7), 0.0f);
+                newOwnedPerkPanelTextPrefab.SetActive(false);  
+
+                var newOwnedPerkPanel_ShowPrefab = Instantiate(_ownedPerkPanelPrefab, _ownedPerkPanel_ShowPos.transform.position, Quaternion.identity);
+                newOwnedPerkPanel_ShowPrefab.transform.SetParent(_canvas_Perk.transform);
+                newOwnedPerkPanel_ShowPrefab.transform.localScale = _ownedPerkPanel_ShowPos.transform.localScale;
+                newOwnedPerkPanel_ShowPrefab.transform.localPosition +=
+                new Vector3(_ownedPerkPanel_ShowPos.transform.localScale.x * _ownedPerkPanel_ShowPos.GetComponent<RectTransform>().sizeDelta.x * (i % 7),
+                -_ownedPerkPanel_ShowPos.transform.localScale.y * _ownedPerkPanel_ShowPos.GetComponent<RectTransform>().sizeDelta.y * (i / 7), 0.0f);
+                newOwnedPerkPanel_ShowPrefab.transform.SetParent(perkListPanel.transform);
+                newOwnedPerkPanel_ShowPrefab.SetActive(false);
+                var newOwnedPerkPanelText_ShowPrefab = Instantiate(_ownedPerkPanelTextPrefab, _ownedPerkPanelText_ShowPos.transform.position, Quaternion.identity);
+                newOwnedPerkPanelText_ShowPrefab.transform.SetParent(_canvas_Perk.transform);
+                newOwnedPerkPanelText_ShowPrefab.transform.localScale = _ownedPerkPanelText_ShowPos.transform.localScale;
+                newOwnedPerkPanelText_ShowPrefab.transform.localPosition +=
+                new Vector3(_ownedPerkPanel_ShowPos.transform.localScale.x * _ownedPerkPanel_ShowPos.GetComponent<RectTransform>().sizeDelta.x * (i % 7),
+                -_ownedPerkPanel_ShowPos.transform.localScale.y * _ownedPerkPanel_ShowPos.GetComponent<RectTransform>().sizeDelta.y * (i / 7), 0.0f);
+                newOwnedPerkPanelText_ShowPrefab.transform.SetParent(perkListPanel.transform);
+                newOwnedPerkPanelText_ShowPrefab.SetActive(false);
+
+                ownedPerkPanelList.Add((-1, newOwnedPerkPanelPrefab, newOwnedPerkPanelTextPrefab, newOwnedPerkPanel_ShowPrefab, newOwnedPerkPanelText_ShowPrefab));
+            }
+
+            for(int i = 0; i < _playerDatastore.PerkSystem.PerkList.OwnedPerkList.Count; i++)
+            {
+                ownedPerkIntList.Add((_playerDatastore.PerkSystem.PerkList.OwnedPerkList[i].GetId(), _playerDatastore.PerkSystem.PerkList.OwnedPerkList[i].GetStackCount()));
+                ShowNewPerkPanel(_playerDatastore.PerkSystem.PerkList.OwnedPerkList[i].GetId());
+            }
+            ShowPerkCountText();
         }
 
         private void Update()
@@ -104,19 +172,27 @@ namespace App.Main.Stage
                 return;
             }
 
+            if(ownedPerkPanelList.Count == 0)
+            {
+                CreateOwnedPerkPanels();
+                return;
+            }
+
             UpdateHearts();
             UpdateCat();
             UpdateTime();
             UpdateItems();
             UpdateCombo();
+            UpdateEXP();
+            UpdatePerks();
         }
 
         private void UpdateHearts()
         {
-            int currentHP = _playerDatastore.Parameter.Live.CurrentValue;
-            if(latestHP > currentHP)
+            int newHP = _playerDatastore.Parameter.Live.CurrentValue;
+            if(latestHP > newHP)
             {
-                for(int i = currentHP; i < latestHP; i++)
+                for(int i = newHP; i < latestHP; i++)
                 {
                     heartPrefabList[i].SetActive(false);
                     var newHeartBreakEffectPrefab = Instantiate(_heartBreakEffectPrefab, heartPrefabList[i].transform.position, Quaternion.identity);
@@ -124,14 +200,14 @@ namespace App.Main.Stage
                     newHeartBreakEffectPrefab.transform.localScale = _heartPos.transform.localScale;
                 }
             }
-            else if(latestHP < currentHP)
+            else if(latestHP < newHP)
             {
-                for(int i = latestHP; i < currentHP; i++)
+                for(int i = latestHP; i < newHP; i++)
                 {
                     heartPrefabList[i].SetActive(true);
                 }
             }
-            latestHP = currentHP;
+            latestHP = newHP;
         }
 
         private void UpdateCat()
@@ -192,12 +268,73 @@ namespace App.Main.Stage
             comboGaugeText.text = comboText.text;
             if(_playerDatastore.GetComboCount() == 0)
             {
-                comboTextMask.padding = new Vector4(0.0f, 0.0f, 0.0f, comboTextMask.transform.localScale.y * comboTextMask.GetComponent<RectTransform>().sizeDelta.y);
+                comboGaugeMask.padding = new Vector4(0.0f, 0.0f, 0.0f, comboGaugeMask.transform.localScale.y * comboGaugeMask.GetComponent<RectTransform>().sizeDelta.y);
             }
             else
             {
-                comboTextMask.padding = new Vector4(0.0f, 0.0f, 0.0f, comboTextMask.transform.localScale.y * comboTextMask.GetComponent<RectTransform>().sizeDelta.y
+                comboGaugeMask.padding = new Vector4(0.0f, 0.0f, 0.0f, comboGaugeMask.transform.localScale.y * comboGaugeMask.GetComponent<RectTransform>().sizeDelta.y
                 * ((float)_playerDatastore.GetComboResetCount() / _playerDatastore.GetMaxComboResetCount()));
+            }
+        }
+
+        private void UpdateEXP()
+        {
+            float currentExp = _playerDatastore.GetCurrentExperiencePoint(_playerDatastore.GetExperiencePointValue());
+            float maxExp = _playerDatastore.GetNeedExp(_playerDatastore.GetLevelValue());
+            perkGaugeMask.padding = new Vector4(0.0f, 0.0f, 0.0f, perkGaugeMask.transform.localScale.y * perkGaugeMask.GetComponent<RectTransform>().sizeDelta.y
+            * (1.0f-currentExp / maxExp));
+        }
+
+        private void UpdatePerks()
+        {
+            var newOwnedPerkList = _playerDatastore.PerkSystem.PerkList.OwnedPerkList;
+            if(newOwnedPerkList.Count == 0) return;
+            if(newOwnedPerkList.Count > ownedPerkIntList.Count) ShowNewPerkPanel(newOwnedPerkList[newOwnedPerkList.Count - 1].GetId());
+            ShowPerkCountText();
+        }
+
+        private void ShowNewPerkPanel(int id)
+        {
+            var newOwnedPerkList = _playerDatastore.PerkSystem.PerkList.OwnedPerkList;
+            for(int i = 0; i < ownedPerkPanelList.Count; i++)
+            {
+                var selectedPanelPrefab = ownedPerkPanelList[i].panelPrefab;
+                var selectedPanel_ShowPrefab = ownedPerkPanelList[i].Panel_ShowPrefab;
+                
+                if(selectedPanelPrefab.activeSelf == true) continue;
+                selectedPanelPrefab.SetActive(true);
+                selectedPanelPrefab.GetComponent<Image>().sprite = _spriteData.GetPerkSprite(id);
+                selectedPanelPrefab.GetComponent<PerkIcon>().Initialize(id);
+                selectedPanel_ShowPrefab.SetActive(true);
+                selectedPanel_ShowPrefab.GetComponent<Image>().sprite = _spriteData.GetPerkSprite(id);
+                selectedPanel_ShowPrefab.GetComponent<PerkIcon>().Initialize(id);
+
+                ownedPerkPanelList[i] = (id, selectedPanelPrefab, ownedPerkPanelList[i].textPrefab, selectedPanel_ShowPrefab, ownedPerkPanelList[i].text_ShowPrefab);
+                ownedPerkIntList.Add((id, 1));
+                return;
+            }
+        }
+
+        private void ShowPerkCountText()
+        {
+            var newOwnedPerkList = _playerDatastore.PerkSystem.PerkList.OwnedPerkList;
+            for(int i = 0; i < ownedPerkIntList.Count; i++)
+            {
+                if(newOwnedPerkList[i].GetStackCount() == ownedPerkIntList[i].stackCount) continue;
+                int id = newOwnedPerkList[i].GetId();
+                for(int j = 0; j < ownedPerkPanelList.Count; j++)
+                {
+                    var selectedTextPrefab = ownedPerkPanelList[j].textPrefab;
+                    var selectedText_ShowPrefab = ownedPerkPanelList[j].text_ShowPrefab;
+                    
+                    if(ownedPerkPanelList[j].id != id) continue;
+                    selectedTextPrefab.GetComponent<Text>().text = string.Format(_ownedPerkPanelDefaultText, newOwnedPerkList[newOwnedPerkList.Count - 1].GetStackCount());
+                    selectedTextPrefab.SetActive(true);
+                    selectedText_ShowPrefab.GetComponent<Text>().text = string.Format(_ownedPerkPanelDefaultText, newOwnedPerkList[newOwnedPerkList.Count - 1].GetStackCount());
+                    selectedText_ShowPrefab.SetActive(true);
+                    ownedPerkIntList[i] = (id, newOwnedPerkList[i].GetStackCount());
+                    return;
+                }
             }
         }
     }

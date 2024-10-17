@@ -186,11 +186,6 @@ namespace App.Main.Player
             return Parameter.GetBallSpeedValue();
         }
 
-        IEnumerator WaitPerkChoose()
-        {
-            yield return new WaitUntil(() => PerkSystem.IsPerkChoosing == false);
-        }
-
         /// <summary>
         /// 経験値を追加する＆レベルを更新する
         /// </summary>
@@ -203,7 +198,6 @@ namespace App.Main.Player
             {
                 Parameter.AddExperiencePoint(1);
                 levelSystem.ReloadLevel();
-                StartCoroutine(WaitPerkChoose());
             }
             
             Debug.Log("Level: " + GetLevelValue());
@@ -272,7 +266,7 @@ namespace App.Main.Player
         /// レベルアップに必要な経験値
         /// </summary>
         /// <param name="level"></param>
-        public int NeedExp(int level)
+        public int GetNeedExp(int level)
         {
             return levelSystem.NeedExp(level);
         }
@@ -281,7 +275,7 @@ namespace App.Main.Player
         /// 現在の経験値
         /// </summary>
         /// <param name="exp"></param>
-        public int CurrentExperiencePoint(int exp)
+        public int GetCurrentExperiencePoint(int exp)
         {
             return levelSystem.CurrentExperiencePoint(exp);
         }
