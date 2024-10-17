@@ -35,10 +35,10 @@ namespace App.Main.Player.Perk
                 new YellowSubmarine(playerDatastore),//ID:14
                 new TenchiMuyo(playerDatastore),//ID:15
                 new WatermelonSeeds(playerDatastore),//ID:16
-                new DebugPerk(),//ID:17
+                new CristmasSocks(playerDatastore),//ID:17
                 new ManekiCat(playerDatastore),//ID:18
                 new Fireworks(playerDatastore),//ID:19
-                new CristmasSocks(playerDatastore),//ID:20
+                new Tepra(playerDatastore),//ID:20
                 new Amulet(playerDatastore),//ID:21
                 new LastStand(playerDatastore)//ID:22
             };
