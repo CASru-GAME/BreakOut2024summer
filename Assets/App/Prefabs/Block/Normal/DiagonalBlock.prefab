@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5513507357505638778}
   - component: {fileID: 2983484906928161220}
   - component: {fileID: 3144702441286581908}
+  - component: {fileID: -1043449642914371199}
   m_Layer: 7
   m_Name: DiagonalBlock
   m_TagString: Untagged
@@ -223,3 +224,21 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   _damageEffect: {fileID: 3125810737970945919, guid: 476bbcdbf27665c409286f0cc22a1fad, type: 3}
+--- !u!114 &-1043449642914371199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7782274109783724592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd35d6d44e63af747aad8e831b630349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _catPrefab: {fileID: 5744082711352651307, guid: b5236f428eea1304a97570ad84d272eb, type: 3}
+  _catAnimatorController:
+  - {fileID: 9100000, guid: e51197f1c9fec0341bd6b11f15ce0c55, type: 2}
+  - {fileID: 9100000, guid: 32d6b1de7ea61484aaf08f3896c0132f, type: 2}
+  - {fileID: 9100000, guid: b8ce177f25298734baa430259e85c721, type: 2}
+  - {fileID: 9100000, guid: 14c911e4c046ab0498e4eac56e343e88, type: 2}
