@@ -19,7 +19,7 @@ namespace App.Main.Block
 
         void Update()
         {   
-            if(transform.parent.GetComponent<IBlock>().stageSystem.CurrentWorldNumberID == 4)
+            if(transform.parent.GetComponent<IBlock>().StageSystem.CurrentWorldNumberID == 4)
             Fall();
         }
         
