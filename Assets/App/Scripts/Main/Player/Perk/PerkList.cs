@@ -35,7 +35,7 @@ namespace App.Main.Player.Perk
                 new DebugPerk(),//ID:14
                 new DebugPerk(),//ID:15
                 new WatermelonSeeds(playerDatastore),//ID:16
-                new DebugPerk(),//ID:17
+                new CristmasSocks(playerDatastore),//ID:17
                 new ManekiCat(playerDatastore),//ID:18
                 new Fireworks(playerDatastore),//ID:19
                 new Tepra(playerDatastore),//ID:20
