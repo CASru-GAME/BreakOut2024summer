@@ -18,7 +18,7 @@ namespace App.Main.Block
         private float WaitTime = 1.0f;
         [SerializeField] int initialHp;
         [SerializeField] int Id;
-        public StageSystem stageSystem { get; set; }
+        public StageSystem StageSystem { get; set; }
         private float PoisonStack = 0;
         private int WeaknessPoint = 0;
         private bool isPoisoned = false;
