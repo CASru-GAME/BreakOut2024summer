@@ -15,10 +15,11 @@ namespace App.Main.Block
         private BlockAnimation blockAnimation;
         private CreateCat createCat;
         private PlayerDatastore playerDatastore;
+        private float WaitTime = 1.0f;
         [SerializeField] int initialHp;
         [SerializeField] int Id;
-        public StageSystem StageSystem { get; set; }
-        private int PoisonStack = 0;
+        public StageSystem stageSystem { get; set; }
+        private float PoisonStack = 0;
         private int WeaknessPoint = 0;
         private bool isPoisoned = false;
 
@@ -99,7 +100,7 @@ namespace App.Main.Block
 
         public IEnumerator TakePoisonDamage()
         {
-            TakeDamage(PoisonStack);
+            TakeDamage((int)PoisonStack);
             RemovePoisonStack();
             yield return new WaitForSeconds(1);
             isPoisoned = false;
@@ -107,13 +108,14 @@ namespace App.Main.Block
 
         public void AddPoisonStack(int stack)
         {
-            PoisonStack += stack;
-            if(playerDatastore.PerkSystem.PerkList.AllPerkList[20].IntEffect() == 1) PoisonStack += stack;
+            PoisonStack += (float)stack;
+            if(playerDatastore.PerkSystem.PerkList.AllPerkList[20].IntEffect() == 1) PoisonStack += (float)stack;
         }
 
         public void RemovePoisonStack()
         {
-            PoisonStack--;
+            PoisonStack -= (float)1/playerDatastore.PerkSystem.PerkList.AllPerkList[15].IntEffect();
+            if(PoisonStack < 0) PoisonStack = 0;
         }
 
         public void AddWeaknessPoint(int point)
@@ -124,11 +126,12 @@ namespace App.Main.Block
 
         public IEnumerator RemoveWeaknessPoint()
         {
+            WaitTime = playerDatastore.PerkSystem.PerkList.AllPerkList[15].FloatEffect();
             if (WeaknessPoint > 0)
             {
                 WeaknessPoint--;
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(WaitTime);
         }
     }
 }
