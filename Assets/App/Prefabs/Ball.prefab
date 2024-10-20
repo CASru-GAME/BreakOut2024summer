@@ -244,7 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 980483d7a6edac6458081dc96e5fd85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDatastore: {fileID: 0}
   invisibleBall_forYellowSubmarine: {fileID: 1966382267313284638, guid: a89984c5a484e5543b65284908d2e8ef, type: 3}
   PathThroughCount: 0
-  Trigger: {fileID: 0}
+  Trigger: {fileID: 5418803775116382484}
   isPathThrough: 0
