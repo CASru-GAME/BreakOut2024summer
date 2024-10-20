@@ -90,8 +90,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30d18432bc80dc54896982ba27e281ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healAmount: 2
-  _coolDown: 3
+  _healAmount: 0100000001000000010000000100000001000000
+  _coolDown:
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
 --- !u!1 &4090547420612356970
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353592aa6802ecf418452bde63c4c343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHp: 10
+  initialHp: 0100000001000000010000000100000001000000
   Id: 15
 --- !u!114 &2287155091478644253
 MonoBehaviour:
