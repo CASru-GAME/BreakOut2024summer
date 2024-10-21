@@ -41,6 +41,7 @@ namespace App.Main.Player.Perk
 
         public float FloatEffect()
         {
+            if(StackCount == 0) return 1;
             return (float)(1-1/(StackCount+1))*3;
         }
     }

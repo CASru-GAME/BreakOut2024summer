@@ -159,9 +159,9 @@ namespace App.Main.Stage
             for(int i = 0; i < StatisticsDatastore._totalAquiredPerkList.Count; i++)
             {
                 ownedPerkIntList.Add((StatisticsDatastore._totalAquiredPerkList[i].id, StatisticsDatastore._totalAquiredPerkList[i].stackCount));
-                ShowNewPerkPanel(StatisticsDatastore._totalAquiredPerkList[i].id);
+                SetNewPerkPanel(StatisticsDatastore._totalAquiredPerkList[i].id);
+                SetPerkCountText(StatisticsDatastore._totalAquiredPerkList[i].id, StatisticsDatastore._totalAquiredPerkList[i].stackCount);
             }
-            ShowPerkCountText();
         }
 
         private void Update()
@@ -184,7 +184,7 @@ namespace App.Main.Stage
             UpdateItems();
             UpdateCombo();
             UpdateEXP();
-            //UpdatePerks();
+            UpdatePerks();
         }
 
         private void UpdateHearts()
@@ -289,13 +289,19 @@ namespace App.Main.Stage
         {
             var newOwnedPerkList = _playerDatastore.PerkSystem.PerkList.OwnedPerkList;
             if(newOwnedPerkList.Count == 0) return;
-            if(newOwnedPerkList.Count > ownedPerkIntList.Count) ShowNewPerkPanel(newOwnedPerkList[newOwnedPerkList.Count - 1].GetId());
-            ShowPerkCountText();
+            if(newOwnedPerkList.Count > ownedPerkIntList.Count) 
+            {
+                int id = newOwnedPerkList[newOwnedPerkList.Count - 1].GetId();
+                SetNewPerkPanel(id);
+                ownedPerkIntList.Add((id, 1));
+            }
+            for(int i = 0; i < newOwnedPerkList.Count; i++)
+                if(newOwnedPerkList[i].GetStackCount() != ownedPerkIntList[i].stackCount)
+                    SetPerkCountText(ownedPerkIntList[i].id, ownedPerkIntList[i].stackCount + 1);
         }
 
-        private void ShowNewPerkPanel(int id)
+        private void SetNewPerkPanel(int id)
         {
-            var newOwnedPerkList = _playerDatastore.PerkSystem.PerkList.OwnedPerkList;
             for(int i = 0; i < ownedPerkPanelList.Count; i++)
             {
                 var selectedPanelPrefab = ownedPerkPanelList[i].panelPrefab;
@@ -310,31 +316,24 @@ namespace App.Main.Stage
                 selectedPanel_ShowPrefab.GetComponent<PerkIcon>().Initialize(id);
 
                 ownedPerkPanelList[i] = (id, selectedPanelPrefab, ownedPerkPanelList[i].textPrefab, selectedPanel_ShowPrefab, ownedPerkPanelList[i].text_ShowPrefab);
-                ownedPerkIntList.Add((id, 1));
                 return;
             }
         }
 
-        private void ShowPerkCountText()
+        private void SetPerkCountText(int id, int stackCount)
         {
-            var newOwnedPerkList = _playerDatastore.PerkSystem.PerkList.OwnedPerkList;
-            for(int i = 0; i < ownedPerkIntList.Count; i++)
+            for(int i = 0; i < ownedPerkPanelList.Count; i++)
             {
-                if(newOwnedPerkList[i].GetStackCount() == ownedPerkIntList[i].stackCount) continue;
-                int id = newOwnedPerkList[i].GetId();
-                for(int j = 0; j < ownedPerkPanelList.Count; j++)
-                {
-                    var selectedTextPrefab = ownedPerkPanelList[j].textPrefab;
-                    var selectedText_ShowPrefab = ownedPerkPanelList[j].text_ShowPrefab;
-                    
-                    if(ownedPerkPanelList[j].id != id) continue;
-                    selectedTextPrefab.GetComponent<Text>().text = string.Format(_ownedPerkPanelDefaultText, newOwnedPerkList[newOwnedPerkList.Count - 1].GetStackCount());
-                    selectedTextPrefab.SetActive(true);
-                    selectedText_ShowPrefab.GetComponent<Text>().text = string.Format(_ownedPerkPanelDefaultText, newOwnedPerkList[newOwnedPerkList.Count - 1].GetStackCount());
-                    selectedText_ShowPrefab.SetActive(true);
-                    ownedPerkIntList[i] = (id, newOwnedPerkList[i].GetStackCount());
-                    return;
-                }
+                var selectedTextPrefab = ownedPerkPanelList[i].textPrefab;
+                var selectedText_ShowPrefab = ownedPerkPanelList[i].text_ShowPrefab;
+
+                if(ownedPerkPanelList[i].id != id) continue;
+                selectedTextPrefab.GetComponent<Text>().text = string.Format(_ownedPerkPanelDefaultText, stackCount);
+                if(stackCount > 1) selectedTextPrefab.SetActive(true);
+                selectedText_ShowPrefab.GetComponent<Text>().text = string.Format(_ownedPerkPanelDefaultText, stackCount);
+                if(stackCount > 1) selectedText_ShowPrefab.SetActive(true);
+                ownedPerkIntList[i] = (id, stackCount);
+                return;
             }
         }
     }

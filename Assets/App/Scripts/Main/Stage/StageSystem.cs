@@ -29,9 +29,9 @@ namespace App.Main.Stage
         public int ClearedStageCount => _clearedStageCount;
         private int _roopCount = 1;
         public int RoopCount => _roopCount;
-        private int _currentStageNumberID = 13;
+        private int _currentStageNumberID = 1;
         public int CurrentStageNumberID => _currentStageNumberID;
-        private int _currentWorldNumberID = 5;
+        private int _currentWorldNumberID = 1;
         public int CurrentWorldNumberID => _currentWorldNumberID;
         private int ItemDontDropRate = 70;
         private int ItemDropRate = 30;
@@ -146,7 +146,7 @@ namespace App.Main.Stage
         {
             //通常、30%の確率でアイテムを生成
             UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
-            ItemDontDropRate = 100 - (int)(ItemDropRate * _player.PerkSystem.PerkList.AllPerkList[20].FloatEffect());
+            ItemDontDropRate = 100 - (int)(ItemDropRate * _player.PerkSystem.PerkList.AllPerkList[17].FloatEffect());
             if (UnityEngine.Random.Range(0, 100) <= ItemDontDropRate) return;
 
             _itemSystem = new ItemSystem(_player);
