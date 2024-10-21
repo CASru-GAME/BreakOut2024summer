@@ -2,8 +2,8 @@ using UnityEngine;
 using App.Main.Player;
 using App.Static;
 using App.Common;
-using System;
 using System.Collections;
+using App.Common.Audio;
 
 namespace App.Main.Stage
 {
@@ -15,7 +15,6 @@ namespace App.Main.Stage
         private SceneLoader _sceneLoader = default;
         [SerializeField] private PlayerDatastore _player = default;
         [SerializeField] private float _timeLimit = 60.0f;
-
 
         /// ゲームの初期化処理
         void Start()
@@ -38,7 +37,9 @@ namespace App.Main.Stage
             yield return new WaitForSeconds(0.001f); // 1秒の遅延
 
             InitializeGame();
+
             Debug.Log("_____________________________: CurrentStageNumberID = " + _stageSystem.CurrentStageNumberID + " :_____________________________");
+            Debug.Log("_____________________________: CurrentWorldNumberID = " + _stageSystem.CurrentWorldNumberID + " :_____________________________");
             Debug.Log("_____________________________: Static → ClearedStageCount = " + _stageSystem.ClearedStageCount + " :_____________________________");
             Debug.Log("_____________________________: Static → TotalDestroyedTargetBlockCount = " + _stageSystem.GetTotalCat() + " :_____________________________");
             Debug.Log("_____________________________: Static → RemainingTimeLimit = " + _timer.RemainingTimeLimit + " :_____________________________");
