@@ -45,8 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30d18432bc80dc54896982ba27e281ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healAmount: 1
-  _coolDown: 5
+  _healAmount: 0100000001000000010000000100000001000000
+  _coolDown:
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
 --- !u!61 &330311599105271416
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -196,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3597e685648a82842ad8f1fbcda4a894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHp: 5
+  initialHp: 0100000001000000010000000100000001000000
   Id: 11
 --- !u!114 &3340068013590731986
 MonoBehaviour:

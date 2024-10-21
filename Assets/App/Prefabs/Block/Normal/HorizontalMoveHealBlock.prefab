@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353592aa6802ecf418452bde63c4c343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHp: 5
+  initialHp: 0100000001000000010000000100000001000000
   Id: 10
 --- !u!114 &2476605277595910454
 MonoBehaviour:
@@ -333,5 +333,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30d18432bc80dc54896982ba27e281ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healAmount: 1
-  _coolDown: 5
+  _healAmount: 0100000001000000010000000100000001000000
+  _coolDown:
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5

@@ -13,7 +13,7 @@ namespace App.Main.Block
         private BlockAnimation blockAnimation;
         private CreateCat createCat;
         private PlayerDatastore playerDatastore;
-        [SerializeField] int initialHp;
+        [SerializeField] int[] initialHp;//ワールドごとに個別に設定する
         [SerializeField] int Id;
         public StageSystem StageSystem{ get; set; }
         private float WaitTime = 1.0f;
@@ -24,8 +24,6 @@ namespace App.Main.Block
 
         void Start()
         {
-            blockDatastore = GetComponent<BlockDatastore>();
-            blockDatastore.InitializeBlock(initialHp);
             blockAnimation = GetComponent<BlockAnimation>();
             createCat = GetComponent<CreateCat>();
             playerDatastore = FindObjectOfType<PlayerDatastore>();
@@ -47,6 +45,8 @@ namespace App.Main.Block
         public void SetStage(StageSystem stageSystem)
         {
             this.StageSystem = stageSystem;
+            blockDatastore = GetComponent<BlockDatastore>();
+            blockDatastore.InitializeBlock(initialHp[stageSystem.CurrentWorldNumberID - 1]);
         }
 
         //<summary>

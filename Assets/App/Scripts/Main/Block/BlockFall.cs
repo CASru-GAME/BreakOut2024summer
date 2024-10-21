@@ -7,14 +7,14 @@ namespace App.Main.Block
 {
     public class BlockFall : MonoBehaviour,IFall
     {   
-        [SerializeField] private float _fallingSpeed;
+        [SerializeField] private float[] _fallingSpeed;
         public StageSystem stageSystem{ get; private set; }
         List<IFall> HitBlockList = new List<IFall>();
         
 
         void Start()
         {
-            _fallingSpeed = 0.00035f;       
+            stageSystem = transform.parent.GetComponent<IBlock>().StageSystem;
         }
 
         void Update()
@@ -27,7 +27,7 @@ namespace App.Main.Block
         {   
             HitBlockList.Remove(null);
             if(transform.parent.gameObject.transform.position.y > -2.8f && HitBlockList.Count == 0)
-            transform.parent.gameObject.transform.position += new Vector3(0f,-_fallingSpeed,0f);         
+            transform.parent.gameObject.transform.position += new Vector3(0f,-_fallingSpeed[stageSystem.CurrentStageNumberID - 10],0f);         
         }
 
             void OnTriggerEnter2D(Collider2D other) 

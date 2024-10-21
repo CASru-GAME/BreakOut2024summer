@@ -16,7 +16,7 @@ namespace App.Main.Block
         private CreateCat createCat;
         private PlayerDatastore playerDatastore;
         private float WaitTime = 1.0f;
-        [SerializeField] int initialHp;
+        [SerializeField] int[] initialHp;//ワールドごとに個別に設定する
         [SerializeField] int Id;
         public StageSystem StageSystem { get; set; }
         private float PoisonStack = 0;
@@ -25,8 +25,6 @@ namespace App.Main.Block
 
         void Start()
         {
-            blockDatastore = GetComponent<BlockDatastore>();
-            blockDatastore.InitializeBlock(initialHp);
             blockAnimation = GetComponent<BlockAnimation>();
             createCat = GetComponent<CreateCat>();
             playerDatastore = FindObjectOfType<PlayerDatastore>();
@@ -43,13 +41,14 @@ namespace App.Main.Block
         }
 
 
-
         //<summary>
         // ブロックが破壊されたときに通達するために取得する
         //</summary>
         public void SetStage(StageSystem stageSystem)
-        {
+        {   
             this.StageSystem = stageSystem;
+            blockDatastore = GetComponent<BlockDatastore>();
+            blockDatastore.InitializeBlock(initialHp[stageSystem.CurrentWorldNumberID - 1]);
         }
 
         //<summary>

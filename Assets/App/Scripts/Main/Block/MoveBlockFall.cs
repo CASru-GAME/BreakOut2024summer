@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using App.Main.Stage;
 
 namespace App.Main.Block
 {
     public class MoveBlockFall : MonoBehaviour,IFall
     {
-        [SerializeField] private float _fallingSpeed;
+        [SerializeField] private float[] _fallingSpeed;
         public List<IFall> HitBlockList = new List<IFall>();
-        private Vector3 initialPostion;
+        public StageSystem stageSystem{ get; private set; }
+        private Vector3 initialPosition;
         private GameObject _block;
 
         void Update()
@@ -16,11 +18,11 @@ namespace App.Main.Block
             Fall();
         }
 
-        public void Initialized(GameObject Block)
+        public void Initialized(GameObject Block,StageSystem stageSystem)
         {
-            initialPostion = transform.position;
-            _fallingSpeed = 0.00035f;
+            initialPosition = transform.position;
             _block = Block;
+            this.stageSystem = stageSystem;
         }
         
         public void Fall()
@@ -30,8 +32,8 @@ namespace App.Main.Block
 
             if(transform.position.y > -2.8f && HitBlockList.Count == 0 && _block != null)
             {
-                transform.position += new Vector3(0f,-_fallingSpeed,0f);
-                _block.transform.position += new Vector3(0f,-_fallingSpeed,0f);
+                transform.position += new Vector3(0f,-_fallingSpeed[stageSystem.CurrentStageNumberID - 10],0f);
+                _block.transform.position += new Vector3(0f,-_fallingSpeed[stageSystem.CurrentStageNumberID - 10],0f);
 
             }
         }
