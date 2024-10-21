@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using UnityEditor;
+using App.Main.Player.Perk;
 
 namespace App.Static
 {
@@ -18,12 +19,7 @@ namespace App.Static
         ///<summary>
         /// 獲得したパークの数
         /// </summary>
-        public static int[,] _totalAquiredPerkList { get; private set; } = new int[23, 2] { 
-            {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, 
-            {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, 
-            {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, 
-            {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}
-        };
+        public static List<(int id, int stackCount)> _totalAquiredPerkList { get; private set; } = new List<(int id, int stackCount)>();
         ///<summary>
         /// クリアしたステージ数
         /// </summary>
@@ -59,6 +55,12 @@ namespace App.Static
             _totalAquiredExperiencePoint = totalAquiredExperiencePoint;
         }
 
+        public static void AssignTotalAquiredPerkList(List<(int id, int stackCount)> totalAquiredPerkList)
+        {
+            _totalAquiredPerkList.Clear();
+            _totalAquiredPerkList = totalAquiredPerkList;
+        }
+
         /// <summary>
         /// プレイヤーレベルを代入する
         /// </summary>
@@ -73,28 +75,6 @@ namespace App.Static
             _playerLevel = playerLevel;
         }
 
-        /// <summary>
-        /// 獲得したパークの数を代入する
-        /// </summary>
-        /// <param name="totalAquiredPerkList"></param>
-        /// <remark>
-        /// イテレータをidに対応させている。そのイテレータに対応する要素に取得したパークの総数を入力したリストを作り、それを代入する。
-        /// </remark>
-        /// <value>
-        /// 22個の要素を持つint型の配列
-        /// </value>
-        public static void AssignTotalAquiredPerkList(int[,] totalAquiredPerkList)
-        {
-            for (int i = 0; i < totalAquiredPerkList.GetLength(0); i++)
-            {
-                if (totalAquiredPerkList[i, 0] < -1)
-                {
-                    UnityEngine.Debug.Log("TotalAquiredPerkList: -1より小さい値が入力されました");
-                    return;
-                }
-            }
-            _totalAquiredPerkList = totalAquiredPerkList;
-        }
 
         /// <summary>
         /// クリアしたステージ数を代入する
@@ -175,12 +155,7 @@ namespace App.Static
         {
             _totalAquiredExperiencePoint = 0;
             _playerLevel = 1;
-            _totalAquiredPerkList = new int[23, 2] {
-                {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, 
-                {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, 
-                {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, 
-                {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}
-            };
+            _totalAquiredPerkList.Clear();
             _totalClearedStage = 0;
             _totalCat = 0;
             _remainingTimeLimit = 0;

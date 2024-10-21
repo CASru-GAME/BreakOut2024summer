@@ -5,7 +5,7 @@ namespace App.Main.Player.Perk
 {
     public class Konjac : IPerk
     {
-        private int id = 6;
+        private int id = 7;
         private int StackCount = 0;
         private PlayerDatastore playerDatastore;
 

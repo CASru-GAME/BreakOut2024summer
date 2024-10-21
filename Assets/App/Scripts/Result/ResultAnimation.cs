@@ -60,11 +60,10 @@ namespace App.Main.Result
             yield return new WaitForSeconds(_intervalTime);
 
             var ownedPerkList = StatisticsDatastore._totalAquiredPerkList;
-            for(int i = 0; i < ownedPerkList.GetLength(0); i++)
+            for(int i = 0; i < ownedPerkList.Count; i++)
             {
-                if(ownedPerkList[i, 1] == -1) continue;
-                int id = ownedPerkList[i, 0];
-                int stackCount = ownedPerkList[i, 1];
+                int id = ownedPerkList[i].id;
+                int stackCount = ownedPerkList[i].stackCount;
                 var newOwnedPerkPanelPrefab = Instantiate(_ownedPerkPanelPrefab, _ownedPerkPanelPos.transform.position, Quaternion.identity);
                 newOwnedPerkPanelPrefab.transform.SetParent(_canvas.transform);
                 newOwnedPerkPanelPrefab.transform.localScale = _ownedPerkPanelPos.transform.localScale;

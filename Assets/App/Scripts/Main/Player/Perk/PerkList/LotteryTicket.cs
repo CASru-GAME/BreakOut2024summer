@@ -5,7 +5,7 @@ namespace App.Main.Player.Perk
 {
     public class LotteryTicket : IPerk
     {
-        private int id = 6;
+        private int id = 9;
         private int StackCount = 0;
         private PlayerDatastore playerDatastore;
 
