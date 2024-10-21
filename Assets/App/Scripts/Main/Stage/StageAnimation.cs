@@ -156,10 +156,10 @@ namespace App.Main.Stage
                 ownedPerkPanelList.Add((-1, newOwnedPerkPanelPrefab, newOwnedPerkPanelTextPrefab, newOwnedPerkPanel_ShowPrefab, newOwnedPerkPanelText_ShowPrefab));
             }
 
-            for(int i = 0; i < _playerDatastore.PerkSystem.PerkList.OwnedPerkList.Count; i++)
+            for(int i = 0; i < StatisticsDatastore._totalAquiredPerkList.Count; i++)
             {
-                ownedPerkIntList.Add((_playerDatastore.PerkSystem.PerkList.OwnedPerkList[i].GetId(), _playerDatastore.PerkSystem.PerkList.OwnedPerkList[i].GetStackCount()));
-                ShowNewPerkPanel(_playerDatastore.PerkSystem.PerkList.OwnedPerkList[i].GetId());
+                ownedPerkIntList.Add((StatisticsDatastore._totalAquiredPerkList[i].id, StatisticsDatastore._totalAquiredPerkList[i].stackCount));
+                ShowNewPerkPanel(StatisticsDatastore._totalAquiredPerkList[i].id);
             }
             ShowPerkCountText();
         }

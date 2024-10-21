@@ -54,47 +54,26 @@ namespace App.Main.Player.Perk
             AllPerkList[PerkId].AddStackCount();
         }
 
-        public int[,] GetOwnedPerkList()
+        public List<(int id, int stackCount)> GetOwnedPerkList()
         {
-            int[,] value = new int[23, 2];
-            for (int i = 0; i < 23; i++)
+            List<(int id, int stackCount)> value = new List<(int id, int stackCount)>();
+            for (int i = 0; i < OwnedPerkList.Count; i++)
             {
-                for (int j = 0; j < 2; j++)
-                {
-                    value[i, j] = -1;
-                }
-            }
-            for (int i = 0; i < AllPerkList.Length; i++)
-            {
-                value[i, 0] = AllPerkList[i].GetStackCount();
-                for(int j = 0; j < OwnedPerkList.Count; j++)
-                {
-                    if (AllPerkList[i].GetId() == OwnedPerkList[j].GetId())
-                    {
-                        value[i, 1] = j;
-                    }
-                }
-
+                value.Add((OwnedPerkList[i].GetId(), OwnedPerkList[i].GetStackCount()));
             }
             return value;
         }
 
-        public void LoadPerkList(int[,] value)
+        public void LoadPerkList(List<(int id, int stackCount)> PerkIdList)
         {
-            int count = 0;
-            for (int i = 0; i < AllPerkList.Length; i++)
+            for (int i = 0; i < PerkIdList.Count; i++)
             {
-                for(int j = 0; j < AllPerkList.Length; j++)
+                for (int j = 0; j < PerkIdList[i].stackCount; j++)
                 {
-                    if (value[j, 1] != count) continue;
-                    for(int k = 0; k < value[j, 0]; k++)
-                    {
-                        AllPerkList[j].AddStackCount();
-                    }
-                    Debug.Log("PerkID:" + j + " StackCount:" + AllPerkList[j].GetStackCount());
-                    OwnedPerkList.Add(AllPerkList[j]);
-                    count++;
+                    AllPerkList[PerkIdList[i].id].AddStackCount();
+
                 }
+                OwnedPerkList.Add(AllPerkList[PerkIdList[i].id]);
             }
         }
     }

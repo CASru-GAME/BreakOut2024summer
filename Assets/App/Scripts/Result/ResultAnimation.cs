@@ -61,19 +61,7 @@ namespace App.Main.Result
 
             yield return new WaitForSeconds(_intervalTime);
 
-            var ownedPerkList = new List<(int id, int stackCount)>();
-            int getOrder = 0;
-            for(int i = 0; i < StatisticsDatastore._totalAquiredPerkList.GetLength(0); i++)
-            {
-                for(int j = 0; j < StatisticsDatastore._totalAquiredPerkList.GetLength(0); j++)
-                {
-                    if(StatisticsDatastore._totalAquiredPerkList[i, 1] != getOrder) continue;
-                    ownedPerkList.Add((i, StatisticsDatastore._totalAquiredPerkList[i, 0]));
-                    getOrder++;
-                    break;
-                }
-            }
-
+            var ownedPerkList = StatisticsDatastore._totalAquiredPerkList;
             for(int i = 0; i < ownedPerkList.Count; i++)
             {
                 int id = ownedPerkList[i].id;
