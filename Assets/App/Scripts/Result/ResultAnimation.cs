@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using App.Static;
 using App.ScriptableObjects;
 using App.Common;
+using System;
+using System.Linq;
 
 namespace App.Main.Result
 {
@@ -59,12 +61,23 @@ namespace App.Main.Result
 
             yield return new WaitForSeconds(_intervalTime);
 
-            var ownedPerkList = StatisticsDatastore._totalAquiredPerkList;
-            for(int i = 0; i < ownedPerkList.GetLength(0); i++)
+            var ownedPerkList = new List<(int id, int stackCount)>();
+            int getOrder = 0;
+            for(int i = 0; i < StatisticsDatastore._totalAquiredPerkList.GetLength(0); i++)
             {
-                if(ownedPerkList[i, 1] == -1) continue;
-                int id = ownedPerkList[i, 0];
-                int stackCount = ownedPerkList[i, 1];
+                for(int j = 0; j < StatisticsDatastore._totalAquiredPerkList.GetLength(0); j++)
+                {
+                    if(StatisticsDatastore._totalAquiredPerkList[i, 1] != getOrder) continue;
+                    ownedPerkList.Add((i, StatisticsDatastore._totalAquiredPerkList[i, 0]));
+                    getOrder++;
+                    break;
+                }
+            }
+
+            for(int i = 0; i < ownedPerkList.Count; i++)
+            {
+                int id = ownedPerkList[i].id;
+                int stackCount = ownedPerkList[i].stackCount;
                 var newOwnedPerkPanelPrefab = Instantiate(_ownedPerkPanelPrefab, _ownedPerkPanelPos.transform.position, Quaternion.identity);
                 newOwnedPerkPanelPrefab.transform.SetParent(_canvas.transform);
                 newOwnedPerkPanelPrefab.transform.localScale = _ownedPerkPanelPos.transform.localScale;
@@ -81,7 +94,7 @@ namespace App.Main.Result
                 -_ownedPerkPanelPos.transform.localScale.y * _ownedPerkPanelPos.GetComponent<RectTransform>().sizeDelta.y * (i / 7), 0.0f);
                 string _ownedPerkPanelDefaultText = newOwnedPerkPanelTextPrefab.GetComponent<Text>().text;
                 newOwnedPerkPanelTextPrefab.GetComponent<Text>().text = string.Format(_ownedPerkPanelDefaultText, stackCount);
-                if(stackCount == 0) newOwnedPerkPanelTextPrefab.SetActive(false);
+                if(stackCount == 1) newOwnedPerkPanelTextPrefab.SetActive(false);
             }
         }
     }

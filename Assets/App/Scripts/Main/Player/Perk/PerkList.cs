@@ -81,20 +81,19 @@ namespace App.Main.Player.Perk
 
         public void LoadPerkList(int[,] value)
         {
+            int count = 0;
             for (int i = 0; i < AllPerkList.Length; i++)
             {
-                if (value[i, 0] != -1)
+                for(int j = 0; j < AllPerkList.Length; j++)
                 {
-                    for (int j = 0; j < value[i, 0]; j++)
+                    if (value[j, 1] != count) continue;
+                    for(int k = 0; k < value[j, 0]; k++)
                     {
-                        AllPerkList[i].AddStackCount();
-                        Debug.Log("PerkID:" + i + " StackCount:" + AllPerkList[i].GetStackCount());
+                        AllPerkList[j].AddStackCount();
                     }
-                    // OwnedPerkListに取得順で戻す
-                    if (value[i, 1] != -1)
-                    {
-                        OwnedPerkList.Add(AllPerkList[i]);
-                    }
+                    Debug.Log("PerkID:" + j + " StackCount:" + AllPerkList[j].GetStackCount());
+                    OwnedPerkList.Add(AllPerkList[j]);
+                    count++;
                 }
             }
         }
