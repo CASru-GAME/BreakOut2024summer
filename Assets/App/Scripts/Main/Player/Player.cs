@@ -12,7 +12,7 @@ namespace App.Main.Player
 
         
         
-        void Start()
+        void Awake()
         {
             playerDatastore = GetComponent<PlayerDatastore>();
             playerDatastore.InitializePlayer();

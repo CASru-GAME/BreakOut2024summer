@@ -1,3 +1,4 @@
+using App.Main.Stage;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -28,7 +29,7 @@ namespace App.Main.Block.Ablity
             {
                 fall = Instantiate(_fallPrefab,transform.position,quaternion.identity);
                 fall.transform.localScale = transform.localScale;
-                fall.GetComponent<MoveBlockFall>().Initialized(this.gameObject);
+                fall.GetComponent<MoveBlockFall>().Initialized(this.gameObject,GetComponent<IBlock>().StageSystem);
             }
         }
 

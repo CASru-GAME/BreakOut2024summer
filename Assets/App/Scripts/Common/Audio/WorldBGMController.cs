@@ -22,7 +22,7 @@ namespace App.Common.Audio
 
         private IEnumerator DelayedStart()
         {
-            _audioSource = GetComponent<AudioSource>();
+            _audioSource = gameObject.AddComponent<AudioSource>();
 
             yield return new WaitForSeconds(0.01f);
 

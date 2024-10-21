@@ -71,6 +71,7 @@ namespace App.Main.Player.Perk
                 for (int j = 0; j < PerkIdList[i].stackCount; j++)
                 {
                     AllPerkList[PerkIdList[i].id].AddStackCount();
+
                 }
                 OwnedPerkList.Add(AllPerkList[PerkIdList[i].id]);
             }

@@ -184,7 +184,7 @@ namespace App.Main.Stage
             UpdateItems();
             UpdateCombo();
             UpdateEXP();
-            UpdatePerks();
+            //UpdatePerks();
         }
 
         private void UpdateHearts()

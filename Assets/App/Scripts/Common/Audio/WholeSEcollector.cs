@@ -9,7 +9,7 @@ namespace App.Common.Audio
 
         private void Start()
         {
-            _audioSource = GetComponent<AudioSource>();
+            _audioSource = gameObject.AddComponent<AudioSource>();
         }
 
         /// <summary>

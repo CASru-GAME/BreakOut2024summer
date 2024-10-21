@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using App.Static;
 using App.ScriptableObjects;
 using App.Common;
+using System;
+using System.Linq;
 
 namespace App.Main.Result
 {
@@ -80,7 +82,7 @@ namespace App.Main.Result
                 -_ownedPerkPanelPos.transform.localScale.y * _ownedPerkPanelPos.GetComponent<RectTransform>().sizeDelta.y * (i / 7), 0.0f);
                 string _ownedPerkPanelDefaultText = newOwnedPerkPanelTextPrefab.GetComponent<Text>().text;
                 newOwnedPerkPanelTextPrefab.GetComponent<Text>().text = string.Format(_ownedPerkPanelDefaultText, stackCount);
-                if(stackCount == 0) newOwnedPerkPanelTextPrefab.SetActive(false);
+                if(stackCount == 1) newOwnedPerkPanelTextPrefab.SetActive(false);
             }
         }
     }

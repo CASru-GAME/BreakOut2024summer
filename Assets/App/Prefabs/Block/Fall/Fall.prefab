@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4689426119730051843
+--- !u!1 &2342698806584680204
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,54 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 479316838973171122}
-  - component: {fileID: 8412858353994043557}
-  - component: {fileID: 1125891608071197855}
+  - component: {fileID: 757023446062027213}
+  - component: {fileID: 1915989391374734417}
+  - component: {fileID: 2531342400224967251}
   m_Layer: 7
-  m_Name: HorizontalFall
+  m_Name: Fall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &479316838973171122
+--- !u!4 &757023446062027213
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4689426119730051843}
+  m_GameObject: {fileID: 2342698806584680204}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &8412858353994043557
+--- !u!114 &1915989391374734417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2342698806584680204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de7fde614fdab24fb0c1c7cff3c92d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fallingSpeed:
+  - 0.0001
+  - 0.00013
+  - 0.00016
+--- !u!61 &2531342400224967251
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4689426119730051843}
+  m_GameObject: {fileID: 2342698806584680204}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -76,21 +92,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.9, y: 0.9}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
---- !u!114 &1125891608071197855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4689426119730051843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec5c530bcdb46c744ad344be7fa0bc9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fallingSpeed:
-  - 0.0002
-  - 0.00025
-  - 0.0003
