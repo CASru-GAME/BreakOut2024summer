@@ -7,7 +7,6 @@ namespace App.Main.Player.Perk
     {
         private int id = 5;
         private int StackCount = 0;
-        private int CurrentStackCount = 0;
         private PlayerDatastore playerDatastore;
 
         public OptionParts(PlayerDatastore playerDatastore)
@@ -27,15 +26,7 @@ namespace App.Main.Player.Perk
         public void Effect()
         {
             if (StackCount == 0) return;
-            double scale = 0.4*(1 - 1 / (StackCount + 1));
-            double currentScale = 0.4*(1 - 1 / (CurrentStackCount + 1));
-            // プレイヤーのバーの長さを変更する
-            if(CurrentStackCount != 0){
-                playerDatastore.gameObject.transform.localScale -= new Vector3((float)((playerDatastore.gameObject.transform.localScale.x)*currentScale), 0, 0);
-            }
-            playerDatastore.gameObject.transform.localScale += new Vector3((float)((playerDatastore.gameObject.transform.localScale.x)*scale), 0, 0);
-            CurrentStackCount = StackCount;
-
+            playerDatastore.gameObject.transform.localScale += new Vector3(0.2f, 0,0);
         }
 
 
@@ -48,7 +39,12 @@ namespace App.Main.Player.Perk
         public int IntEffect()
         {
             if (StackCount == 0) return 0;
-            return (int)((1-1/(StackCount+1))*15);
+            for (int i = 0; i < StackCount; i++)
+            {
+                playerDatastore.gameObject.transform.localScale += new Vector3(0.2f, 0,0);
+            }
+            return 0;
+            
         }
 
         public float FloatEffect()
