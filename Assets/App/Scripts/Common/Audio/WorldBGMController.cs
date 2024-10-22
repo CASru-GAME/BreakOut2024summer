@@ -1,6 +1,7 @@
 using UnityEngine;
 using App.Main.Stage;
 using System.Collections;
+using UnityEngine.Audio;
 
 namespace App.Common.Audio
 {
@@ -13,6 +14,7 @@ namespace App.Common.Audio
         private AudioSource _audioSource;
         [SerializeField] private AudioClip[] _worldBGMList = default;
         [SerializeField] private ProcessSystem _processSystem = default;
+        [SerializeField] private AudioMixer _audioMixer = default;
         bool Initialized = false;
 
         private void Start()
@@ -28,6 +30,7 @@ namespace App.Common.Audio
 
             if (_worldBGMList.GetLength(0) == 0) yield break;
 
+            _audioSource.outputAudioMixerGroup = _audioMixer.FindMatchingGroups("BGM")[0];
             _audioSource.clip = _worldBGMList[_processSystem.GetCurrentWorldNumberID() - 1];
             _audioSource.loop = true;
             _audioSource.volume = 0;

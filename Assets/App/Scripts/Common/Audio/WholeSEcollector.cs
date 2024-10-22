@@ -1,4 +1,6 @@
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace App.Common.Audio
 {
@@ -6,10 +8,12 @@ namespace App.Common.Audio
     {
         private AudioSource _audioSource;
         [SerializeField] private AudioClip[] _wholeSEList = default;
+        [SerializeField] private AudioMixer _audioMixer = default;
 
         private void Start()
         {
             _audioSource = gameObject.AddComponent<AudioSource>();
+            _audioSource.outputAudioMixerGroup = _audioMixer.FindMatchingGroups("SE")[0];
         }
 
         /// <summary>
