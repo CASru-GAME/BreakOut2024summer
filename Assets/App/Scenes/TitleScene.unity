@@ -414,6 +414,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1523954412}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlaySE
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &589999557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -802,6 +814,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1523954412}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlaySE
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &926831397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1136,6 +1160,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1523954412}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlaySE
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1461747900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,6 +1304,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1523954410}
   - component: {fileID: 1523954409}
+  - component: {fileID: 1523954411}
+  - component: {fileID: 1523954412}
   m_Layer: 0
   m_Name: AudioPlayer
   m_TagString: Untagged
@@ -1287,7 +1325,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 2035208519856590405, guid: 1b8717508b8ff8e489f97cf1a6e7f889, type: 2}
   m_audioClip: {fileID: 8300000, guid: 60666b33100f5444ea05fb6430876835, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1386,6 +1424,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1523954411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523954408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c7cd7c5505165d46a53886755ec5b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1523954412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523954408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b32b79d33c0b8a4394b77c110a328cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wholeSEList:
+  - {fileID: 8300000, guid: 9bc8c81f7c45e6343a159c2b4108e9ba, type: 3}
 --- !u!1 &1770287051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,6 +1550,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: App.Title.GameStart.StartButton, Assembly-CSharp
         m_MethodName: ButtonClick
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1523954412}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlaySE
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
