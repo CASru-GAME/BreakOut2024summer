@@ -1035,6 +1035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd856ba34893974c8408b22ea10f508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionPanel: {fileID: 12186252}
 --- !u!1 &497661243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,3 +1969,4 @@ SceneRoots:
   - {fileID: 1648653195}
   - {fileID: 378788324}
   - {fileID: 241251506}
+  - {fileID: 533556127}
