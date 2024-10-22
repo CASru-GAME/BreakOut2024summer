@@ -697,8 +697,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 819493554}
         m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
-        m_MethodName: PlaySE
-        m_Mode: 3
+        m_MethodName: PlayDecisionSE
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2588,6 +2588,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 819493554}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlayParkGetSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 883568432}
         m_TargetAssemblyTypeName: App.Main.Player.Perk.ChoosePerkPanel, Assembly-CSharp
         m_MethodName: OnClick
@@ -3631,6 +3643,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 819493554}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlayParkGetSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1333864907}
         m_TargetAssemblyTypeName: App.Main.Player.Perk.ChoosePerkPanel, Assembly-CSharp
         m_MethodName: OnClick
@@ -3941,6 +3965,7 @@ MonoBehaviour:
   _blockMinY: 0.5
   _horizontalBlockCount: 10
   _verticalBlockCount: 10
+  _wholeSeCollector: {fileID: 819493554}
 --- !u!114 &1402157160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4319,6 +4344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poseCanvas: {fileID: 2072714527}
+  _wholeSeCollector: {fileID: 819493554}
 --- !u!4 &1452436838
 Transform:
   m_ObjectHideFlags: 0
@@ -4432,8 +4458,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 819493554}
         m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
-        m_MethodName: PlaySE
-        m_Mode: 3
+        m_MethodName: PlayDecisionSE
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4609,6 +4635,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 819493554}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlayParkGetSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1492290905}
         m_TargetAssemblyTypeName: App.Main.Player.Perk.ChoosePerkPanel, Assembly-CSharp
         m_MethodName: OnClick
@@ -5318,8 +5356,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 819493554}
         m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
-        m_MethodName: PlaySE
-        m_Mode: 3
+        m_MethodName: PlayDecisionSE
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

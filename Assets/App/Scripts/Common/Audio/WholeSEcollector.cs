@@ -26,5 +26,21 @@ namespace App.Common.Audio
 
             _audioSource.PlayOneShot(_wholeSEList[seID]);
         }
+
+        /// <summary>
+        /// 決定SEを再生する
+        /// </summary>
+        public void PlayDecisionSE()
+        {
+            PlaySE(0);
+        }
+
+        /// <summary>
+        /// パーク獲得時のSEを再生する
+        /// </summary>
+        public void PlayParkGetSE()
+        {
+            PlaySE(4);
+        }
     }
 }
