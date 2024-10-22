@@ -10,6 +10,7 @@ namespace App.Common
     /// </summary>
     public class SceneLoader : MonoBehaviour
     {
+        [SerializeField] private GameObject transitionPanel;
         /// <summary>
         /// 指定されたシーンを非同期で読み込みます。
         /// </summary>
@@ -30,13 +31,9 @@ namespace App.Common
 
         private IEnumerator LoadSceneAsync(string sceneName)
         {
+            transitionPanel.GetComponent<Animator>().SetTrigger("EndTrigger");
+            yield return new WaitUntil(() => transitionPanel.GetComponent<Transition>().IsOver == true);
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-
-            // シーンの読み込みが完了するまで待機
-            while (!asyncLoad.isDone)
-            {
-                yield return null;
-            }
         }
     }
 }

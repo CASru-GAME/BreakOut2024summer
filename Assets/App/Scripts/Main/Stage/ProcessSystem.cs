@@ -15,6 +15,7 @@ namespace App.Main.Stage
         private SceneLoader _sceneLoader = default;
         [SerializeField] private PlayerDatastore _player = default;
         [SerializeField] private float _timeLimit = 60.0f;
+        [SerializeField] private Animator transitionPanel = default;
 
         /// ゲームの初期化処理
         void Start()
@@ -47,6 +48,8 @@ namespace App.Main.Stage
             Debug.Log("_____________________________: Static → TotalAquiredExperiencePoint = " + _player.GetExperiencePointValue() + " :_____________________________");
             Debug.Log("_____________________________: Static → PlayerLevel = " + _player.GetLevelValue() + " :_____________________________");
             Debug.Log("_____________________________: Static → TotalAquiredPerkList = " + _player.PerkSystem.PerkList.GetOwnedPerkList() + " :_____________________________");
+            
+            transitionPanel.GetComponent<Animator>().SetTrigger("StartTrigger");
         }
 
         /// ゲームの更新処理
