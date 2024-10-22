@@ -77,7 +77,6 @@ namespace App.Main.Block
 
         public void Healed(int healAmount)
         {  
-            Debug.Log("Heal");
             BlockHp newBlockHp = new BlockHp(healAmount);
             blockDatastore.SetHp(blockDatastore.Hp.AddCurrentValue(newBlockHp));
         }

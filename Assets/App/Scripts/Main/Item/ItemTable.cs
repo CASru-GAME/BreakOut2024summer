@@ -29,63 +29,50 @@ namespace App.Main.Item
 
             items[0] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
-                Debug.Log("Debug");
             });
             items[1] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
                 playerDatastore.AddExperiencePoint(1);//経験値小
-                Debug.Log("GetExp");
             });
             items[2] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
                 playerDatastore.AddExperiencePoint(3);//経験値中
-                Debug.Log("GetExp");
             });
             items[3] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
                 playerDatastore.AddExperiencePoint(5);//経験値大
-                Debug.Log("GetExp");
             });
             items[4] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
                 playerDatastore.AddExperiencePoint(10);//経験値特大
-                Debug.Log("GetExp");
             });
             items[5] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
                 playerDatastore.AddExperiencePoint(15);//経験値超特大
-                Debug.Log("GetExp");
             });
             items[6] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
-                Debug.Log("GetExp");
             });
             items[7] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
-                Debug.Log("GetExp");
             });
             items[8] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
-                Debug.Log("GetExp");
             });
             items[9] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
-                Debug.Log("GetExp");
             });
             items[10] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
-                Debug.Log("GetExp");
             });
             items[11] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
                 stageSystem.CreateBall(new Vector3(0f,0f,0f));
                 perkEffect(stageSystem,playerDatastore);
-                Debug.Log("Item:CreateBall");
             });
             items[12] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
                 playerDatastore.AddLive(1);
-                Debug.Log("Item:AddLive");
             });
             items[13] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {   
@@ -95,13 +82,11 @@ namespace App.Main.Item
                     playerDatastore.gameObject.GetComponent<CapsuleCollider2D>().size += new Vector2(playerDatastore.gameObject.GetComponent<CapsuleCollider2D>().size.x * 0.2f, 0f);
                     playerDatastore.gameObject.GetComponent<SpriteRenderer>().size += new Vector2(playerDatastore.gameObject.GetComponent<SpriteRenderer>().size.x * 0.2f, 0f);
                 }
-                Debug.Log("Item:EnlargeBar");
             });
             items[14] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {   
                 catchBallItem.IsActive = true;
                 catchBallItem.currentDuration = 0f;
-                Debug.Log("Item:CatchBall");
             });
             items[15] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
@@ -112,7 +97,6 @@ namespace App.Main.Item
                     addAttackPointItem.AddAttackPoint();
                 }
                 addAttackPointItem.currentDuration = 0f;
-                Debug.Log("Item:AddAttackPoint");
             });
             items[16] = new ItemEffect((StageSystem stageSystem,PlayerDatastore playerDatastore) =>
             {
@@ -123,7 +107,6 @@ namespace App.Main.Item
                     addMoveSpeedItem.AddMoveSpeed();
                 }
                 addMoveSpeedItem.currentDuration = 0f;
-                Debug.Log("Item:AddMoveSpeed");
             });
         }
 
@@ -287,12 +270,10 @@ namespace App.Main.Item
         public void AddAttackPoint()
         {
             playerDatastore.Parameter.AddAttackPoint(2);
-            Debug.Log("AddAttackPoint");
         }
         public void ResetAttackPoint()
         {
             playerDatastore.Parameter.SubtractAttackPoint(2);
-            Debug.Log("ResetAttackPoint");
         }
         public void DecreaseDuration()
         {
@@ -329,12 +310,10 @@ namespace App.Main.Item
         public void AddMoveSpeed()
         {
             playerDatastore.Parameter.AddMoveSpeed(2f);
-            Debug.Log("AddMoveSpeed");
         }
         public void ResetMoveSpeed()
         {
             playerDatastore.Parameter.SubtractMoveSpeed(2f);
-            Debug.Log("ResetMoveSpeed");
         }
         public void DecreaseDuration()
         {
