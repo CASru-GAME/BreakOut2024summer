@@ -12,7 +12,7 @@ namespace App.Common.Audio
             _audioSource = GetComponent<AudioSource>();
             StartCoroutine(FadeOut());
         }
-        
+
         IEnumerator FadeOut()
         {
             for (float i = 1; i >= 0; i -= 0.01f)
