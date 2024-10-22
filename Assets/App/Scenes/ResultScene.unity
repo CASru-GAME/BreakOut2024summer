@@ -286,6 +286,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 533556124}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlaySE
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &83470507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,6 +921,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497661243}
   m_CullTransparentMesh: 1
+--- !u!1 &533556123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 533556127}
+  - component: {fileID: 533556124}
+  m_Layer: 0
+  m_Name: AudioPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &533556124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533556123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b32b79d33c0b8a4394b77c110a328cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wholeSEList:
+  - {fileID: 8300000, guid: 9bc8c81f7c45e6343a159c2b4108e9ba, type: 3}
+--- !u!4 &533556127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533556123}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5181018, y: 0.8507198, z: 4.415481}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &654763482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,6 +1555,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 533556124}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlaySE
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1927590842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1671,3 +1741,4 @@ SceneRoots:
   - {fileID: 1783736775}
   - {fileID: 1648653195}
   - {fileID: 378788324}
+  - {fileID: 533556127}

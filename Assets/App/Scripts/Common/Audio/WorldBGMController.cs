@@ -30,8 +30,9 @@ namespace App.Common.Audio
 
             _audioSource.clip = _worldBGMList[_processSystem.GetCurrentWorldNumberID() - 1];
             _audioSource.loop = true;
-            _audioSource.volume = 1;
+            _audioSource.volume = 0;
             _audioSource.Play();
+            StartCoroutine(FadeIn());
             Debug.Log("BGMStarted");
             Initialized = true;
         }
@@ -51,6 +52,15 @@ namespace App.Common.Audio
             {
                 _audioSource.Stop();
                 return;
+            }
+        }
+
+        IEnumerator FadeIn()
+        {
+            for (float i = 0; i <= 1; i += 0.01f)
+            {
+                _audioSource.volume = i;
+                yield return new WaitForSeconds(0.01f);
             }
         }
     }
