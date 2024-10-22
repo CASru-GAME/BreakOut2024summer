@@ -402,10 +402,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1092591567}
-        m_TargetAssemblyTypeName: App.Common.SceneLoader, Assembly-CSharp
-        m_MethodName: LoadMainGamefromBegining
-        m_Mode: 1
+      - m_Target: {fileID: 1523954412}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlaySE
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -414,10 +414,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1523954412}
-        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
-        m_MethodName: PlaySE
-        m_Mode: 3
+      - m_Target: {fileID: 1092591567}
+        m_TargetAssemblyTypeName: App.Common.SceneLoader, Assembly-CSharp
+        m_MethodName: LoadMainGamefromBegining
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -802,10 +802,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1092591567}
-        m_TargetAssemblyTypeName: App.Common.SceneLoader, Assembly-CSharp
-        m_MethodName: LoadMainGamefromBegining
-        m_Mode: 1
+      - m_Target: {fileID: 1523954412}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlaySE
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -814,10 +814,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1523954412}
-        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
-        m_MethodName: PlaySE
-        m_Mode: 3
+      - m_Target: {fileID: 1092591567}
+        m_TargetAssemblyTypeName: App.Common.SceneLoader, Assembly-CSharp
+        m_MethodName: LoadMainGamefromBegining
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1161,10 +1161,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1461747898}
-        m_TargetAssemblyTypeName: App.Title.GameQuit.QuitButton, Assembly-CSharp
-        m_MethodName: ButtonClick
-        m_Mode: 1
+      - m_Target: {fileID: 1523954412}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlaySE
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1173,10 +1173,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1523954412}
-        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
-        m_MethodName: PlaySE
-        m_Mode: 3
+      - m_Target: {fileID: 1461747898}
+        m_TargetAssemblyTypeName: App.Title.GameQuit.QuitButton, Assembly-CSharp
+        m_MethodName: ButtonClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1559,10 +1559,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1092591567}
-        m_TargetAssemblyTypeName: App.Common.SceneLoader, Assembly-CSharp
-        m_MethodName: LoadMainGamefromBegining
-        m_Mode: 1
+      - m_Target: {fileID: 1523954412}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlaySE
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1571,10 +1571,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1523954412}
-        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
-        m_MethodName: PlaySE
-        m_Mode: 3
+      - m_Target: {fileID: 1092591567}
+        m_TargetAssemblyTypeName: App.Common.SceneLoader, Assembly-CSharp
+        m_MethodName: LoadMainGamefromBegining
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
