@@ -30,7 +30,7 @@ namespace App.Main.Ball
             BallSpeed = playerDatastore.GetBallSpeedValue();
             rb = GetComponent<Rigidbody2D>();
             GetComponent<Rigidbody2D>().velocity = new Vector2(BallSpeed, BallSpeed);
-            PathThroughCount = 10 * playerDatastore.PerkSystem.PerkList.AllPerkList[8].IntEffect();
+            PathThroughCount = playerDatastore.PerkSystem.PerkList.AllPerkList[8].IntEffect();
         }
 
         /// <summary>

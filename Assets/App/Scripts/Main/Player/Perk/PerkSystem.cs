@@ -42,7 +42,7 @@ namespace App.Main.Player.Perk
             var PerkIDList = new List<int>();
             for (int i = 1; i < AmountPerk; i++)
             {
-                PerkIDList.Add(i-1);
+                PerkIDList.Add(i);
             }
             PerkIDList = PerkIDList.OrderBy(a => Guid.NewGuid()).ToList();
             for(int i = 0; i < 3; i++)

@@ -71,7 +71,7 @@ namespace App.Main.Stage
         {
             if (_normalBlockCount <= 0)
             {
-                throw new ArgumentException("Value cannot be negative");
+                //throw new ArgumentException("Value cannot be negative");
             }
             --_normalBlockCount;
         }
