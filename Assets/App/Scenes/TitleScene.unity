@@ -402,9 +402,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 589999555}
-        m_TargetAssemblyTypeName: App.Title.GameStart.StartButton, Assembly-CSharp
-        m_MethodName: ButtonClick
+      - m_Target: {fileID: 1092591567}
+        m_TargetAssemblyTypeName: App.Common.SceneLoader, Assembly-CSharp
+        m_MethodName: LoadMainGamefromBegining
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -802,9 +802,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 589999555}
-        m_TargetAssemblyTypeName: App.Title.GameStart.StartButton, Assembly-CSharp
-        m_MethodName: ButtonClick
+      - m_Target: {fileID: 1092591567}
+        m_TargetAssemblyTypeName: App.Common.SceneLoader, Assembly-CSharp
+        m_MethodName: LoadMainGamefromBegining
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -877,6 +877,7 @@ GameObject:
   - component: {fileID: 1092591563}
   - component: {fileID: 1092591562}
   - component: {fileID: 1092591566}
+  - component: {fileID: 1092591567}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -984,6 +985,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
+--- !u!114 &1092591567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092591561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fd856ba34893974c8408b22ea10f508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1283220307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,9 +1559,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 589999555}
-        m_TargetAssemblyTypeName: App.Title.GameStart.StartButton, Assembly-CSharp
-        m_MethodName: ButtonClick
+      - m_Target: {fileID: 1092591567}
+        m_TargetAssemblyTypeName: App.Common.SceneLoader, Assembly-CSharp
+        m_MethodName: LoadMainGamefromBegining
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
