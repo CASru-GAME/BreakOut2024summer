@@ -57,7 +57,17 @@ namespace App.Main.Block
         {   
             this.StageSystem = stageSystem;
             blockDatastore = GetComponent<BlockDatastore>();
-            blockDatastore.InitializeBlock(initialHp[stageSystem.CurrentWorldNumberID - 1]);
+            blockDatastore.InitializeBlock((int)((CaluculateRoopHP())*initialHp[stageSystem.CurrentWorldNumberID - 1]));
+        }
+
+        private float CaluculateRoopHP()
+        {
+            float value = 0;
+            for(int i = 0; i < StageSystem.RoopCount; i++)
+            {
+                value += 2;
+            }
+            return value;
         }
 
         //<summary>

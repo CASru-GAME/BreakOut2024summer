@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353592aa6802ecf418452bde63c4c343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHp: 0100000001000000010000000100000001000000
+  initialHp: 080000000f0000001e0000003200000046000000
   Id: 13
 --- !u!114 &2414968572555516770
 MonoBehaviour:
