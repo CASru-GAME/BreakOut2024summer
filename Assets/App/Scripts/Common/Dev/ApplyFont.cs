@@ -17,5 +17,5 @@ namespace App.Common.Dev
                 text.font = _font;
             }
         }
-    }   
+    }
 }
