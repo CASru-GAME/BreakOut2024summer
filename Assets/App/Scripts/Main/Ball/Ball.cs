@@ -5,6 +5,8 @@ using App.Main.Player;
 using App.Main.Stage;
 using Unity.Mathematics;
 using System;
+using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 
 namespace App.Main.Ball
 {
