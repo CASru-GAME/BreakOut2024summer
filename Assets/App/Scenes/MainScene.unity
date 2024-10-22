@@ -3853,7 +3853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92085254f43b2ab4481d7968c2a5f5e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
+  _font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
 --- !u!114 &1402157157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4590,7 +4590,7 @@ MonoBehaviour:
   _PerkNameText: {fileID: 152850923}
   _PerkExplanationText: {fileID: 1361571597}
   _textData: {fileID: 11400000, guid: 277714db34c7c494ca901bf80cf6f032, type: 2}
-  debugPerkId: 3
+  debugPerkId: 14
 --- !u!114 &1492290906
 MonoBehaviour:
   m_ObjectHideFlags: 0

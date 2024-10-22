@@ -59,11 +59,10 @@ namespace App.Main.Stage
 
         private void Start()
         {
-            int worldId = GetComponent<StageSystem>().CurrentWorldNumberID;
-            int stageId = GetComponent<StageSystem>().CurrentStageNumberID;
+            int worldId = ((StatisticsDatastore._totalClearedStage) % 15) / 3 + 1;
             _back_Wall.GetComponent<SpriteRenderer>().sprite = _spriteData.GetBackWallSprite(worldId);
             _back_Game.GetComponent<Animator>().runtimeAnimatorController = _back_Game_AnimatorControllerList[worldId - 1];
-            stageText.text = string.Format(stageText.text, stageId);
+            stageText.text = string.Format(stageText.text, StatisticsDatastore._totalClearedStage + 1);
             _catDefaultText = catText.text;
             _timeDefaultText = timeText.text;
             _comboDefaultText = comboText.text;
