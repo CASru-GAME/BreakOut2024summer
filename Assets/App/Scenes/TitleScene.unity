@@ -1676,11 +1676,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wholeSEList:
   - {fileID: 8300000, guid: 9bc8c81f7c45e6343a159c2b4108e9ba, type: 3}
-  - {fileID: 8300000, guid: 2d48e8d414ce8e5459be49bced625bbb, type: 3}
-  - {fileID: 8300000, guid: ec9ac79abaf7b5c4582da4f2e0b5ff91, type: 3}
-  - {fileID: 8300000, guid: 58e2b55b4f8786348bd78a29b9ac9664, type: 3}
-  - {fileID: 8300000, guid: 2d77583bc356ac74ea7d7a0319c14b80, type: 3}
-  - {fileID: 8300000, guid: fad573bd9aa7e894bae874a208ab8f19, type: 3}
   _audioMixer: {fileID: 24100000, guid: 1b8717508b8ff8e489f97cf1a6e7f889, type: 2}
 --- !u!1 &1770287051
 GameObject:

@@ -5328,9 +5328,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 329801815}
-        m_TargetAssemblyTypeName: App.Title.GameStart.StartButton, Assembly-CSharp
-        m_MethodName: ButtonClick
+      - m_Target: {fileID: 1402157158}
+        m_TargetAssemblyTypeName: App.Common.SceneLoader, Assembly-CSharp
+        m_MethodName: LoadMainGamefromBegining
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
