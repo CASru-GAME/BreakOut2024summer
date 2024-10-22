@@ -49,7 +49,7 @@ namespace App.Main.Stage
             Debug.Log("_____________________________: Static → PlayerLevel = " + _player.GetLevelValue() + " :_____________________________");
             Debug.Log("_____________________________: Static → TotalAquiredPerkList = " + _player.PerkSystem.PerkList.GetOwnedPerkList() + " :_____________________________");
             
-            transitionPanel.GetComponent<Animator>().SetTrigger("StartTrigger");
+            transitionPanel.SetTrigger("StartTrigger");
         }
 
         /// ゲームの更新処理

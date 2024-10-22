@@ -31,6 +31,7 @@ namespace App.Common
 
         private IEnumerator LoadSceneAsync(string sceneName)
         {
+            Time.timeScale = 1;
             transitionPanel.GetComponent<Animator>().SetTrigger("EndTrigger");
             yield return new WaitUntil(() => transitionPanel.GetComponent<Transition>().IsOver == true);
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
