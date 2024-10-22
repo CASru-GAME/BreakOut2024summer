@@ -1,10 +1,6 @@
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using UnityEditor;
-using App.Main.Player.Perk;
 
-namespace App.Static
+namespace App.Common.Static
 {
     public static class StatisticsDatastore
     {

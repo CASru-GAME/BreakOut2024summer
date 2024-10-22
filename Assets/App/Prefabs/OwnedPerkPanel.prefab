@@ -69,7 +69,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a7cae95f795c584a965df2aa3496767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perkListPanel: {fileID: 0}
+  perkListPanel: {fileID: 6831142206724478754}
 --- !u!1 &4985145734055211848
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -497,4 +497,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a7cae95f795c584a965df2aa3496767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perkListPanel: {fileID: 0}
+  perkListPanel: {fileID: 6831142206724478754}

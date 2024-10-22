@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using App.Main.Player;
-using App.Static;
+using App.Common.Static;
 using App.Main.Item;
 using App.ScriptableObjects;
 using App.Main.Player.Perk;
