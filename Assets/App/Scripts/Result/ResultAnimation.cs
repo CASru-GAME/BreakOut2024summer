@@ -14,6 +14,7 @@ namespace App.Main.Result
     {
         [SerializeField] private float _shuffleTime;
         [SerializeField] private float _intervalTime;
+        [SerializeField] private Animator transitionPanel;
         [SerializeField] private Text stageText;
         [SerializeField] private Text catText;
         private string _stageDefaultText, _catDefaultText, _perkDefaultText;
@@ -26,6 +27,7 @@ namespace App.Main.Result
 
         private void Start()
         {
+            transitionPanel.SetTrigger("StartTrigger");
             _stageDefaultText = stageText.text;
             stageText.text = string.Format(_stageDefaultText, " ");
             _catDefaultText = catText.text;
