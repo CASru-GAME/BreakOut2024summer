@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using App.Static;
+using App.Common.Static;
 using App.ScriptableObjects;
 using App.Common;
 using System;

@@ -213,7 +213,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -443,7 +443,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -554,7 +554,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -695,6 +695,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 819493554}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlayDecisionSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1452436837}
         m_TargetAssemblyTypeName: App.Main.Stage.Pose, Assembly-CSharp
         m_MethodName: OnClickResume
@@ -1050,7 +1062,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -1252,7 +1264,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 300
     m_FontStyle: 1
     m_BestFit: 0
@@ -1683,7 +1695,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -2014,7 +2026,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 100
     m_FontStyle: 1
     m_BestFit: 0
@@ -2254,7 +2266,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -2284,9 +2296,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 819493553}
-  - component: {fileID: 819493552}
-  - component: {fileID: 819493551}
   - component: {fileID: 819493550}
+  - component: {fileID: 819493554}
   m_Layer: 0
   m_Name: AudioPlayer
   m_TagString: Untagged
@@ -2306,200 +2317,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e46a7f848a0e32458b1869f4b90878c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _worldBGMList: []
-  _processSystem: {fileID: 0}
---- !u!82 &819493551
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819493549}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -941971647894030579, guid: 1b8717508b8ff8e489f97cf1a6e7f889, type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!82 &819493552
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819493549}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 2035208519856590405, guid: 1b8717508b8ff8e489f97cf1a6e7f889, type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  _worldBGMList:
+  - {fileID: 8300000, guid: 72fdf5a4a1a71734689478ca19313000, type: 3}
+  - {fileID: 8300000, guid: 6ca683b537aab104c8c1096b2519a060, type: 3}
+  - {fileID: 8300000, guid: 30060961696f6584890706993487e815, type: 3}
+  - {fileID: 8300000, guid: 4b30e9882a4f54f44b0e5cc834b43ed4, type: 3}
+  - {fileID: 8300000, guid: 99769ad348703dc45a9847bb79cc6874, type: 3}
+  _processSystem: {fileID: 1402157160}
+  _audioMixer: {fileID: 24100000, guid: 1b8717508b8ff8e489f97cf1a6e7f889, type: 2}
 --- !u!4 &819493553
 Transform:
   m_ObjectHideFlags: 0
@@ -2515,6 +2340,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &819493554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819493549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b32b79d33c0b8a4394b77c110a328cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wholeSEList:
+  - {fileID: 8300000, guid: 9bc8c81f7c45e6343a159c2b4108e9ba, type: 3}
+  - {fileID: 8300000, guid: 2d48e8d414ce8e5459be49bced625bbb, type: 3}
+  - {fileID: 8300000, guid: ec9ac79abaf7b5c4582da4f2e0b5ff91, type: 3}
+  - {fileID: 8300000, guid: 58e2b55b4f8786348bd78a29b9ac9664, type: 3}
+  - {fileID: 8300000, guid: 2d77583bc356ac74ea7d7a0319c14b80, type: 3}
+  - {fileID: 8300000, guid: fad573bd9aa7e894bae874a208ab8f19, type: 3}
+  _audioMixer: {fileID: 24100000, guid: 1b8717508b8ff8e489f97cf1a6e7f889, type: 2}
 --- !u!1 &820571344
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,7 +2450,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -2743,6 +2588,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 819493554}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlayParkGetSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 883568432}
         m_TargetAssemblyTypeName: App.Main.Player.Perk.ChoosePerkPanel, Assembly-CSharp
         m_MethodName: OnClick
@@ -3012,7 +2869,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 300
     m_FontStyle: 1
     m_BestFit: 0
@@ -3123,7 +2980,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 100
     m_FontStyle: 1
     m_BestFit: 0
@@ -3234,7 +3091,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -3786,6 +3643,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 819493554}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlayParkGetSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1333864907}
         m_TargetAssemblyTypeName: App.Main.Player.Perk.ChoosePerkPanel, Assembly-CSharp
         m_MethodName: OnClick
@@ -3926,7 +3795,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 100
     m_FontStyle: 1
     m_BestFit: 0
@@ -3963,7 +3832,6 @@ GameObject:
   - component: {fileID: 1402157159}
   - component: {fileID: 1402157158}
   - component: {fileID: 1402157157}
-  - component: {fileID: 1402157156}
   - component: {fileID: 1402157165}
   m_Layer: 0
   m_Name: Stage
@@ -3972,19 +3840,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1402157156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402157155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92085254f43b2ab4481d7968c2a5f5e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
 --- !u!114 &1402157157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4096,6 +3951,7 @@ MonoBehaviour:
   _blockMinY: 0.5
   _horizontalBlockCount: 10
   _verticalBlockCount: 10
+  _wholeSeCollector: {fileID: 819493554}
 --- !u!114 &1402157160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4316,7 +4172,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -4474,6 +4330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poseCanvas: {fileID: 2072714527}
+  _wholeSeCollector: {fileID: 819493554}
 --- !u!4 &1452436838
 Transform:
   m_ObjectHideFlags: 0
@@ -4585,9 +4442,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 329801815}
-        m_TargetAssemblyTypeName: App.Title.GameStart.StartButton, Assembly-CSharp
-        m_MethodName: ButtonClick
+      - m_Target: {fileID: 819493554}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlayDecisionSE
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4595,6 +4452,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1402157158}
+        m_TargetAssemblyTypeName: App.Common.SceneLoader, Assembly-CSharp
+        m_MethodName: LoadSceneAsyncByName
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: TitleScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1452592817
@@ -4707,7 +4576,7 @@ MonoBehaviour:
   _PerkNameText: {fileID: 152850923}
   _PerkExplanationText: {fileID: 1361571597}
   _textData: {fileID: 11400000, guid: 277714db34c7c494ca901bf80cf6f032, type: 2}
-  debugPerkId: 3
+  debugPerkId: 0
 --- !u!114 &1492290906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4752,6 +4621,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 819493554}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlayParkGetSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1492290905}
         m_TargetAssemblyTypeName: App.Main.Player.Perk.ChoosePerkPanel, Assembly-CSharp
         m_MethodName: OnClick
@@ -5090,7 +4971,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -5236,7 +5117,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -5459,9 +5340,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 329801815}
-        m_TargetAssemblyTypeName: App.Title.GameStart.StartButton, Assembly-CSharp
-        m_MethodName: ButtonClick
+      - m_Target: {fileID: 819493554}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlayDecisionSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1402157158}
+        m_TargetAssemblyTypeName: App.Common.SceneLoader, Assembly-CSharp
+        m_MethodName: LoadMainGamefromBegining
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5774,7 +5667,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -5885,7 +5778,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -5986,7 +5879,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 6
   m_TargetDisplay: 0
 --- !u!224 &2046566141
 RectTransform:
@@ -6098,7 +5991,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -6324,7 +6217,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0

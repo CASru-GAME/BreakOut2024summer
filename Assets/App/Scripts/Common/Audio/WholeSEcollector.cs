@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace App.Common.Audio
 {
@@ -6,10 +7,12 @@ namespace App.Common.Audio
     {
         private AudioSource _audioSource;
         [SerializeField] private AudioClip[] _wholeSEList = default;
+        [SerializeField] private AudioMixer _audioMixer = default;
 
         private void Start()
         {
             _audioSource = gameObject.AddComponent<AudioSource>();
+            _audioSource.outputAudioMixerGroup = _audioMixer.FindMatchingGroups("SE")[0];
         }
 
         /// <summary>
@@ -21,6 +24,22 @@ namespace App.Common.Audio
             if (_wholeSEList.GetLength(0) == 0) return;
 
             _audioSource.PlayOneShot(_wholeSEList[seID]);
+        }
+
+        /// <summary>
+        /// 決定SEを再生する
+        /// </summary>
+        public void PlayDecisionSE()
+        {
+            PlaySE(0);
+        }
+
+        /// <summary>
+        /// パーク獲得時のSEを再生する
+        /// </summary>
+        public void PlayParkGetSE()
+        {
+            PlaySE(4);
         }
     }
 }

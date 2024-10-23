@@ -75,6 +75,12 @@ namespace App.Main.Player.Perk
                 }
                 OwnedPerkList.Add(AllPerkList[PerkIdList[i].id]);
             }
+            PerkEffectWhenLoad();
+        }
+
+        private void PerkEffectWhenLoad()
+        {
+            AllPerkList[5].IntEffect();
         }
     }
 }

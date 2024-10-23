@@ -5,6 +5,7 @@ using App.Main.Stage;
 using App.Main.Item;
 using App.Main.Block.Ablity;
 using App.Main.Cat;
+using App.Common.Audio;
 
 namespace App.Main.Block
 {   
@@ -22,6 +23,7 @@ namespace App.Main.Block
         private float PoisonStack = 0;
         private int WeaknessPoint = 0;
         private bool isPoisoned = false;
+        [SerializeField] private WholeSECollector _wholeSeCollector;
 
         void Start()
         {
@@ -40,6 +42,13 @@ namespace App.Main.Block
             StartCoroutine(RemoveWeaknessPoint());
         }
 
+        //<summary>
+        //ブロックにSE用のコンポーネントを追加する
+        //</summary>
+        public void AddWholeSeCollector(WholeSECollector wholeSeCollector)
+        {
+            _wholeSeCollector = wholeSeCollector;
+        }
 
         //<summary>
         // ブロックが破壊されたときに通達するために取得する
@@ -66,6 +75,7 @@ namespace App.Main.Block
         //</summary>
         public void TakeDamage(int damage)
         {
+            _wholeSeCollector.PlaySE(2);
             if(WeaknessPoint > 0) damage *= 2;
             BlockHp newBlockHp = new BlockHp(damage);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
@@ -77,7 +87,6 @@ namespace App.Main.Block
 
         public void Healed(int healAmount)
         {  
-            Debug.Log("Heal");
             BlockHp newBlockHp = new BlockHp(healAmount);
             blockDatastore.SetHp(blockDatastore.Hp.AddCurrentValue(newBlockHp));
         }

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using App.Main.Player;
 using App.Main.Item;
-using App.Static;
+using App.Common.Static;
 
 namespace App.Main.Stage
 {

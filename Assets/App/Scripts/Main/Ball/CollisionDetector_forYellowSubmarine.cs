@@ -1,6 +1,5 @@
 using UnityEngine;
 using App.Main.Block;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 
 namespace App.Main.Ball
@@ -9,24 +8,24 @@ namespace App.Main.Ball
     {
         int damage = 0;
 
+        private List<GameObject> _damagedBlocks = new List<GameObject>();
+
         public void SetDamage(int StackCount, int base_damage)
         {
             this.damage = base_damage * (1 - 1 / StackCount + 1);
         }
 
-        private async void OnCollisionEnter2D(Collision2D collision)
+        private void TakeDamage(GameObject block)
         {
-            List<Task> tasks = new List<Task>();
+            block.GetComponent<IBlock>().TakeDamage(damage);
+        }
 
-            // ここに衝突時の処理を記述
-            IBlock block = collision.gameObject.GetComponent<IBlock>();
-            if (block != null)
-            {
-                tasks.Add(Task.Run(() => block.TakeDamage(damage)));
-            }
-            await Task.WhenAll(tasks);
-
-            Destroy(gameObject);
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            if (collision.gameObject.GetComponent<Block.IBlock>() == null) return;
+            if (_damagedBlocks.Contains(collision.gameObject)) Destroy(gameObject);
+            _damagedBlocks.Add(collision.gameObject);
+            TakeDamage(collision.gameObject);
         }
     }
 }

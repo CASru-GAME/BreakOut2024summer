@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Main.Dev
+namespace App.Common.Dev
 {
     public class ApplyFont : MonoBehaviour
     {
@@ -17,5 +17,5 @@ namespace App.Main.Dev
                 text.font = _font;
             }
         }
-    }   
+    }
 }

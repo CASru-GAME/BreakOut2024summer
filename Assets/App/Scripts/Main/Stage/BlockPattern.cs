@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using App.Main.Block;
+using App.Common.Audio;
 
 namespace App.Main.Stage
 {
@@ -19,6 +20,7 @@ namespace App.Main.Stage
         [SerializeField] private float _blockMinY = -2f;
         [SerializeField] private int _horizontalBlockCount = 6;
         [SerializeField] private int _verticalBlockCount = 5;
+        [SerializeField] private WholeSECollector _wholeSeCollector = default;
 
 
 
@@ -62,6 +64,7 @@ namespace App.Main.Stage
                         TargetBlockCount++;
                         var blockInstance = Instantiate(_targetBlockPrefabList[blockData.Id], blockData.InstancePosition, Quaternion.identity);
                         blockInstance.GetComponent<Block.IBlock>().SetStage(_stageSystem);
+                        blockInstance.GetComponent<Block.IBlock>().AddWholeSeCollector(_wholeSeCollector);
                         blockInstance.transform.localScale = new Vector3((_blockMaxX - _blockMinX) / _horizontalBlockCount, (_blockMaxY - _blockMinY) / _verticalBlockCount, 1f);
                     }
                     else
@@ -69,6 +72,7 @@ namespace App.Main.Stage
                         NormalBlockCount++;
                         var blockInstance = Instantiate(_normalBlockPrefabList[blockData.Id], blockData.InstancePosition, Quaternion.identity);
                         blockInstance.GetComponent<Block.IBlock>().SetStage(_stageSystem);
+                        blockInstance.GetComponent<Block.IBlock>().AddWholeSeCollector(_wholeSeCollector);
                         blockInstance.transform.localScale = new Vector3((_blockMaxX - _blockMinX) / _horizontalBlockCount, (_blockMaxY - _blockMinY) / _verticalBlockCount, 1f);
                     }
                 }
@@ -78,11 +82,12 @@ namespace App.Main.Stage
         class StageBlockPatternData
         {
             public List<BlockPatternData> BlockPatternDataList { get; private set; }
+            public List<(int x, int y)> WorstPositionList { get; private set; }
 
-            public StageBlockPatternData(List<BlockPatternData> blockPatternDataList)
+            public StageBlockPatternData(List<BlockPatternData> blockPatternDataList, List<(int x, int y)> worstPositionList)
             {
-
                 BlockPatternDataList = blockPatternDataList;
+                WorstPositionList = worstPositionList;
             }
 
             public void DecideBlockPosition(float blockMaxX, float blockMinX, float blockMaxY, float blockMinY, int horizontalBlockCount, int verticalBlockCount)
@@ -136,9 +141,29 @@ namespace App.Main.Stage
                 void FindPositionPattern(int patternIndex, List<List<(int x, int y)>> decidedPositionList)
                 {
                     //再帰回数が多すぎる場合の処理
-                    if(attemptCount > maxAttemptCount)
+                    if (attemptCount > maxAttemptCount)
                     {
                         Debug.Log("Too Many Attempts!!!!!!!!!!!!!!!!!");
+
+                        var areaList = new List<List<(int x, int y)>>();
+                        foreach (var blockPatternData in BlockPatternDataList)
+                        {
+                            areaList.Add(blockPatternData.GetAreaList());
+                        }
+
+                        foreach (var patternArea in areaList)
+                        {
+                            for (int i = 0; i < WorstPositionList.Count; i++)
+                            {
+                                var tmpPattern = new List<(int x, int y)>();
+                                foreach (var blockArea in patternArea)
+                                {
+                                    tmpPattern.Add((blockArea.x + WorstPositionList[i].x, blockArea.y + WorstPositionList[i].y));
+                                }
+                                selectedPositionList.Add(tmpPattern);
+                            }
+                        }
+
                         return;
                     }
 
@@ -178,14 +203,14 @@ namespace App.Main.Stage
 
                 //各ブロックの生成座標を設定
                 for (int i = 0; i < BlockPatternDataList.Count; i++)
-                {   
+                {
                     int patternAreaCount = 0;
                     for (int j = 0; j < BlockPatternDataList[i].BlockDataList.Count; j++)
                     {
                         BlockPatternDataList[i].BlockDataList[j].InstancePosition = new Vector2
                      (CoordinatePosition(selectedPositionList[i][j + patternAreaCount].x, blockMaxX, blockMinX, horizontalBlockCount),
                      CoordinatePosition(selectedPositionList[i][j + patternAreaCount].y, blockMaxY, blockMinY, verticalBlockCount));
-                     patternAreaCount += BlockPatternDataList[i].BlockDataList[j].IntAreaList.Count - 1;
+                        patternAreaCount += BlockPatternDataList[i].BlockDataList[j].IntAreaList.Count - 1;
                     }
                 }
 
@@ -406,7 +431,8 @@ namespace App.Main.Stage
             {
                 return new StageBlockPatternData(new List<BlockPatternData>{
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,5),
-                    BlockPatternData.Horizontal_10_Normal_Changeable(1,2)});
+                    BlockPatternData.Horizontal_10_Normal_Changeable(1,2)},
+                    new List<(int x, int y)> { (1, 1), (1, 1) });
             }
 
             public static StageBlockPatternData Stage1_2ndLap()
@@ -414,7 +440,8 @@ namespace App.Main.Stage
                 return new StageBlockPatternData(new List<BlockPatternData>{
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,3),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,3),
-                    BlockPatternData.Horizontal_10_Normal_Changeable(2,3)});
+                    BlockPatternData.Horizontal_10_Normal_Changeable(2,3)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage1_MoreThan3rdLap()
@@ -423,7 +450,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,3),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,3),
                     BlockPatternData.Horizontal_10_Normal_Changeable(2,3),
-                    BlockPatternData.Horizontal_10_Normal_Changeable(2,3)});
+                    BlockPatternData.Horizontal_10_Normal_Changeable(2,3)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage2_1stLap()
@@ -433,7 +461,8 @@ namespace App.Main.Stage
                         BlockPatternData.Horizontal_10_Normal_Changeable(1,5),
                         BlockPatternData.Horizontal_10_Normal_Changeable(1,5),
                         BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,1),
-                        BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(5,1)});
+                        BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(5,1)},
+                        new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage2_2ndLap()
@@ -444,7 +473,8 @@ namespace App.Main.Stage
                         BlockPatternData.Horizontal_10_Normal_Changeable(2,3),
                         BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0),
                         BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(4,0),
-                        BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(7,0)});
+                        BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(7,0)},
+                        new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage2_MoreThan3rdLap()
@@ -456,8 +486,8 @@ namespace App.Main.Stage
                         BlockPatternData.Horizontal_4_Hard_Chageable(0,0),
                         BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0),
                         BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(4,0),
-                        BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(7,0)
-                });
+                        BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(7,0)},
+                        new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage3_1stLap()
@@ -466,7 +496,8 @@ namespace App.Main.Stage
                         BlockPatternData.Surroundings_3_3_Normal_Changeable(0,7),
                         BlockPatternData.Horizontal_10_Hard(1),
                         BlockPatternData.Horizontal_10_Hard(1),
-                        BlockPatternData.Horizontal_10_Hard(1)});
+                        BlockPatternData.Horizontal_10_Hard(1)},
+                        new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage3_2ndLap()
@@ -476,7 +507,8 @@ namespace App.Main.Stage
                         BlockPatternData.Horizontal_10_Hard(0),
                         BlockPatternData.Horizontal_10_Hard(0),
                         BlockPatternData.Horizontal_10_Hard(0),
-                        BlockPatternData.Horizontal_10_Hard(0)});
+                        BlockPatternData.Horizontal_10_Hard(0)},
+                        new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage3_MoreThan3rdLap()
@@ -487,8 +519,8 @@ namespace App.Main.Stage
                         BlockPatternData.Horizontal_10_Hard(0),
                         BlockPatternData.Horizontal_10_Hard(0),
                         BlockPatternData.Horizontal_10_Hard(0),
-                        BlockPatternData._1_HorizontalMove_Horizontal_3_Vertical_2_Normal_Changeable(0,0)
-                });
+                        BlockPatternData._1_HorizontalMove_Horizontal_3_Vertical_2_Normal_Changeable(0,0)},
+                        new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage4_1stLap()
@@ -498,7 +530,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_4_Normal(0,0),
                     BlockPatternData._1_VerticalMove_Vertical_3_Normal_Changeable(5,5),
                     BlockPatternData.Horizontal_10_Normal(2),
-                    BlockPatternData.Horizontal_10_Normal_Changeable(1,2)});
+                    BlockPatternData.Horizontal_10_Normal_Changeable(1,2)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage4_2ndLap()
@@ -510,7 +543,8 @@ namespace App.Main.Stage
                     BlockPatternData._1_VerticalMove_Vertical_3_Normal_Changeable(5,0),
                     BlockPatternData.Horizontal_10_Normal(0),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,0),
-                    BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0)});
+                    BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage4_MoreThan3rdLap()
@@ -522,8 +556,8 @@ namespace App.Main.Stage
                     BlockPatternData._1_VerticalMove_Vertical_3_Normal_Changeable(5,0),
                     BlockPatternData.Horizontal_10_Hard(0),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,0),
-                    BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0)
-                });
+                    BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage5_1stLap()
@@ -536,7 +570,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_10_Normal(6),
                     BlockPatternData.Surroundings_3_3_Normal_Changeable(0,0),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,0),
-                    BlockPatternData._1_VerticalMove_Changeable(0,2)});
+                    BlockPatternData._1_VerticalMove_Changeable(0,2)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage5_2ndLap()
@@ -550,7 +585,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_10_Normal(6),
                     BlockPatternData.Surroundings_3_3_Normal_Changeable(0,0),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,0),
-                    BlockPatternData._1_HorizontalMove_Changeable(0,0)});
+                    BlockPatternData._1_HorizontalMove_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage5_MoreThan3rdLap()
@@ -564,7 +600,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_10_Hard(2),
                     BlockPatternData.Surroundings_3_3_Normal_Changeable(0,0),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,3),
-                    BlockPatternData._1_HorizontalMove_Changeable(0,0)});
+                    BlockPatternData._1_HorizontalMove_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage6_1stLap()
@@ -579,7 +616,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_4_Normal_Changeable(4,0),
                     BlockPatternData.Horizontal_4_Normal_Changeable(0,0),
                     BlockPatternData.Horizontal_4_Normal(0,0),
-                    BlockPatternData.Horizontal_4_Normal(0,0)});
+                    BlockPatternData.Horizontal_4_Normal(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage6_2ndLap()
@@ -595,7 +633,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_4_Normal_Changeable(0,0),
                     BlockPatternData.Horizontal_4_Normal(0,0),
                     BlockPatternData.Horizontal_4_Normal(0,0),
-                    BlockPatternData.Horizontal_4_Normal(0,0)});
+                    BlockPatternData.Horizontal_4_Normal(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage6_MoreThan3rdLap()
@@ -611,8 +650,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_4_Hard_Chageable(0,0),
                     BlockPatternData.Horizontal_4_Normal(0,0),
                     BlockPatternData.Horizontal_4_Normal(0,0),
-                    BlockPatternData.Horizontal_4_Normal(0,0)
-                });
+                    BlockPatternData.Horizontal_4_Normal(0,0)},
+                    new List<(int x, int y)> { });
             }
             public static StageBlockPatternData Stage7_1stLap()
             {
@@ -624,9 +663,10 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,0),
                     BlockPatternData.Horizontal_4_Normal_Changeable(0,0),
                     BlockPatternData.Horizontal_4_Normal(0,0),
-                    BlockPatternData._1_DiagonalMove_Changeable(0,0)});
+                    BlockPatternData._1_DiagonalMove_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
-            
+
             public static StageBlockPatternData Stage7_2ndLap()
             {
                 return new StageBlockPatternData(new List<BlockPatternData>{
@@ -637,7 +677,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_10_Normal(0),
                     BlockPatternData._1_Heal_Changeable_Surroundings_3_3_Normal(0,0),
                     BlockPatternData.Horizontal_4_Normal(0,0),
-                    BlockPatternData._1_DiagonalMove_Changeable(0,0)});
+                    BlockPatternData._1_DiagonalMove_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage7_MoreThan3rdLap()
@@ -651,8 +692,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_4_Hard_Chageable(0,0),
                     BlockPatternData._1_Heal_Changeable_Surroundings_3_3_Normal(0,0),
                     BlockPatternData.Horizontal_4_Normal(0,0),
-                    BlockPatternData._1_DiagonalMove_Changeable(0,0)
-                });
+                    BlockPatternData._1_DiagonalMove_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage8_1stLap()
@@ -665,7 +706,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,0),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,0),
                     BlockPatternData.Vertical_4_Normal_Changeable(0,1),
-                    BlockPatternData.Horizontal_4_Normal(0,0)});
+                    BlockPatternData.Horizontal_4_Normal(0,0)},
+                    new List<(int x, int y)> { });
             }
             public static StageBlockPatternData Stage8_2ndLap()
             {
@@ -678,7 +720,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,0),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,0),
                     BlockPatternData.Vertical_4_Normal_Changeable(0,1),
-                    BlockPatternData.Horizontal_2_Vertical_3_Normal(0,0)});
+                    BlockPatternData.Horizontal_2_Vertical_3_Normal(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage8_MoreThan3rdLap()
@@ -692,8 +735,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,0),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,0),
                     BlockPatternData.Vertical_4_Normal_Changeable(0,1),
-                    BlockPatternData.Horizontal_2_Vertical_3_Normal(0,0)
-                });
+                    BlockPatternData.Horizontal_2_Vertical_3_Normal(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage9_1stLap()
@@ -705,7 +748,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_4_Normal(0,0),
                     BlockPatternData.Horizontal_4_Normal(0,0),
                     BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0),
-                    BlockPatternData.Vertical_4_Normal_Changeable(0,0)});
+                    BlockPatternData.Vertical_4_Normal_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
             public static StageBlockPatternData Stage9_2ndLap()
             {
@@ -717,7 +761,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_4_Normal_Changeable(0,0),
                     BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0),
                     BlockPatternData.Vertical_4_Normal_Changeable(0,0),
-                    BlockPatternData.Vertical_4_Normal_Changeable(0,0)});
+                    BlockPatternData.Vertical_4_Normal_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage9_MoreThan3rdLap()
@@ -729,7 +774,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_4_Normal_Changeable(0,0),
                     BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0),
                     BlockPatternData.Vertical_4_Normal_Changeable(0,0),
-                    BlockPatternData.Vertical_4_Normal_Changeable(0,0)});
+                    BlockPatternData.Vertical_4_Normal_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage10_1stLap()
@@ -740,7 +786,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_2_Vertical_3_Normal(0,3),
                     BlockPatternData.Horizontal_2_Vertical_3_Normal(0,3),
                     BlockPatternData.Vertical_4_Normal_Changeable(0,0),
-                    BlockPatternData.Horizontal_10_Hard(0)});
+                    BlockPatternData.Horizontal_10_Hard(0)},
+                    new List<(int x, int y)> { });
             }
             public static StageBlockPatternData Stage10_2ndLap()
             {
@@ -751,7 +798,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_2_Vertical_3_Normal(0,3),
                     BlockPatternData.Vertical_4_Normal_Changeable(0,0),
                     BlockPatternData.Horizontal_4_Hard_Chageable(0,0),
-                    BlockPatternData.Horizontal_10_Hard(0)});
+                    BlockPatternData.Horizontal_10_Hard(0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage10_MoreThan3rdLap()
@@ -763,7 +811,8 @@ namespace App.Main.Stage
                     BlockPatternData.Vertical_4_Normal_Changeable(0,0),
                     BlockPatternData.Horizontal_4_Hard_Chageable(0,0),
                     BlockPatternData.Horizontal_10_Hard(0),
-                    BlockPatternData._1_HorizontalMove_Horizontal_3_Vertical_2_Normal_Changeable(0,0)});
+                    BlockPatternData._1_HorizontalMove_Horizontal_3_Vertical_2_Normal_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage11_1stLap()
@@ -777,7 +826,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_4_Normal(0,1),
                     BlockPatternData.Vertical_4_Normal_Changeable(0,0),
                     BlockPatternData.Vertical_9_Normal_Changeable(0),
-                    BlockPatternData.Horizontal_10_Hard(0)});
+                    BlockPatternData.Horizontal_10_Hard(0)},
+                    new List<(int x, int y)> { });
             }
             public static StageBlockPatternData Stage11_2ndLap()
             {
@@ -792,7 +842,8 @@ namespace App.Main.Stage
                     BlockPatternData.Vertical_4_Normal_Changeable(0,0),
                     BlockPatternData.Vertical_9_Normal_Changeable(0),
                     BlockPatternData.Vertical_3_Hard_Changeable(0,0),
-                    BlockPatternData.Horizontal_10_Hard(0)});
+                    BlockPatternData.Horizontal_10_Hard(0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage11_MoreThan3rdLap()
@@ -808,7 +859,8 @@ namespace App.Main.Stage
                     BlockPatternData.Vertical_9_Normal_Changeable(0),
                     BlockPatternData.Vertical_3_Hard_Changeable(0,0),
                     BlockPatternData._1_Heal(0,0),
-                    BlockPatternData.Horizontal_10_Hard(0)});
+                    BlockPatternData.Horizontal_10_Hard(0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage12_1stLap()
@@ -820,7 +872,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_10_Normal_Changeable(2,2),
                     BlockPatternData._1_HorizontalMove_Changeable(0,3),
                     BlockPatternData.Horizontal_10_Hard(0),
-                    BlockPatternData.Horizontal_10_Hard(0)});
+                    BlockPatternData.Horizontal_10_Hard(0)},
+                    new List<(int x, int y)> { });
             }
             public static StageBlockPatternData Stage12_2ndLap()
             {
@@ -832,7 +885,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_2_Vertical_3_Normal(0,2),
                     BlockPatternData._1_HorizontalMove_Changeable(0,3),
                     BlockPatternData.Horizontal_10_Hard(0),
-                    BlockPatternData.Horizontal_10_Hard(0)});
+                    BlockPatternData.Horizontal_10_Hard(0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage12_MoreThan3rdLap()
@@ -846,11 +900,12 @@ namespace App.Main.Stage
                     BlockPatternData._1_HorizontalMove_Changeable(0,3),
                     BlockPatternData.Horizontal_2_Vertical_2_Normal_1_SquareMove_Changeable(0,0),
                     BlockPatternData.Horizontal_10_Hard(0),
-                    BlockPatternData.Horizontal_10_Hard(0)});
+                    BlockPatternData.Horizontal_10_Hard(0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage13_1stLap()
-            {   
+            {
                 return new StageBlockPatternData(new List<BlockPatternData>{
                     BlockPatternData._3_VerticalMoveHard(4,6),
                     BlockPatternData.Horizontal_2_Vertical_2_Normal_1_SquareMove_Changeable(0,0),
@@ -860,7 +915,8 @@ namespace App.Main.Stage
                     BlockPatternData.Vertical_4_Hard_Changeable(0,0),
                     BlockPatternData.Vertical_4_Normal_Changeable(0,0),
                     BlockPatternData._1_VerticalMove_Changeable(0,0),
-                    BlockPatternData.Horizontal_2_Vertical_3_Normal(0,0)});
+                    BlockPatternData.Horizontal_2_Vertical_3_Normal(0,0)},
+                    new List<(int x, int y)> { });
             }
             public static StageBlockPatternData Stage13_2ndLap()
             {
@@ -873,7 +929,8 @@ namespace App.Main.Stage
                     BlockPatternData.Vertical_4_Hard_Changeable(0,0),
                     BlockPatternData._1_Heal_Changeable_Surroundings_3_3_Normal(0,0),
                     BlockPatternData._1_VerticalMove_Changeable(0,0),
-                    BlockPatternData.Horizontal_2_Vertical_3_Normal(0,0)});
+                    BlockPatternData.Horizontal_2_Vertical_3_Normal(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage13_MoreThan3rdLap()
@@ -888,7 +945,8 @@ namespace App.Main.Stage
                     BlockPatternData._1_Heal_Changeable_Surroundings_3_3_Normal(0,0),
                     BlockPatternData._1_VerticalMove_Changeable(0,0),
                     BlockPatternData.Horizontal_2_Vertical_3_Normal(0,0),
-                    BlockPatternData._1_DiagonalMove_Changeable(0,0)});
+                    BlockPatternData._1_DiagonalMove_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage14_1stLap()
@@ -900,7 +958,8 @@ namespace App.Main.Stage
                     BlockPatternData.Vertical_10_Hard(0),
                     BlockPatternData.Horizontal_2_Vertical_3_Normal(0,0),
                     BlockPatternData._1_Heal_Surroundings_3_3_Normal_Changeable(0,0),
-                    BlockPatternData._1_DiagonalMove_Changeable(0,0)});
+                    BlockPatternData._1_DiagonalMove_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
             public static StageBlockPatternData Stage14_2ndLap()
             {
@@ -913,7 +972,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_2_Vertical_3_Normal(0,0),
                     BlockPatternData.Horizontal_2_Vertical_3_Normal(0,0),
                     BlockPatternData._1_Heal_Surroundings_3_3_Normal_Changeable(0,0),
-                    BlockPatternData._1_DiagonalMove_Changeable(0,0)});
+                    BlockPatternData._1_DiagonalMove_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage14_MoreThan3rdLap()
@@ -927,7 +987,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_2_Vertical_3_Normal(0,0),
                     BlockPatternData.Horizontal_2_Vertical_3_Normal(0,0),
                     BlockPatternData._1_Heal_Surroundings_3_3_Hard_Changeable(0,0),
-                    BlockPatternData._1_DiagonalMove_Changeable(0,0)});
+                    BlockPatternData._1_DiagonalMove_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage15_1stLap()
@@ -940,7 +1001,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_4_Hard_Chageable(0,0),
                     BlockPatternData._1_VerticalMoveHeal_Changeable_2_3_Normal(0,0),
                     BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0),
-                    BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0)});
+                    BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
             public static StageBlockPatternData Stage15_2ndLap()
             {
@@ -953,7 +1015,8 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_4_Normal_Changeable(0,0),
                     BlockPatternData._1_VerticalMoveHeal_Changeable_2_3_Normal(0,0),
                     BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0),
-                    BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0)});
+                    BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(0,0)},
+                    new List<(int x, int y)> { });
             }
 
             public static StageBlockPatternData Stage15_MoreThan3rdLap()
@@ -968,7 +1031,8 @@ namespace App.Main.Stage
                     BlockPatternData._1_Heal(0,0),
                     BlockPatternData._1_VerticalMoveHeal_Changeable_2_3_Normal(1,0),
                     BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(1,0),
-                    BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(1,0)});
+                    BlockPatternData.Horizontal_2_Vertical_3_Normal_Changeable(1,0)},
+                    new List<(int x, int y)> { });
             }
         }
 
@@ -1000,7 +1064,7 @@ namespace App.Main.Stage
             //左下から右上に向かってxyが増える
             //座標は左下詰めで書く
 
-            public static BlockPatternData Horizontal_4_Normal(int x,int y)
+            public static BlockPatternData Horizontal_4_Normal(int x, int y)
             {
                 return new BlockPatternData(0, new List<BlockData>{
                     BlockData.Normal(x, y),
@@ -1009,7 +1073,7 @@ namespace App.Main.Stage
                     BlockData.Normal(x + 3, y)});
             }
 
-            public static BlockPatternData Horizontal_4_Normal_Changeable(int x,int y)
+            public static BlockPatternData Horizontal_4_Normal_Changeable(int x, int y)
             {
                 return new BlockPatternData(0, new List<BlockData>{
                     BlockData.Normal_Changeable(x, y),
@@ -1033,7 +1097,7 @@ namespace App.Main.Stage
                     BlockData.Normal(9, y),});
             }
 
-            public static BlockPatternData Horizontal_10_Normal_Changeable(int targetBlockCount,int y)
+            public static BlockPatternData Horizontal_10_Normal_Changeable(int targetBlockCount, int y)
             {
                 return new BlockPatternData(targetBlockCount, new List<BlockData>{
                     BlockData.Normal_Changeable(0, y),
@@ -1076,21 +1140,21 @@ namespace App.Main.Stage
                     BlockData.Hard_Changeable(8, y),
                     BlockData.Hard_Changeable(9, y),});
             }
-            public static BlockPatternData Vertical_2_Normal(int x,int y)
+            public static BlockPatternData Vertical_2_Normal(int x, int y)
             {
                 return new BlockPatternData(0, new List<BlockData>{
                     BlockData.Normal(x,y),
                     BlockData.Normal(x,y + 1)});
             }
 
-            public static BlockPatternData Vertical_3_Hard_Changeable(int x,int y)
+            public static BlockPatternData Vertical_3_Hard_Changeable(int x, int y)
             {
                 return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Hard_Changeable(x, y),
                     BlockData.Hard_Changeable(x, y + 1),
                     BlockData.Hard_Changeable(x, y + 2)});
             }
-            public static BlockPatternData Vertical_4_Hard_Changeable(int x,int y)
+            public static BlockPatternData Vertical_4_Hard_Changeable(int x, int y)
             {
                 return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Hard_Changeable(x, y),
@@ -1099,7 +1163,7 @@ namespace App.Main.Stage
                     BlockData.Hard_Changeable(x, y + 3)});
             }
 
-            public static BlockPatternData Vertical_4_Normal_Changeable(int x,int y)
+            public static BlockPatternData Vertical_4_Normal_Changeable(int x, int y)
             {
                 return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Normal_Changeable(x, y),
@@ -1121,7 +1185,7 @@ namespace App.Main.Stage
                     BlockData.Normal_Changeable(x, 8)});
             }
 
-            public static BlockPatternData Vertical_10_Normal_Changeable(int targetBlockCount,int x)
+            public static BlockPatternData Vertical_10_Normal_Changeable(int targetBlockCount, int x)
             {
                 return new BlockPatternData(targetBlockCount, new List<BlockData>{
                     BlockData.Normal_Changeable(x, 0),
@@ -1164,7 +1228,7 @@ namespace App.Main.Stage
                     BlockData.Vertical_Move_Heal(x + 1,4)
                     });
             }
-            public static BlockPatternData Horizontal_2_Vertical_3_Normal(int x,int y)
+            public static BlockPatternData Horizontal_2_Vertical_3_Normal(int x, int y)
             {
                 return new BlockPatternData(0, new List<BlockData>{
                     BlockData.Normal_Changeable(x, y),
@@ -1175,7 +1239,7 @@ namespace App.Main.Stage
                     BlockData.Normal_Changeable(x + 1, y + 2),});
             }
 
-            public static BlockPatternData Horizontal_2_Vertical_3_Normal_Changeable(int x,int y)
+            public static BlockPatternData Horizontal_2_Vertical_3_Normal_Changeable(int x, int y)
             {
                 return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Normal(x, y),
@@ -1186,7 +1250,7 @@ namespace App.Main.Stage
                     BlockData.Normal(x + 1, y + 2),});
             }
 
-            public static BlockPatternData Horizontal_4_Hard_Chageable(int x,int y)
+            public static BlockPatternData Horizontal_4_Hard_Chageable(int x, int y)
             {
                 return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Hard_Changeable(x, y),
@@ -1195,7 +1259,7 @@ namespace App.Main.Stage
                     BlockData.Hard_Changeable(x + 3, y)});
             }
 
-            public static BlockPatternData Surroundings_3_3_Normal_Changeable(int x,int y)
+            public static BlockPatternData Surroundings_3_3_Normal_Changeable(int x, int y)
             {
                 return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Normal(x, y),
@@ -1209,15 +1273,15 @@ namespace App.Main.Stage
                     BlockData.Normal(x +2, y + 2)});
             }
 
-            public static BlockPatternData _1_HorizontalMove_Changeable(int x,int y)
+            public static BlockPatternData _1_HorizontalMove_Changeable(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Horizontal_Move_Changeable(x,y)});
             }
 
-            public static BlockPatternData _1_HorizontalMove_Horizontal_3_Vertical_2_Normal_Changeable(int x,int y)
+            public static BlockPatternData _1_HorizontalMove_Horizontal_3_Vertical_2_Normal_Changeable(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Horizontal_Move_Changeable(x,y + 3),
                     BlockData.Normal(x - 1,y + 1),
                     BlockData.Normal(x,y+ 1),
@@ -1227,30 +1291,30 @@ namespace App.Main.Stage
                     BlockData.Normal(x + 1,y)});
             }
 
-            public static BlockPatternData _1_VerticalMove_Changeable(int x,int y)
+            public static BlockPatternData _1_VerticalMove_Changeable(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Vertical_Move_Changeable(x,y)});
             }
 
-            public static BlockPatternData _1_VerticalMove_Vertical_3_Normal_Changeable(int x,int y)
+            public static BlockPatternData _1_VerticalMove_Vertical_3_Normal_Changeable(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Vertical_Move_Changeable(x,y),
                     BlockData.Normal(x - 2,y + 1),
                     BlockData.Normal(x - 2,y),
                     BlockData.Normal(x - 2,y - 1)});
             }
 
-            public static BlockPatternData _1_DiagonalMove_Changeable(int x,int y)
+            public static BlockPatternData _1_DiagonalMove_Changeable(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Diagonal_Move_Changeable(x,y)});
             }
 
-            public static BlockPatternData Horizontal_2_Vertical_2_Normal_1_SquareMove_Changeable(int x,int y)
+            public static BlockPatternData Horizontal_2_Vertical_2_Normal_1_SquareMove_Changeable(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Square_Move(x,y),
                     BlockData.Normal_Changeable(x + 1,y + 1),
                     BlockData.Normal_Changeable(x + 1,y + 2),
@@ -1258,29 +1322,29 @@ namespace App.Main.Stage
                     BlockData.Normal_Changeable(x + 2,y + 2),});
             }
 
-            public static BlockPatternData _1_ScreenOffLeftHorizontalMove_Changeable(int x,int y)
+            public static BlockPatternData _1_ScreenOffLeftHorizontalMove_Changeable(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Left_Screen_Off_Horizontal_Move_Changeable(x,y)});
             }
-            public static BlockPatternData _1_ScreenOffRightHorizontalMove_Changeable(int x,int y)
+            public static BlockPatternData _1_ScreenOffRightHorizontalMove_Changeable(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Right_Screen_Off_Horizontal_Move_Changeable(x,y)});
             }
-            public static BlockPatternData _1_Heal(int x,int y)
+            public static BlockPatternData _1_Heal(int x, int y)
             {
-                return new BlockPatternData(0,new List<BlockData>{
+                return new BlockPatternData(0, new List<BlockData>{
                     BlockData.Heal(x,y)});
             }
-            public static BlockPatternData _1_Heal_Changeable(int x,int y)
+            public static BlockPatternData _1_Heal_Changeable(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Heal_Changeable(x,y)});
             }
-            public static BlockPatternData _1_Heal_Surroundings_3_3_Normal_Changeable(int x,int y)
+            public static BlockPatternData _1_Heal_Surroundings_3_3_Normal_Changeable(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Heal(x,y),
                     BlockData.Normal_Changeable(x + 1,y - 1),
                     BlockData.Normal_Changeable(x + 1,y),
@@ -1291,9 +1355,9 @@ namespace App.Main.Stage
                     BlockData.Normal_Changeable(x - 1,y),
                     BlockData.Normal_Changeable(x - 1,y + 1)});
             }
-            public static BlockPatternData _1_Heal_Surroundings_3_3_Hard_Changeable(int x,int y)
+            public static BlockPatternData _1_Heal_Surroundings_3_3_Hard_Changeable(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Heal(x,y),
                     BlockData.Hard_Changeable(x + 1,y - 1),
                     BlockData.Hard_Changeable(x + 1,y),
@@ -1304,9 +1368,9 @@ namespace App.Main.Stage
                     BlockData.Hard_Changeable(x - 1,y),
                     BlockData.Hard_Changeable(x - 1,y + 1)});
             }
-            public static BlockPatternData _1_Heal_Changeable_Surroundings_3_3_Normal(int x,int y)
+            public static BlockPatternData _1_Heal_Changeable_Surroundings_3_3_Normal(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Heal_Changeable(x,y),
                     BlockData.Normal(x + 1,y - 1),
                     BlockData.Normal(x + 1,y),
@@ -1317,9 +1381,9 @@ namespace App.Main.Stage
                     BlockData.Normal(x - 1,y),
                     BlockData.Normal(x - 1,y + 1)});
             }
-            public static BlockPatternData _1_Heal_Changeable_Surroundings_3_3_Hard(int x,int y)
+            public static BlockPatternData _1_Heal_Changeable_Surroundings_3_3_Hard(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Heal_Changeable(x,y),
                     BlockData.Hard(x + 1,y - 1),
                     BlockData.Hard(x + 1,y),
@@ -1330,9 +1394,9 @@ namespace App.Main.Stage
                     BlockData.Hard(x - 1,y),
                     BlockData.Hard(x - 1,y + 1)});
             }
-            public static BlockPatternData Horizontal_3_Normal_1_HorizontalMoveHeal_Changeable(int x,int y)
+            public static BlockPatternData Horizontal_3_Normal_1_HorizontalMoveHeal_Changeable(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Horizontal_Move_Heal_Changeable(x,y),
                     BlockData.Normal(x - 1,y - 1),
                     BlockData.Normal(x,y - 1),
@@ -1342,9 +1406,9 @@ namespace App.Main.Stage
                     BlockData.Normal(x + 1,y + 1)});
             }
 
-            public static BlockPatternData _1_VerticalMoveHeal_Changeable_2_3_Normal(int x,int y)
+            public static BlockPatternData _1_VerticalMoveHeal_Changeable_2_3_Normal(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Vertical_Move_Heal_Changeable(x,y),
                     BlockData.Normal(x - 1,y + 1),
                     BlockData.Normal(x - 1,y ),
@@ -1354,9 +1418,9 @@ namespace App.Main.Stage
                     BlockData.Normal(x + 1,y - 1)});
             }
 
-            public static BlockPatternData Heal_Surroundings_5_5_Normal_Changeable(int x,int y)
+            public static BlockPatternData Heal_Surroundings_5_5_Normal_Changeable(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.UpLeft_Heal(x - 2,y + 2),
                     BlockData.Normal(x - 2,y + 1),
                     BlockData.Normal(x - 2,y),
@@ -1383,9 +1447,9 @@ namespace App.Main.Stage
                     BlockData.Normal(x + 2,y - 1),
                     BlockData.DownRight_Heal(x + 2,y - 2),});
             }
-            public static BlockPatternData Heal_Surroundings_5_5_Hard_Changeable(int x,int y)
+            public static BlockPatternData Heal_Surroundings_5_5_Hard_Changeable(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.UpLeft_Heal(x - 2,y + 2),
                     BlockData.Normal(x - 2,y + 1),
                     BlockData.Normal(x - 2,y),
@@ -1413,9 +1477,9 @@ namespace App.Main.Stage
                     BlockData.DownRight_Heal(x + 2,y - 2),});
             }
 
-            public static BlockPatternData _3_VerticalMoveHard(int x,int y)
+            public static BlockPatternData _3_VerticalMoveHard(int x, int y)
             {
-                return new BlockPatternData(1,new List<BlockData>{
+                return new BlockPatternData(1, new List<BlockData>{
                     BlockData.Vertical_Move_Hard(x,y),
                     BlockData.Vertical_Move_Hard(x + 1,y),
                     BlockData.Vertical_Move_Hard(x + 2,y)});
@@ -1450,7 +1514,7 @@ namespace App.Main.Stage
             {
                 var intAreaList = new List<(int x, int y)> { (x, y) };
                 return new BlockData(0, x, y, intAreaList, true);
-            }   
+            }
 
             public static BlockData Hard(int x, int y)
             {
@@ -1466,61 +1530,61 @@ namespace App.Main.Stage
 
             public static BlockData Horizontal_Move(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x - 1,y),(x + 1,y),(x - 2,y),(x + 2,y) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x - 1, y), (x + 1, y), (x - 2, y), (x + 2, y) };
                 return new BlockData(2, x, y, intAreaList, false);
             }
 
             public static BlockData Horizontal_Move_Changeable(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x - 1,y),(x + 1,y),(x - 2,y),(x + 2,y), };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x - 1, y), (x + 1, y), (x - 2, y), (x + 2, y), };
                 return new BlockData(2, x, y, intAreaList, true);
             }
 
             public static BlockData Vertical_Move(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x, y - 1),(x, y + 1),(x,y - 2),(x,y + 2) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x, y - 1), (x, y + 1), (x, y - 2), (x, y + 2) };
                 return new BlockData(3, x, y, intAreaList, false);
             }
 
             public static BlockData Vertical_Move_Changeable(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x, y - 1),(x, y + 1),(x,y - 2),(x,y + 2) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x, y - 1), (x, y + 1), (x, y - 2), (x, y + 2) };
                 return new BlockData(3, x, y, intAreaList, true);
             }
 
             public static BlockData Diagonal_Move(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x + 1, y),(x, y + 1),(x + 1,y + 1),(x - 1,y),(x,y - 1),(x - 1,y - 1) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x + 1, y), (x, y + 1), (x + 1, y + 1), (x - 1, y), (x, y - 1), (x - 1, y - 1) };
                 return new BlockData(4, x, y, intAreaList, false);
             }
 
             public static BlockData Diagonal_Move_Changeable(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x + 1, y),(x, y + 1),(x + 1,y + 1),(x - 1,y),(x,y - 1),(x - 1,y - 1) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x + 1, y), (x, y + 1), (x + 1, y + 1), (x - 1, y), (x, y - 1), (x - 1, y - 1) };
                 return new BlockData(4, x, y, intAreaList, true);
             }
 
             public static BlockData Square_Move(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x + 1, y),(x + 2, y),(x + 3,y),(x + 3,y + 1),(x + 3,y + 2),(x + 3,y + 3),(x + 2,y + 3),(x + 1,y + 3),(x,y + 3),(x,y + 2),(x,y + 1) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x + 1, y), (x + 2, y), (x + 3, y), (x + 3, y + 1), (x + 3, y + 2), (x + 3, y + 3), (x + 2, y + 3), (x + 1, y + 3), (x, y + 3), (x, y + 2), (x, y + 1) };
                 return new BlockData(5, x, y, intAreaList, false);
             }
 
             public static BlockData Square_Move_Changeable(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x + 1, y),(x, y + 1),(x + 1,y + 1),(x - 1,y),(x,y - 1),(x - 1,y - 1) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x + 1, y), (x, y + 1), (x + 1, y + 1), (x - 1, y), (x, y - 1), (x - 1, y - 1) };
                 return new BlockData(5, x, y, intAreaList, true);
             }
 
             public static BlockData Left_Screen_Off_Horizontal_Move_Changeable(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x - 1,y),(9,y) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x - 1, y), (9, y) };
                 return new BlockData(6, x, y, intAreaList, true);
             }
 
             public static BlockData Right_Screen_Off_Horizontal_Move_Changeable(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x + 1,y),(-8,y) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x + 1, y), (-8, y) };
                 return new BlockData(7, x, y, intAreaList, true);
             }
 
@@ -1538,31 +1602,31 @@ namespace App.Main.Stage
 
             public static BlockData Horizontal_Move_Heal(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x - 1,y),(x + 1,y),(x - 2,y),(x + 2,y) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x - 1, y), (x + 1, y), (x - 2, y), (x + 2, y) };
                 return new BlockData(10, x, y, intAreaList, false);
             }
 
             public static BlockData Horizontal_Move_Heal_Changeable(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x - 1,y),(x + 1,y),(x - 2,y),(x + 2,y), };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x - 1, y), (x + 1, y), (x - 2, y), (x + 2, y), };
                 return new BlockData(10, x, y, intAreaList, true);
             }
 
             public static BlockData Vertical_Move_Heal(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x, y - 1),(x, y + 1),(x,y - 2),(x,y + 2) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x, y - 1), (x, y + 1), (x, y - 2), (x, y + 2) };
                 return new BlockData(11, x, y, intAreaList, false);
             }
 
             public static BlockData Vertical_Move_Heal_Changeable(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x, y - 1),(x, y + 1),(x,y - 2),(x,y + 2) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x, y - 1), (x, y + 1), (x, y - 2), (x, y + 2) };
                 return new BlockData(11, x, y, intAreaList, true);
             }
 
             public static BlockData UpLeft_Heal(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x - 2,y) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x - 2, y) };
                 return new BlockData(12, x, y, intAreaList, false);
             }
 
@@ -1580,13 +1644,13 @@ namespace App.Main.Stage
 
             public static BlockData UpRight_Heal(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x + 2,y),(x - 2,y) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x + 2, y), (x - 2, y) };
                 return new BlockData(15, x, y, intAreaList, false);
             }
 
             public static BlockData Vertical_Move_Hard(int x, int y)
             {
-                var intAreaList = new List<(int x, int y)> { (x, y),(x,y - 1),(x,y - 2),(x,y + 1),(x,y + 2),(x - 4,y),(x + 3,y) };
+                var intAreaList = new List<(int x, int y)> { (x, y), (x, y - 1), (x, y - 2), (x, y + 1), (x, y + 2), (x - 4, y), (x + 3, y) };
                 return new BlockData(16, x, y, intAreaList, false);
             }
         }

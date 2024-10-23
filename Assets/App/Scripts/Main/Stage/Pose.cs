@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using App.Common.Audio;
 using UnityEngine;
 
 namespace App.Main.Stage
@@ -7,6 +8,7 @@ namespace App.Main.Stage
     public class Pose : MonoBehaviour
     {
         [SerializeField] private Canvas _poseCanvas;
+        [SerializeField] private WholeSECollector _wholeSeCollector;
         private bool isPosing = false, isInputting = false;
         
         private void Start()
@@ -25,10 +27,12 @@ namespace App.Main.Stage
                 isInputting = true;
                 if (isPosing)
                 {
+                    _wholeSeCollector.PlaySE(3);
                     Close();
                 }
                 else
                 {
+                    _wholeSeCollector.PlaySE(3);
                     Open();
                 }
             }

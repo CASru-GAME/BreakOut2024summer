@@ -1,6 +1,6 @@
 using UnityEngine;
 using App.Main.Player;
-using App.Static;
+using App.Common.Static;
 using App.Common;
 using System.Collections;
 using App.Common.Audio;
@@ -49,7 +49,7 @@ namespace App.Main.Stage
             Debug.Log("_____________________________: Static → PlayerLevel = " + _player.GetLevelValue() + " :_____________________________");
             Debug.Log("_____________________________: Static → TotalAquiredPerkList = " + _player.PerkSystem.PerkList.GetOwnedPerkList() + " :_____________________________");
             
-            transitionPanel.GetComponent<Animator>().SetTrigger("StartTrigger");
+            transitionPanel.SetTrigger("StartTrigger");
         }
 
         /// ゲームの更新処理
@@ -69,7 +69,6 @@ namespace App.Main.Stage
                 {
                     // 残機を減らす処理
                     _player.SubtractLive(1);
-                    Debug.Log("Live: " + _player.Parameter.Live.CurrentValue);
                     // 残機が0になったら
                     if (_player.IsLiveValue(0))
                     {
