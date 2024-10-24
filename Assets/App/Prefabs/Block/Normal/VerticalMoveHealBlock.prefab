@@ -45,8 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30d18432bc80dc54896982ba27e281ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healAmount: 
-  _coolDown: []
+  _healAmount: 0100000001000000010000000100000001000000
+  _coolDown:
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
 --- !u!61 &4174173464454655671
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -103,7 +108,6 @@ GameObject:
   - component: {fileID: 4738219291351640567}
   - component: {fileID: 7291630475458963865}
   - component: {fileID: 3378350200194117345}
-  - component: {fileID: 880486667673382197}
   - component: {fileID: 6268379562540832743}
   - component: {fileID: 8794390385365136132}
   - component: {fileID: 5699730012614433684}
@@ -199,25 +203,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHp: 0100000001000000010000000100000001000000
   Id: 11
---- !u!114 &880486667673382197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8259311492659144066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30d18432bc80dc54896982ba27e281ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healAmount: 0100000001000000010000000100000001000000
-  _coolDown:
-  - 5
-  - 5
-  - 5
-  - 5
-  - 5
 --- !u!114 &6268379562540832743
 MonoBehaviour:
   m_ObjectHideFlags: 0

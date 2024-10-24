@@ -91,6 +91,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fallingSpeed:
-  - 0.0002
-  - 0.00025
-  - 0.0003
+  - 0.0001
+  - 0.00013
+  - 0.00016

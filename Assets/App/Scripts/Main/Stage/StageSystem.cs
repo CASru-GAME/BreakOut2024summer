@@ -27,11 +27,11 @@ namespace App.Main.Stage
         public int TotalCat => _totalCat;
         private int _clearedStageCount = 0;
         public int ClearedStageCount => _clearedStageCount;
-        private int _roopCount = 1;
+        private int _roopCount = 3;
         public int RoopCount => _roopCount;
-        private int _currentStageNumberID = 1;
+        private int _currentStageNumberID = 15;
         public int CurrentStageNumberID => _currentStageNumberID;
-        private int _currentWorldNumberID = 1;
+        private int _currentWorldNumberID = 5;
         public int CurrentWorldNumberID => _currentWorldNumberID;
         private int ItemDontDropRate = 70;
         private int ItemDropRate = 30;
