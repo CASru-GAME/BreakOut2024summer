@@ -213,7 +213,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -443,7 +443,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -554,7 +554,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -697,8 +697,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 819493554}
         m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
-        m_MethodName: PlaySE
-        m_Mode: 3
+        m_MethodName: PlayDecisionSE
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1062,7 +1062,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -1264,7 +1264,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 300
     m_FontStyle: 1
     m_BestFit: 0
@@ -1695,7 +1695,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -2026,7 +2026,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 100
     m_FontStyle: 1
     m_BestFit: 0
@@ -2266,7 +2266,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -2450,7 +2450,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -2588,6 +2588,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 819493554}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlayParkGetSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 883568432}
         m_TargetAssemblyTypeName: App.Main.Player.Perk.ChoosePerkPanel, Assembly-CSharp
         m_MethodName: OnClick
@@ -2857,7 +2869,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 300
     m_FontStyle: 1
     m_BestFit: 0
@@ -2968,7 +2980,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 100
     m_FontStyle: 1
     m_BestFit: 0
@@ -3079,7 +3091,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -3631,6 +3643,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 819493554}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlayParkGetSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1333864907}
         m_TargetAssemblyTypeName: App.Main.Player.Perk.ChoosePerkPanel, Assembly-CSharp
         m_MethodName: OnClick
@@ -3771,7 +3795,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 100
     m_FontStyle: 1
     m_BestFit: 0
@@ -3808,7 +3832,6 @@ GameObject:
   - component: {fileID: 1402157159}
   - component: {fileID: 1402157158}
   - component: {fileID: 1402157157}
-  - component: {fileID: 1402157156}
   - component: {fileID: 1402157165}
   m_Layer: 0
   m_Name: Stage
@@ -3817,19 +3840,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1402157156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402157155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92085254f43b2ab4481d7968c2a5f5e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
 --- !u!114 &1402157157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3941,6 +3951,7 @@ MonoBehaviour:
   _blockMinY: 0.5
   _horizontalBlockCount: 10
   _verticalBlockCount: 10
+  _wholeSeCollector: {fileID: 819493554}
 --- !u!114 &1402157160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4161,7 +4172,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -4319,6 +4330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poseCanvas: {fileID: 2072714527}
+  _wholeSeCollector: {fileID: 819493554}
 --- !u!4 &1452436838
 Transform:
   m_ObjectHideFlags: 0
@@ -4432,8 +4444,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 819493554}
         m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
-        m_MethodName: PlaySE
-        m_Mode: 3
+        m_MethodName: PlayDecisionSE
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4564,7 +4576,7 @@ MonoBehaviour:
   _PerkNameText: {fileID: 152850923}
   _PerkExplanationText: {fileID: 1361571597}
   _textData: {fileID: 11400000, guid: 277714db34c7c494ca901bf80cf6f032, type: 2}
-  debugPerkId: 3
+  debugPerkId: 0
 --- !u!114 &1492290906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4609,6 +4621,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 819493554}
+        m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
+        m_MethodName: PlayParkGetSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1492290905}
         m_TargetAssemblyTypeName: App.Main.Player.Perk.ChoosePerkPanel, Assembly-CSharp
         m_MethodName: OnClick
@@ -4947,7 +4971,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -5093,7 +5117,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -5318,8 +5342,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 819493554}
         m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
-        m_MethodName: PlaySE
-        m_Mode: 3
+        m_MethodName: PlayDecisionSE
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5643,7 +5667,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -5754,7 +5778,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -5855,7 +5879,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 6
   m_TargetDisplay: 0
 --- !u!224 &2046566141
 RectTransform:
@@ -5967,7 +5991,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -6193,7 +6217,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1063d4beb84a6044996f3de5a66325e1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
