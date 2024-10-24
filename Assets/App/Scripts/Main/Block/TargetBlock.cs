@@ -4,6 +4,7 @@ using App.Main.Player;
 using App.Main.Stage;
 using App.Main.Effects;
 using App.Main.Cat;
+using App.Common.Audio;
 
 namespace App.Main.Block
 {   //ターゲットのブロック
@@ -15,13 +16,13 @@ namespace App.Main.Block
         private PlayerDatastore playerDatastore;
         [SerializeField] int[] initialHp;//ワールドごとに個別に設定する
         [SerializeField] int Id;
-        public StageSystem StageSystem{ get; set; }
+        public StageSystem StageSystem { get; set; }
         private float WaitTime = 1.0f;
         private float PoisonStack = 0;
         private int WeaknessPoint = 0;
         private bool isPoisoned = false;
         private bool isBroke = false;
-
+        [SerializeField] private WholeSECollector _wholeSeCollector;
         void Start()
         {
             blockAnimation = GetComponent<BlockAnimation>();
@@ -40,6 +41,14 @@ namespace App.Main.Block
         }
 
         //<summary>
+        //ブロックにSE用のコンポーネントを追加する
+        //</summary>
+        public void AddWholeSeCollector(WholeSECollector wholeSeCollector)
+        {
+            _wholeSeCollector = wholeSeCollector;
+        }
+
+        //<summary>
         // ブロックが破壊されたときに通達するために取得する
         //</summary>
         public void SetStage(StageSystem stageSystem)
@@ -54,7 +63,8 @@ namespace App.Main.Block
         //</summary>
         public void TakeDamage(int damage)
         {
-            if(WeaknessPoint > 0) damage *= 2;
+            _wholeSeCollector.PlaySE(2);
+            if (WeaknessPoint > 0) damage *= 2;
             BlockHp newBlockHp = new BlockHp(damage);
             blockDatastore.SetHp(blockDatastore.Hp.SubtractCurrentValue(newBlockHp));
 
@@ -74,6 +84,7 @@ namespace App.Main.Block
         //</summary>
         private void Break()
         {
+            _wholeSeCollector.PlaySE(1);
             if (isBroke) return;
             //ワイヤーケージのパークがある場合、猫が増えずにブロック破壊の処理を行う。
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[1].FloatEffect() == 1)
@@ -113,19 +124,19 @@ namespace App.Main.Block
         public void AddPoisonStack(int stack)
         {
             PoisonStack += (float)stack;
-            if(playerDatastore.PerkSystem.PerkList.AllPerkList[20].IntEffect() == 1) PoisonStack += (float)stack;
+            if (playerDatastore.PerkSystem.PerkList.AllPerkList[20].IntEffect() == 1) PoisonStack += (float)stack;
         }
 
         public void RemovePoisonStack()
         {
-            PoisonStack -= (float)1/playerDatastore.PerkSystem.PerkList.AllPerkList[15].IntEffect();
-            if(PoisonStack < 0) PoisonStack = 0;
+            PoisonStack -= (float)1 / playerDatastore.PerkSystem.PerkList.AllPerkList[15].IntEffect();
+            if (PoisonStack < 0) PoisonStack = 0;
         }
 
         public void AddWeaknessPoint(int point)
         {
             WeaknessPoint += point;
-            if(playerDatastore.PerkSystem.PerkList.AllPerkList[20].IntEffect() == 1) WeaknessPoint += point;
+            if (playerDatastore.PerkSystem.PerkList.AllPerkList[20].IntEffect() == 1) WeaknessPoint += point;
         }
 
         public IEnumerator RemoveWeaknessPoint()

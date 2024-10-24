@@ -69,7 +69,6 @@ namespace App.Main.Stage
                 {
                     // 残機を減らす処理
                     _player.SubtractLive(1);
-                    Debug.Log("Live: " + _player.Parameter.Live.CurrentValue);
                     // 残機が0になったら
                     if (_player.IsLiveValue(0))
                     {

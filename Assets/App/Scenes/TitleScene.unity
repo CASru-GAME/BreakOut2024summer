@@ -404,8 +404,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1523954412}
         m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
-        m_MethodName: PlaySE
-        m_Mode: 3
+        m_MethodName: PlayDecisionSE
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -804,8 +804,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1523954412}
         m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
-        m_MethodName: PlaySE
-        m_Mode: 3
+        m_MethodName: PlayDecisionSE
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1376,8 +1376,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1523954412}
         m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
-        m_MethodName: PlaySE
-        m_Mode: 3
+        m_MethodName: PlayDecisionSE
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1775,8 +1775,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1523954412}
         m_TargetAssemblyTypeName: App.Common.Audio.WholeSECollector, Assembly-CSharp
-        m_MethodName: PlaySE
-        m_Mode: 3
+        m_MethodName: PlayDecisionSE
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

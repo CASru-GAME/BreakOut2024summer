@@ -1,4 +1,3 @@
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -25,6 +24,22 @@ namespace App.Common.Audio
             if (_wholeSEList.GetLength(0) == 0) return;
 
             _audioSource.PlayOneShot(_wholeSEList[seID]);
+        }
+
+        /// <summary>
+        /// 決定SEを再生する
+        /// </summary>
+        public void PlayDecisionSE()
+        {
+            PlaySE(0);
+        }
+
+        /// <summary>
+        /// パーク獲得時のSEを再生する
+        /// </summary>
+        public void PlayParkGetSE()
+        {
+            PlaySE(4);
         }
     }
 }
