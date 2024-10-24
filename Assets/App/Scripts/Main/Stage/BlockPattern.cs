@@ -137,7 +137,7 @@ namespace App.Main.Stage
 
                 //バックトラックで座標候補を確定
                 var selectedPositionList = new List<List<(int x, int y)>>();
-                int attemptCount = 0, maxAttemptCount = 1000;
+                int attemptCount = 0, maxAttemptCount = -1000;
                 FindPositionPattern(0, new List<List<(int x, int y)>>());
                 void FindPositionPattern(int patternIndex, List<List<(int x, int y)>> decidedPositionList)
                 {
@@ -598,7 +598,7 @@ namespace App.Main.Stage
                     BlockPatternData.Horizontal_10_Hard(2),
                     BlockPatternData.Surroundings_3_3_Normal_Changeable(0,0),
                     BlockPatternData.Horizontal_10_Normal_Changeable(1,0),
-                    BlockPatternData._1_HorizontalMove_Changeable(0,0)},2
+                    BlockPatternData._1_HorizontalMove_Changeable(0,0)},
                     new List<(int x, int y)>{(2,6),(0,0),(4,8),(1,0),(5,9),(0,4),(3,3),(0,0),(2,2)});
             }
 
