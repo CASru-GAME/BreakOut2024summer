@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using App.Main.Player;
 using App.Main.Item;
@@ -169,19 +170,20 @@ namespace App.Main.Stage
             _ballCountonStage = 0;
             _normalBlockCount = 0;
             _targetBlockCount = 0;
-            CreateBall(new Vector3(0, 0, 0));
-            PerkEffect();
+            CreateBall(new Vector3(-2.2f, -3f, 0));
+            StartCoroutine(PerkEffect());
             GetComponent<BlockPattern>().CreateBlocks(_currentStageNumberID, _roopCount);
             GetComponent<HoleWall>().CreateHole(_currentStageNumberID);
             _targetBlockCount = GetComponent<BlockPattern>().TargetBlockCount;
             _normalBlockCount = GetComponent<BlockPattern>().NormalBlockCount;
         }
 
-        private void PerkEffect()
+        private IEnumerator PerkEffect()
         {
             for (int i = 0; i < _player.PerkSystem.PerkList.AllPerkList[10].IntEffect(); i++)
             {
-                CreateBall(new Vector3(0.2f * i, 0, 0));
+                yield return new WaitForSeconds(0.5f);
+                CreateBall(new Vector3(-2.2f, -3f, 0));
             }
         }
 
