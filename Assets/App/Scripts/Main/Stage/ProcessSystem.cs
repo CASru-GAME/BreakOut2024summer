@@ -34,7 +34,7 @@ namespace App.Main.Stage
             _stageState = GetComponent<StageStateDatastore>();
             _sceneLoader = GetComponent<SceneLoader>();
 
-            Time.timeScale = 1;
+            Time.timeScale = 1; // ゲームのスピードを遅くする
             yield return new WaitForSeconds(0.001f); // 1秒の遅延
 
             InitializeGame();
