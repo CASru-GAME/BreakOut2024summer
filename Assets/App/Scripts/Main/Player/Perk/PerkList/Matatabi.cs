@@ -36,7 +36,7 @@ namespace App.Main.Player.Perk
 
         private int CaluculateProbability()
         {
-            return (10*StackCount);
+            return (3*StackCount);
         }
 
         public int IntEffect()

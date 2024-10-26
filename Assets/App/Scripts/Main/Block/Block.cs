@@ -108,12 +108,23 @@ namespace App.Main.Block
             {
                 StageSystem.IncreaseTotalCat();
                 createCat.Create(transform.position, transform.localScale);
+                if(playerDatastore.PerkSystem.PerkList.AllPerkList[21].IntEffect() == 1)
+                {
+                    StartCoroutine(CreateCat());
+                }
             }
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[13].IntEffect() == 1)
             {
                 StageSystem.CreateBall(transform.position);
             }
             Destroy(gameObject);
+        }
+
+        private IEnumerator CreateCat()
+        {
+            StageSystem.IncreaseTotalCat();
+            yield return new WaitForSeconds(0.5f);
+            createCat.Create(transform.position, transform.localScale);
         }
 
         public IEnumerator TakePoisonDamage()
