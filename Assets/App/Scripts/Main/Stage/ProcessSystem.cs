@@ -129,9 +129,16 @@ namespace App.Main.Stage
         {
             _timer.StopTimer();
             StageState.SetWaiting();
-            _stageSystem.CountClearedStage();
-            FetchGameParameter();
-            _sceneLoader.LoadSceneAsyncByName("MainScene");
+
+            StartCoroutine(StageClearProcess());
+
+            IEnumerator StageClearProcess()
+            {
+                yield return new WaitForSeconds(0.2f);
+                _stageSystem.CountClearedStage();
+                FetchGameParameter();
+                _sceneLoader.LoadSceneAsyncByName("MainScene");
+            }
         }
 
         // どのような状態であっても発動するゲームの初期化処理
