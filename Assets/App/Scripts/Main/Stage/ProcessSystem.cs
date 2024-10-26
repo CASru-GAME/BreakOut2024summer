@@ -35,7 +35,7 @@ namespace App.Main.Stage
             StageState = GetComponent<StageStateDatastore>();
             _sceneLoader = GetComponent<SceneLoader>();
 
-            Time.timeScale = 1;
+            Time.timeScale = 1; // ゲームのスピードを遅くする
             yield return new WaitForSeconds(0.001f); // 1秒の遅延
 
             InitializeGame();
@@ -79,7 +79,7 @@ namespace App.Main.Stage
                     else
                     {
                         // ボールを生成する
-                        _stageSystem.CreateBall(new Vector3(0, -3, 0));
+                        _stageSystem.CreateBall(new Vector3(-2.2f, -3f, 0));
                     }
                 }
                 // ターゲットブロックがすべてなくなったら

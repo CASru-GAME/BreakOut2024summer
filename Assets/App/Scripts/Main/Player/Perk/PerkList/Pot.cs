@@ -30,7 +30,7 @@ namespace App.Main.Player.Perk
 
         private int CalculateProbability(int value)
         {
-            return 15 * value;
+            return 5 * value;
         }
 
 
