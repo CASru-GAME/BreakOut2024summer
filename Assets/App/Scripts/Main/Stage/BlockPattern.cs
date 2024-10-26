@@ -137,7 +137,7 @@ namespace App.Main.Stage
 
                 //バックトラックで座標候補を確定
                 var selectedPositionList = new List<List<(int x, int y)>>();
-                int attemptCount = 0, maxAttemptCount = -1000;
+                int attemptCount = 0, maxAttemptCount = 1000;
                 FindPositionPattern(0, new List<List<(int x, int y)>>());
                 void FindPositionPattern(int patternIndex, List<List<(int x, int y)>> decidedPositionList)
                 {
