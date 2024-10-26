@@ -4,6 +4,7 @@ using App.Common.Static;
 using App.Common;
 using System.Collections;
 using App.Common.Audio;
+using App.Main.Item;
 
 namespace App.Main.Stage
 {
@@ -11,7 +12,7 @@ namespace App.Main.Stage
     {
         private Timer _timer = default;
         private StageSystem _stageSystem = default;
-        private StageStateDatastore _stageState = default;
+        public StageStateDatastore StageState = default;
         private SceneLoader _sceneLoader = default;
         [SerializeField] private PlayerDatastore _player = default;
         [SerializeField] private float _timeLimit = 60.0f;
@@ -31,7 +32,7 @@ namespace App.Main.Stage
         {
             _timer = GetComponent<Timer>();
             _stageSystem = GetComponent<StageSystem>();
-            _stageState = GetComponent<StageStateDatastore>();
+            StageState = GetComponent<StageStateDatastore>();
             _sceneLoader = GetComponent<SceneLoader>();
 
             Time.timeScale = 1;
@@ -55,14 +56,14 @@ namespace App.Main.Stage
         /// ゲームの更新処理
         void Update()
         {
-            if (_stageState == null) return;
-            if (_stageState.isPlaying())
+            if (StageState == null) return;
+            if (StageState.isPlaying())
             {
                 //　時間切れになったら
                 if (_timer.State == Timer.TimerState.TimeOver)
                 {
                     // ゲーム終了処理
-                    _stageState.SetGameFinish();
+                    StageState.SetGameFinish();
                 }
                 //画面上のボールがなくなったら
                 else if (_stageSystem.BallCountonStage == 0)
@@ -73,7 +74,7 @@ namespace App.Main.Stage
                     if (_player.IsLiveValue(0))
                     {
                         // ゲーム終了処理
-                        _stageState.SetGameFinish();
+                        StageState.SetGameFinish();
                     }
                     else
                     {
@@ -85,16 +86,16 @@ namespace App.Main.Stage
                 else if (_stageSystem.TargetBlockCount == 0)
                 {
                     // ステージクリア処理
-                    _stageState.SetStageClear();
+                    StageState.SetStageClear();
                     PerkEffect();
                 }
             }
-            else if (_stageState.isGameFinish())
+            else if (StageState.isGameFinish())
             {
                 // ゲーム終了処理
                 ConductGameFinishProcess();
             }
-            else if (_stageState.isStageClear())
+            else if (StageState.isStageClear())
             {
                 // ステージクリア処理
                 ConductStageClearProcess();
@@ -117,7 +118,7 @@ namespace App.Main.Stage
         // ゲームの状態がゲーム終了状態になった際のゲーム終了処理
         private void ConductGameFinishProcess()
         {
-            _stageState.SetWaiting();
+            StageState.SetWaiting();
             _timer.StopTimer();
             FetchGameParameter();
             _sceneLoader.LoadSceneAsyncByName("ResultScene");
@@ -126,9 +127,9 @@ namespace App.Main.Stage
         // ゲームの状態がステージクリア状態になった際のステージクリア処理
         private void ConductStageClearProcess()
         {
-            _stageState.SetWaiting();
-            _stageSystem.CountClearedStage();
             _timer.StopTimer();
+            StageState.SetWaiting();
+            _stageSystem.CountClearedStage();
             FetchGameParameter();
             _sceneLoader.LoadSceneAsyncByName("MainScene");
         }
@@ -138,8 +139,9 @@ namespace App.Main.Stage
         {
             LoadGameParameter();
             _stageSystem.InitializeStage();
-            _stageState.SetPlayGame();
+            StageState.SetPlayGame();
             _timer.StartTimer();
+
         }
 
         /// インスタンス←static
@@ -220,8 +222,8 @@ namespace App.Main.Stage
 
         public bool IsPlaying()
         {
-            if (_stageState == null) return false;
-            return _stageState.isPlaying();
+            if (StageState == null) return false;
+            return StageState.isPlaying();
         }
     }
 }

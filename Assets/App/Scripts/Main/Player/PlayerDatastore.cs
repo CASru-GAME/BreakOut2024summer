@@ -31,7 +31,6 @@ namespace App.Main.Player
             Parameter = new Parameter(3, 3, 5.0f, 5.0f, 1, 0);  //Parameter(int live, int attackPoint, float ballSpeed, float moveSpeed, int level , int experiencePoint)のコンストラクタを呼び出す
             ItemList = new ItemList();
             levelSystem = new LevelSystem(this);
-            //PerkSystem = new PerkSystem(this, perkPanelPrefab); 
             PerkSystem = new PerkSystem(this, perkCanvas, perkPanelList, processSystem);
             ComboSystem = new ComboSystem(this);
             perkCanvas.enabled = false;
