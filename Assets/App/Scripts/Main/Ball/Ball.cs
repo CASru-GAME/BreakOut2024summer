@@ -137,10 +137,7 @@ namespace App.Main.Ball
         /// </summary>
         public int CalcDamage()
         {
-            int damage = PlayerDatastore.GetAttackPointValue();
-            damage += (int)(PlayerDatastore.PerkSystem.PerkList.AllPerkList[19].FloatEffect() * 10);
-            damage += PlayerDatastore.PerkSystem.PerkList.AllPerkList[12].IntEffect();
-
+            int damage = playerDatastore.GetAttackPointValue();
             damage += CalculateComboDamage();
             damage = CaluculatePerkDamage(damage);
             return damage;
@@ -153,9 +150,12 @@ namespace App.Main.Ball
 
         private int CaluculatePerkDamage(int damage)
         {
-            damage += PlayerDatastore.PerkSystem.PerkList.AllPerkList[2].IntEffect();
-            damage += PlayerDatastore.PerkSystem.PerkList.AllPerkList[1].IntEffect();
-            damage *= PlayerDatastore.PerkSystem.PerkList.AllPerkList[22].IntEffect();
+            damage += playerDatastore.PerkSystem.PerkList.AllPerkList[1].IntEffect();
+            damage += playerDatastore.PerkSystem.PerkList.AllPerkList[2].IntEffect();
+            damage += playerDatastore.PerkSystem.PerkList.AllPerkList[12].IntEffect();
+            damage += playerDatastore.PerkSystem.PerkList.AllPerkList[16].IntEffect();            
+            damage += (int)(playerDatastore.PerkSystem.PerkList.AllPerkList[19].FloatEffect() * 10);
+            damage *= playerDatastore.PerkSystem.PerkList.AllPerkList[22].IntEffect();
             return damage;
         }
 
@@ -166,7 +166,7 @@ namespace App.Main.Ball
 
         private int CalculateWeaknessStack()
         {
-            return PlayerDatastore.PerkSystem.PerkList.AllPerkList[6].IntEffect();
+            return playerDatastore.PerkSystem.PerkList.AllPerkList[7].IntEffect();
         }
 
         public void DecreasePathThroughCount()

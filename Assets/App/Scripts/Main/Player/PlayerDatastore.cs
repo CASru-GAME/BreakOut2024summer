@@ -28,7 +28,7 @@ namespace App.Main.Player
         /// </summary>
         public void InitializePlayer()
         {
-            Parameter = new Parameter(3, 3, 5.0f, 5.0f, 1, 0);  //Parameter(int live, int attackPoint, float ballSpeed, float moveSpeed, int level , int experiencePoint)のコンストラクタを呼び出す
+            Parameter = new Parameter(3, 3, 5.0f, 5.0f, 1, 0, 0);  //Parameter(int live, int attackPoint, float ballSpeed, float moveSpeed, int level, int experiencePoint, int dumbbellPower)のコンストラクタを呼び出す
             ItemList = new ItemList();
             levelSystem = new LevelSystem(this);
             PerkSystem = new PerkSystem(this, perkCanvas, perkPanelList, processSystem);
@@ -307,6 +307,16 @@ namespace App.Main.Player
         {
             Parameter.ReplaceLevel(level);
             Parameter.AddExperiencePoint(experiencePoint);
+        }
+
+        public int GetDumbbellPower()
+        {
+            return Parameter.GetDumbbellPower();
+        }
+
+        public void AddDumbbellPower(int addPower)
+        {
+            Parameter.AddDumbbellPower(addPower, PerkSystem.PerkList.AllPerkList[12].GetStackCount());
         }
     }
 }

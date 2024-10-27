@@ -102,6 +102,11 @@ namespace App.Main.Block
 
             blockAnimation.Break();
 
+            if (playerDatastore.PerkSystem.PerkList.AllPerkList[12].GetStackCount() > 0)
+            {
+                playerDatastore.AddDumbbellPower(1);
+            }
+
             StageSystem.CreateItem(transform.position); //デバッグ用
             StageSystem.CreateExpBall(transform.position); //デバッグ用
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[3].IntEffect() == 1)

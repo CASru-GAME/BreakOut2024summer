@@ -37,6 +37,11 @@ namespace App.Common.Static
         /// </summary>
         public static int _maxLive { get; private set; } = 3;
 
+        ///<summary>
+        /// ダンベルで増加した攻撃力
+        /// </summary>
+        public static int _dumbbellPower { get; private set; } = 0;
+
         /// <summary>
         /// 獲得した経験値を代入する
         /// </summary>
@@ -142,7 +147,19 @@ namespace App.Common.Static
             _maxLive = maxLive;
         }
 
-        
+        /// <summary>
+        /// ダンベルで増加した攻撃力を代入する
+        /// </summary>
+        /// <param name="dumbbellPower"></param>
+        public static void AssignDumbbellPower(int dumbbellPower)
+        {
+            if (dumbbellPower < 0)
+            {
+                UnityEngine.Debug.Log("DumbbellPower: 0より小さい値が入力されました");
+                return;
+            }
+            _dumbbellPower = dumbbellPower;
+        }
 
         /// <summary>
         /// 全ての統計データをリセットする
@@ -156,6 +173,8 @@ namespace App.Common.Static
             _totalCat = 0;
             _remainingTimeLimit = 0;
             _remainingLive = 0;
+            _maxLive = 3;
+            _dumbbellPower = 0;
         }
     }
 }

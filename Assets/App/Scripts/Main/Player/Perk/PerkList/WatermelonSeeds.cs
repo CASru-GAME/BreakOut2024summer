@@ -38,7 +38,7 @@ namespace App.Main.Player.Perk
         public int IntEffect()
         {
             if (StackCount == 0) return 0;
-            return (int)((1-1/(StackCount+1))*playerDatastore.GetComboCount());
+            return (int)((1-1/(StackCount+1))*playerDatastore.GetComboCount()*2);
         }
 
         public float FloatEffect()

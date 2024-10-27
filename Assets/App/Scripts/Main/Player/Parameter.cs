@@ -8,10 +8,10 @@ namespace App.Main.Player
         public MoveSpeed MoveSpeed { get; private set; }
         public Level Level { get; private set; }
         public ExperiencePoint ExperiencePoint { get; private set; }
-
         public ComboCount ComboCount { get; private set; }
+        public DumbbellPower DummbellPower { get; private set; }
 
-        public Parameter(int live, int attackPoint, float ballSpeed, float moveSpeed, int level , int experiencePoint)
+        public Parameter(int live, int attackPoint, float ballSpeed, float moveSpeed, int level , int experiencePoint, int dumbbellPower)
         {
             Live = new Live(live);
             AttackPoint = new AttackPoint(attackPoint);
@@ -20,6 +20,7 @@ namespace App.Main.Player
             Level = new Level(level);
             ExperiencePoint = new ExperiencePoint(experiencePoint);
             ComboCount = new ComboCount(0);
+            DummbellPower = new DumbbellPower(dumbbellPower);
         }
 
         public void AddLive(int value)
@@ -141,6 +142,14 @@ namespace App.Main.Player
             return ComboCount.CurrentValue;
         }
 
+        public int GetDumbbellPower()
+        {
+            return DummbellPower.Power;
+        }
 
+        public void AddDumbbellPower(int addPower, int stackCount)
+        {
+            DummbellPower = DummbellPower.AddCurrentValue(new DumbbellPower(addPower), stackCount);
+        }
     }
 }
