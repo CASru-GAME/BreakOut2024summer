@@ -36,7 +36,6 @@ namespace App.Common.Audio
             _audioSource.volume = 0;
             _audioSource.Play();
             StartCoroutine(FadeIn());
-            Debug.Log("BGMStarted");
             Initialized = true;
         }
 

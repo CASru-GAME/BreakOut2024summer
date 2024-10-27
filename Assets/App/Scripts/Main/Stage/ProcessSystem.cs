@@ -38,18 +38,7 @@ namespace App.Main.Stage
             Time.timeScale = 1; // ゲームのスピードを遅くする
             yield return new WaitForSeconds(0.001f); // 1秒の遅延
 
-            InitializeGame();
-
-            Debug.Log("_____________________________: CurrentStageNumberID = " + _stageSystem.CurrentStageNumberID + " :_____________________________");
-            Debug.Log("_____________________________: CurrentWorldNumberID = " + _stageSystem.CurrentWorldNumberID + " :_____________________________");
-            Debug.Log("_____________________________: Static → ClearedStageCount = " + _stageSystem.ClearedStageCount + " :_____________________________");
-            Debug.Log("_____________________________: Static → TotalDestroyedTargetBlockCount = " + _stageSystem.GetTotalCat() + " :_____________________________");
-            Debug.Log("_____________________________: Static → RemainingTimeLimit = " + _timer.RemainingTimeLimit + " :_____________________________");
-            Debug.Log("_____________________________: Static → RemainingLive = " + _player.Parameter.GetLiveValue() + " :_____________________________");
-            Debug.Log("_____________________________: Static → TotalAquiredExperiencePoint = " + _player.GetExperiencePointValue() + " :_____________________________");
-            Debug.Log("_____________________________: Static → PlayerLevel = " + _player.GetLevelValue() + " :_____________________________");
-            Debug.Log("_____________________________: Static → TotalAquiredPerkList = " + _player.PerkSystem.PerkList.GetOwnedPerkList() + " :_____________________________");
-            
+            InitializeGame();            
             transitionPanel.SetTrigger("StartTrigger");
         }
 
