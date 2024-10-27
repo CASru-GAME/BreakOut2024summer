@@ -46,7 +46,8 @@ namespace App.Main.Player.Perk
 
         private int CalculateProbability()
         {
-            return (int)(StackCount)*10;
+            if (StackCount == 0) return 0;
+            return 20;
         }
 
         public float FloatEffect()
