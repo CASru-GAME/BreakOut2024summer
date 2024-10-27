@@ -18,7 +18,7 @@ namespace App.Main.Item
 
         void Update() 
         {   
-            if(transform.position.y < _minY) Suside();
+            if(transform.position.y < _minY) Suicide();
         }
         
         /// <summary>
@@ -42,7 +42,7 @@ namespace App.Main.Item
             else GetComponent<Rigidbody2D>().velocity = new Vector2(0, _itemSpeed);
         }
 
-        private void Suside()
+        private void Suicide()
         {
             Destroy(gameObject);
         }
@@ -53,7 +53,7 @@ namespace App.Main.Item
         public void GetItem(PlayerDatastore playerDatastore)
         {
             itemTable.items[Id].effect(stageSystem,playerDatastore);
-            Suside();
+            Suicide();
         }
     }
 }

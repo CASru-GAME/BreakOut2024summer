@@ -1,6 +1,7 @@
 using UnityEngine;
 using App.Main.Item;
 using App.Main.Player.Perk;
+using App.Main.Stage;
 
 namespace App.Main.Player
 {
@@ -9,8 +10,7 @@ namespace App.Main.Player
         PlayerDatastore playerDatastore;  //データストアがパラメータを持っている
         private Rigidbody2D rb;
         private PlayerMove playerMove;
-
-        
+        [SerializeField] private ProcessSystem _processSystem;
         
         void Awake()
         {
@@ -24,9 +24,8 @@ namespace App.Main.Player
         private void OnTriggerEnter2D(Collider2D other)
         {
             IItem item = other.gameObject.GetComponent<IItem>();
-            if(item != null)
+            if(item != null && _processSystem.StageState.isPlaying())
             {
-                //ダメージ計算
                 item.GetItem(playerDatastore);
             }
             
