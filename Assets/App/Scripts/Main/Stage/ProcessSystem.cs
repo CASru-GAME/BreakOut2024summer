@@ -176,6 +176,7 @@ namespace App.Main.Stage
             }
             _player.LoadLevelAndExperiencePoint(StatisticsDatastore._playerLevel, StatisticsDatastore._totalAquiredExperiencePoint);
             _player.PerkSystem.PerkList.LoadPerkList(StatisticsDatastore._totalAquiredPerkList);
+            _player.AddDumbbellPower(StatisticsDatastore._dumbbellPower);
         }
 
         /// static←インスタンス
@@ -188,6 +189,7 @@ namespace App.Main.Stage
             StatisticsDatastore.AssignTotalAquiredExperiencePoint(_player.GetExperiencePointValue());
             StatisticsDatastore.AssignPlayerLevel(_player.GetLevelValue());
             StatisticsDatastore.AssignTotalAquiredPerkList(_player.PerkSystem.PerkList.GetOwnedPerkList());
+            StatisticsDatastore.AssignDumbbellPower(_player.Parameter.GetDumbbellPower());
         }
 
         /// <summary>

@@ -45,6 +45,4 @@ namespace App.Main.Player
             UnityEngine.Debug.Log($"Message : {message}, MoveSpeed : {this._speed}.");
         }
     }
-
-
 }

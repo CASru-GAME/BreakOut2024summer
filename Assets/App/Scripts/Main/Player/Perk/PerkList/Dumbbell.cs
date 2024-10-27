@@ -36,7 +36,7 @@ namespace App.Main.Player.Perk
 
         public int IntEffect()
         {
-            return Math.Min(playerDatastore.GetComboCount(), StackCount * 3);
+            return playerDatastore.Parameter.GetDumbbellPower();
         }
 
         public float FloatEffect()
