@@ -1,6 +1,6 @@
 using UnityEngine;
 using App.Main.Player;
-using App.Common.Static;
+using App.Common.Data.Static;
 using App.Common;
 using System.Collections;
 using App.Common.Audio;

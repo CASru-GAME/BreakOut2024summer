@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace App.Common.Static
+namespace App.Common.Data.Static
 {
     public static class StatisticsDatastore
     {
