@@ -24,6 +24,7 @@ namespace App.Main.Result
         [SerializeField] private GameObject _ownedPerkPanelTextPos;
         [SerializeField] private GameObject _canvas;
         [SerializeField] private SpriteData _spriteData;
+        [SerializeField] private SpriteRenderer back_Image;
 
         private void Start()
         {
@@ -33,6 +34,7 @@ namespace App.Main.Result
             _catDefaultText = catText.text;
             catText.text = string.Format(_catDefaultText, " ");
             StartCoroutine(ShowResult());
+            back_Image.sprite = _spriteData.GetResultBackSprite((StatisticsDatastore._totalClearedStage) % 15 / 3 + 1);
         }
 
         private IEnumerator ShowResult()
@@ -45,7 +47,7 @@ namespace App.Main.Result
             }
             for(int i = 0; i < StatisticsDatastore._totalClearedStage; i++)
             {
-                yield return new WaitForSeconds(_shuffleTime);
+                yield return new WaitForSeconds(_shuffleTime / StatisticsDatastore._totalClearedStage);
                 stageText.text = string.Format(_stageDefaultText, i + 1);
             }
 
@@ -57,7 +59,7 @@ namespace App.Main.Result
             }
             for(int i = 0; i < StatisticsDatastore._totalCat; i++)
             {
-                yield return new WaitForSeconds(_shuffleTime);
+                yield return new WaitForSeconds(_shuffleTime / StatisticsDatastore._totalCat);
                 catText.text = string.Format(_catDefaultText, i + 1);
             }
 
