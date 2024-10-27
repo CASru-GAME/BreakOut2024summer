@@ -30,7 +30,7 @@ namespace App.Main.Item
             new ItemData(11, 6),
             new ItemData(12, 1),
             new ItemData(13, 4),    
-            new ItemData(14, 4),
+            new ItemData(14, 0),
             new ItemData(15, 4),
             new ItemData(16, 4),
         };
