@@ -22,10 +22,10 @@ namespace App.Main.Ball
                 //黄色い潜水艦の効果
                 //透明な丸を作り、ブロックとの衝突判定を取得し、ブロックのtakeDamageを呼び出す。
                 //透明な丸は処理が終わると消える
-                if(Ball.playerDatastore.PerkSystem.PerkList.AllPerkList[14].FloatEffect() == 1)
+                if(Ball.PlayerDatastore.PerkSystem.PerkList.AllPerkList[14].FloatEffect() == 1)
                 {
                     GameObject collision_detector = Instantiate(invisibleBall_forYellowSubmarine, other.transform.position, quaternion.identity);
-                    collision_detector.GetComponent<CollisionDetector_forYellowSubmarine>().SetDamage(Ball.playerDatastore.PerkSystem.PerkList.AllPerkList[14].GetStackCount(), Ball.CalcDamage());
+                    collision_detector.GetComponent<CollisionDetector_forYellowSubmarine>().SetDamage(Ball.PlayerDatastore.PerkSystem.PerkList.AllPerkList[14].GetStackCount(), Ball.CalcDamage());
                 }
             }
         }
