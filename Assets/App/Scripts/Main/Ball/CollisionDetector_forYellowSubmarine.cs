@@ -13,7 +13,6 @@ namespace App.Main.Ball
         public void SetDamage(int StackCount, int base_damage)
         {
             this.damage = (int)((float)base_damage * (1f - 1f / (float)((float)StackCount + 1f)) * 0.8f);
-            Debug.Log("yellowdamage: " + damage);
         }
 
         private void TakeDamage(GameObject block)

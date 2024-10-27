@@ -70,7 +70,6 @@ namespace App.Main.Player.Perk
         public IEnumerator ChoosePerk()
         {
             perkCanvas.enabled = true;
-            UnityEngine.Debug.Log("ChoosePerk");
             IsPerkChoosing = true;
             UnityEngine.Time.timeScale = 0;
             ChoseRandomPerk();
@@ -91,7 +90,6 @@ namespace App.Main.Player.Perk
         {
             PerkList.GetPerk(PerkId);
             EffectWhenAcquiredPerk(PerkId);
-            Debug.Log("PerkId: " + PerkId);
         }
 
         private void EffectWhenAcquiredPerk(int PerkId)
