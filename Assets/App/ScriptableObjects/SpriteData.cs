@@ -12,6 +12,7 @@ namespace App.ScriptableObjects
         [SerializeField] private List<Sprite> _perkSpriteList;
         [SerializeField] private List<Sprite> _back_Wall_SpriteList;
         [SerializeField] private List<Sprite> _result_Back_SpriteList;
+        [SerializeField] private List<Sprite> _introSpriteList;
         [SerializeField] private Sprite _ExpSprite;
 
 
@@ -46,6 +47,16 @@ namespace App.ScriptableObjects
             if(id <= 10) return _ExpSprite;
             if(id <= 13) return GetStaticItemSprite(id - 11);
             return GetUseItemSprite(id - 14);
+        }
+
+        public Sprite GetIntroSprite(int id)
+        {
+            return _introSpriteList[id];
+        }
+
+        public int GetIntroSpriteCount()
+        {
+            return _introSpriteList.Count;
         }
     }
 }
