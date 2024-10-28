@@ -19,16 +19,18 @@ namespace App.Common
             _perkId = perkId;
             text_Name.text = _textData.GetPerkName(_perkId);
             text_Explanation.text = _textData.GetPerkExplanation(_perkId);
-            panel.SetActive(false);
+            //panel.SetActive(false);
         }
 
         public void OnPoint()
         {
+            if(panel.activeSelf) return;
             panel.SetActive(true);
         }
 
         public void OutPoint()
         {
+            if(!panel.activeSelf) return;
             panel.SetActive(false);
         }
     }
