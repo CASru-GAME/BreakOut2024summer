@@ -3,6 +3,7 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using App.Common.Data.Static;
+using Unity.VisualScripting;
 
 namespace App.Common.Data
 {
@@ -16,7 +17,7 @@ namespace App.Common.Data
         /// 日付最新はリストの最後尾
         /// </remark>
         public List<StatisticsData> statisticsDataList = new List<StatisticsData>();
-        public string _currentSceneName = "";
+        private string _currentSceneName = "";
         void Awake()
         {
             _currentSceneName = SceneManager.GetActiveScene().name;
@@ -33,6 +34,7 @@ namespace App.Common.Data
             {
                 //新しいデータを追加
                 StatisticsData newStatisticsData = new StatisticsData(System.DateTime.Now.ToString(), StatisticsDatastore._totalClearedStage, StatisticsDatastore._totalCat, StatisticsDatastore._totalAquiredPerkList);
+                statisticsDataList = new List<StatisticsData>();
                 LoadStatisticsData();
                 statisticsDataList.Add(newStatisticsData);
                 //JSONファイルに保存
@@ -47,7 +49,6 @@ namespace App.Common.Data
             if (File.Exists(filePath))
             {
                 string json = File.ReadAllText(filePath);
-                Debug.Log("Loaded : \n" + json);
                 statisticsDataList = JsonUtility.FromJson<StatisticsDataListWrapper>(json).statisticsDataList;
             }
         }
@@ -56,10 +57,25 @@ namespace App.Common.Data
         public void SaveStatisticsData()
         {
             string filePath = Application.persistentDataPath + "/Resources/StatisticsDataList.json";
-            string json = JsonUtility.ToJson(new StatisticsDataListWrapper { statisticsDataList = statisticsDataList });
-            Debug.Log("Saved : \n" + json);
-            Debug.Log(json);
+            string directoryPath = Path.GetDirectoryName(filePath);
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+            StatisticsDataListWrapper statisticsDataListWrapper = new StatisticsDataListWrapper { statisticsDataList = statisticsDataList };
+            string json = JsonUtility.ToJson(statisticsDataListWrapper, true);
             File.WriteAllText(filePath, json);
+        }
+
+        //統計データのリセット
+        public void ResetStatisticsData()
+        {
+            string filePath = Application.persistentDataPath + "/Resources/StatisticsDataList.json";
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+            statisticsDataList = new List<StatisticsData>();
         }
     }
 
