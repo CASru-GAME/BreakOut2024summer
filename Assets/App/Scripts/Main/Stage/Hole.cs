@@ -20,6 +20,7 @@ namespace App.Main.Stage
             if(_ball)
             {
                 _stageSystem.DecreaseBallCountonStage();
+                _ball.CreateBallOutEffect(other.transform.position);
                 Destroy(other.gameObject);
             }
         }

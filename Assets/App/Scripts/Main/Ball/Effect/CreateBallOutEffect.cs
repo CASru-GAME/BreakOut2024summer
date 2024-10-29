@@ -8,7 +8,7 @@ namespace App.Main.Ball
     public class CreateBallOutEffect : MonoBehaviour
     {
         [SerializeField] private GameObject _effectPrefab;
-        public void Create(Vector2 pos, Vector2 scale)
+        public void Create(Vector2 pos)
         {
             if(pos.y < -1f)
             {

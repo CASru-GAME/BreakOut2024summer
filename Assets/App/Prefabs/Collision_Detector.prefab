@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2929001076643856617}
   - component: {fileID: 6624386308186507180}
   - component: {fileID: -4926619552673276759}
+  - component: {fileID: -4753750730526648391}
   m_Layer: 0
   m_Name: Collision_Detector
   m_TagString: Untagged
@@ -133,3 +134,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60c587833510a14db5170aaf3ff992e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _createYellowSubmarineEffect2: {fileID: -4753750730526648391}
+--- !u!114 &-4753750730526648391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966382267313284638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3af7ce4f664b6a43a332c38fa2bac5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectPrefab: {fileID: 6008192455282957741, guid: 42bc0fb2e8b5ba84b9dc1bc07727936f, type: 3}

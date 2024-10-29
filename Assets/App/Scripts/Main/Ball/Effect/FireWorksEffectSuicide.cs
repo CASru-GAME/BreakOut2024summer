@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace App.Main.Ball
 {
-    public class BallEffectSuicide : MonoBehaviour
+    public class FireWorksEffectSuicide : MonoBehaviour
     {
         private void Start()
         {
@@ -12,7 +12,7 @@ namespace App.Main.Ball
 
             IEnumerator Suicide()
             {
-                yield return new WaitForSeconds(0.12f);
+                yield return new WaitForSeconds(0.5f);
                 Destroy(gameObject);
             }
         }
