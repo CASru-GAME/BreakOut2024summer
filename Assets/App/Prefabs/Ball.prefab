@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 2423732660049578180}
   - component: {fileID: 8861344833147865886}
   - component: {fileID: 1382676903896181083}
+  - component: {fileID: 4024329345978197542}
   m_Layer: 6
   m_Name: Ball
   m_TagString: Untagged
@@ -249,3 +250,17 @@ MonoBehaviour:
   PathThroughCount: 0
   Trigger: {fileID: 5418803775116382484}
   isPathThrough: 0
+--- !u!114 &4024329345978197542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8641789219075247340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2227bc017fac23f49956df2aa2e39e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectPrefab: {fileID: 2727581967464972649, guid: 89da9b91d6d8a4144bcf12217b34feb2, type: 3}
+  _effectAnimatorController: []
