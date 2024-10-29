@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using App.Main.Player;
 using App.Main.Item;
-using App.Common.Static;
+using App.Common.Data.Static;
 
 namespace App.Main.Stage
 {
