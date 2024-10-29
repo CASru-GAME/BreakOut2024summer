@@ -55,4 +55,8 @@ MonoBehaviour:
   - {fileID: -928417283, guid: ece98ddc5ed66fd4fa1251dc85937b4b, type: 3}
   - {fileID: -559445495, guid: ece98ddc5ed66fd4fa1251dc85937b4b, type: 3}
   - {fileID: 215539262, guid: ece98ddc5ed66fd4fa1251dc85937b4b, type: 3}
+  _introSpriteList:
+  - {fileID: 21300000, guid: 0520863da9c659044aaf707c0e9b352b, type: 3}
+  - {fileID: 21300000, guid: 1bc0c7880695e0d4b8514a9dd363a67b, type: 3}
+  - {fileID: 21300000, guid: 608f8df9c4651104b926c95f2a441d37, type: 3}
   _ExpSprite: {fileID: -564722197, guid: 9b4d4045e098b914fbdcf32efd91f8fc, type: 3}
