@@ -23,6 +23,10 @@ namespace App.Main.Ball
         [SerializeField] private int PathThroughCount = 0;
         [SerializeField] private GameObject Trigger;
         public bool isPathThrough = false;
+        [SerializeField] private CreateBallOutEffect _createBallOutEffect;
+        [SerializeField] private CreateFireWorksEffect _createFireWorksEffect;
+        [SerializeField] private CreateYellowSubmarineEffect1 _createYellowSubmarineEffect1;
+        public int YellowSubmarineCoolTime = 0;
 
         /// <summary>
         /// デバッグ用．ボールに初速度を与える
@@ -49,6 +53,7 @@ namespace App.Main.Ball
             //ボールが画面外に出たら自分自身を削除
             if (transform.position.y < _minY)
             {
+                CreateBallOutEffect(transform.position);
                 Suicide();
             }
             if (PathThroughCount > 0)
@@ -56,6 +61,14 @@ namespace App.Main.Ball
                 isPathThrough = true;
                 this.gameObject.layer = 8;
                 Trigger.SetActive(true);
+            }
+            if(YellowSubmarineCoolTime > 0)
+            {
+                YellowSubmarineCoolTime--;
+            }
+            else
+            {
+                YellowSubmarineCoolTime = 0;
             }
 
 
@@ -90,6 +103,7 @@ namespace App.Main.Ball
                 yield return new WaitForSeconds(0.1f);
                 lifeTime -= 0.1f;
             }
+            _createFireWorksEffect.Create(transform.position);
             Suicide();
         }
 
@@ -106,10 +120,12 @@ namespace App.Main.Ball
                 //黄色い潜水艦の効果
                 //透明な丸を作り、ブロックとの衝突判定を取得し、ブロックのtakeDamageを呼び出す。
                 //透明な丸は処理が終わると消える
-                if (PlayerDatastore.PerkSystem.PerkList.AllPerkList[14].FloatEffect() == 1)
+                if (PlayerDatastore.PerkSystem.PerkList.AllPerkList[14].FloatEffect() == 1 && YellowSubmarineCoolTime == 0)
                 {
+                    _createYellowSubmarineEffect1.Create(collision2D.transform.position);
                     GameObject collision_detector = Instantiate(invisibleBall_forYellowSubmarine, collision2D.transform.position, quaternion.identity);
                     collision_detector.GetComponent<CollisionDetector_forYellowSubmarine>().SetDamage(PlayerDatastore.PerkSystem.PerkList.AllPerkList[14].GetStackCount(), CalcDamage());
+                    YellowSubmarineCoolTime = 300;
                 }
             }
         }
@@ -130,6 +146,11 @@ namespace App.Main.Ball
 
             block.AddPoisonStack(CalculatePoisonStack());
             block.AddWeaknessPoint(CalculateWeaknessStack());
+        }
+
+        public void CreateBallOutEffect(Vector2 position)
+        {
+            _createBallOutEffect.Create(position);
         }
 
         /// <summary>

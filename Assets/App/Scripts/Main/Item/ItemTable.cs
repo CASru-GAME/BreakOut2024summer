@@ -67,7 +67,8 @@ namespace App.Main.Item
             });
             items[11] = new ItemEffect((StageSystem stageSystem, PlayerDatastore playerDatastore) =>
             {
-                stageSystem.CreateBall(transform.position + new Vector3(0f,0.15f,0f));
+                stageSystem.CreateBall(new Vector3(-2.2f, -3f, 0));
+
                 perkEffect(stageSystem, playerDatastore);
             });
             items[12] = new ItemEffect((StageSystem stageSystem, PlayerDatastore playerDatastore) =>
