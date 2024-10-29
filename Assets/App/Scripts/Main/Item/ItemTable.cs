@@ -67,7 +67,7 @@ namespace App.Main.Item
             });
             items[11] = new ItemEffect((StageSystem stageSystem, PlayerDatastore playerDatastore) =>
             {
-                stageSystem.CreateBall(new Vector3(0f, 0f, 0f));
+                stageSystem.CreateBall(transform.position + new Vector3(0f,0.15f,0f));
                 perkEffect(stageSystem, playerDatastore);
             });
             items[12] = new ItemEffect((StageSystem stageSystem, PlayerDatastore playerDatastore) =>
@@ -126,7 +126,7 @@ namespace App.Main.Item
             {
                 for (int i = 0; i < playerDatastore.PerkSystem.PerkList.AllPerkList[9].GetStackCount(); i++)
                 {
-                    stageSystem.CreateBall(new Vector3(0f, 0f, 0f));
+                    stageSystem.CreateBall(transform.position + new Vector3(0f,0.15f,0f));
                     stageSystem.IncreaseBallCountonStage();
                 }
             }

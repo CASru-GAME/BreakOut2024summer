@@ -170,7 +170,7 @@ namespace App.Main.Stage
             _ballCountonStage = 0;
             _normalBlockCount = 0;
             _targetBlockCount = 0;
-            CreateBall(new Vector3(-2.2f, -3f, 0));
+            CreateBall(_player.gameObject.transform.position + new Vector3(0f,0.15f,0f));
             StartCoroutine(PerkEffect());
             GetComponent<BlockPattern>().CreateBlocks(_currentStageNumberID, _roopCount);
             GetComponent<HoleWall>().CreateHole(_currentStageNumberID);
@@ -183,7 +183,7 @@ namespace App.Main.Stage
             for (int i = 0; i < _player.PerkSystem.PerkList.AllPerkList[10].IntEffect(); i++)
             {
                 yield return new WaitForSeconds(0.5f);
-                CreateBall(new Vector3(-2.2f, -3f, 0));
+                CreateBall(_player.gameObject.transform.position + new Vector3(0f,0.15f,0f));
             }
         }
 
