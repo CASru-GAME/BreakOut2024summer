@@ -8,7 +8,7 @@ namespace App.Title.Intro
 {
     public class IntroButton : MonoBehaviour
     {
-        [SerializeField] private Canvas canvas_intro;
+        [SerializeField] private Canvas canvas_Intro;
         [SerializeField] private SpriteData spriteData;
         private int _currentIntroSpriteId = 0;
         [SerializeField] private Image image_Intro;
@@ -19,12 +19,12 @@ namespace App.Title.Intro
 
         public void Close()
         {
-            canvas_intro.gameObject.SetActive(false);
+            canvas_Intro.gameObject.SetActive(false);
         }
 
         public void Open()
         {
-            canvas_intro.gameObject.SetActive(true);
+            canvas_Intro.gameObject.SetActive(true);
             _currentIntroSpriteId = 0;
             image_Intro.sprite = spriteData.GetIntroSprite(_currentIntroSpriteId);
             previousButtonText.color = inactiveColor;
