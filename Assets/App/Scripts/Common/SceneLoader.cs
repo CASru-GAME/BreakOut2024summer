@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using App.Common.Static;
+using App.Common.Data.Static;
 
 namespace App.Common
 {

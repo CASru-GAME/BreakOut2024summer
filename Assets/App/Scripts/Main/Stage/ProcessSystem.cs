@@ -1,6 +1,6 @@
 using UnityEngine;
 using App.Main.Player;
-using App.Common.Static;
+using App.Common.Data.Static;
 using App.Common;
 using System.Collections;
 using App.Common.Audio;
@@ -68,7 +68,7 @@ namespace App.Main.Stage
                     else
                     {
                         // ボールを生成する
-                        _stageSystem.CreateBall(new Vector3(-2.2f, -3f, 0));
+                        _stageSystem.CreateBall(_player.gameObject.transform.position + new Vector3(0f,0.15f,0f));
                     }
                 }
                 // ターゲットブロックがすべてなくなったら
