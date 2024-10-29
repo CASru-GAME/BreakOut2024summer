@@ -33,7 +33,7 @@ namespace App.Common.Data
             if (_currentSceneName == "ResultScene")
             {
                 //新しいデータを追加
-                StatisticsData newStatisticsData = new StatisticsData(System.DateTime.Now.ToString(), StatisticsDatastore._totalClearedStage, StatisticsDatastore._totalCat);
+                StatisticsData newStatisticsData = new StatisticsData(System.DateTime.Now.ToString(), StatisticsDatastore._totalClearedStage, StatisticsDatastore._totalCat, StatisticsDatastore._totalAquiredPerkList);
                 statisticsDataList = new List<StatisticsData>();
                 LoadStatisticsData();
                 statisticsDataList.Add(newStatisticsData);
