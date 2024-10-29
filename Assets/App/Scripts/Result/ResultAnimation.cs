@@ -74,16 +74,16 @@ namespace App.Main.Result
                 newOwnedPerkPanelPrefab.transform.SetParent(_canvas.transform);
                 newOwnedPerkPanelPrefab.transform.localScale = _ownedPerkPanelPos.transform.localScale;
                 newOwnedPerkPanelPrefab.transform.localPosition += 
-                new Vector3(_ownedPerkPanelPos.transform.localScale.x * _ownedPerkPanelPos.GetComponent<RectTransform>().sizeDelta.x * (i % 7),
-                -_ownedPerkPanelPos.transform.localScale.y * _ownedPerkPanelPos.GetComponent<RectTransform>().sizeDelta.y * (i / 7), 0.0f);
+                new Vector3(_ownedPerkPanelPos.transform.localScale.x * _ownedPerkPanelPos.GetComponent<RectTransform>().sizeDelta.x * (i % 9),
+                -_ownedPerkPanelPos.transform.localScale.y * _ownedPerkPanelPos.GetComponent<RectTransform>().sizeDelta.y * (i / 9), 0.0f);
                 newOwnedPerkPanelPrefab.GetComponent<Image>().sprite = _spriteData.GetPerkSprite(id);
                 newOwnedPerkPanelPrefab.GetComponent<PerkIcon>().Initialize(id);
                 var newOwnedPerkPanelTextPrefab = Instantiate(_ownedPerkPanelTextPrefab, _ownedPerkPanelTextPos.transform.position, Quaternion.identity);
                 newOwnedPerkPanelTextPrefab.transform.SetParent(_canvas.transform);
                 newOwnedPerkPanelTextPrefab.transform.localScale = _ownedPerkPanelTextPos.transform.localScale;
                 newOwnedPerkPanelTextPrefab.transform.localPosition += 
-                new Vector3(_ownedPerkPanelPos.transform.localScale.x * _ownedPerkPanelPos.GetComponent<RectTransform>().sizeDelta.x * (i % 7),
-                -_ownedPerkPanelPos.transform.localScale.y * _ownedPerkPanelPos.GetComponent<RectTransform>().sizeDelta.y * (i / 7), 0.0f);
+                new Vector3(_ownedPerkPanelPos.transform.localScale.x * _ownedPerkPanelPos.GetComponent<RectTransform>().sizeDelta.x * (i % 9),
+                -_ownedPerkPanelPos.transform.localScale.y * _ownedPerkPanelPos.GetComponent<RectTransform>().sizeDelta.y * (i / 9), 0.0f);
                 string _ownedPerkPanelDefaultText = newOwnedPerkPanelTextPrefab.GetComponent<Text>().text;
                 newOwnedPerkPanelTextPrefab.GetComponent<Text>().text = string.Format(_ownedPerkPanelDefaultText, stackCount);
                 if(stackCount == 1) newOwnedPerkPanelTextPrefab.SetActive(false);
