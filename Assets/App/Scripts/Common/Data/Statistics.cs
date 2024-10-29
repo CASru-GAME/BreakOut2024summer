@@ -11,15 +11,11 @@ namespace App.Common.Data
         public int _totalClearedStage = 0;
         /// 助けた猫の数
         public int _totalCat = 0;
-        /// 集めたパーク
-        public List<(int id, int stackCount)> _totalAquiredPerkList = new List<(int id, int stackCount)>();
-
-        public StatisticsData(string clearedDate, int totalClearedStage, int totalCat, List<(int id, int stackCount)> totalAquiredPerkList)
+        public StatisticsData(string clearedDate, int totalClearedStage, int totalCat)
         {
             _clearedDate = clearedDate;
             _totalClearedStage = totalClearedStage;
             _totalCat = totalCat;
-            _totalAquiredPerkList = totalAquiredPerkList;
         }
     }
 }
