@@ -10,6 +10,7 @@ namespace App.Common.Data
 {
     public class StatisticsDataController : MonoBehaviour
     {
+        [SerializeField] private string debugscene = "DebugScene";
         /// <summary>
         /// 統計データリスト
         /// </summary>
@@ -23,7 +24,10 @@ namespace App.Common.Data
         {
             _currentSceneName = SceneManager.GetActiveScene().name;
             //JSONファイルの読み込み
-            if (_currentSceneName == "TitleScene")
+            if ((_currentSceneName == "TitleScene")||(_currentSceneName == debugscene))
+            {
+                LoadStatisticsData();
+            }
             {
                 LoadStatisticsData();
             }

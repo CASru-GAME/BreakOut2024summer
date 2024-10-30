@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2418657781671327941}
   - component: {fileID: 7113525543068753237}
   - component: {fileID: 2465191239690281435}
+  - component: {fileID: 1614885354210417148}
+  - component: {fileID: 7567095144591307248}
   m_Layer: 6
   m_Name: Trigger
   m_TagString: Untagged
@@ -82,6 +84,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ball: {fileID: 1382676903896181083}
   invisibleBall_forYellowSubmarine: {fileID: 1966382267313284638, guid: a89984c5a484e5543b65284908d2e8ef, type: 3}
+  _createYellowSubmarineEffect1: {fileID: 1614885354210417148}
+  _createYellowSubmarineEffect2: {fileID: 7567095144591307248}
+--- !u!114 &1614885354210417148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5418803775116382484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6499e6801c883b04a88b4bac12706614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectPrefab: {fileID: 5730717619221523300, guid: 9b99b921ee3841e4da934e6fd5157e05, type: 3}
+--- !u!114 &7567095144591307248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5418803775116382484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3af7ce4f664b6a43a332c38fa2bac5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectPrefab: {fileID: 6008192455282957741, guid: 42bc0fb2e8b5ba84b9dc1bc07727936f, type: 3}
 --- !u!1 &8641789219075247340
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,6 +125,10 @@ GameObject:
   - component: {fileID: 2423732660049578180}
   - component: {fileID: 8861344833147865886}
   - component: {fileID: 1382676903896181083}
+  - component: {fileID: 4024329345978197542}
+  - component: {fileID: 7875100665331798424}
+  - component: {fileID: -2752598839627811926}
+  - component: {fileID: -5046154618182562016}
   m_Layer: 6
   m_Name: Ball
   m_TagString: Untagged
@@ -249,3 +283,59 @@ MonoBehaviour:
   PathThroughCount: 0
   Trigger: {fileID: 5418803775116382484}
   isPathThrough: 0
+  _createBallOutEffect: {fileID: 4024329345978197542}
+  _createFireWorksEffect: {fileID: 7875100665331798424}
+  _createYellowSubmarineEffect1: {fileID: -2752598839627811926}
+  _createYellowSubmarineEffect2: {fileID: -5046154618182562016}
+--- !u!114 &4024329345978197542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8641789219075247340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2227bc017fac23f49956df2aa2e39e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectPrefab: {fileID: 2727581967464972649, guid: 89da9b91d6d8a4144bcf12217b34feb2, type: 3}
+--- !u!114 &7875100665331798424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8641789219075247340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8dd6b69ce2e8b4c9c57b113dbb5260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectPrefab: {fileID: 6199315579218947347, guid: a5c7be16b0c4d8f47ad4d76d7690cf52, type: 3}
+--- !u!114 &-2752598839627811926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8641789219075247340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6499e6801c883b04a88b4bac12706614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectPrefab: {fileID: 5730717619221523300, guid: 9b99b921ee3841e4da934e6fd5157e05, type: 3}
+--- !u!114 &-5046154618182562016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8641789219075247340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3af7ce4f664b6a43a332c38fa2bac5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectPrefab: {fileID: 6008192455282957741, guid: 42bc0fb2e8b5ba84b9dc1bc07727936f, type: 3}

@@ -27,12 +27,12 @@ namespace App.Main.Item
 
         public List<ItemData> AllItems = new List<ItemData>()
         {
-            new ItemData(11, 6),
+            new ItemData(11, 7),
             new ItemData(12, 1),
-            new ItemData(13, 4),    
+            new ItemData(13, 6),    
             new ItemData(14, 0),
-            new ItemData(15, 4),
-            new ItemData(16, 4),
+            new ItemData(15, 6),
+            new ItemData(16, 6),
         };
         public List<ItemData> ActiveItems = new List<ItemData>()
         {
