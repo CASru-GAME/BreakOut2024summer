@@ -18,17 +18,23 @@ namespace App.Main.Block
         [SerializeField] int Id;
         public StageSystem StageSystem { get; set; }
         private float WaitTime = 1.0f;
-        private float PoisonStack = 0;
-        private int WeaknessPoint = 0;
+        public float PoisonStack { get; set; }
+        public int WeaknessPoint { get; set; }
         private bool isPoisoned = false;
         private bool isBroke = false;
         [SerializeField] private WholeSECollector _wholeSeCollector;
+        [SerializeField] private CreateDebuffEffect _createDebuffEffect;
+        private bool isPoisonEffect = false;
+        private bool isWeaknessEffect = false;
         void Start()
         {
             blockAnimation = GetComponent<BlockAnimation>();
             createCat = GetComponent<CreateCat>();
             playerDatastore = FindObjectOfType<PlayerDatastore>();
             //　findしたくないので、引数で渡したい
+            _createDebuffEffect.initialize(this);
+            PoisonStack = 0;
+            WeaknessPoint = 0;
         }
 
         private void FixedUpdate()
@@ -85,6 +91,8 @@ namespace App.Main.Block
         private void Break()
         {
             _wholeSeCollector.PlaySE(1);
+            PoisonStack = 0;
+            WeaknessPoint = 0;
             if (isBroke) return;
             //ワイヤーケージのパークがある場合、猫が増えずにブロック破壊の処理を行う。
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[1].FloatEffect() == 1)
@@ -110,6 +118,7 @@ namespace App.Main.Block
                 }
             }
             isBroke = true;
+            _createDebuffEffect.DestroyEffect();
             Destroy(gameObject);
         }
 
@@ -125,6 +134,11 @@ namespace App.Main.Block
         {
             PoisonStack += (float)stack;
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[20].IntEffect() == 1) PoisonStack += (float)stack;
+            if (isPoisonEffect == false && PoisonStack > 0)
+            {
+                _createDebuffEffect.CreatePoisonEffect(transform.position);
+                isPoisonEffect = true;
+            }
         }
 
         public void RemovePoisonStack()
@@ -137,6 +151,11 @@ namespace App.Main.Block
         {
             WeaknessPoint += point;
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[20].IntEffect() == 1) WeaknessPoint += point;
+            if (isWeaknessEffect == false && WeaknessPoint > 0)
+            {
+                _createDebuffEffect.CreateWeaknessEffect(transform.position);
+                isWeaknessEffect = true;
+            }
         }
 
         public IEnumerator RemoveWeaknessPoint()
@@ -145,6 +164,11 @@ namespace App.Main.Block
             if (WeaknessPoint > 0)
             {
                 WeaknessPoint--;
+            }
+            if (WeaknessPoint <= 0)
+            {
+                WeaknessPoint = 0;
+                isWeaknessEffect = false;
             }
             yield return new WaitForSeconds(WaitTime);
         }

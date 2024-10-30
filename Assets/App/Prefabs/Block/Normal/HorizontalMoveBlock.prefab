@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3978087921670243104}
   - component: {fileID: -8889584118729275506}
   - component: {fileID: -1833686727224994427}
+  - component: {fileID: -2384346084450462511}
   m_Layer: 7
   m_Name: HorizontalMoveBlock
   m_TagString: Untagged
@@ -105,6 +106,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHp: 060000000a000000120000001c00000032000000
   Id: 2
+  PoisonStack: 0
+  WeaknessPoint: 0
+  _wholeSeCollector: {fileID: 0}
+  _createDebuffEffect: {fileID: 4067143796299024596, guid: 3dd70d1a36b87c842a7a239260377d90, type: 3}
 --- !u!114 &7311064369899123586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,3 +247,17 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 32d6b1de7ea61484aaf08f3896c0132f, type: 2}
   - {fileID: 9100000, guid: b8ce177f25298734baa430259e85c721, type: 2}
   - {fileID: 9100000, guid: 14c911e4c046ab0498e4eac56e343e88, type: 2}
+--- !u!114 &-2384346084450462511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156581129342115578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03dad662a500cb4cb2024d1a3d90278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PoisonEffectPrefab: {fileID: 5937550208290223403, guid: 7fdc7d6e3df484240bc200f63c4acf94, type: 3}
+  _WeaknessEffectPrefab: {fileID: 5565381754230860282, guid: a3a14fbbbac08f14da59b8989f6504ec, type: 3}

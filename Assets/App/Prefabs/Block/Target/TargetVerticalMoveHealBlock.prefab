@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 305702701656776934}
   - component: {fileID: 475540978449105145}
   - component: {fileID: 1705686724688467035}
+  - component: {fileID: 7128931417887610165}
   m_Layer: 7
   m_Name: TargetVerticalMoveHealBlock
   m_TagString: Untagged
@@ -203,6 +204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHp: 0a000000140000001e0000002800000032000000
   Id: 11
+  _wholeSeCollector: {fileID: 0}
+  _createDebuffEffect: {fileID: 6126756326324805841, guid: 8645e22fcd99f884ca416f9a4e2b08ff, type: 3}
 --- !u!114 &3340068013590731986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,3 +342,17 @@ MonoBehaviour:
   - {fileID: 9100000, guid: e51197f1c9fec0341bd6b11f15ce0c55, type: 2}
   - {fileID: 9100000, guid: b8ce177f25298734baa430259e85c721, type: 2}
   - {fileID: 9100000, guid: 14c911e4c046ab0498e4eac56e343e88, type: 2}
+--- !u!114 &7128931417887610165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6598970287209325743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03dad662a500cb4cb2024d1a3d90278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PoisonEffectPrefab: {fileID: 5937550208290223403, guid: 7fdc7d6e3df484240bc200f63c4acf94, type: 3}
+  _WeaknessEffectPrefab: {fileID: 5565381754230860282, guid: a3a14fbbbac08f14da59b8989f6504ec, type: 3}

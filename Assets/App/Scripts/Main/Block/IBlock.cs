@@ -7,6 +7,8 @@ namespace App.Main.Block
     public interface IBlock
     {   
         StageSystem StageSystem{ get; set;}
+        float PoisonStack{ get; set;}
+        int WeaknessPoint{ get; set;}
         void AddWholeSeCollector(WholeSECollector wholeSeCollector);
         void TakeDamage(int damage);
         void SetStage(StageSystem StageSystem);
