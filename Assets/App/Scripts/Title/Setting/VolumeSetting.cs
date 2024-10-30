@@ -15,6 +15,7 @@ namespace App.Title.Setting
 
         private void Start()
         {
+
             audioMixer.GetFloat("Master", out float masterVolume);
             slider_Master.value = masterVolume;
             audioMixer.GetFloat("BGM", out float bgmVolume);
