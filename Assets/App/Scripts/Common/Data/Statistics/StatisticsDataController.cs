@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using App.Common.Data.Statistics;
 using App.Common.Data.Statistics.Static;
 using Unity.VisualScripting;
+using System;
 
-namespace App.Common.Data
+namespace App.Common.Data.Statistics
 {
     public class StatisticsDataController : MonoBehaviour
     {
@@ -18,16 +19,13 @@ namespace App.Common.Data
         /// 降順に並べる
         /// 日付最新はリストの最後尾
         /// </remark>
-        public List<StatisticsData> statisticsDataList = new List<StatisticsData>();
+        [NonSerialized] public List<StatisticsData> statisticsDataList = new List<StatisticsData>();
         private string _currentSceneName = "";
         void Awake()
         {
             _currentSceneName = SceneManager.GetActiveScene().name;
             //JSONファイルの読み込み
-            if ((_currentSceneName == "TitleScene")||(_currentSceneName == debugscene))
-            {
-                LoadStatisticsData();
-            }
+            if ((_currentSceneName == "TitleScene") || (_currentSceneName == debugscene))
             {
                 LoadStatisticsData();
             }

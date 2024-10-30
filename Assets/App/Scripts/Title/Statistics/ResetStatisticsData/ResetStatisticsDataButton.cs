@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using App.ScriptableObjects;
-using App.Common.Data;
+using App.Common.Data.Statistics;
 using System.Collections.Generic;
 using UnityEditor;
 
