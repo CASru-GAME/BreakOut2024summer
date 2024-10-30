@@ -4578,7 +4578,7 @@ MonoBehaviour:
   _PerkNameText: {fileID: 152850923}
   _PerkExplanationText: {fileID: 1361571597}
   _textData: {fileID: 11400000, guid: 277714db34c7c494ca901bf80cf6f032, type: 2}
-  debugPerkId: 6
+  debugPerkId: 0
 --- !u!114 &1492290906
 MonoBehaviour:
   m_ObjectHideFlags: 0
