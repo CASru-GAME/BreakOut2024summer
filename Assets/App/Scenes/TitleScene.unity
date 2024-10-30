@@ -213,7 +213,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1710289648}
+      - m_Target: {fileID: 1092591568}
         m_TargetAssemblyTypeName: App.Title.Setting.VolumeSetting, Assembly-CSharp
         m_MethodName: SetVolume_BGM
         m_Mode: 0
@@ -643,7 +643,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1710289648}
+      - m_Target: {fileID: 1092591568}
         m_TargetAssemblyTypeName: App.Title.Setting.VolumeSetting, Assembly-CSharp
         m_MethodName: SetVolume_Master
         m_Mode: 0
@@ -964,7 +964,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -1075,7 +1075,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -1564,7 +1564,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -1784,7 +1784,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -1970,7 +1970,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 300
     m_FontStyle: 1
     m_BestFit: 0
@@ -2863,6 +2863,8 @@ GameObject:
   - component: {fileID: 1092591563}
   - component: {fileID: 1092591562}
   - component: {fileID: 1092591566}
+  - component: {fileID: 1092591567}
+  - component: {fileID: 1092591568}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2973,6 +2975,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionPanel: {fileID: 1333848434}
+--- !u!114 &1092591567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092591561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8845fa57288f4924a82c1f4df263917f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1092591568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092591561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c59c05e9caf0474fb3851d65ca413d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 1b8717508b8ff8e489f97cf1a6e7f889, type: 2}
+  slider_Master: {fileID: 269155131}
+  slider_BGM: {fileID: 47985482}
+  slider_SE: {fileID: 1404536210}
 --- !u!1 &1101142191
 GameObject:
   m_ObjectHideFlags: 0
@@ -3213,7 +3243,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -3252,7 +3282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1154236990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3533,7 +3563,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -3644,7 +3674,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -3969,7 +3999,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1710289648}
+      - m_Target: {fileID: 1092591568}
         m_TargetAssemblyTypeName: App.Title.Setting.VolumeSetting, Assembly-CSharp
         m_MethodName: SetVolume_SE
         m_Mode: 0
@@ -4406,7 +4436,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 2035208519856590405, guid: 1b8717508b8ff8e489f97cf1a6e7f889, type: 2}
-  m_audioClip: {fileID: 8300000, guid: a0f65fca8cab81847940ea0d3dc55357, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 60666b33100f5444ea05fb6430876835, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
   m_Pitch: 1
@@ -4532,12 +4562,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wholeSEList:
-  - {fileID: 8300000, guid: 36681c455fec93f4ea4bda16da8d6d75, type: 3}
-  - {fileID: 8300000, guid: 6d8cda99e96ea7c4787851e55fecd65f, type: 3}
-  - {fileID: 8300000, guid: d0ff424d24b9cda42bc923d46e57a8ee, type: 3}
-  - {fileID: 8300000, guid: f256419525fd9fc4c88b80d0cbbee755, type: 3}
-  - {fileID: 8300000, guid: 3f3a00e9cc1befc46967dc935ba6ba4d, type: 3}
-  - {fileID: 8300000, guid: 420f467e89ae98c418e65a192abf3831, type: 3}
+  - {fileID: 8300000, guid: 9bc8c81f7c45e6343a159c2b4108e9ba, type: 3}
+  - {fileID: 8300000, guid: 2d48e8d414ce8e5459be49bced625bbb, type: 3}
+  - {fileID: 8300000, guid: ec9ac79abaf7b5c4582da4f2e0b5ff91, type: 3}
+  - {fileID: 8300000, guid: 58e2b55b4f8786348bd78a29b9ac9664, type: 3}
+  - {fileID: 8300000, guid: 2d77583bc356ac74ea7d7a0319c14b80, type: 3}
+  - {fileID: 8300000, guid: fad573bd9aa7e894bae874a208ab8f19, type: 3}
   _audioMixer: {fileID: 24100000, guid: 1b8717508b8ff8e489f97cf1a6e7f889, type: 2}
 --- !u!1 &1566687464
 GameObject:
@@ -4629,7 +4659,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
@@ -4754,7 +4784,6 @@ GameObject:
   - component: {fileID: 1710289646}
   - component: {fileID: 1710289645}
   - component: {fileID: 1710289644}
-  - component: {fileID: 1710289648}
   m_Layer: 5
   m_Name: Volume_Title_Text
   m_TagString: Untagged
@@ -4832,7 +4861,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 300
     m_FontStyle: 1
     m_BestFit: 0
@@ -4853,22 +4882,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710289642}
   m_CullTransparentMesh: 1
---- !u!114 &1710289648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1710289642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c59c05e9caf0474fb3851d65ca413d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 1b8717508b8ff8e489f97cf1a6e7f889, type: 2}
-  slider_Master: {fileID: 269155131}
-  slider_BGM: {fileID: 47985482}
-  slider_SE: {fileID: 1404536210}
 --- !u!1 &1770287051
 GameObject:
   m_ObjectHideFlags: 0
@@ -5117,7 +5130,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 100
     m_FontStyle: 1
     m_BestFit: 0
@@ -5303,7 +5316,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2a24ab9c2e757e4c99071eb22d46bd1, type: 3}
+    m_Font: {fileID: 12800000, guid: 059997685ef4dd74399c2df7c2e36f09, type: 3}
     m_FontSize: 200
     m_FontStyle: 1
     m_BestFit: 0
