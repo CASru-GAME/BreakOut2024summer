@@ -6,34 +6,15 @@ namespace App.Main.Block
 {
     public class WeaknessEffectSuicide : MonoBehaviour
     {
-        IBlock _block;
-        private bool ischeck = false;
-        public void initialize(IBlock block)
+        private void Start()
         {
-            _block = block;
-        }
-        private void FixedUpdate()
-        {
-            if(ischeck == false)
-            {
-                StartCoroutine(check());
-            }
+            StartCoroutine(Suicide());
 
-            IEnumerator check()
+            IEnumerator Suicide()
             {
-                ischeck = true;
-                yield return new WaitForSeconds(0.3f);
-                if(_block.WeaknessPoint == 0 || _block == null)
-                {
-                    Destroy(gameObject);
-                }
-                ischeck = false;
-                
+                yield return new WaitForSeconds(1.15f);
+                Destroy(gameObject);
             }
-        }
-        public void Suicide()
-        {
-            Destroy(gameObject);
         }
     }
 }

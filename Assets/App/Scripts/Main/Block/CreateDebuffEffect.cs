@@ -11,32 +11,13 @@ namespace App.Main.Block
         [SerializeField] private GameObject _WeaknessEffectPrefab;
         GameObject PoisonEffect;
         GameObject WeaknessEffect;
-        IBlock _block;
-        public void initialize(IBlock block)
-        {
-            _block = block;
-        }
         public void CreatePoisonEffect(Vector2 pos)
         {
             PoisonEffect = Instantiate(_PoisonEffectPrefab, pos, Quaternion.identity);
-            PoisonEffect.GetComponent<PoisonEffectSuicide>().initialize(_block);
         }
         public void CreateWeaknessEffect(Vector2 pos)
         {
             WeaknessEffect = Instantiate(_WeaknessEffectPrefab, pos, Quaternion.identity);
-            WeaknessEffect.GetComponent<WeaknessEffectSuicide>().initialize(_block);
-        }
-
-        public void DestroyEffect()
-        {
-            if(PoisonEffect != null)
-            {
-                PoisonEffect.GetComponent<PoisonEffectSuicide>().Suicide();
-            }
-            if(WeaknessEffect != null)
-            {
-                WeaknessEffect.GetComponent<WeaknessEffectSuicide>().Suicide();
-            }
         }
     }
 }

@@ -6,36 +6,15 @@ namespace App.Main.Block
 {
     public class PoisonEffectSuicide : MonoBehaviour
     {
-        IBlock _block;
-        private bool ischeck = false;
+        private void Start()
+        {
+            StartCoroutine(Suicide());
 
-        public void initialize(IBlock block)
-        {
-            _block = block;
-        }
-        private void FixedUpdate()
-        {
-            if(ischeck == false)
+            IEnumerator Suicide()
             {
-                StartCoroutine(check());
+                yield return new WaitForSeconds(0.42f);
+                Destroy(gameObject);
             }
-
-            IEnumerator check()
-            {
-                ischeck = true;
-                yield return new WaitForSeconds(0.3f);
-                if(_block.PoisonStack == 0 || _block == null)
-                {
-                    Destroy(gameObject);
-                }
-                ischeck = false;
-                
-            }
-        }
-
-        public void Suicide()
-        {
-            Destroy(gameObject);
         }
     }
 }

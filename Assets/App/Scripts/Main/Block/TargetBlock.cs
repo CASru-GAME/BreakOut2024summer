@@ -32,7 +32,6 @@ namespace App.Main.Block
             createCat = GetComponent<CreateCat>();
             playerDatastore = FindObjectOfType<PlayerDatastore>();
             //　findしたくないので、引数で渡したい
-            _createDebuffEffect.initialize(this);
             PoisonStack = 0;
             WeaknessPoint = 0;
         }
@@ -43,6 +42,21 @@ namespace App.Main.Block
             {
                 StartCoroutine(TakePoisonDamage());
                 isPoisoned = true;
+            }
+
+            
+            if(isPoisonEffect == false && PoisonStack > 0)
+            {
+                _createDebuffEffect.CreatePoisonEffect(transform.position);
+                isPoisonEffect = true;
+                StartCoroutine(waitForPoisonEffect());
+            }
+
+            if(isWeaknessEffect == false && WeaknessPoint > 0)
+            {
+                _createDebuffEffect.CreateWeaknessEffect(transform.position);
+                isWeaknessEffect = true;
+                StartCoroutine(waitForWeaknessEffect());
             }
         }
 
@@ -118,7 +132,6 @@ namespace App.Main.Block
                 }
             }
             isBroke = true;
-            _createDebuffEffect.DestroyEffect();
             Destroy(gameObject);
         }
 
@@ -134,11 +147,6 @@ namespace App.Main.Block
         {
             PoisonStack += (float)stack;
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[20].IntEffect() == 1) PoisonStack += (float)stack;
-            if (isPoisonEffect == false && PoisonStack > 0)
-            {
-                _createDebuffEffect.CreatePoisonEffect(transform.position);
-                isPoisonEffect = true;
-            }
         }
 
         public void RemovePoisonStack()
@@ -151,11 +159,6 @@ namespace App.Main.Block
         {
             WeaknessPoint += point;
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[20].IntEffect() == 1) WeaknessPoint += point;
-            if (isWeaknessEffect == false && WeaknessPoint > 0)
-            {
-                _createDebuffEffect.CreateWeaknessEffect(transform.position);
-                isWeaknessEffect = true;
-            }
         }
 
         public IEnumerator RemoveWeaknessPoint()
@@ -172,5 +175,17 @@ namespace App.Main.Block
             }
             yield return new WaitForSeconds(WaitTime);
         }
+        IEnumerator waitForPoisonEffect()
+        {
+            yield return new WaitForSeconds(0.42f);
+            isPoisonEffect = false;
+        }
+
+        IEnumerator waitForWeaknessEffect()
+        {
+            yield return new WaitForSeconds(1.15f);
+            isWeaknessEffect = false;
+        }
+
     }
 }
