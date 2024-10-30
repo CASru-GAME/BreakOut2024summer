@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace App.Common.Data
+namespace App.Common.Data.Statistics
 {
     [System.Serializable]
     public class StatisticsData

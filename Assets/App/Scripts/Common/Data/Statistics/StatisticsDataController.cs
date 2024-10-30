@@ -2,7 +2,8 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-using App.Common.Data.Static;
+using App.Common.Data.Statistics;
+using App.Common.Data.Statistics.Static;
 using Unity.VisualScripting;
 
 namespace App.Common.Data
