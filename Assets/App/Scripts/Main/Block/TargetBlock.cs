@@ -24,6 +24,7 @@ namespace App.Main.Block
         private bool isBroke = false;
         [SerializeField] private WholeSECollector _wholeSeCollector;
         [SerializeField] private CreateDebuffEffect _createDebuffEffect;
+        [SerializeField] private CreateHealEffect _createHealEffect;
         private bool isPoisonEffect = false;
         private bool isWeaknessEffect = false;
         void Start()
@@ -98,6 +99,7 @@ namespace App.Main.Block
         {
             BlockHp newBlockHp = new BlockHp(healAmount);
             blockDatastore.SetHp(blockDatastore.Hp.AddCurrentValue(newBlockHp));
+            _createHealEffect.Create(transform.position);
         }
         //<summary>
         // 破壊されたことを通達する(TakeDamage内で呼び出される)

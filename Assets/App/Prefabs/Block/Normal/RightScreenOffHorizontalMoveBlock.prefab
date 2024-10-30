@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 996343353346044896}
   - component: {fileID: 6486220837784879337}
   - component: {fileID: 7339048410571835250}
+  - component: {fileID: -3641303369838040284}
   m_Layer: 7
   m_Name: RightScreenOffHorizontalMoveBlock
   m_TagString: Untagged
@@ -106,10 +107,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHp: 0a000000140000001e0000002800000032000000
   Id: 7
-  PoisonStack: 0
-  WeaknessPoint: 0
   _wholeSeCollector: {fileID: 0}
   _createDebuffEffect: {fileID: 4067143796299024596, guid: 3dd70d1a36b87c842a7a239260377d90, type: 3}
+  _createHealEffect: {fileID: 131629193692143756, guid: 3dd70d1a36b87c842a7a239260377d90, type: 3}
 --- !u!114 &5801674815588569115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,3 +261,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _PoisonEffectPrefab: {fileID: 5937550208290223403, guid: 7fdc7d6e3df484240bc200f63c4acf94, type: 3}
   _WeaknessEffectPrefab: {fileID: 5565381754230860282, guid: a3a14fbbbac08f14da59b8989f6504ec, type: 3}
+--- !u!114 &-3641303369838040284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8741922495981591096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50746240681d7c4996df2122950abc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectPrefab: {fileID: 5367095281904991997, guid: 8c878e219f4e2bd42a69cd856eade357, type: 3}
