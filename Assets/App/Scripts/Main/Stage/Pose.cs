@@ -10,12 +10,12 @@ namespace App.Main.Stage
         [SerializeField] private Canvas _poseCanvas;
         [SerializeField] private WholeSECollector _wholeSeCollector;
         private bool isPosing = false, isInputting = false;
-        
+
         private void Start()
         {
             _poseCanvas.enabled = false;
         }
-        
+
         private void Update()
         {
             if (Input.GetKey(KeyCode.Escape))
@@ -49,7 +49,7 @@ namespace App.Main.Stage
             Time.timeScale = 0;
         }
 
-        private void Close()
+        void Close()
         {
             isPosing = false;
             _poseCanvas.enabled = false;

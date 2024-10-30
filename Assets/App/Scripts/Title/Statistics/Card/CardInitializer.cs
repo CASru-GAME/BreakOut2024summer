@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using System;
 using UnityEngine.UI;
-using App.Common.Data;
+using App.Common.Data.Statistics;
 using App.ScriptableObjects;
 using App.Common;
 
