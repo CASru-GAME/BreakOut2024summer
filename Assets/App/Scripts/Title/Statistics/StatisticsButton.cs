@@ -89,5 +89,10 @@ namespace App.Title.Statistics
                 Destroy(card);
             }
         }
+
+        public void FetchData()
+        {
+            statisticsDataList = DataController.statisticsDataList;
+        }
     }
 }
