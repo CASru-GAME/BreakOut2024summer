@@ -35,6 +35,7 @@ namespace App.Title.Statistics.Card
 
         private void FetchValue(StatisticsDataController statisticsDataController, int cardId)
         {
+            _ownedPerkList = new List<(int id, int stackCount)>();
             this._dataController = statisticsDataController;
             _statisticsData = _dataController.statisticsDataList[cardId];
             _clearedDate = _statisticsData._clearedDate;
@@ -67,12 +68,12 @@ namespace App.Title.Statistics.Card
                 GameObject ownedPerkPanel = Instantiate(_ownedPerkPanel, _perkListInitialPos.transform);
                 SetIndividualPerkPanel(ownedPerkPanel, _ownedPerkList[i].id, _ownedPerkList[i].stackCount, i);
                 ownedPerkPanel.transform.SetParent(_perkListInitialPos.transform);
-                ownedPerkPanel.transform.localScale = _perkListInitialPos.transform.localScale;
+                ownedPerkPanel.transform.localScale = _perkListInitialPos.transform.localScale * 24;
                 //パネルの位置の初期化
                 ownedPerkPanel.transform.localPosition +=
                 new Vector3(
-                _ownedPerkPanel.transform.localScale.x * _perkListInitialPos.GetComponent<RectTransform>().sizeDelta.x * (i % 9),
-                -_perkListInitialPos.transform.localScale.y * _perkListInitialPos.GetComponent<RectTransform>().sizeDelta.y * (i / 9), 0.0f
+                _ownedPerkPanel.transform.localScale.x * _perkListInitialPos.GetComponent<RectTransform>().sizeDelta.x * (i % 11) / 60,
+                -_perkListInitialPos.transform.localScale.y * _perkListInitialPos.GetComponent<RectTransform>().sizeDelta.y * (i / 11), 0.0f
                 );
             }
         }
@@ -82,13 +83,7 @@ namespace App.Title.Statistics.Card
             //スタックカウントの表示の初期化
             GameObject ownedPerkPanelText = Instantiate(_ownedPerkPanelText, _perkListTextInitialPos.transform);
             ownedPerkPanelText.transform.SetParent(ownedPerkPanel.transform);
-            ownedPerkPanelText.transform.localScale = _perkListTextInitialPos.transform.localScale;
-            //パネル文字の位置の初期化
-            ownedPerkPanelText.transform.localPosition +=
-            new Vector3(
-            _ownedPerkPanel.transform.localScale.x * _perkListInitialPos.GetComponent<RectTransform>().sizeDelta.x * (i % 9),
-            -_perkListInitialPos.transform.localScale.y * _perkListInitialPos.GetComponent<RectTransform>().sizeDelta.y * (i / 9), 0.0f
-            );
+            ownedPerkPanelText.transform.localScale = _perkListTextInitialPos.transform.localScale / (16f * 20f);
             //スタックカウントの表示の初期化
             string ownedPerkPanelTextDefaultText = ownedPerkPanelText.GetComponent<Text>().text;
             ownedPerkPanelText.GetComponent<Text>().text = string.Format(ownedPerkPanelTextDefaultText, stackCount);

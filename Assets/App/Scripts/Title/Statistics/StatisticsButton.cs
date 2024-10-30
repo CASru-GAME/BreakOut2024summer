@@ -14,12 +14,13 @@ namespace App.Title.Statistics
         [SerializeField] private GameObject backGround_Statistics;
         private List<StatisticsData> statisticsDataList;
         [SerializeField] private Canvas canvas_statistics;
-        private int _maxCardCountonOnePage = 5;
+        private int _maxCardCountonOnePage = 6;
         private int _currentPageId = 0;
         [SerializeField] private Color32 activeColor;
         [SerializeField] private Color32 inactiveColor;
         [SerializeField] private Text nextButtonText;
         [SerializeField] private Text previousButtonText;
+        private List<GameObject> _currentDisplayedCardList;
 
         void Start()
         {
@@ -44,11 +45,11 @@ namespace App.Title.Statistics
 
         public void GoToNext()
         {
-            if (((_currentPageId + 1) * _maxCardCountonOnePage + statisticsDataList.Count % _maxCardCountonOnePage) >= statisticsDataList.Count) return;
+            if ((_currentPageId * _maxCardCountonOnePage + statisticsDataList.Count % _maxCardCountonOnePage) >= statisticsDataList.Count) return;
             _currentPageId++;
             SetCard();
             previousButtonText.color = activeColor;
-            if (((_currentPageId + 2) * _maxCardCountonOnePage + statisticsDataList.Count % _maxCardCountonOnePage) == statisticsDataList.Count) return;
+            if (((_currentPageId + 1) * _maxCardCountonOnePage + statisticsDataList.Count % _maxCardCountonOnePage) == statisticsDataList.Count) return;
             nextButtonText.color = inactiveColor;
         }
 
@@ -64,17 +65,28 @@ namespace App.Title.Statistics
 
         private void SetCard()
         {
+            if (_currentDisplayedCardList != null) ClearCard();
+            _currentDisplayedCardList = new List<GameObject>();
             for (int i = 0; i < _maxCardCountonOnePage; i++)
             {
                 if (i + _currentPageId * _maxCardCountonOnePage >= statisticsDataList.Count) break;
-                Debug.Log(i + _currentPageId * _maxCardCountonOnePage);
                 var card = Instantiate(cardPrefab, transform);
+                _currentDisplayedCardList.Add(card);
                 card.transform.SetParent(backGround_Statistics.transform);
 
-                float yOffset = -i * 200;
+                card.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+                float yOffset = -i * 60 + 150;
                 card.transform.localPosition = new Vector3(0, yOffset, 0);
 
                 card.GetComponent<Card.CardInitializer>().Initialize(DataController, i + _currentPageId * _maxCardCountonOnePage);
+            }
+        }
+
+        private void ClearCard()
+        {
+            foreach (var card in _currentDisplayedCardList)
+            {
+                Destroy(card);
             }
         }
     }
