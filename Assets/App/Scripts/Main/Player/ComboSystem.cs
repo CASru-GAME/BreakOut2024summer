@@ -7,7 +7,7 @@ namespace App.Main.Player
     {
         private PlayerDatastore playerDatastore;
         public int ComboResetCount = 0;
-        public int MaxComboCount = 300;
+        public int MaxComboCount = 150;
 
         public ComboSystem(PlayerDatastore playerDatastore)
         {
