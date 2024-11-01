@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 2140382643284757237}
   - component: {fileID: -1760778019059349240}
   - component: {fileID: 6197721805373112387}
+  - component: {fileID: 2686521132690907896}
+  - component: {fileID: -5598136159976109671}
   m_Layer: 7
   m_Name: SquareMoveBlock
   m_TagString: Untagged
@@ -105,6 +107,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHp: 0a000000140000001e0000002800000032000000
   Id: 5
+  _wholeSeCollector: {fileID: 0}
+  _createDebuffEffect: {fileID: 4067143796299024596, guid: 3dd70d1a36b87c842a7a239260377d90, type: 3}
+  _createHealEffect: {fileID: 131629193692143756, guid: 3dd70d1a36b87c842a7a239260377d90, type: 3}
 --- !u!114 &5237598480992472993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,3 +248,30 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 32d6b1de7ea61484aaf08f3896c0132f, type: 2}
   - {fileID: 9100000, guid: b8ce177f25298734baa430259e85c721, type: 2}
   - {fileID: 9100000, guid: 14c911e4c046ab0498e4eac56e343e88, type: 2}
+--- !u!114 &2686521132690907896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6123935217328600439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03dad662a500cb4cb2024d1a3d90278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PoisonEffectPrefab: {fileID: 5937550208290223403, guid: 7fdc7d6e3df484240bc200f63c4acf94, type: 3}
+  _WeaknessEffectPrefab: {fileID: 5565381754230860282, guid: a3a14fbbbac08f14da59b8989f6504ec, type: 3}
+--- !u!114 &-5598136159976109671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6123935217328600439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50746240681d7c4996df2122950abc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectPrefab: {fileID: 5367095281904991997, guid: 8c878e219f4e2bd42a69cd856eade357, type: 3}

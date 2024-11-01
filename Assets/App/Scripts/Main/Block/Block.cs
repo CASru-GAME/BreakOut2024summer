@@ -20,10 +20,14 @@ namespace App.Main.Block
         [SerializeField] int[] initialHp;//ワールドごとに個別に設定する
         [SerializeField] int Id;
         public StageSystem StageSystem { get; set; }
-        private float PoisonStack = 0;
-        private int WeaknessPoint = 0;
+        public float PoisonStack { get; set; }
+        public int WeaknessPoint { get; set; }
         private bool isPoisoned = false;
         [SerializeField] private WholeSECollector _wholeSeCollector;
+        [SerializeField]private CreateDebuffEffect _createDebuffEffect;
+        [SerializeField] private CreateHealEffect _createHealEffect;
+        private bool isPoisonEffect = false;
+        private bool isWeaknessEffect = false;
 
         void Start()
         {
@@ -31,6 +35,8 @@ namespace App.Main.Block
             createCat = GetComponent<CreateCat>();
             playerDatastore = FindObjectOfType<PlayerDatastore>();
             //　findしたくないので、引数で渡したい
+            PoisonStack = 0;
+            WeaknessPoint = 0;
         }
 
         private void FixedUpdate() {
@@ -40,6 +46,20 @@ namespace App.Main.Block
                 isPoisoned = true;
             }
             StartCoroutine(RemoveWeaknessPoint());
+
+            if(isPoisonEffect == false && PoisonStack > 0)
+            {
+                _createDebuffEffect.CreatePoisonEffect(transform.position);
+                isPoisonEffect = true;
+                StartCoroutine(waitForPoisonEffect());
+            }
+
+            if(isWeaknessEffect == false && WeaknessPoint > 0)
+            {
+                _createDebuffEffect.CreateWeaknessEffect(transform.position);
+                isWeaknessEffect = true;
+                StartCoroutine(waitForWeaknessEffect());
+            }
         }
 
         //<summary>
@@ -89,6 +109,7 @@ namespace App.Main.Block
         {  
             BlockHp newBlockHp = new BlockHp(healAmount);
             blockDatastore.SetHp(blockDatastore.Hp.AddCurrentValue(newBlockHp));
+            _createHealEffect.Create(transform.position);
         }
 
 
@@ -99,6 +120,8 @@ namespace App.Main.Block
         {
             //ステージのゲームクリアやゲームオーバー判定を持つクラスに自身が破壊されたことを通達
             StageSystem.DecreaseNormalBlockCount();
+            PoisonStack = 0;
+            WeaknessPoint = 0;
 
             blockAnimation.Break();
 
@@ -142,6 +165,7 @@ namespace App.Main.Block
 
         public void AddPoisonStack(int stack)
         {
+            
             PoisonStack += (float)stack;
             if(playerDatastore.PerkSystem.PerkList.AllPerkList[20].IntEffect() == 1) PoisonStack += (float)stack;
         }
@@ -149,11 +173,16 @@ namespace App.Main.Block
         public void RemovePoisonStack()
         {
             PoisonStack -= (float)1/playerDatastore.PerkSystem.PerkList.AllPerkList[15].IntEffect();
-            if(PoisonStack < 0) PoisonStack = 0;
+            if(PoisonStack <= 0) 
+            {
+                PoisonStack = 0;
+                isPoisonEffect = false;
+            }
         }
 
         public void AddWeaknessPoint(int point)
         {
+            
             WeaknessPoint += point;
             if(playerDatastore.PerkSystem.PerkList.AllPerkList[20].IntEffect() == 1) WeaknessPoint += point;
         }
@@ -165,7 +194,25 @@ namespace App.Main.Block
             {
                 WeaknessPoint--;
             }
+            if (WeaknessPoint <= 0)
+            {
+                WeaknessPoint = 0;
+                isWeaknessEffect = false;
+            }
             yield return new WaitForSeconds(WaitTime);
         }
+
+        IEnumerator waitForPoisonEffect()
+        {
+            yield return new WaitForSeconds(0.42f);
+            isPoisonEffect = false;
+        }
+
+        IEnumerator waitForWeaknessEffect()
+        {
+            yield return new WaitForSeconds(1.15f);
+            isWeaknessEffect = false;
+        }
+
     }
 }

@@ -18,17 +18,23 @@ namespace App.Main.Block
         [SerializeField] int Id;
         public StageSystem StageSystem { get; set; }
         private float WaitTime = 1.0f;
-        private float PoisonStack = 0;
-        private int WeaknessPoint = 0;
+        public float PoisonStack { get; set; }
+        public int WeaknessPoint { get; set; }
         private bool isPoisoned = false;
         private bool isBroke = false;
         [SerializeField] private WholeSECollector _wholeSeCollector;
+        [SerializeField] private CreateDebuffEffect _createDebuffEffect;
+        [SerializeField] private CreateHealEffect _createHealEffect;
+        private bool isPoisonEffect = false;
+        private bool isWeaknessEffect = false;
         void Start()
         {
             blockAnimation = GetComponent<BlockAnimation>();
             createCat = GetComponent<CreateCat>();
             playerDatastore = FindObjectOfType<PlayerDatastore>();
             //　findしたくないので、引数で渡したい
+            PoisonStack = 0;
+            WeaknessPoint = 0;
         }
 
         private void FixedUpdate()
@@ -37,6 +43,21 @@ namespace App.Main.Block
             {
                 StartCoroutine(TakePoisonDamage());
                 isPoisoned = true;
+            }
+
+            
+            if(isPoisonEffect == false && PoisonStack > 0)
+            {
+                _createDebuffEffect.CreatePoisonEffect(transform.position);
+                isPoisonEffect = true;
+                StartCoroutine(waitForPoisonEffect());
+            }
+
+            if(isWeaknessEffect == false && WeaknessPoint > 0)
+            {
+                _createDebuffEffect.CreateWeaknessEffect(transform.position);
+                isWeaknessEffect = true;
+                StartCoroutine(waitForWeaknessEffect());
             }
         }
 
@@ -78,6 +99,7 @@ namespace App.Main.Block
         {
             BlockHp newBlockHp = new BlockHp(healAmount);
             blockDatastore.SetHp(blockDatastore.Hp.AddCurrentValue(newBlockHp));
+            _createHealEffect.Create(transform.position);
         }
         //<summary>
         // 破壊されたことを通達する(TakeDamage内で呼び出される)
@@ -85,6 +107,8 @@ namespace App.Main.Block
         private void Break()
         {
             _wholeSeCollector.PlaySE(1);
+            PoisonStack = 0;
+            WeaknessPoint = 0;
             if (isBroke) return;
             //ワイヤーケージのパークがある場合、猫が増えずにブロック破壊の処理を行う。
             if (playerDatastore.PerkSystem.PerkList.AllPerkList[1].FloatEffect() == 1)
@@ -146,7 +170,24 @@ namespace App.Main.Block
             {
                 WeaknessPoint--;
             }
+            if (WeaknessPoint <= 0)
+            {
+                WeaknessPoint = 0;
+                isWeaknessEffect = false;
+            }
             yield return new WaitForSeconds(WaitTime);
         }
+        IEnumerator waitForPoisonEffect()
+        {
+            yield return new WaitForSeconds(0.42f);
+            isPoisonEffect = false;
+        }
+
+        IEnumerator waitForWeaknessEffect()
+        {
+            yield return new WaitForSeconds(1.15f);
+            isWeaknessEffect = false;
+        }
+
     }
 }

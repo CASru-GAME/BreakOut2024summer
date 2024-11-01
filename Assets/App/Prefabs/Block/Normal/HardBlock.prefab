@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 4884591582600504771}
   - component: {fileID: 7973220881254369573}
   - component: {fileID: 7519665234902761004}
+  - component: {fileID: -6897692852028002785}
+  - component: {fileID: -351795695170101677}
   m_Layer: 7
   m_Name: HardBlock
   m_TagString: Untagged
@@ -105,6 +107,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHp: 0a000000140000002d000000460000008c000000
   Id: 1
+  _wholeSeCollector: {fileID: 0}
+  _createDebuffEffect: {fileID: 4067143796299024596, guid: 3dd70d1a36b87c842a7a239260377d90, type: 3}
+  _createHealEffect: {fileID: 131629193692143756, guid: 3dd70d1a36b87c842a7a239260377d90, type: 3}
 --- !u!114 &7872260027678286932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +232,33 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 32d6b1de7ea61484aaf08f3896c0132f, type: 2}
   - {fileID: 9100000, guid: b8ce177f25298734baa430259e85c721, type: 2}
   - {fileID: 9100000, guid: 14c911e4c046ab0498e4eac56e343e88, type: 2}
+--- !u!114 &-6897692852028002785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5110763999030235534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03dad662a500cb4cb2024d1a3d90278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PoisonEffectPrefab: {fileID: 5937550208290223403, guid: 7fdc7d6e3df484240bc200f63c4acf94, type: 3}
+  _WeaknessEffectPrefab: {fileID: 5565381754230860282, guid: a3a14fbbbac08f14da59b8989f6504ec, type: 3}
+--- !u!114 &-351795695170101677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5110763999030235534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50746240681d7c4996df2122950abc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectPrefab: {fileID: 5367095281904991997, guid: 8c878e219f4e2bd42a69cd856eade357, type: 3}
 --- !u!1001 &2262010619597446563
 PrefabInstance:
   m_ObjectHideFlags: 0
