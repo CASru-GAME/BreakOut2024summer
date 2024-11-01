@@ -162,7 +162,6 @@ namespace App.Main.Stage
                             selectedPositionList.Add(tmpPattern);
                         }
                         
-
                         return;
                     }
 
@@ -198,6 +197,7 @@ namespace App.Main.Stage
                         FindPositionPattern(patternIndex + 1, decidedPositionList);
                         decidedPositionList.RemoveAt(decidedPositionList.Count - 1);
                     }
+                    attemptCount++;
                 }
 
                 //各ブロックの生成座標を設定
