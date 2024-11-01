@@ -9,6 +9,7 @@ namespace App.Main.Stage
     {
         [SerializeField] private Canvas _poseCanvas;
         [SerializeField] private WholeSECollector _wholeSeCollector;
+        [SerializeField] private Canvas perkCanvas;
         private bool isPosing = false, isInputting = false;
 
         private void Start()
@@ -50,9 +51,10 @@ namespace App.Main.Stage
         }
 
         void Close()
-        {
+        {   
             isPosing = false;
             _poseCanvas.enabled = false;
+            if(perkCanvas.enabled == false)
             Time.timeScale = 1;
         }
 
